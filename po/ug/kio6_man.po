@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-01-19 00:43+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-04-10 09:46-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #: kio_man.cpp:459
 #, kde-kuit-format
@@ -28,6 +29,12 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
+"<resource>%1</resource> نىڭ قوللانما بېتىنى تاپالمىدى.<nl/><nl/>بەت ئىسمىنى "
+"خاتا كىرگۈزمىگەنلىكىڭىزنى جەزملەڭ ۋە قوللانما بېتىنىڭ ئىسمى چوڭ كىچىك ھەرپنى "
+"پەرقلەندۈرىدىغانلىقىغا دىققەت قىلىڭ.<nl/><nl/>ئەگەر ئىسىم توغرا بولسا، "
+"ئۇنداقتا قوللانما بېتىنىڭ ئىزدەش يولىنى كېڭەيتىڭ ياكى <envar>MANPATH</envar> "
+"مۇھىم ئۆزگەرگۈچىسىنى ئىشلىتىڭ ياكى <filename>/etc</filename> مۇندەرىجىسىدە "
+"سەپلىمە ھۆججەت قۇرۇڭ."
 
 #: kio_man.cpp:572
 #, kde-kuit-format
@@ -36,33 +43,35 @@ msgid ""
 "The specified man page references another page <filename>%1</filename>,<nl/"
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
+"بەلگىلەنگەن قوللانما بېتى يەنە بىر بەت <filename>%1</filename> نى نەقىل "
+"ئالغان،<nl/>ئەمما نەقىل بەت <filename>%2</filename> نى تاپالمىدى."
 
 #: kio_man.cpp:589
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
-msgstr ""
+msgstr "بۇ قوللانما بېتى <filename>%1</filename> نى ئوقۇيالمايدۇ."
 
 #: kio_man.cpp:598
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
-msgstr ""
+msgstr "بۇ قوللانما بېتى <filename>%1</filename> نى ئايلاندۇرالمايدۇ."
 
 #: kio_man.cpp:653
 #, kde-format
 msgid "Manual Page Viewer Error"
-msgstr ""
+msgstr "قوللانما بەت كۆرگۈچ خاتالىقى"
 
 #: kio_man.cpp:666
 #, kde-format
 msgid "There is more than one matching man page:"
-msgstr ""
+msgstr "كۆپلىگەن ماسلىشىدىغان قوللانما بېتى بار:"
 
 #: kio_man.cpp:666
 #, kde-format
 msgid "Multiple Manual Pages"
-msgstr ""
+msgstr "كۆپ قوللانما بەت"
 
 #: kio_man.cpp:679
 #, kde-format
@@ -71,28 +80,29 @@ msgid ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 msgstr ""
+"ئەسكەرتىش: ئەگەر سىز ئوقۇۋاتقىنى ئىنگلىزچە بولمىغان قوللانما بېتى بولسا، "
+"ئۇنىڭدا ۋاقتى ئۆتكەن ياكى خاتا ئۇچۇر بولۇشى مۇمكىن. ئەگەر ئۇنىڭ مەزمۇنىغا "
+"قارىتا گۇمان بىلەن قارىسىڭىز، ئىنگلىزچە نەشرىنى كۆرۈڭ."
 
 #: kio_man.cpp:747
-#, fuzzy, kde-format
-#| msgid "Header files"
+#, kde-format
 msgid "Header Files"
-msgstr "باش ھۆججەتلەر"
+msgstr "باش ھۆججەت"
 
 #: kio_man.cpp:749
-#, fuzzy, kde-format
-#| msgid "Header files (POSIX)"
+#, kde-format
 msgid "Header Files (POSIX)"
-msgstr "باش ھۆججەتلەر (POSIX)"
+msgstr "باش ھۆججەت (POSIX)"
 
 #: kio_man.cpp:751
 #, kde-format
 msgid "User Commands"
-msgstr "ئىشلەتكۈچى بۇيرۇقلىرى"
+msgstr "ئىشلەتكۈچى بۇيرۇقى"
 
 #: kio_man.cpp:753
 #, kde-format
 msgid "User Commands (POSIX)"
-msgstr "ئىشلەتكۈچى بۇيرۇقلىرى(POSIX)"
+msgstr "ئىشلەتكۈچى بۇيرۇقى(POSIX)"
 
 #: kio_man.cpp:755
 #, kde-format
@@ -102,12 +112,12 @@ msgstr "سىستېما چاقىرىش"
 #: kio_man.cpp:757
 #, kde-format
 msgid "Subroutines"
-msgstr "تارماق فۇنكسىيىلەر"
+msgstr "تارماق پىروگرامما"
 
 #: kio_man.cpp:760
 #, kde-format
 msgid "Perl Modules"
-msgstr "Perl بۆلەكلىرى"
+msgstr "Perl بۆلەك"
 
 #: kio_man.cpp:762
 #, kde-format
@@ -117,22 +127,22 @@ msgstr "تور فۇنكسىيە"
 #: kio_man.cpp:764
 #, kde-format
 msgid "Devices"
-msgstr "ئۈسكۈنىلەر"
+msgstr "ئۈسكۈنە"
 
 #: kio_man.cpp:766
 #, kde-format
 msgid "File Formats"
-msgstr "ھۆججەت پىچىملىرى"
+msgstr "ھۆججەت پىچىمى"
 
 #: kio_man.cpp:768
 #, kde-format
 msgid "Games"
-msgstr "ئويۇنلار"
+msgstr "ئويۇن"
 
 #: kio_man.cpp:770
 #, kde-format
 msgid "Miscellaneous"
-msgstr "باشقىلار"
+msgstr "باشقا"
 
 #: kio_man.cpp:772
 #, kde-format
@@ -155,27 +165,24 @@ msgid "New"
 msgstr "يېڭى"
 
 #: kio_man.cpp:806
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Main Manual Page Index"
-msgstr "UNIX قوللانما ئىندىكىسى"
+msgstr "ئاساسىي قوللانما بەت ئىندېكسى"
 
 #: kio_man.cpp:831
 #, kde-format
 msgid "Section %1"
-msgstr "بۆلەك %1"
+msgstr "%1-بۆلەك ‎‏"
 
 #: kio_man.cpp:1082
-#, fuzzy, kde-format
-#| msgid "Index for Section %1: %2"
+#, kde-format
 msgid "Index for section %1: %2"
-msgstr "بۆلەك %1 نىڭ ئىندېكسى: %2"
+msgstr "%1-بۆلەكنىڭ ئىندېكسى: %2"
 
 #: kio_man.cpp:1082
-#, fuzzy, kde-format
-#| msgid "UNIX Manual Index"
+#, kde-format
 msgid "Manual Page Index"
-msgstr "UNIX قوللانما ئىندىكىسى"
+msgstr "قوللانما بەت ئىندېكسى"
 
 #: kio_man.cpp:1091
 #, kde-format
@@ -190,6 +197,9 @@ msgid ""
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
+"سىستېمىدىكى  <command>%1</command> پىروگراممىنى تاپالمىدى. بۇ ئىقتىدارنى "
+"ئىشلىتىش ئۈچۈن شۇ پىروگراممىنى ئورنىتىڭ ۋە <envar>PATH</envar> مۇھىت "
+"ئۆزگەرگۈچىسى ئارقىلىق ئورۇن بەلگىلەشكە كاپالەتلىك قىلىڭ."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "%1 نى ئېچىش مەغلۇپ بولدى."

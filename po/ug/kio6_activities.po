@@ -8,32 +8,30 @@ msgstr ""
 "Project-Id-Version: kactivitymanagerd_fileitem_linking_plugin\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-04-10 09:45-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: \n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 1.5.5\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:75 KioActivities.cpp:176
-#, fuzzy, kde-format
-#| msgid "Activities..."
+#, kde-format
 msgid "Activities"
-msgstr "پائالىيەتلەر…"
+msgstr "پائالىيەت"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:78
 #, kde-format
 msgid "Loading..."
-msgstr ""
+msgstr "يۈكلەۋاتىدۇ…"
 
 #: fileitemplugin/FileItemLinkingPlugin.cpp:95
-#, fuzzy, kde-format
-#| msgid "Activity manager is not running properly."
+#, kde-format
 msgid "The Activity Manager is not running"
-msgstr "پائالىيەت باشقۇرغۇچ نورمال ئىجرا بولمىغان."
+msgstr "پائالىيەت باشقۇرغۇچ ئىجرا بولمىغان"
 
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:50
 #: fileitemplugin/FileItemLinkingPluginActionLoader.cpp:109
@@ -60,16 +58,14 @@ msgid "Unlink from:"
 msgstr "ئۇلانمىنى ئۈزىدىغىنى:"
 
 #: KioActivities.cpp:108
-#, fuzzy, kde-format
-#| msgid "Link to the current activity"
+#, kde-format
 msgid "Current activity"
-msgstr "نۆۋەتتىكى پائالىيەتكە ئۇلا"
+msgstr "نۆۋەتتىكى پائالىيەت"
 
 #: KioActivities.cpp:109 KioActivitiesApi.cpp:86
-#, fuzzy, kde-format
-#| msgid "Activities..."
+#, kde-format
 msgid "Activity"
-msgstr "پائالىيەتلەر…"
+msgstr "پائالىيەت"
 
 #~ msgctxt "NAME OF TRANSLATORS"
 #~ msgid "Your names"
@@ -83,28 +79,23 @@ msgstr "پائالىيەتلەر…"
 #~ msgid "Switch to activity \"%1\""
 #~ msgstr "\"%1\" پائالىيەتكە ئالماشتۇر"
 
-#, fuzzy
 #~| msgid "Activities..."
 #~ msgctxt "Header title for activity data model"
 #~ msgid "Activity"
 #~ msgstr "پائالىيەتلەر…"
 
-#, fuzzy
 #~| msgid "Link to the current activity"
 #~ msgid "Delete activity"
 #~ msgstr "نۆۋەتتىكى پائالىيەتكە ئۇلا"
 
-#, fuzzy
 #~| msgid "Link to the current activity"
 #~ msgid "Create a new activity"
 #~ msgstr "نۆۋەتتىكى پائالىيەتكە ئۇلا"
 
-#, fuzzy
 #~| msgid "Activities..."
 #~ msgid "Activity settings"
 #~ msgstr "پائالىيەتلەر…"
 
-#, fuzzy
 #~| msgid "Activities..."
 #~ msgid "Activity information"
 #~ msgstr "پائالىيەتلەر…"
@@ -137,12 +128,10 @@ msgstr "پائالىيەتلەر…"
 #~ msgid "for "
 #~ msgstr "ئۈچۈن "
 
-#, fuzzy
 #~| msgid "Link to the current activity"
 #~ msgid "Create activity..."
 #~ msgstr "نۆۋەتتىكى پائالىيەتكە ئۇلا"
 
-#, fuzzy
 #~| msgid "Activities..."
 #~ msgid "Activity switching"
 #~ msgstr "پائالىيەتلەر…"
@@ -150,17 +139,14 @@ msgstr "پائالىيەتلەر…"
 #~ msgid "Remember opened documents:"
 #~ msgstr "ئېچىلغان پۈتۈكلەرنى ئەستە تۇت:"
 
-#, fuzzy
 #~| msgid "For all applications"
 #~ msgid "For a&ll applications"
 #~ msgstr "ھەممە ئەپلەر ئۈچۈن"
 
-#, fuzzy
 #~| msgid "Do not remember"
 #~ msgid "&Do not remember"
 #~ msgstr "ئەستە تۇتما"
 
-#, fuzzy
 #~| msgid "Only for specific applications"
 #~ msgid "O&nly for specific applications"
 #~ msgstr "ئالاھىدە ئەپلەر ئۈچۈنلا"
@@ -174,7 +160,6 @@ msgstr "پائالىيەتلەر…"
 #~ msgid "Blacklist all applications not on this list"
 #~ msgstr "قارا تىزىمى بۇ تىزىملىكتە بولمىغان ھەممە ئەپلەر"
 
-#, fuzzy
 #~| msgid "Activities..."
 #~ msgid "Activity name"
 #~ msgstr "پائالىيەتلەر…"

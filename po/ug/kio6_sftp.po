@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-04-11 00:45+0000\n"
-"PO-Revision-Date: 2013-09-08 07:05+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-04-10 09:46-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #: kio_sftp.cpp:315
 #, kde-format
@@ -25,7 +26,7 @@ msgstr "ئىم توغرا ئەمەس ياكى ئىناۋەتسىز"
 #: kio_sftp.cpp:364
 #, kde-format
 msgid "Could not allocate callbacks"
-msgstr "callback لارنى تەقسىملىگىلى بولمىدى"
+msgstr "چاقىرىق ئىنكاسىنى تەقسىملىگىلى بولمىدى"
 
 #: kio_sftp.cpp:377
 #, kde-format
@@ -33,21 +34,19 @@ msgid "Could not set log verbosity."
 msgstr "خاتىرە دەرىجىسىنى بەلگىلىگىلى بولمىدى."
 
 #: kio_sftp.cpp:382
-#, fuzzy, kde-format
-#| msgid "Could not set log verbosity."
+#, kde-format
 msgid "Could not set log userdata."
-msgstr "خاتىرە دەرىجىسىنى بەلگىلىگىلى بولمىدى."
+msgstr "خاتىرە ئىشلەتكۈچى سانلىق مەلۇماتىنى تەڭشىگىلى بولمىدى."
 
 #: kio_sftp.cpp:387
-#, fuzzy, kde-format
-#| msgid "Could not allocate callbacks"
+#, kde-format
 msgid "Could not set log callback."
-msgstr "callback لارنى تەقسىملىگىلى بولمىدى"
+msgstr "خاتىرە چاقىرىق ئىنكاسىنى تەڭشىگىلى بولمىدى."
 
 #: kio_sftp.cpp:423 kio_sftp.cpp:425 kio_sftp.cpp:958
 #, kde-format
 msgid "SFTP Login"
-msgstr "SFTP كىرىش"
+msgstr "SFTP تىزىمغا كىرىش"
 
 #: kio_sftp.cpp:440
 #, kde-format
@@ -58,7 +57,7 @@ msgstr ""
 #: kio_sftp.cpp:453
 #, kde-format
 msgid "Please enter your password."
-msgstr "ئىمنى كىرگۈزۈڭ."
+msgstr "ئىم كىرگۈزۈڭ."
 
 #: kio_sftp.cpp:458 kio_sftp.cpp:961
 #, kde-format
@@ -66,73 +65,70 @@ msgid "Site:"
 msgstr "تور بېكەت:"
 
 #: kio_sftp.cpp:519
-#, fuzzy, kde-format
-#| msgid "Could not read link: %1"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "ئۇلانمىنى ئوقۇغىلى بولمىدى: %1"
+msgstr "ئۇلانمىنى ئوقۇيالمىدى: %1 [%2]"
 
 #: kio_sftp.cpp:639
 #, kde-format
 msgid "Could not create a new SSH session."
-msgstr "يېڭى SSH ئەڭگىمەسى قۇرغىلى بولمىدى."
+msgstr "يېڭى SSH جەريانچاقنى قۇرغىلى بولمىدى."
 
 #: kio_sftp.cpp:650 kio_sftp.cpp:654
 #, kde-format
 msgid "Could not set a timeout."
-msgstr "قەرەلنى(timeout) نى بەلگىلىگىلى بولمىدى."
+msgstr "قەرەلنى تەڭشىيەلمىدى."
 
 #: kio_sftp.cpp:661
-#, fuzzy, kde-format
-#| msgid "Could not set port."
+#, kde-format
 msgid "Could not disable Nagle's Algorithm."
-msgstr "ئېغىزنى بەلگىلىگىلى بولمىدى."
+msgstr "Nagle ھېسابلاش ئۇسۇلىنى چەكلىيەلمەيدۇ."
 
 #: kio_sftp.cpp:667 kio_sftp.cpp:672
 #, kde-format
 msgid "Could not set compression."
-msgstr "پرېسلاشنى بەلگىلىگىلى بولمىدى."
+msgstr "قىسىشنى تەڭشىيەلمەيدۇ."
 
 #: kio_sftp.cpp:678
 #, kde-format
 msgid "Could not set host."
-msgstr "كومپيۇتېرنى بەلگىلىگىلى بولمىدى."
+msgstr "كومپيۇتېرنى تەڭشىيەلمەيدۇ."
 
 #: kio_sftp.cpp:684
 #, kde-format
 msgid "Could not set port."
-msgstr "ئېغىزنى بەلگىلىگىلى بولمىدى."
+msgstr "ئېغىزنى تەڭشىيەلمەيدۇ."
 
 #: kio_sftp.cpp:692
 #, kde-format
 msgid "Could not set username."
-msgstr "ئىشلەتكۈچى ئاتىنى بەلگىلىگىلى بولمىدى."
+msgstr "ئىشلەتكۈچى ئاتىنى تەڭشىيەلمەيدۇ."
 
 #: kio_sftp.cpp:699
 #, kde-format
 msgid "Could not parse the config file."
-msgstr "سەپلىمە ھۆججەتنى تەھلىل قىلغىلى بولمىدى."
+msgstr "سەپلىمە ھۆججەتنى تەھلىل قىلالمىدى."
 
 #: kio_sftp.cpp:714
 #, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
-msgstr ""
+msgstr "كومپيۇتېر %1:%2 غا SFTP باغلىنىشىنى ئېچىۋاتىدۇ"
 
 #: kio_sftp.cpp:754
-#, fuzzy, kde-format
-#| msgid "Could not set username."
+#, kde-format
 msgid "Could not get server public key type name"
-msgstr "ئىشلەتكۈچى ئاتىنى بەلگىلىگىلى بولمىدى."
+msgstr "مۇلازىمېتىر ئاممىۋى ئاچقۇچ تۈرىنىڭ ئىسمىغا ئېرىشەلمەيدۇ"
 
 #: kio_sftp.cpp:766
 #, kde-format
 msgid "Could not create hash from server public key"
-msgstr ""
+msgstr "مۇلازىمېتىر ئاممىۋى ئاچقۇچىدىن مۇكەممەللىك قىممىتى قۇرالمايدۇ"
 
 #: kio_sftp.cpp:775
 #, kde-format
 msgid "Could not create fingerprint for server public key"
-msgstr ""
+msgstr "مۇلازىمېتىر ئاممىۋى ئاچقۇچىدىن بارماق ئىزى قۇرالمايدۇ"
 
 #: kio_sftp.cpp:834
 #, kde-format
@@ -144,12 +140,18 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
+"بۇ مۇلازىمېتىرنىڭ %1 مۇلازىمېتىر ئاچقۇچىنى تاپالمىدى ئەمما باشقا تۈردىكى "
+"ئاچقۇچ مەۋجۇت.\n"
+"بەلكىم ھۇجۇمچى مۇلازىمېتىرنىڭ كۆڭۈلدىكى مۇلازىمېتىر ئاچقۇچىنى ئۆزگەرتىۋېتىپ "
+"خېرىدارنى ئاچقۇچ يوق دەپ قارىشىغا قىزىقتۇرماقچى بولۇشى مۇمكىن.\n"
+"سىستېما باشقۇرغۇچى بىلەن ئالاقىلىشىڭ.\n"
+"%2"
 
 #: kio_sftp.cpp:851
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "مۇلازىمېتىر كىملىكى ئۆزگەردى"
 
 #: kio_sftp.cpp:853
 #, kde-kuit-format
@@ -161,12 +163,17 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
+"<para>مۇلازىمېتىر <emphasis>%1</emphasis> نىڭ مۇلازىمېتىر ئاچقۇچى ئۆزگەردى.</"
+"para><para>بۇ بەلكىم DNS ئالدامچىلىقىدىن كېلىپ چىققان بولۇشى مۇمكىن، بەلكىم "
+"مەزكۇر مۇلازىمېتىرنىڭ IP ئادرېسى ۋە مۇلازىمېتىر ئاچقۇچى بىرلا ۋاقىتتا "
+"ئۆزگەرگەن بولۇشى مۇمكىن.</para><para>يىراقتىكى مۇلازىمېتىر يوللىغان %2 "
+"ئاچقۇچ بارماق ئىزى: <bcode>%3</bcode> باغلىنىشنى داۋاملاشتۇرامسىز؟</para>"
 
 #: kio_sftp.cpp:863
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "مۇلازىمېتىرنى دەلىللىيەلمىدى"
 
 #: kio_sftp.cpp:865
 #, kde-kuit-format
@@ -176,29 +183,32 @@ msgid ""
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
+"<para>مۇلازىمېتىر <emphasis>%1</emphasis> نىڭ ئىشەنچلىكلىكىنى دەلىللىيەلمىدى."
+"</para><para>مۇلازىمېتىر %2 نىڭ بارماق ئىزى:<bcode>%3</bcode>باغلىنىشنى "
+"داۋاملاشتۇرامسىز؟</para>"
 
 #: kio_sftp.cpp:874
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "باغلىنىۋەر"
 
 #: kio_sftp.cpp:897 kio_sftp.cpp:916 kio_sftp.cpp:937 kio_sftp.cpp:950
 #: kio_sftp.cpp:1002 kio_sftp.cpp:1012
 #, kde-format
 msgid "Authentication failed."
-msgstr "دەلىللەش مەغلۇپ بولدى."
+msgstr "دەلىللىيەلمىدى."
 
 #: kio_sftp.cpp:904
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
-msgstr ""
+msgstr "دەلىللىيەلمىدى. مۇلازىمېتىر ھېچقانداق دەلىللەش ئۇسۇلىنى يوللىمىدى"
 
 #: kio_sftp.cpp:959
 #, kde-format
 msgid "Please enter your username and password."
-msgstr "ئىشلەتكۈچى ئاتى ۋە ئىمنى كىرگۈزۈڭ."
+msgstr "ئىشلەتكۈچى ئاتى ۋە ئىم كىرگۈزۈڭ."
 
 #: kio_sftp.cpp:970
 #, kde-format
@@ -211,11 +221,13 @@ msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
 "server."
 msgstr ""
+"SFTP تارماق سىستېمىنى ئىلتىماس قىلالمىدى. مۇلازىمېتىردا SFTP نىڭ "
+"قوزغىتىلغانلىقىنى جەزملەڭ."
 
 #: kio_sftp.cpp:1024
 #, kde-format
 msgid "Could not initialize the SFTP session."
-msgstr "SFTP ئەڭگىمەسىنى دەسلەپلەشتۈرەلمىدى."
+msgstr "SFTP جەريانچاقنى دەسلەپلەشتۈرەلمىدى."
 
 #: kio_sftp.cpp:1028
 #, kde-format
@@ -225,7 +237,7 @@ msgstr "%1 غا مۇۋەپپەقىيەتلىك باغلاندى"
 #: kio_sftp.cpp:1081
 #, kde-format
 msgid "Invalid sftp context"
-msgstr ""
+msgstr "SFTP مەزمۇنى ئىناۋەتسىز"
 
 #: kio_sftp.cpp:1617
 #, kde-format

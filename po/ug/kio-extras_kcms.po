@@ -8,14 +8,15 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2013-09-08 07:04+0900\n"
-"Last-Translator: Gheyret Kenji <gheyret@gmail.com>\n"
+"PO-Revision-Date: 2026-04-10 09:48-0400\n"
+"Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
+"X-Generator: Poedit 3.9\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -23,7 +24,7 @@ msgid ""
 "You have to restart the running applications for these changes to take "
 "effect."
 msgstr ""
-"بۇ ئۆزگىرىشلەرنىڭ ئۈنۈمىنى كۆرمەكچى بولسىڭىز ئىجرا بولۇۋاتقان پروگراممىنى "
+"بۇ ئۆزگىرىشلەرنىڭ ئۈنۈمىنى كۆرمەكچى بولسىڭىز ئىجرا بولۇۋاتقان پىروگراممىنى "
 "قايتا باشلىشىڭىز كېرەك."
 
 #: ksaveioconfig.cpp:38
@@ -36,7 +37,7 @@ msgstr "يېڭىلاش مەغلۇپ بولدى"
 #: netpref/kio_ftprc.kcfg:9
 #, kde-format
 msgid "Disable Passive FTP"
-msgstr "پاسسىپ FTP نى ئىناۋەتسىز قىلىش"
+msgstr "پاسسىپ FTP نى چەكلە"
 
 #. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
 #: netpref/kio_ftprc.kcfg:10
@@ -46,13 +47,16 @@ msgid ""
 "of the other way round, so firewalls do not block the connection; old FTP "
 "servers may not support Passive FTP though."
 msgstr ""
+"FTP باغلىنىشى پاسسىپ ھالەتتە تۇرغاندا، خېرىدار مۇلازىمېتىرغا باغلىنىش "
+"ئىلتىماسى باشلايدۇ ئەكسىچە بولمايدۇ، بۇنداق بولغاندا مۇداپىئە تامنىڭ "
+"باغلىنىشنى توسۇشىنىڭ ئالدىنى ئالغىلى بولىدۇ؛ بەزى كونا FTP مۇلازىمېتىر "
+"بەلكىم پاسسىپ FTP نى قوللىماسلىقى مۇمكىن."
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
-#, fuzzy, kde-format
-#| msgid "Mark &partially uploaded files"
+#, kde-format
 msgid "Mark partially uploaded files"
-msgstr "قىسمەن يۈكلەنگەن ھۆججەتلەرگە بەلگە قوي(&P)"
+msgstr "قىسمەن يۈكلەنگەن ھۆججەتلەرگە بەلگە قوي"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
 #: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
@@ -61,47 +65,44 @@ msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
+"ھۆججەتنىڭ يۈكلەش جەريانىدىكى كېڭەيتىلگەن ئاتى «.part» غا ئۆزگەرتىلىدۇ. تولۇق "
+"يۈكلەنگەندىن كېيىن ھەقىقىي ئىسمىغا ئۆزگەرتىلىدۇ."
 
 #. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
 #: netpref/kioslave.kcfg:17
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
+msgstr "ئۈزۈلگەن چۈشۈرۈشنىڭ ساقلاپ قالىدىغان ئەڭ كىچىك ھۆججەت چوڭلۇقى"
 
 #: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Options"
+#, kde-format
 msgid "Global Options"
-msgstr "تاللانما"
+msgstr "ئومۇمىيەت تاللانما"
 
 #: netpref/netpref.cpp:31 netpref/netpref.cpp:70
 #, kde-format
 msgid "Mark &partially uploaded files"
-msgstr "قىسمەن يۈكلەنگەن ھۆججەتلەرگە بەلگە قوي(&P)"
+msgstr "قىسمەن يۈكلەنگەن ھۆججەت بەلگىسى قوي(&P)"
 
 #: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
+#, kde-format
 msgid ""
 "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
 "p><p>When this option is enabled, partially uploaded files will have a \"."
 "part\" extension. This extension will be removed once the transfer is "
 "complete.</p>"
 msgstr ""
-"<p>قىسمەن يۈكلەنگەن FTP ھۆججەتلىرىگە بەلگە قويىدۇ.</p><p>بۇ تاللانما كۈچكە "
-"ئىگە بولسا، قىسمەن يۈكلەنگەن ھۆججەتلەرنىڭ كېڭەيتىلمە ئاتى «.part» بولىدۇ. "
-"يوللاش تاماملانغاندىن كېيىن بۇنداق كېڭەيتىلمە نامدىكى ھۆججەتلەر ئۆچۈرۈلىدۇ.</"
-"p>"
+"<p>SMB، SFTP ۋە باشقا كېلىشىم بىلەن قىسمەن يۈكلەنگەن ھۆججەتكە بەلگە قويىدۇ.</"
+"p><p>بۇ تاللانما قوزغىتىلغاندا، قىسمەن يۈكلەنگەن ھۆججەتنىڭ «.part» "
+"كېڭەيتىلگەن ئاتى بولىدۇ. يەتكۈزۈش تاماملانغاندا كېڭەيتىلگەن ئاتى "
+"چىقىرىۋېتىلىدۇ.</p>"
 
 #: netpref/netpref.cpp:52
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] ""
+msgstr[0] "%v بايت"
 
 #: netpref/netpref.cpp:54
 #, kde-format
@@ -109,16 +110,18 @@ msgctxt "@label:spinbox"
 msgid ""
 "If cancelled, automatically delete partially uploaded files smaller than:"
 msgstr ""
+"ئەگەر ۋاز كەچسە، چوڭلۇقى بۇنىڭدىن كېچىك بولغان قىسمەن يۈكلەنگەن ھۆججەت "
+"ئۆزلۈكىدىن ئۆچۈرۈلىدۇ:"
 
 #: netpref/netpref.cpp:56
 #, kde-format
 msgid "FTP Options"
-msgstr "ف ت پ(FTP) تاللانمىلىرى"
+msgstr "FTP تاللانمىسى"
 
 #: netpref/netpref.cpp:62
 #, kde-format
 msgid "Enable passive &mode (PASV)"
-msgstr "پاسسىپ ھالەتنى(PASV) ئىناۋەتلىك قىل(&M)"
+msgstr "پاسسىپ ھالەتنى(PASV) قوزغات(&M)"
 
 #: netpref/netpref.cpp:64
 #, kde-format
@@ -126,8 +129,8 @@ msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr ""
-"FTP نىڭ «پاسسىپ» ھالىتىنى ئىناۋەتلىك قىلىدۇ. FTP نى ئوتتام(firewalls) نىڭ "
-"كەينىدە ئىشلىتىشكە ئىجازەت بېرىشتە ئىشلىتىلىدۇ."
+"FTP نىڭ «پاسسىپ» ھالىتىنى قوزغىتىدۇ. FTP نى مۇداپىئە تېمىنىڭ كەينىدە "
+"ئىشلىشىگە ئىجازەت بېرىشتە ئىشلىتىلىدۇ."
 
 #: netpref/netpref.cpp:72
 #, kde-format
@@ -136,10 +139,9 @@ msgid ""
 "partially uploaded files will have a \".part\" extension. This extension "
 "will be removed once the transfer is complete.</p>"
 msgstr ""
-"<p>قىسمەن يۈكلەنگەن FTP ھۆججەتلىرىگە بەلگە قويىدۇ.</p><p>بۇ تاللانما كۈچكە "
-"ئىگە بولسا، قىسمەن يۈكلەنگەن ھۆججەتلەرنىڭ كېڭەيتىلمە ئاتى «.part» بولىدۇ. "
-"يوللاش تاماملانغاندىن كېيىن بۇنداق كېڭەيتىلمە نامدىكى ھۆججەتلەر ئۆچۈرۈلىدۇ.</"
-"p>"
+"<p>قىسمەن يۈكلەنگەن FTP ھۆججىتىگە بەلگە قويىدۇ.</p><p>بۇ تاللانما "
+"قوزغىتىلسا، قىسمەن يۈكلەنگەن ھۆججەتنىڭ كېڭەيتىلمە ئاتى «.part» بولىدۇ. "
+"يوللاش تاماملانغاندىن كېيىن بۇنداق كېڭەيتىلمە ئاتى بار ھۆججەت ئۆچۈرۈلىدۇ.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -160,6 +162,20 @@ msgid ""
 "guide or your system administrator.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"ۋاكالەتچى مۇلازىمېتىر سەپلىمىسى تەڭشىكى\n"
+"<p>\n"
+"ۋاكالەتچى مۇلازىمېتىر يەرلىك كومپيۇتېر بىلەن باشقا ئىنتېرنېت مۇلازىمېتىرى "
+"ئارىسىدىكى ۋاسىتىچى كومپيۇتېر بولۇپ، ئۇ تور بەتنى غەملەش ۋە مەزمۇن سۈزۈش "
+"قاتارلىق مۇلازىمەتنى تەمىنلەيدۇ. غەملەك ۋاكالەتچى مۇلازىمېتىر زىيارەت قىلغان "
+"بەتنى يەرلىك كومپيۇتېردا غەملەپ، بۇ تور بېكەتلەرنى زىيارەت قىلىش "
+"سۈرئىتىڭىزنى تېزلىتىدۇ: مەزمۇن سۈزگۈچ مۇلازىمېتىرى ئادەتتە ئېلان، ئەخلەت خەت "
+"ۋە باشقا سىز توسۇشنى خالايدىغان ئىلتىماسنى توسالايدۇ.\n"
+"<p>\n"
+"ئەگەر ۋاكالەتچى مۇلازىمېتىر ئارقىلىق ئىنتېرنېتقا باغلىنىش ئېھتىياجىڭىز بار "
+"يوقلۇقىنى بىلمىسىڭىز، ئىنتېرنېت مۇلازىمىتى تەمىنلىگۈچىدىن مەسلىھەت سوراڭ "
+"ياكى سىستېما باشقۇرغۇچى بىلەن ئالاقىلىشىڭ.\n"
+"</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
 #: proxy/kproxydlg.ui:42
@@ -170,12 +186,15 @@ msgid ""
 "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
 "</qt>"
 msgstr ""
+"<qt>سىستېما ئومۇمىيەت ۋاكالەتچى مۇلازىمېتىرىنىڭ مۇھىت ئۆزگەرتكۈچى مىقدارىنى "
+"ئاپتوماتىك ئىزدەيدۇ.<p>بۇ ئەڭ كۆپ ئىشلىتىلىدىغان HTTP_PROXY، FTP_PROXY ۋە "
+"NO_PROXY غا ئوخشاش ئۆزگەرگۈچى مىقدار ئىسىملىرىنى ئىزدەيدۇ.</qt>"
 
 #. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
 #: proxy/kproxydlg.ui:45
 #, kde-format
 msgid "Auto D&etect"
-msgstr ""
+msgstr "ئۆزلۈكىدىن بايقا(&E)"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:52
@@ -185,23 +204,21 @@ msgstr "ئىنتېرنېتقا بىۋاسىتە باغلىنىدۇ."
 
 #. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "Proxy:"
+#, kde-format
 msgid "&No proxy"
-msgstr "ۋاكالەتچى:"
+msgstr "ۋاكالەتچى يوق(&N)"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
 #: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "HTTP proxy:"
-msgstr "HTTP ۋاكالەتچى:"
+msgstr "HTTP ۋاكالەتچى مۇلازىمېتىرى:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
 #: proxy/kproxydlg.ui:110
 #, kde-format
 msgid "Enter the address of the HTTP proxy server."
-msgstr "HTTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "HTTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
@@ -215,78 +232,70 @@ msgstr "ئېغىز:"
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
 #: proxy/kproxydlg.ui:133
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTP proxy server."
+#, kde-format
 msgid "Enter the port number of the HTTP proxy server."
-msgstr "HTTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "HTTP ۋاكالەتچى مۇلازىمېتىر ئېغىزىنىڭ نومۇرى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
 #: proxy/kproxydlg.ui:148
 #, kde-format
 msgid "Use this proxy server for a&ll protocols"
-msgstr ""
+msgstr "ھەممە كېلىشىم بۇ ۋاكالەتچى مۇلازىمېتىرنى ئىشلىتىدۇ(&L)"
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
 #: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "Proxy:"
+#, kde-format
 msgid "SSL proxy:"
-msgstr "ۋاكالەتچى:"
+msgstr "SSL ۋاكالەتچى مۇلازىمېتىر:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
 #: proxy/kproxydlg.ui:176
 #, kde-format
 msgid "Enter the address of the HTTPS proxy server."
-msgstr "HTTPS ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "HTTPS ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
 #: proxy/kproxydlg.ui:193
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
+#, kde-format
 msgid "Enter the port number of the HTTPS proxy server."
-msgstr "HTTPS ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "HTTPS ۋاكالەتچى مۇلازىمېتىر ئېغىزىنىڭ نومۇرى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
 #. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
+#, kde-format
 msgid "FTP proxy:"
-msgstr "FTP ۋاكالەتچى:"
+msgstr "FTP ۋاكالەتچى مۇلازىمېتىر:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
 #: proxy/kproxydlg.ui:229
 #, kde-format
 msgid "Enter the address of the FTP proxy server."
-msgstr "FTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "FTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
 #: proxy/kproxydlg.ui:246
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
+#, kde-format
 msgid "Enter the port number of the FTP proxy server."
-msgstr "FTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "FTP ۋاكالەتچى مۇلازىمېتىر ئېغىزىنىڭ نومۇرى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
 #: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "Proxy:"
+#, kde-format
 msgid "SOCKS proxy:"
-msgstr "ۋاكالەتچى:"
+msgstr "SOCKS ۋاكالەتچى مۇلازىمېتىر:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
 #: proxy/kproxydlg.ui:279
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
+#, kde-format
 msgid "Enter the address of the SOCKS proxy server."
-msgstr "HTTPS ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "SOCKS ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
 #: proxy/kproxydlg.ui:296
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
+#, kde-format
 msgid "Enter the port number of the SOCKS proxy server."
-msgstr "HTTPS ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "SOCKS ۋاكالەتچى مۇلازىمېتىر ئېغىزىنىڭ نومۇرى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
 #. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
@@ -300,6 +309,12 @@ msgid ""
 "an automatic discovery of this variable.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"ۋاكالەتچى مۇلازىمېتىر ئىشلەتمەيدىغان تور بېكەت ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى "
+"مىقدارىنىڭ ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>NO_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
 #: proxy/kproxydlg.ui:314
@@ -322,6 +337,17 @@ msgid ""
 "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"<p>يۇقىرىقى ۋاكالەتچى مۇلازىمېتىر تەڭشىكى ئۆز ئىچىگە ئالمايدىغان مۇلازىمېتىر "
+"ئىسمى ياكى IP ئادرېس تىزىمى كىرگۈزۈلىدۇ.</p>\n"
+"<p>ئەگەر مەلۇم بىر دائىرە ئىسمىدىكى بارلىق كومپيۇتېرنى ئۆز ئىچىگە "
+"ئالمايدىغان بولسا شۇ دائىرە ئىسمىنىڭ ئالدىغا ئىنگلىزچە چېكىت كىرگۈزۈلىدۇ. "
+"مەسىلەن، بارلىق <i>kde.org</i> نى ئۆز ئىچىگە ئالمايدىغان مۇلازىمېتىرنى "
+"كىرگۈزۈشتە <i>.kde.org</i> نى كىرگۈزۈڭ. «*» ياكى «?» غا ئوخشاش ئورتاق "
+"بەلگىنى قوللىمايدۇ ۋە ئۇلارنىڭ ھېچقانداق ئۈنۈمى بولمايدۇ.</p>\n"
+"<p>ئۇنىڭدىن باشقا، يەنە IP ئادرېس مەسىلەن، 127.0.0.1 ۋە IP ئادرېسقا تارماق "
+"تور قوشۇلغان شەكىلدە مەسىلەن، 192.168.0.1/24كىرگۈزۈلەيسىز‎‏.</p>\n"
+"</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:351
@@ -331,38 +357,41 @@ msgid ""
 "Check this box if you want the above proxy settings to apply only to the "
 "addresses listed in the <i>Exceptions</i> list.</qt>"
 msgstr ""
+"<qt>\n"
+"ئەگەر يۇقىرىقى ۋاكالەتچى مۇلازىمېتىر تەڭشىكىنى پەقەتلا <i>مۇستەسنا</i> "
+"تىزىمىدىكى ئادرېسقا قوللانماقچى بولسىڭىز، بۇ تاللانمىنى تاللاڭ.</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:354
 #, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
+msgstr "پەقەت مۇستەسنا تىزىمىدىكى ئادرېسقىلا ۋاكالەتچى مۇلازىمېتىر ئىشلىتىدۇ"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:367
 #, kde-format
 msgid "Use the specified proxy script to configure the proxy settings."
 msgstr ""
+"بەلگىلەنگەن ۋاكالەتچى قوليازمىسىنى ئىشلىتىپ ۋاكالەتچى مۇلازىمېتىر تەڭشىكىنى "
+"سەپلەيدۇ."
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Reload configuration file"
+#, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "سەپلىمە ھۆججەتنى قايتا يۈكلە"
+msgstr "ۋاكالەتچى مۇلازىمېتىر ئۆزلۈكىدىن سەپلەش تور ئادرېسىنى ئىشلىتىدۇ(&U):"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
 #, kde-format
 msgid "Manually enter proxy server configuration information."
-msgstr "ۋاكالەتچى مۇلازىمېتىر سەپلىمە ئۇچۇرلىرىنى قولدا كىرگۈزىدۇ."
+msgstr "ۋاكالەتچى مۇلازىمېتىر سەپلىمە ئۇچۇرى قولدا كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:389
-#, fuzzy, kde-format
-#| msgid "Updating system configuration."
+#, kde-format
 msgid "Use manually specified proxy configuration:"
-msgstr "سىستېما سەپلىمىسىنى يېڭىلاۋاتىدۇ."
+msgstr "قولدا بەلگىلەنگەن ۋاكالەتچى مۇلازىمېتىر سەپلىمىسى ئىشلىتىلىدۇ:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
@@ -376,13 +405,18 @@ msgid ""
 "automatic discovery of this variable.</p>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"HTTP ۋاكالەتچى مۇلازىمېتىر ئادرېسى ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى مىقدارىنىڭ "
+"ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>HTTP_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
 #: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
+#, kde-format
 msgid "H&TTP proxy:"
-msgstr "HTTP ۋاكالەتچى:"
+msgstr "H&TTP ۋاكالەتچى مۇلازىمېتىر:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -396,13 +430,18 @@ msgid ""
 "an automatic discovery of this variable.</p>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"HTTPS ۋاكالەتچى مۇلازىمېتىر ئادرېسى ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى مىقدارىنىڭ "
+"ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>HTTPS_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
 #: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "Proxy:"
+#, kde-format
 msgid "SS&L proxy:"
-msgstr "ۋاكالەتچى:"
+msgstr "SS&L ۋاكالەتچى مۇلازىمېتىر:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -416,6 +455,12 @@ msgid ""
 "an automatic discovery of this variable.</p>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"FTP ۋاكالەتچى مۇلازىمېتىر ئادرېسى ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى مىقدارىنىڭ "
+"ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>FTP_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:522
@@ -428,13 +473,18 @@ msgid ""
 "an automatic discovery of this variable.</p>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"SOCKS ۋاكالەتچى مۇلازىمېتىر ئادرېسى ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى مىقدارىنىڭ "
+"ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>SOCKS_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
 #: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "Proxy:"
+#, kde-format
 msgid "SOC&KS proxy:"
-msgstr "ۋاكالەتچى:"
+msgstr "SOC&KS ۋاكالەتچى مۇلازىمېتىر:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -445,13 +495,18 @@ msgid ""
 "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
 "automatic discovery of this variable.</p></qt>"
 msgstr ""
+"<qt>\n"
+"SOCKS ۋاكالەتچى مۇلازىمېتىر ئادرېسى ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى مىقدارىنىڭ "
+"ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>SOCKS_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
 #: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgid "E&xceptions:"
-msgstr "مۇستەسنا:"
+msgstr "مۇستەسنا(&X):"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -462,6 +517,12 @@ msgid ""
 "<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
 "to attempt an automatic discovery of this variable.</p></qt>"
 msgstr ""
+"<qt>\n"
+"ۋاكالەتچى مۇلازىمېتىر ئىشلەتمەيدىغان تور بېكەت ساقلىنىدىغان مۇھىت ئۆزگەرگۈچى "
+"مىقدارىنىڭ ئىسمى كىرگۈزۈلىدۇ. مەسىلەن،  <b>NO_PROXY</b>.<p>\n"
+"يەنە <b>«ئۆزلۈكىدىن بايقا»</b> توپچە چېكىلسە، بۇ ئۆزگەرگۈچىنى ئۆزلۈكىدىن "
+"بايقىيالايدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
 #: proxy/kproxydlg.ui:583
@@ -481,23 +542,25 @@ msgid ""
 "UNIX/Linux distributions.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"ۋاكالەتچى مۇلازىمېتىر تەڭشىكىنى ئۆزلۈكىدىن بايقاپ ۋە تەڭشەيدۇ.<p>\n"
+"ئۆزلۈكىدىن بايقاش ئىقتىدارى <b>Web ۋاكالەتچىنى ئۆزلۈكىدىن بايقاش كېلىشىمى "
+"(WPAD) ئارقىلىق بىر تەرەپ قىلىدۇ</b>.<p>\n"
+"<b>ئەسكەرتىش:</b> بۇ تاللانما بەزى UNIX/Linux تارقىتىش نەشرىدە ئىشلەتكەندە "
+"مەسىلە كۆرۈلۈشى ھەتتا پۈتۈنلەي ئىشلىمەسلىكى مۇمكىن.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
 #: proxy/kproxydlg.ui:603
-#, fuzzy, kde-format
-#| msgid ""
-#| "The proxy configuration script is invalid:\n"
-#| "%1"
+#, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr ""
-"ۋاكالەتچى سەپلىمە قوليازمىسى ئىناۋەتسىز:\n"
-"%1"
+msgstr "ۋاكالەتچى مۇلازىمېتىر سەپلىمىسىنى ئۆزلۈكىدىن بايقا(&D)"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
 #, kde-format
 msgid "Enter the address for the proxy configuration script."
-msgstr "ۋاكالەتچى سەپلەش پروگراممىسىنىڭ(script) ئادرېسىنى كىرگۈزۈڭ."
+msgstr "ۋاكالەتچى مۇلازىمېتىر سەپلەش قوليازمىسىنىڭ ئادرېسى كىرگۈزۈلىدۇ."
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:658
@@ -514,13 +577,24 @@ msgid ""
 "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
 "</qt>"
 msgstr ""
+"<qt><p>سىستېمىدا بەلگىلەنگەن ئومۇمىيەت ۋاكالەتچى مۇلازىمېتىر تەڭشىكىنى "
+"ئىشلىتىدۇ.</p>\n"
+"<p>بەزى سۇپىلار سىستېما ئومۇمىيەت ۋاكالەتچى مۇلازىمېتىر سەپلىمە ئۇچۇرىنى "
+"تەمىنلىگەن، بۇ تاللانما تاللانسا ئاشۇ تەڭشەكلەرنى ئىشلىتىدۇ.</p>\n"
+"<p>Mac سۇپىسىدا</p>\n"
+"<p>Windows سۇپىسىدا</p>\n"
+"<p>Unix ۋە Linux سۇپىسىدا، بۇ سىستېما سۇپىلىرىدا ئادەتتە ئومۇمىيەت ۋاكالەتچى "
+"مۇلازىمېتىر تەڭشىكى مۇھىت ئۆزگەرگۈچىدە ئېنىقلىما بېرىلىدۇ. پىروگرامما "
+"تۆۋەندىكى مۇھىت ئۆزگەرگۈچىسىنى بايقايدۇ، ئەگەر ئۇلار مەۋجۇت بولسا ئۇنداقتا "
+"شۇلارنى ئىشلىتىدۇ: <b>HTTP_PROXY</b>، <b>HTTPS_PROXY</b>، <b>FTP_PROXY</b>، "
+"<b>NO_PROXY</b>.</p>\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
-#, fuzzy, kde-format
-#| msgid "Updating system configuration."
+#, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr "سىستېما سەپلىمىسىنى يېڭىلاۋاتىدۇ."
+msgstr "سىستېما ۋاكالەتچى مۇلازىمېتىر سەپلىمىسىنى ئىشلىتىدۇ(&Y):"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -531,12 +605,17 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"ئۆزلۈكىدىن سەپلەش، تور ۋاكالەتچى مۇلازىمېتىرنى ئۆزلۈكىدىن بايقاش (WPAD) "
+"دەپمۇ ئاتىلىدۇ، ئادەتتە ئاساسەن ھەرگىز توغرا سەپلىمە ئەمەس. بۇ ئىقتىدارغا "
+"ئېھتىياجلىق بولمىغاندا ئۇنى قوزغاتقاندا تور زىيارەت سۈرئىتى ۋە تور "
+"بىخەتەرلىكىگە ئەكس تەسىر پەيدا قىلىشى مۇمكىن. ئۇنى قوزغىتىش قوزغاتماسلىقنى "
+"تور باشقۇرغۇچىڭىزدىن سوراپ بېقىڭ."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "تۆۋەن تور ئۈنۈمى بايقالدى"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -546,20 +625,21 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"ئۆزلۈكىدىن ۋاكالەتچى مۇلازىمېتىرنى بايقاش قوزغىتىلغان ئەمما ئۇ سىستېمىنىڭ "
+"تور ئۈنۈمىنى تۆۋەنلىتىۋاتىدۇ. ۋاكالەتچى مۇلازىمېتىر تەڭشىكى ھەقىقەتەن بۇ "
+"ئىقتىدارنى قوزغىتىشقا ئېھتىياجلىق ياكى ئەمەسلىكىنى تەكشۈرۈڭ."
 
 #: proxy/wpad-detector/module.cpp:84
-#, fuzzy, kde-format
-#| msgid "General Settings"
+#, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr "ئادەتتىكى تەڭشەك"
+msgstr "تەڭشەك ئاچ"
 
 #: proxy/wpad-detector/module.cpp:89
-#, fuzzy, kde-format
-#| msgid "&Forever"
+#, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr "مەڭگۈ(&F)"
+msgstr "مەڭگۈ پەرۋا قىلما"
 
 #: trash/kcmtrash.cpp:206
 #, kde-format
@@ -567,6 +647,8 @@ msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
+"<para>KDE نىڭ ئەخلەتخانىسى <b>Finder</b> نىڭ ئەخلەت ساندۇقىنى ئىشلىتىشكە "
+"سەپلەنگەن.<br></para>"
 
 #: trash/kcmtrash.cpp:208
 #, kde-format
@@ -577,12 +659,15 @@ msgid ""
 "para><para>KDE's trash items will show up in a folder called KDE.trash, in "
 "the Trash can.</para>"
 msgstr ""
+"<para>KDE نىڭ ئەخلەت ساندۇقى بوشىتىلسا KDE نىڭ ئەخلەتخانىسىدىكى تۈرلەرنى "
+"چىقىرىۋېتىدۇ.<br> ئەمما  Finder ئارقىلىق بوشىتىلسا ئەخلەتخانىدىكى بارلىق تۈر "
+"ئۆچۈرۈلىدۇ</para><para>KDE نىڭ ئەخلەتخانىسىدىكى تۈرلەر ئەخلەتخانا "
+"قىسقۇچىدىكى KDE.trash قىسقۇچىدا كۆرۈنىدۇ.</para>"
 
 #: trash/kcmtrash.cpp:249
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgid "Delete files older than"
-msgstr "قىسقۇچ ئۆچۈر"
+msgstr "بۇنىڭدىن كونا بولغان ھۆججەتنى ئۆچۈرىدۇ"
 
 #: trash/kcmtrash.cpp:252
 #, kde-kuit-format
@@ -593,15 +678,17 @@ msgid ""
 "disabled to <emphasis strong='true'>not</emphasis> automatically delete any "
 "items after a certain timespan</para>"
 msgstr ""
+"<para>بۇ تاللانما تاللانسا ئەخلەتخانا بەلگىلەنگەن كۈندىن كونا ھۆججەتنى "
+"<emphasis strong='true'>ئۆزلۈكىدىن ئۆچۈر</emphasis> ىدۇ. بۇ تاللانما "
+"تاللانمىسا، ئەخلەتخانا  ئۆزلۈكىدىن ھېچقانداق تۈرنى <emphasis "
+"strong='true'>ئۆچۈرمە</emphasis> يدۇ</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid "1 day %2"
-#| msgid_plural "%1 days %2"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] "%1 كۈن %2"
+msgstr[0] "%v كۈن"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -610,16 +697,18 @@ msgid ""
 "<para>Set the number of days that files can remain in the trash. Any files "
 "older than this will be automatically deleted.</para>"
 msgstr ""
+"<para>ئەخلەتخانا ھۆججەتنى ساقلاپ قالىدىغان كۈن سانى تەڭشىلىدۇ. بۇ ۋاقىتتىن "
+"كونا بولغان ئەخلەتخانىدىكى ھەر قانداق ھۆججەت ئۆزلۈكىدىن ئۆچۈرۈلىدۇ .</para>"
 
 #: trash/kcmtrash.cpp:265
 #, kde-format
 msgid "Cleanup:"
-msgstr ""
+msgstr "تازىلا:"
 
 #: trash/kcmtrash.cpp:268
 #, kde-format
 msgid "Limit to"
-msgstr ""
+msgstr "چېكى"
 
 #: trash/kcmtrash.cpp:270
 #, kde-kuit-format
@@ -628,6 +717,8 @@ msgid ""
 "<para>Check this box to limit the trash to the maximum amount of disk space "
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
+"<para>بۇ تاللانما تاللانسا ئەخلەتخانا ئىشلىتەلەيدىغان ئەڭ چوڭ دىسكا "
+"بوشلۇقىنى چەكلەيدۇ. بۇ تاللانما تاللانمىسا چەكلىمەيدۇ.</para>"
 
 #: trash/kcmtrash.cpp:273
 #, kde-format
@@ -638,7 +729,7 @@ msgstr "چوڭلۇقى:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -646,7 +737,7 @@ msgctxt "@info:whatsthis"
 msgid ""
 "<para>This is the maximum percent of disk space that will be used for the "
 "trash.</para>"
-msgstr ""
+msgstr "<para>ئەخلەتخانا ئىشلىتەلەيدىغان ئەڭ كۆپ دىسكا بوشلۇق نىسبىتى.</para>"
 
 #: trash/kcmtrash.cpp:285
 #, kde-kuit-format
@@ -654,26 +745,22 @@ msgctxt "@info:whatsthis"
 msgid ""
 "<para>This is the calculated amount of disk space that will be allowed for "
 "the trash, the maximum.</para>"
-msgstr ""
+msgstr "<para>ئەخلەتخانا ئىشلىتەلەيدىغان ئەڭ چوڭ دىسكا بوشلۇقى.</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgctxt "Warning about executing unknown .desktop file"
-#| msgid "Warning"
+#, kde-format
 msgid "Show a warning"
-msgstr "ئاگاھلاندۇرۇش"
+msgstr "ئاگاھلاندۇرۇشنى كۆرسەت"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgid "Delete oldest files from trash"
-msgstr "قىسقۇچ ئۆچۈر"
+msgstr "ئەخلەتخانىدىكى ئەڭ كونا ھۆججەتنى ئۆچۈر"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Folder"
+#, kde-format
 msgid "Delete biggest files from trash"
-msgstr "قىسقۇچ ئۆچۈر"
+msgstr "ئەخلەتخاندىكى ئەڭ چوڭ ھۆججەتنى ئۆچۈر"
 
 #: trash/kcmtrash.cpp:293
 #, kde-kuit-format
@@ -683,17 +770,18 @@ msgid ""
 "files that you specify, first. If this is set to warn you, it will do so "
 "instead of automatically deleting files.</para>"
 msgstr ""
+"<para>ئەخلەت ساندۇقى سىغىمىنىڭ يۇقىرى چېكىگە يەتكەندە، ئالدى بىلەن قايسى "
+"ھۆججەتنى ئۆزلۈكىدىن ئۆچۈرىدىغانلىقىنى بەلگىلىيەلەيسىز. ئەگەر بۇ تاللانما "
+"ئاگاھلاندۇرۇش كۆرسىتىدىغان قىلىپ تەڭشەلسە، ئۇنداقتا ئەخلەتخانا ئاگاھلاندۇرۇش "
+"كۆرسىتىپ ھۆججەتنى ئۆزلۈكىدىن ئۆچۈرمەيدۇ.</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgctxt "KFile System Bookmarks"
-#| msgid "Trash"
+#, kde-format
 msgid "Full trash:"
-msgstr "ئەخلەتخانا"
+msgstr "ئەخلەتخانا توشقاندا:"
 
 #: webshortcuts/ikwsopts.cpp:41
-#, fuzzy, kde-format
-#| msgid "Name"
+#, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "ئاتى"
@@ -702,13 +790,13 @@ msgstr "ئاتى"
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
-msgstr ""
+msgstr "ئاچقۇچلۇق سۆز"
 
 #: webshortcuts/ikwsopts.cpp:45
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
-msgstr ""
+msgstr "1-تاللاش تۈرى"
 
 #: webshortcuts/ikwsopts.cpp:104
 #, kde-kuit-format
@@ -718,10 +806,12 @@ msgid ""
 ">Preferred Web search keywords are used in places where only a few select "
 "keywords can be shown at one time."
 msgstr ""
+"بۇ تاللانما تاللانغاندا، نۆۋەتتە تاللىغان تور بەت ئىزدەش ئاچقۇچلۇق سۆزى "
+"مايىللىققا تەڭشىلىدۇ.<nl/>مايىللىققا تەڭشەلگەن تور بەت ئىزدەش ھالقىلىق سۆزى "
+"پەقەت ئاز مىقداردىكى تەۋسىيە ئاچقۇچلۇق سۆز كۆرۈنگەندە ئالدىن كۆرسىتىلىدۇ."
 
 #: webshortcuts/ikwsopts.cpp:205
-#, fuzzy, kde-format
-#| msgid "None"
+#, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "يوق"
@@ -729,7 +819,7 @@ msgstr "يوق"
 #: webshortcuts/ikwsopts.cpp:249
 #, kde-format
 msgid "Search F&ilters"
-msgstr ""
+msgstr "ئىزدەش سۈزگۈچ(&I)"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -743,59 +833,62 @@ msgid ""
 "delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
 "KDE</span>.</p></body></html>"
 msgstr ""
+"<html><head/><body><p>Enable or disable Web search keywords. </p><p>تور بەت "
+"ئىزدەش ئاچقۇچلۇق سۆزى ئىقتىدارىنى قوزغىتىدۇ ياكى چەكلەيدۇ.</p><p>تور بەت "
+"ئىزدەش ئاچقۇچلۇق سۆزى يەرلىك كومپيۇتېر ۋە توردىكى ئۇچۇرلارنى تېز سۈرئەتتە "
+"زىيارەت قىلىش ۋە ئىزدىشىڭىزنى قولايلاشتۇرىدۇ </p><p>KDE بىر قىسىم ھالقىلىق "
+"سۆزلەرنى ئالدىن تەڭشەپ ئوخشاش بولمىغان ئىزدەش موتورىنى چاقىرالايدۇ. مەسىلەن، "
+"Google (TM) دا «KDE» نى ئىزدىمەكچى بولسىڭىز، «gg» نى كىرگۈزۈپ، ئاندىن "
+"ئايرىغۇچ بىلەن ئايرىپ ئاخىرىغا ئىزدەيدىغان ھالقىلىق سۆز كىرگۈزۈلىدۇ، "
+"مەسىلەن، <span style=\" font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
-#, fuzzy, kde-format
-#| msgid "Default password:"
+#, kde-format
 msgid "&Enable Web search keywords"
-msgstr "كۆڭۈلدىكى ئىم:"
+msgstr "تور ئىزدەش ئاچقۇچلۇق سۆزىنى قوزغات(&E)"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
 #, kde-format
 msgid "&Use preferred keywords only"
-msgstr ""
+msgstr "مايىللىقتىكى ئاچقۇچلۇق سۆزنىلا ئىشلەت(&U)"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Default password:"
+#, kde-format
 msgid "Search for Web search keywords"
-msgstr "كۆڭۈلدىكى ئىم:"
+msgstr "تور ئىزدەش ئاچقۇچلۇق سۆزى ئىزدەيدۇ"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:71
-#, fuzzy, kde-format
-#| msgid "Default password:"
+#, kde-format
 msgid "Add a new Web search keyword"
-msgstr "كۆڭۈلدىكى ئىم:"
+msgstr "يېڭى تور ئىزدەش ئاچقۇچلۇق سۆزى قوشىدۇ"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "يېڭى(&N)…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:84
-#, fuzzy, kde-format
-#| msgid "Default password:"
+#, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr "كۆڭۈلدىكى ئىم:"
+msgstr "يورۇتۇلغان تور ئىزدەش ئاچقۇچلۇق سۆزىنى ئۆزگەرتىدۇ"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "تەھرىر(&I)…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:97
-#, fuzzy, kde-format
-#| msgid "Default password:"
+#, kde-format
 msgid "Delete the highlighted Web search keyword"
-msgstr "كۆڭۈلدىكى ئىم:"
+msgstr "يورۇتۇلغان تور ئىزدەش ئاچقۇچلۇق سۆزىنى ئۆچۈرىدۇ"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:100
@@ -813,13 +906,18 @@ msgid ""
 "To disable this feature select <b>None</b> from the list.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"كۆڭۈلدىكى ئىزدەش موتورىدىن بىرى تاللىنىدۇ. ئۆزلۈكىدىن ئىزدەش مۇلازىمىتىنى "
+"قوللايدىغان كىرگۈزۈش بالدىقىغا تور ئادرېسىنىڭ ئورنىغا سۆز ياكى ئىبارە "
+"كىرگۈزگەندە، بىۋاسىتە ئىزدەش موتورىدىن سۈرۈشتۈرىدۇ. بۇ ئىقتىدارنى چەكلەشتە "
+"تىزىمدىن <b>يوق</b> تاللىنىدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:141
-#, fuzzy, kde-format
-#| msgid "Default password:"
+#, kde-format
 msgid "Default Web &search keyword:"
-msgstr "كۆڭۈلدىكى ئىم:"
+msgstr "كۆڭۈلدىكى تور ئىزدەش ئاچقۇچلۇق سۆزى(&S):"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
@@ -831,6 +929,10 @@ msgid ""
 "p><p>To disable this functionality select <span style=\" font-weight:600;"
 "\">None</span> from the list. </p></body></html>"
 msgstr ""
+"<html><head/><body><p>كۆڭۈلدىكى تور ئىزدەش ئاچقۇچلۇق سۆزى تاللىنىدۇ. </"
+"p><p>پىروگرامما تور ئادرېسى دەپ تونۇيالمىغان مەزمۇننى كۆڭۈلدىكى ئاچقۇچلۇق "
+"سۆز ئارقىلىق ئىزدەيدۇ. </p><p>بۇ ئىقتىدارنى چەكلەشتە تىزىمدىن <span style=\" "
+"font-weight:600;\">يوق</span> تاللىنىدۇ. </p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:182
@@ -839,66 +941,63 @@ msgid ""
 "Choose the delimiter that separates the keyword from the phrase or word to "
 "be searched."
 msgstr ""
+"ئىزدەيدىغان ئاچقۇچلۇق سۆزنىڭ سۆز ياكى ئىبارە ئىكەنلىكىنى پەرقلەندۈرىدىغان "
+"ئايرىش بەلگىسى تاللىنىدۇ."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:185
 #, kde-format
 msgid "&Keyword delimiter:"
-msgstr ""
+msgstr "ئاچقۇچلۇق سۆز ئايرىغۇچ(&K):"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:204
 #, kde-format
 msgid "Choose a delimiter to mark the Web search keyword."
-msgstr ""
+msgstr "تور ئىزدەش ئاچقۇچلۇق سۆزىنى ئايرىغۇچ تاللىنىدۇ."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:208
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
-msgstr ""
+msgstr "قوش چېكىت"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:213
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
-msgstr ""
+msgstr "بوشلۇق"
 
 #: webshortcuts/searchproviderdlg.cpp:48
-#, fuzzy, kde-format
-#| msgid "Default"
+#, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
 msgstr "كۆڭۈلدىكى"
 
 #: webshortcuts/searchproviderdlg.cpp:51
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "ئىزدە"
+msgstr "تور ئىزدەش ئاچقۇچلۇق سۆزنى تەھرىرلەيدۇ"
 
 #: webshortcuts/searchproviderdlg.cpp:59
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "ئىزدە"
+msgstr "يېڭى تور ئىزدەش ئاچقۇچلۇق سۆزى"
 
 #: webshortcuts/searchproviderdlg.cpp:120
 #, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
-msgstr ""
+msgstr "«%1» ئاچقۇچلۇق سۆز «%2» غا  تەقسىملەنگەن. باشقا بىرىنى تاللاڭ."
 
 #: webshortcuts/searchproviderdlg.cpp:125
-#, fuzzy, kde-format
-#| msgctxt "items: folders, files (size)"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr "%1: %2"
+msgstr "- %1: «%2»"
 
 #: webshortcuts/searchproviderdlg.cpp:129
 #, kde-format
@@ -906,6 +1005,8 @@ msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
+"تۆۋەندىكى ئاچقۇچلۇق سۆز تەقسىملىنىپ بولغان. باشقا بىرىنى تاللاڭ.\n"
+"%1"
 
 #: webshortcuts/searchproviderdlg.cpp:142
 #, kde-format
@@ -914,18 +1015,20 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
+"بۇ تور ئىزدەش ئاچقۇچلۇق سۆزىنىڭ تور ئادرېسىدا ئىزدەش شەرتىنى تاپشۇرىدىغان %1 "
+"ئورۇن بەلگىسى يوق. كىرگۈزگەن ئاچقۇچلۇق سۆزىڭىز نېمە بولۇشىدىن قەتئىينەزەر "
+"ئوخشاش بىر تور بەتنى زىيارەت قىلىدۇ."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
-msgstr ""
+msgstr "ساقلاپ قال"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:17
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
+#, kde-format
 msgid "Enter the human-readable name of the search provider here."
-msgstr "FTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr "ئىزدەشنى تەمىنلىگۈچىنىڭ چۈشىنىشلىك ئاتىنى بۇ يەرگە كىرگۈزۈڭ."
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
@@ -955,19 +1058,31 @@ msgid ""
 "nothing matches from the left of the reference list.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"بۇ جايغا ئىزدەش موتورىنىڭ تور ئادرېسى كىرگۈزلىدۇ.<br/>ئىزدەيدىغان سۆزنى "
+"\\{@} ياكى \\{0} بىلەن ئىپادىلىگىلى بولىدۇ.<br/>\n"
+"تەۋسىيە قىلىنىدىغىنى \\{@}، چۈنكى ئۇ بارلىق سۈرۈشتۈرۈشنى ئۆزگەرگۈچى "
+"مىقدارغا  ئايلاندۇرغاندىن كېيىن (name=value) نەتىجىدىن چىقىرىۋېتىدۇ، \\{0} "
+"پۈتكۈل سۈرۈشتۈرۈش ھەرپ تىزىقى بىلەن ئالماشتۇرۇلىدۇ.<br/>\n"
+"سىز \\{1} ... \\{n} ئارقىلىق سۈرۈشتۈرۈشتىكى مۇئەييەن سۆزنى بەلگىلىيەلەيسىز، "
+"\\{name} بەلگىلەيدىغىنى «name=value» دىكى قىممەت.<br/>ئۇنىڭدىن باشقا بىر "
+"قېتىمدا بىر قانچە نەقىل (ئىسىم، سان ۋە ھەرپ تىزىقى) بەلگىلىگىلى بولىدۇ، "
+"مەسىلەن، (\\{name1,name2,...,\"string\"}).<br/>بۇ خىل ئەھۋالدا ماس كەلگەن "
+"تۇنجى قىممەت بىلەن ئالماشتۇرىدۇ.<br/> ئەگەر ھېچقايسىسى ماس كەلمىسە ئۇنداقتا "
+"كۆڭۈلدىكى قىممىتىنى ئىشلىتىپ سۈرۈشتۈرىدۇ.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
-#, fuzzy, kde-format
-#| msgid "URL:"
+#, kde-format
 msgid "&URL:"
-msgstr "URL:"
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
 #, kde-format
 msgid "Select the character set that will be used to encode your search query."
-msgstr ""
+msgstr "ئىزدەش سۈرۈشتۈرۈشكە ئىشلىتىدىغان كودلاشنىڭ ھەرپ توپلىمى تاللىنىدۇ."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
@@ -982,52 +1097,56 @@ msgid ""
 "example, the keyword <b>av</b> can be used as in <b>av</b>:<b>my search</b>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"بۇ جايدا كىرگۈزۈلگەن ئاچقۇچلۇق سۆز KDE دا مەۋھۇم تور ئادرېس كېلىشىمى يەنى "
+"pseudo-URI قىلىنىدۇ. مەسىلەن، ئاچقۇچلۇق سۆز <b>av</b> نى مۇنداق ئىشلىتىدۇ: "
+"<b>av</b>:<b>my search</b>\n"
+"</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
-msgstr "FTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr ""
+"<html><head/><body><p>تور ئىزدەش ئاچقۇچلۇق سۆزىنىڭ چۈشىنىشلىك ئاتىنى بۇ "
+"يەرگە كىرگۈزۈڭ.</p></body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
-msgstr "FTP ۋاكالەتچى مۇلازىمېتىرىنىڭ ئادرېسىنى كىرگۈزۈڭ."
+msgstr ""
+"<html><head/><body><p>تور ئىزدەش ئاچقۇچلۇق سۆز تېزلەتمىسىنىڭ چۈشىنىشلىك "
+"ئاتىنى بۇ يەرگە كىرگۈزۈڭ.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
 #, kde-format
 msgid "&Keywords:"
-msgstr ""
+msgstr "ئاچقۇچلۇق سۆز(&K):"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
 #, kde-format
 msgid "Select the character set that will be used to encode your search query"
-msgstr ""
+msgstr "ئىزدەش سۈرۈشتۈرۈشىنى كودلاشتا ئىشلىتىدىغان ھەرپ توپلىمى تاللىنىدۇ"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
 #, kde-format
 msgid "&Character set:"
-msgstr ""
+msgstr "ھەرپ توپلىمى(&C):"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Interlace Mode"
+#, kde-format
 msgid "Insert query placeholder"
-msgstr "ئارىلاشما ھالەت"
+msgstr "سۈرۈشتۈرۈش ئورۇن بەلگىسى قىستۇر"
 
-#, fuzzy
 #~| msgid "1 day %2"
 #~| msgid_plural "%1 days %2"
 #~ msgid " days"
@@ -1069,7 +1188,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Chan&ge..."
 #~ msgstr "ئۆزگەرت(&G)…"
 
-#, fuzzy
 #~| msgid "File name:"
 #~ msgid "Shortcut &name:"
 #~ msgstr "ھۆججەت ئىسمى:"
@@ -1120,7 +1238,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Search"
 #~ msgstr "ئىزدە"
 
-#, fuzzy
 #~| msgid "Search interactively for icon names (e.g. folder)."
 #~ msgid "Search interactively for domains and hosts"
 #~ msgstr "ئۆز ئارا تەسىرلىشىشچان سىنبەلگە ئاتىنى ئىزدە(مەسىلەن قىسقۇچ)"
@@ -1137,7 +1254,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Delete A&ll"
 #~ msgstr "ھەممىنى ئۆچۈر(&L)"
 
-#, fuzzy
 #~| msgctxt "@action:button"
 #~| msgid "Configure..."
 #~ msgid "Configure &Policy..."
@@ -1209,12 +1325,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Accep&t all cookies"
 #~ msgstr "بارلىق cookies نى قوبۇل قىل(&T)"
 
-#, fuzzy
 #~| msgid "Accept cookie(s) until the end of the current session"
 #~ msgid "Accept &until end of session"
 #~ msgstr "نۆۋەتتىكى جەريان ئاخىرلاشقۇچە cookie غا يول قوي"
 
-#, fuzzy
 #~| msgid "Click for Location Navigation"
 #~ msgid "Ask &for confirmation"
 #~ msgstr "چېكىلسە ئورۇننى يېتەكلەيدۇ"
@@ -1225,12 +1339,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Site Policy"
 #~ msgstr "تورتۇرا تۈزۈمى"
 
-#, fuzzy
 #~| msgid "Search interactively for icon names (e.g. folder)."
 #~ msgid "Search interactively for domains"
 #~ msgstr "ئۆز ئارا تەسىرلىشىشچان سىنبەلگە ئاتىنى ئىزدە(مەسىلەن قىسقۇچ)"
 
-#, fuzzy
 #~| msgid "Search"
 #~ msgid "Search..."
 #~ msgstr "ئىزدە"
@@ -1244,7 +1356,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Accept"
 #~ msgstr "قوشۇل"
 
-#, fuzzy
 #~| msgid "Accept for this &session"
 #~ msgid "Accept For Session"
 #~ msgstr "بۇ جەريانغا يول قوي (&S)"
@@ -1255,7 +1366,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Ask"
 #~ msgstr "سورا"
 
-#, fuzzy
 #~| msgid "Do Not Store"
 #~ msgid "Do Not Know"
 #~ msgstr "ساقلىما"
@@ -1271,17 +1381,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ "<b>www.kde.org</b> ياكى <b>.kde.org</b> .\n"
 #~ "</qt>"
 
-#, fuzzy
 #~| msgid "File name:"
 #~ msgid "Site name:"
 #~ msgstr "ھۆججەت ئىسمى:"
 
-#, fuzzy
 #~| msgid "Policy"
 #~ msgid "Policy:"
 #~ msgstr "تۈزۈم"
 
-#, fuzzy
 #~| msgid "Accept cookie(s) until the end of the current session"
 #~ msgid "Accept until end of session"
 #~ msgstr "نۆۋەتتىكى جەريان ئاخىرلاشقۇچە cookie غا يول قوي"
@@ -1294,12 +1401,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Your emails"
 #~ msgstr "sahran.ug@gmail.com,  gheyret@gmail.com"
 
-#, fuzzy
 #~| msgid "Could not change ownership for %1."
 #~ msgid "Could not modify the ownership of file %1"
 #~ msgstr "%1 نىڭ ئىگىدارلىق ھوقۇقىنى ئۆزگەرتەلمىدى."
 
-#, fuzzy
 #~| msgid ""
 #~| "<qt>Could not modify the ownership of file <b>%1</b>. You have "
 #~| "insufficient access to the file to perform the change.</qt>"
@@ -1310,12 +1415,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ "<qt>ھۆججەت <b>%1</b>نىڭ ئىگىدارىنى ئۆزگەرتەلمەيدۇ. سىزنىڭ ئۆزگەرتىشكە "
 #~ "يېتەرلىك ھوقۇقىڭىز يوق.</qt>"
 
-#, fuzzy
 #~| msgid "Unable to create io-slave: %1"
 #~ msgid "Unable to create KIO worker: %1"
 #~ msgstr "io-slave نى تۇرغۇزالمىدى: %1"
 
-#, fuzzy
 #~| msgid ""
 #~| "Could not create symlink %1.\n"
 #~| "Please check permissions."
@@ -1338,13 +1441,11 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Already Exists as Folder"
 #~ msgstr "ئوخشاش ئاتلىق قىسقۇچ مەۋجۇت"
 
-#, fuzzy
 #~| msgctxt "KFile System Bookmarks"
 #~| msgid "Trash"
 #~ msgid "Trash"
 #~ msgstr "ئەخلەتخانا"
 
-#, fuzzy
 #~| msgid "Error processing Exec field in %1"
 #~ msgid "No Exec field in %1"
 #~ msgstr "%1 دا Exec سۆز بۆلىكىنى بىر تەرەپ قىلغاندا خاتالىق كۆرۈلدى"
@@ -1396,7 +1497,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Destination"
 #~ msgstr "نىشان"
 
-#, fuzzy
 #~| msgid "&Rename"
 #~ msgctxt "@title job"
 #~ msgid "Renaming"
@@ -1442,7 +1542,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Unmounting"
 #~ msgstr "ئېگەرسىزلەۋاتىدۇ"
 
-#, fuzzy
 #~| msgid "All Files"
 #~ msgid "Copy Files"
 #~ msgstr "بارلىق ھۆججەتلەر"
@@ -1450,17 +1549,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Delete Files"
 #~ msgstr "ھۆججەت ئۆچۈر"
 
-#, fuzzy
 #~| msgid "Und&o: Create Folder"
 #~ msgid "Create Folder"
 #~ msgstr "يېنىۋال: قىسقۇچ قۇر(&O)"
 
-#, fuzzy
 #~| msgid "Move to Trash"
 #~ msgid "Move Items"
 #~ msgstr "ئەخلەتخانىغا يۆتكە"
 
-#, fuzzy
 #~| msgid "&Rename"
 #~ msgid "Rename"
 #~ msgstr "ئات ئۆزگەرت(&R)"
@@ -1468,7 +1564,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Create Symlink"
 #~ msgstr "بەلگە ئۇلانما قۇر"
 
-#, fuzzy
 #~| msgctxt "@title job"
 #~| msgid "Transferring"
 #~ msgid "Transfer data"
@@ -1483,7 +1578,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Could not start process %1."
 #~ msgstr "%1 جەرياننى قوزغىتالمىدى."
 
-#, fuzzy
 #~| msgid ""
 #~| "Internal Error\n"
 #~| "Please send a full bug report at http://bugs.kde.org\n"
@@ -1711,7 +1805,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "بەلگە ئۇلانما %1 نى قۇرالمىدى.\n"
 #~ "ھوقۇقىنى تەكشۈرۈڭ."
 
-#, fuzzy
 #~| msgid ""
 #~| "Could not create symlink %1.\n"
 #~| "Please check permissions."
@@ -1740,22 +1833,18 @@ msgstr "ئارىلاشما ھالەت"
 #~ "operation."
 #~ msgstr "POST مەشغۇلاتى ئېھتىياجلىق مەزمۇن چوڭلۇق ئۇچۇرىنى تەمىنلىمىدى."
 
-#, fuzzy
 #~| msgid "The file or folder %1 does not exist."
 #~ msgid "A file or folder cannot be dropped onto itself"
 #~ msgstr "ھۆججەت ياكى قىسقۇچ %1 مەۋجۇت ئەمەس."
 
-#, fuzzy
 #~| msgid "The file or folder %1 does not exist."
 #~ msgid "A folder cannot be moved into itself"
 #~ msgstr "ھۆججەت ياكى قىسقۇچ %1 مەۋجۇت ئەمەس."
 
-#, fuzzy
 #~| msgid "Unable to create io-slave: %1"
 #~ msgid "Unable to create KIO worker. %1"
 #~ msgstr "io-slave نى تۇرغۇزالمىدى: %1"
 
-#, fuzzy
 #~| msgid ""
 #~| "Unknown error code %1\n"
 #~| "%2\n"
@@ -1861,7 +1950,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "يۇمشاق دېتالىڭىزنى ئەڭ يېڭى نەشرىگە يېڭىلاڭ. سىز ئىشلىتىۋاتقان "
 #~ "تارقىتىلغان نەشرى يېڭىلاش قورالى بىلەن تەمىنلىگەن."
 
-#, fuzzy
 #~| msgid ""
 #~| "When all else fails, please consider helping the KDE team or the third "
 #~| "party maintainer of this software by submitting a high quality bug "
@@ -1953,7 +2041,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ھۆججەت <strong>%1</strong>نى  يېزىش ھوقۇقىغا ئېرىشكىلى بولمىغانلىقتىن "
 #~ "تەلەپ بويىچە يازالمىدى."
 
-#, fuzzy
 #~| msgid "Cannot Initiate the %1 Protocol"
 #~ msgid "Cannot Launch Process required by the %1 Protocol"
 #~ msgstr "%1 كېلىشىمىنى دەسلەسلەپلەشتۈرەلمىدى"
@@ -1961,7 +2048,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Unable to Launch Process"
 #~ msgstr "جەرياننى قوزغىتالمىدى"
 
-#, fuzzy
 #~| msgid ""
 #~| "The program on your computer which provides access to the <strong>%1</"
 #~| "strong> protocol could not be started. This is usually due to technical "
@@ -2028,7 +2114,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "بۇ كومپيۇتېر قوللايدىغان %1 كېلىشىمنىڭ نەشرى مۇلازىمېتىردىكى نەشرى بىلەن "
 #~ "ماسلاشماسلىقى مۇمكىن."
 
-#, fuzzy
 #~| msgid ""
 #~| "You may perform a search on the Internet for a KDE program (called a "
 #~| "kioslave or ioslave) which supports this protocol. Places to search "
@@ -2648,7 +2733,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "دەلىللىيەلمىدى. سەۋەبى بۇ مۇلازىمېتىر ئىشلەتكەن ئۇسۇل كېلىشىم %1 نى يولغا "
 #~ "قويىدىغان KDE پىروگراممسى قوللىمايدۇ."
 
-#, fuzzy
 #~| msgid ""
 #~| "Please file a bug at <a href=\"http://bugs.kde.org/\">http://bugs.kde."
 #~| "org/</a> to inform the KDE team of the unsupported authentication method."
@@ -2821,12 +2905,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Choose a different filename for the destination file."
 #~ msgstr "نىشان ھۆججەت ئۈچۈن باشقا بىر ھۆججەت ئاتىنى تاللاڭ."
 
-#, fuzzy
 #~| msgid "File or Folder Does Not Exist"
 #~ msgid "File or Folder dropped onto itself"
 #~ msgstr "ھۆججەت ياكى قىسقۇچ مەۋجۇت ئەمەس"
 
-#, fuzzy
 #~| msgid ""
 #~| "The operation could not be completed because the source and destination "
 #~| "files are the same file."
@@ -2836,18 +2918,15 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgstr ""
 #~ "مەشغۇلاتنى تاماملىيالمىدى چۈنكى ئەسلى ۋە نىشان ھۆججەت ئوخشاش بىر ھۆججەت."
 
-#, fuzzy
 #~| msgctxt "request type"
 #~| msgid "copy the specified file or folder"
 #~ msgid "Drop the item into a different file or folder."
 #~ msgstr "بەلگىلەنگەن ھۆججەت ياكى قىسقۇچنى كۆچۈر"
 
-#, fuzzy
 #~| msgid "File or Folder Does Not Exist"
 #~ msgid "Folder moved into itself"
 #~ msgstr "ھۆججەت ياكى قىسقۇچ مەۋجۇت ئەمەس"
 
-#, fuzzy
 #~| msgid ""
 #~| "The operation could not be completed because the source and destination "
 #~| "files are the same file."
@@ -2857,13 +2936,11 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgstr ""
 #~ "مەشغۇلاتنى تاماملىيالمىدى چۈنكى ئەسلى ۋە نىشان ھۆججەت ئوخشاش بىر ھۆججەت."
 
-#, fuzzy
 #~| msgctxt "request type"
 #~| msgid "copy the specified file or folder"
 #~ msgid "Move the item into a different folder."
 #~ msgstr "بەلگىلەنگەن ھۆججەت ياكى قىسقۇچنى كۆچۈر"
 
-#, fuzzy
 #~| msgid ""
 #~| "The operation could not be completed because the source and destination "
 #~| "files are the same file."
@@ -2876,12 +2953,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Cannot Initiate the %1 Protocol"
 #~ msgstr "%1 كېلىشىمىنى دەسلەسلەپلەشتۈرەلمىدى"
 
-#, fuzzy
 #~| msgid "Unable to create io-slave: %1"
 #~ msgid "Unable to Create KIO Worker"
 #~ msgstr "io-slave نى تۇرغۇزالمىدى: %1"
 
-#, fuzzy
 #~| msgid ""
 #~| "The program on your computer which provides access to the <strong>%1</"
 #~| "strong> protocol could not be started. This is usually due to technical "
@@ -3028,18 +3103,15 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Unknown protocol '%1'."
 #~ msgstr "نامەلۇم كېلىشىم '%1'."
 
-#, fuzzy
 #~| msgid "Can not find io-slave for protocol '%1'."
 #~ msgid "Can not find a KIO worker for protocol '%1'."
 #~ msgstr "'%1'  كېلىشىم ئىشلىتىدىغان كىرگۈزۈش چىقىرىش ئارقا ئۇچىنى تاپالمىدى."
 
-#, fuzzy
 #~| msgid "Can not find io-slave for protocol '%1'."
 #~ msgid ""
 #~ "Can not create a socket for launching a KIO worker for protocol '%1'."
 #~ msgstr "'%1'  كېلىشىم ئىشلىتىدىغان كىرگۈزۈش چىقىرىش ئارقا ئۇچىنى تاپالمىدى."
 
-#, fuzzy
 #~| msgid "Can not find io-slave for protocol '%1'."
 #~ msgid "Can not find 'kioworker' executable at '%1'"
 #~ msgstr "'%1'  كېلىشىم ئىشلىتىدىغان كىرگۈزۈش چىقىرىش ئارقا ئۇچىنى تاپالمىدى."
@@ -3083,27 +3155,22 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Sorting"
 #~ msgstr "تەرتىپلەش"
 
-#, fuzzy
 #~| msgid "Site Name"
 #~ msgid "Sort by Name"
 #~ msgstr "تورتۇرا ئاتى"
 
-#, fuzzy
 #~| msgid "Short View"
 #~ msgid "Sort by Size"
 #~ msgstr "قىسقا كۆرۈنۈش"
 
-#, fuzzy
 #~| msgid "By Date"
 #~ msgid "Sort by Date"
 #~ msgstr "چېسلا بويىچە"
 
-#, fuzzy
 #~| msgid "Entry Type"
 #~ msgid "Sort by Type"
 #~ msgstr "كىرگۈ تىپى"
 
-#, fuzzy
 #~| msgid "Descending"
 #~ msgid "Ascending"
 #~ msgstr "كېمەيگۈچى"
@@ -3114,22 +3181,18 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Folders First"
 #~ msgstr "قىسقۇچ ئالدىدا"
 
-#, fuzzy
 #~| msgid "Show Hidden Files"
 #~ msgid "Hidden Files Last"
 #~ msgstr "يوشۇرۇن ھۆججەتلەرنى كۆرسەت"
 
-#, fuzzy
 #~| msgid "Short View"
 #~ msgid "Icons View"
 #~ msgstr "قىسقا كۆرۈنۈش"
 
-#, fuzzy
 #~| msgid "Short View"
 #~ msgid "Compact View"
 #~ msgstr "قىسقا كۆرۈنۈش"
 
-#, fuzzy
 #~| msgid "Detailed View"
 #~ msgid "Details View"
 #~ msgstr "تەپسىلات كۆرۈنۈش"
@@ -3158,7 +3221,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Show Hidden Files"
 #~ msgstr "يوشۇرۇن ھۆججەتلەرنى كۆرسەت"
 
-#, fuzzy
 #~| msgid "Show Preview"
 #~ msgid "Show Preview Panel"
 #~ msgstr "ئالدىن كۆزىتىشنى كۆرسەت"
@@ -3169,30 +3231,25 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Properties"
 #~ msgstr "خاسلىق"
 
-#, fuzzy
 #~| msgid "&View"
 #~ msgid "&View Mode"
 #~ msgstr "كۆرۈنۈش(&V)"
 
-#, fuzzy
 #~| msgid "Folders First"
 #~ msgctxt "Sort descending"
 #~ msgid "Newest First"
 #~ msgstr "قىسقۇچ ئالدىدا"
 
-#, fuzzy
 #~| msgid "Folders First"
 #~ msgctxt "Sort ascending"
 #~ msgid "Oldest First"
 #~ msgstr "قىسقۇچ ئالدىدا"
 
-#, fuzzy
 #~| msgid "Folders First"
 #~ msgctxt "Sort descending"
 #~ msgid "Largest First"
 #~ msgstr "قىسقۇچ ئالدىدا"
 
-#, fuzzy
 #~| msgid "Folders First"
 #~ msgctxt "Sort ascending"
 #~ msgid "Smallest First"
@@ -3207,50 +3264,42 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Save As"
 #~ msgstr "باشقا ئاتتا ساقلا"
 
-#, fuzzy
 #~| msgid "Copy"
 #~ msgctxt "@title:menu"
 #~ msgid "Copy To"
 #~ msgstr "كۆچۈر"
 
-#, fuzzy
 #~| msgid "Move to Trash"
 #~ msgctxt "@title:menu"
 #~ msgid "Move To"
 #~ msgstr "ئەخلەتخانىغا يۆتكە"
 
-#, fuzzy
 #~| msgid "Home Folder"
 #~ msgctxt "@title:menu"
 #~ msgid "Home Folder"
 #~ msgstr "ماكان مۇندەرىجە"
 
-#, fuzzy
 #~| msgid "1 Folder"
 #~| msgid_plural "%1 Folders"
 #~ msgctxt "@title:menu"
 #~ msgid "Root Folder"
 #~ msgstr "%1 قىسقۇچ"
 
-#, fuzzy
 #~| msgid "&Browse..."
 #~ msgctxt "@title:menu in Copy To or Move To submenu"
 #~ msgid "Browse..."
 #~ msgstr "كۆز يۈگۈرت(&B)…"
 
-#, fuzzy
 #~| msgid "Copy"
 #~ msgctxt "@title:menu"
 #~ msgid "Copy Here"
 #~ msgstr "كۆچۈر"
 
-#, fuzzy
 #~| msgid "*|All Files"
 #~ msgctxt "Default mime type filter that shows all file types"
 #~ msgid "*|All Files"
 #~ msgstr "*|بارلىق ھۆججەتلەر"
 
-#, fuzzy
 #~| msgid "%1 (%2)"
 #~ msgctxt "%1 is the mimetype name, %2 is the extensions"
 #~ msgid "%1 (%2)"
@@ -3322,26 +3371,22 @@ msgstr "ئارىلاشما ھالەت"
 #~ "كۆرسىتىشنى ئويلىسىڭىز بۇ ئورۇننى تاللاڭ.<br /><br />ئەگەر بۇ تاللانما "
 #~ "تاللانمىسا بۇ تۈر ھەممە قوللىنىشچان پروگراممىدا كۆرۈنىدۇ.</qt>"
 
-#, fuzzy
 #~| msgctxt "@title:window"
 #~| msgid "Places"
 #~ msgctxt "@item"
 #~ msgid "Places"
 #~ msgstr "ئورۇنلار"
 
-#, fuzzy
 #~| msgid "Remove"
 #~ msgctxt "@item"
 #~ msgid "Remote"
 #~ msgstr "چىقىرىۋەت"
 
-#, fuzzy
 #~| msgid "Search"
 #~ msgctxt "@item"
 #~ msgid "Search For"
 #~ msgstr "ئىزدە"
 
-#, fuzzy
 #~| msgctxt "@item:inmenu"
 #~| msgid "Devices"
 #~ msgctxt "@item"
@@ -3352,7 +3397,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Home"
 #~ msgstr "ماكان"
 
-#, fuzzy
 #~| msgid "FIXME: Document this"
 #~ msgctxt "KFile System Bookmarks"
 #~ msgid "Documents"
@@ -3366,73 +3410,61 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Trash"
 #~ msgstr "ئەخلەتخانا"
 
-#, fuzzy
 #~| msgid "Delete Files"
 #~ msgctxt "KFile System Bookmarks"
 #~ msgid "Recent Files"
 #~ msgstr "ھۆججەت ئۆچۈر"
 
-#, fuzzy
 #~| msgid "Location:"
 #~ msgctxt "KFile System Bookmarks"
 #~ msgid "Recent Locations"
 #~ msgstr "ئورنى:"
 
-#, fuzzy
 #~| msgid "Modified:"
 #~ msgctxt "KFile System Bookmarks"
 #~ msgid "Modified Today"
 #~ msgstr "ئۆزگەرتكەن:"
 
-#, fuzzy
 #~| msgid "Could not find the program '%1'"
 #~ msgctxt "Placeholder is error message"
 #~ msgid "Could not add to the Places panel: %1"
 #~ msgstr "پروگرامما '%1' نى تاپالمىدى."
 
-#, fuzzy
 #~| msgid "The file or folder %1 does not exist."
 #~ msgid "Only folders can be added to the Places panel."
 #~ msgstr "ھۆججەت ياكى قىسقۇچ %1 مەۋجۇت ئەمەس."
 
-#, fuzzy
 #~| msgid "&Release '%1'"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Releasing…"
 #~ msgstr "تارقاتقۇچى '%1' (&R)"
 
-#, fuzzy
 #~| msgid "&Release '%1'"
 #~ msgctxt "@action:inmenu"
 #~ msgid "&Release"
 #~ msgstr "تارقاتقۇچى '%1' (&R)"
 
-#, fuzzy
 #~| msgid "&Safely Remove '%1'"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Safely Removing…"
 #~ msgstr "'%1' نى بىخەتەر چىقىرىۋەت(&S)"
 
-#, fuzzy
 #~| msgid "&Safely Remove '%1'"
 #~ msgctxt "@action:inmenu"
 #~ msgid "&Safely Remove"
 #~ msgstr "'%1' نى بىخەتەر چىقىرىۋەت(&S)"
 
-#, fuzzy
 #~| msgctxt "@title job"
 #~| msgid "Unmounting"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Unmounting…"
 #~ msgstr "ئېگەرسىزلەۋاتىدۇ"
 
-#, fuzzy
 #~| msgid "Unmount"
 #~ msgctxt "@action:inmenu"
 #~ msgid "&Unmount"
 #~ msgstr "ئېگەرسىزلەش"
 
-#, fuzzy
 #~| msgid "Eject"
 #~ msgctxt "@action:inmenu"
 #~ msgid "&Eject"
@@ -3451,43 +3483,36 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Empty Trash"
 #~ msgstr "ئەخلەتخانىنى تازىلاش"
 
-#, fuzzy
 #~| msgid "Mount"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Mount"
 #~ msgstr "ئېگەرلەش"
 
-#, fuzzy
 #~| msgid "Open With"
 #~ msgctxt "@item:inmenu"
 #~ msgid "Open in New Tab"
 #~ msgstr "بۇنىڭدا ئېچىش"
 
-#, fuzzy
 #~| msgid "Add Entry..."
 #~ msgctxt "@action:inmenu"
 #~ msgid "Add Entry…"
 #~ msgstr "كىرگۈ قوش…"
 
-#, fuzzy
 #~| msgid "Edit"
 #~ msgctxt "@action:inmenu"
 #~ msgid "&Edit…"
 #~ msgstr "تەھرىرلەش"
 
-#, fuzzy
 #~| msgid "Remove"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Remove"
 #~ msgstr "چىقىرىۋەت"
 
-#, fuzzy
 #~| msgid "&Hide Entry '%1'"
 #~ msgctxt "@item:inmenu"
 #~ msgid "Hide Section '%1'"
 #~ msgstr "'%1' تۈر  يوشۇر(&H)"
 
-#, fuzzy
 #~| msgid "&Hide Entry '%1'"
 #~ msgctxt "@item:inmenu"
 #~ msgid "Hide Section"
@@ -3496,13 +3521,11 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Show All Entries"
 #~ msgstr "ھەممە تۈرلەرنى كۆرسەت(&S)"
 
-#, fuzzy
 #~| msgid "Short View"
 #~ msgctxt "@item:inmenu"
 #~ msgid "Icon Size"
 #~ msgstr "قىسقا كۆرۈنۈش"
 
-#, fuzzy
 #~| msgid "Drive: %1"
 #~ msgctxt "Large icon size"
 #~ msgid "Large (%1x%1)"
@@ -3547,7 +3570,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Cannot open file"
 #~ msgstr "ھۆججەت ئاچالمىدى"
 
-#, fuzzy
 #~| msgid ""
 #~| "<qt>Click this button to enter the parent folder.<br /><br />For "
 #~| "instance, if the current location is file:/home/%1 clicking this button "
@@ -3574,12 +3596,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Click this button to create a new folder."
 #~ msgstr "بۇ توپچا چېكىلسە يېڭى بىر قىسقۇچ قۇرىدۇ."
 
-#, fuzzy
 #~| msgid "Show Places Navigation Panel"
 #~ msgid "Show Places Panel"
 #~ msgstr "ئورۇن يېتەكچى تاختىنى كۆرسىتىدۇ"
 
-#, fuzzy
 #~| msgid "Show Bookmarks"
 #~ msgid "Show Bookmarks Button"
 #~ msgstr "خەتكۈچلەرنى كۆرسىتىش"
@@ -3587,7 +3607,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Options"
 #~ msgstr "تاللانما"
 
-#, fuzzy
 #~| msgid ""
 #~| "<qt>This is the preferences menu for the file dialog. Various options "
 #~| "can be accessed from this menu including: <ul><li>how files are sorted "
@@ -3712,7 +3731,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "تاللانمىنىڭ ئىناۋەتلىكلىكىنى ساقلاپ قېلىڭ، بۇنداق بولغاندا "
 #~ "ھۆججەتلىرىڭىزنى تېخىمۇ ئاسان باشقۇرالايسىز."
 
-#, fuzzy
 #~| msgid "&Filter:"
 #~ msgid "&File type:"
 #~ msgstr "سۈزگۈچ(&F):"
@@ -3746,7 +3764,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "%1"
 #~ msgstr "%1"
 
-#, fuzzy
 #~| msgid ""
 #~| "The name \"%1\" starts with a dot, so the directory will be hidden by "
 #~| "default."
@@ -3758,13 +3775,11 @@ msgstr "ئارىلاشما ھالەت"
 #~ "\"%1\" ئات چېكىت بىلەن باشلانغان بۇ مۇندەرىجە كۆڭۈلدىكى ئەھۋالدا "
 #~ "يوشۇرۇلىدۇ."
 
-#, fuzzy
 #~| msgid "An older item named '%1' already exists."
 #~ msgctxt "@info"
 #~ msgid "A directory with name <filename>%1</filename> already exists."
 #~ msgstr "'%1' ئاتلىق كونا تۈردىن بىرى مەۋجۇت."
 
-#, fuzzy
 #~| msgid "A file named %1 already exists."
 #~ msgctxt "@info"
 #~ msgid "A file with name <filename>%1</filename> already exists."
@@ -3784,7 +3799,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "New Folder"
 #~ msgstr "يېڭى قىسقۇچ"
 
-#, fuzzy
 #~| msgid ""
 #~| "Create new folder in:\n"
 #~| "%1"
@@ -3799,13 +3813,11 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Paste"
 #~ msgstr "چاپلا"
 
-#, fuzzy
 #~| msgid "Open With"
 #~ msgctxt "@item:inmenu"
 #~ msgid "Open \"%1\" in New Tab"
 #~ msgstr "بۇنىڭدا ئېچىش"
 
-#, fuzzy
 #~| msgid "Open With"
 #~ msgctxt "@item:inmenu"
 #~ msgid "Open \"%1\" in New Window"
@@ -3836,7 +3848,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Other"
 #~ msgstr "باشقا"
 
-#, fuzzy
 #~| msgid "Edit"
 #~ msgid "Edit mode"
 #~ msgstr "تەھرىرلەش"
@@ -3850,13 +3861,11 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "You are not authorized to execute this file."
 #~ msgstr "سىزگە بۇ ھۆججەتنى ئىجرا قىلىش ھوقۇقى بېرىلمىگەن."
 
-#, fuzzy
 #~| msgid "Launching %1"
 #~ msgctxt "Launching application"
 #~ msgid "Launching %1"
 #~ msgstr "%1 ئىجرا قىلىۋاتىدۇ"
 
-#, fuzzy
 #~| msgid "Unable to make the service %1 executable, aborting execution"
 #~ msgid ""
 #~ "Unable to make the service %1 executable, aborting execution.\n"
@@ -3867,17 +3876,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgstr ""
 #~ "سىزگە قوللىنىشچان پروگراممىنى تاللاپ بۇ ھۆججەتنى ئېچىش ھوقۇقى بېرىلمىگەن."
 
-#, fuzzy
 #~| msgid "No media in device for %1"
 #~ msgid "No favicon found for %1"
 #~ msgstr "%1 نىڭ ئۈسكۈنىسىدە ۋاسىتە يوق"
 
-#, fuzzy
 #~| msgid "No media in device for %1"
 #~ msgid "No mail client found"
 #~ msgstr "%1 نىڭ ئۈسكۈنىسىدە ۋاسىتە يوق"
 
-#, fuzzy
 #~| msgid ""
 #~| "The desktop entry of type\n"
 #~| "%1\n"
@@ -3894,7 +3900,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Launching %1"
 #~ msgstr "%1 ئىجرا قىلىۋاتىدۇ"
 
-#, fuzzy
 #~| msgid "The file \"%1\" could not be found"
 #~ msgctxt "@info"
 #~ msgid "The command <command>%1</command> could not be found."
@@ -3909,7 +3914,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "%1\n"
 #~ "ئۇلانما تىپلىق ئەمما URL نى ئۆز ئىچىگە ئالمىغان=…تۈر"
 
-#, fuzzy
 #~| msgid ""
 #~| "<qt>The file <b>%1</b> is an executable program. For safety it will not "
 #~| "be started.</qt>"
@@ -3920,7 +3924,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "<qt>بۇ <b>%1</b> ھۆججەت ئىجراچان پروگرامما. بىخەتەرلىكنى كۆزدە تۇتۇپ ئۇنى "
 #~ "قوزغاتمايدۇ.</qt>"
 
-#, fuzzy
 #~| msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
 #~ msgid ""
 #~ "Unable to make file \"%1\" executable.\n"
@@ -3930,47 +3933,38 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "The desktop entry file %1 has no Type=... entry."
 #~ msgstr "ئۈستەلئۈستى تۈرى ھۆججىتى %1 نىڭ تىپى يوق=…تۈر"
 
-#, fuzzy
 #~| msgid "Cannot open file"
 #~ msgid "Failed to open the file."
 #~ msgstr "ھۆججەت ئاچالمىدى"
 
-#, fuzzy
 #~| msgid "The file \"%1\" could not be found"
 #~ msgid "The program \"%1\" could not be launched."
 #~ msgstr "\"%1\" ھۆججەت  تېپىلمىدى"
 
-#, fuzzy
 #~| msgid "File name:"
 #~ msgid "File Changed"
 #~ msgstr "ھۆججەت ئىسمى:"
 
-#, fuzzy
 #~| msgid "Reload"
 #~ msgid "Upload"
 #~ msgstr "قايتا يۈكلە"
 
-#, fuzzy
 #~| msgid "Do Not Store"
 #~ msgid "Do Not Upload"
 #~ msgstr "ساقلىما"
 
-#, fuzzy
 #~| msgid "Malformed URL %1."
 #~ msgid "Invalid URL: %1"
 #~ msgstr "خاتا URL %1."
 
-#, fuzzy
 #~| msgid "Could not bind %1."
 #~ msgid "File not found: %1"
 #~ msgstr "%1 نى باغلىيالمىدى."
 
-#, fuzzy
 #~| msgid "Do Not Store"
 #~ msgid "Do Not Delete"
 #~ msgstr "ساقلىما"
 
-#, fuzzy
 #~| msgid "Exec"
 #~ msgid "KIOExec"
 #~ msgstr "ئىجرا قىل"
@@ -3978,7 +3972,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Stephan Kulow"
 #~ msgstr "Stephan Kulow"
 
-#, fuzzy
 #~| msgid "Choose an alternate filename for the new file."
 #~ msgid "Suggested file name for the downloaded file"
 #~ msgstr "يېڭى قۇرغان ھۆججەتكە باشقا ئات تاللاڭ."
@@ -3999,60 +3992,49 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Could not find program \"umount\""
 #~ msgstr "\"umount\" پروگراممىنى تاپالمىدى"
 
-#, fuzzy
 #~| msgid "Advanced Permissions"
 #~ msgid "Change File Permissions"
 #~ msgstr "ئالاھىدە ھوقۇقلار"
 
-#, fuzzy
 #~| msgctxt "@title:column"
 #~| msgid "Permissions"
 #~ msgid "New Permissions: %1"
 #~ msgstr "ئىمتىيازلار"
 
-#, fuzzy
 #~| msgid "Remove"
 #~ msgid "Remove File"
 #~ msgstr "چىقىرىۋەت"
 
-#, fuzzy
 #~| msgid "Directory"
 #~ msgid "Remove Directory"
 #~ msgstr "مۇندەرىجە"
 
-#, fuzzy
 #~| msgctxt "@action:button"
 #~| msgid "Create directory"
 #~ msgid "Create Directory"
 #~ msgstr "مۇندەرىجە قۇر"
 
-#, fuzzy
 #~| msgctxt "@title:column"
 #~| msgid "Permissions"
 #~ msgid "Directory Permissions: %1"
 #~ msgstr "ئىمتىيازلار"
 
-#, fuzzy
 #~| msgid "Open File Manager"
 #~ msgid "Open File"
 #~ msgstr "ھۆججەت باشقۇرغۇچنى ئاچ"
 
-#, fuzzy
 #~| msgid "Directory"
 #~ msgid "Open Directory"
 #~ msgstr "مۇندەرىجە"
 
-#, fuzzy
 #~| msgid "File name:"
 #~ msgid "New Filename: %1"
 #~ msgstr "ھۆججەت ئىسمى:"
 
-#, fuzzy
 #~| msgid "Drive: %1"
 #~ msgid "Target: %1"
 #~ msgstr "قوزغاتقۇچ: %1"
 
-#, fuzzy
 #~| msgid "Unknown Interruption"
 #~ msgid "Unknown Action"
 #~ msgstr "يوچۇن ئۈزۈلۈش"
@@ -4075,7 +4057,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Connected to host %1"
 #~ msgstr "ماشىنا %1 غا باغلاندى"
 
-#, fuzzy
 #~| msgid "%1 (%2)"
 #~ msgid "%1 (Error %2)"
 #~ msgstr "%1 (%2)"
@@ -4114,7 +4095,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Could not login to %1."
 #~ msgstr "%1 غا كىرەلمىدى."
 
-#, fuzzy
 #~| msgid "Launching %1"
 #~ msgid ""
 #~ "\n"
@@ -4134,17 +4114,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Proxy Authentication Failed."
 #~ msgstr "ۋاكالەتچىنى دەلىللىيەلمىدى."
 
-#, fuzzy
 #~| msgid "There are no special actions available for protocol %1."
 #~ msgid "There is no documentation available for %1."
 #~ msgstr "%1 كېلىشىمنىڭ ئىشلەتكىلى بولىدىغان ئالاھىدە مەشغۇلاتى يوق."
 
-#, fuzzy
 #~| msgid "The requested lock could not be granted. %1"
 #~ msgid "The requested help file could not be parsed:<br />%1"
 #~ msgstr "تەلەپ قىلغان قۇلۇپلاشنى تاماملىيالمىدى. %1"
 
-#, fuzzy
 #~| msgid "Could not read file %1."
 #~ msgid "Could not find filename %1 in %2."
 #~ msgstr "ھۆججەت ‹%1› ئوقۇيالمىدى"
@@ -4229,7 +4206,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "بىر ياكى بىر قانچە ۋاسىتىچى توپلام (قىسقۇچ) قۇرۇلغاندىن كېيىن ئاندىن "
 #~ "نىشان ئورۇندا مەنبەنى قۇرالايدۇ."
 
-#, fuzzy
 #~| msgid ""
 #~| "The server was unable to maintain the liveness of the properties listed "
 #~| "in the propertybehavior XML element or you attempted to overwrite a file "
@@ -4322,12 +4298,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Unknown Authorization method."
 #~ msgstr "يوچۇن دەلىللەش ئۇسۇلى."
 
-#, fuzzy
 #~| msgid "Cannot open file"
 #~ msgid "Cannot Save Cookies"
 #~ msgstr "ھۆججەت ئاچالمىدى"
 
-#, fuzzy
 #~| msgid ""
 #~| "Could not create symlink %1.\n"
 #~| "Please check permissions."
@@ -4336,7 +4310,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "بەلگە ئۇلانما %1 نى قۇرالمىدى.\n"
 #~ "ھوقۇقىنى تەكشۈرۈڭ."
 
-#, fuzzy
 #~| msgid "Could not write to %1."
 #~ msgid "Could not create directory %1"
 #~ msgstr "%1 نى يازالمىدى."
@@ -4419,7 +4392,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Cookie Details"
 #~ msgstr "cookie تەپسىلاتى"
 
-#, fuzzy
 #~| msgid "Exposure:"
 #~ msgctxt ""
 #~ "@label a description string of how 'accessible' the cookie is (e.g. see "
@@ -4434,26 +4406,22 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Show details of the next cookie"
 #~ msgstr "كېيىنكى cookie نىڭ تەپسىلاتىنى كۆرسەت"
 
-#, fuzzy
 #~| msgid "Not specified"
 #~ msgctxt "@label cookie has no explicit 'Domain' value specified"
 #~ msgid "Not specified"
 #~ msgstr "بەلگىلەنمىگەن"
 
-#, fuzzy
 #~| msgid "End of Session"
 #~ msgctxt "@label the cookie expires when the browser session ends"
 #~ msgid "End of Session"
 #~ msgstr "ئەڭگىمە تامام"
 
-#, fuzzy
 #~| msgid "Secure servers only"
 #~ msgctxt ""
 #~ "@label exposure string - the cookie may only be used by https servers"
 #~ msgid "Secure servers only"
 #~ msgstr "بىخەتەر مۇلازىمېتىر ئۈچۈنلا"
 
-#, fuzzy
 #~| msgid "Secure servers, page scripts"
 #~ msgctxt ""
 #~ "@label exposure string - the cookie may be used by https servers AND "
@@ -4461,14 +4429,12 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Secure servers, page scripts"
 #~ msgstr "بىخەتەر مۇلازىمېتىر، بەت قوليازمالار"
 
-#, fuzzy
 #~| msgid "Servers"
 #~ msgctxt ""
 #~ "@label exposure string - the cookie may only be used by http servers"
 #~ msgid "Servers"
 #~ msgstr "مۇلازىمېتىر"
 
-#, fuzzy
 #~| msgid "Servers, page scripts"
 #~ msgctxt ""
 #~ "@label exposure string - the cookie may be used by http servers AND "
@@ -4476,7 +4442,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Servers, page scripts"
 #~ msgstr "مۇلازىمېتىرلار، بەت قوليازمالار"
 
-#, fuzzy
 #~| msgid "Details"
 #~ msgctxt ""
 #~ "@action:button show details about a cookie that needs approval. This "
@@ -4485,29 +4450,24 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Details"
 #~ msgstr "تەپسىلاتلار"
 
-#, fuzzy
 #~| msgctxt "KFile System Bookmarks"
 #~| msgid "Network"
 #~ msgid "Network"
 #~ msgstr "تور"
 
-#, fuzzy
 #~| msgid "Malformed URL %1."
 #~ msgid "Malformed URL %1"
 #~ msgstr "خاتا URL %1."
 
-#, fuzzy
 #~| msgid "This file is a link and does not have permissions."
 #~| msgid_plural "All files are links and do not have permissions."
 #~ msgid "This file is already in the trash bin."
 #~ msgstr "ھەممە ھۆججەت ئۇلانما، ھوقۇق يوق."
 
-#, fuzzy
 #~| msgid "Writing to %1 is not supported."
 #~ msgid "not supported"
 #~ msgstr "%1 غا يېزىشنى قوللىمايدۇ."
 
-#, fuzzy
 #~| msgid ""
 #~| "Internal error in server\n"
 #~| "%1"
@@ -4546,28 +4506,23 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Could not find 'FindProxyForURL' or 'FindProxyForURLEx'"
 #~ msgstr "'FindProxyForURL' ياكى 'FindProxyForURLEx' نى تاپالمىدى"
 
-#, fuzzy
 #~| msgid "Got an invalid reply when calling %1"
 #~ msgid "Got an invalid reply when calling %1 -> %2"
 #~ msgstr "%1 نى چاقىرىۋاتقاندا ئىناۋەتسىز ئىنكاسقا ئېرىشتى"
 
-#, fuzzy
 #~| msgid "Do you really want to delete this item?"
 #~| msgid_plural "Do you really want to delete these %1 items?"
 #~ msgid "Do you want to retry?"
 #~ msgstr "بۇ %1 تۈرنى ئۆچۈرەمسىز؟"
 
-#, fuzzy
 #~| msgid "Server Authentication"
 #~ msgid "Retry Authentication"
 #~ msgstr "مۇلازىمېتىر ئىسپاتنامىسى"
 
-#, fuzzy
 #~| msgid "Authorization Dialog"
 #~ msgid "Authentication Dialog"
 #~ msgstr "كىملىك دەلىللەش سۆزلەشكۈسى"
 
-#, fuzzy
 #~| msgid "Access Denied"
 #~ msgid "Access denied"
 #~ msgstr "زىيارەت رەت قىلىندى"
@@ -4575,12 +4530,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "You do not have permission to access the %1 protocol."
 #~ msgstr "سىزنىڭ %1 كېلىشىمنى زىيارەت قىلىش ھوقۇقىڭىز يوق."
 
-#, fuzzy
 #~| msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
 #~ msgid "<qt><b>%1</b> does not have a home folder.</qt>"
 #~ msgstr "<qt>قېلىپ ھۆججەت<b>%1</b> مەۋجۇت ئەمەس.</qt>"
 
-#, fuzzy
 #~| msgid "<qt>You do not have permission to run <b>%1</b>.</qt>"
 #~ msgid "<qt>There is no user called <b>%1</b>.</qt>"
 #~ msgstr "<qt>سىزنىڭ  <b>%1</b>نى ئىجرا قىلىش ھوقۇقىڭىز يوق.</qt>"
@@ -4624,7 +4577,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Calculate"
 #~ msgstr "ھېسابلا"
 
-#, fuzzy
 #~| msgid "Do you wish to store the passphrase in your wallet file?"
 #~ msgid "What do you wish to do with this file?"
 #~ msgstr "ئىم جۈملىسىنى پۇلدان ھۆججىتىگە ساقلامسىز؟"
@@ -4632,7 +4584,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Do not ask again"
 #~ msgstr "قايتا سورىما"
 
-#, fuzzy
 #~| msgid "Exec"
 #~ msgid "&Execute"
 #~ msgstr "ئىجرا قىل"
@@ -4643,7 +4594,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Moving"
 #~ msgstr "يۆتكەۋاتىدۇ"
 
-#, fuzzy
 #~| msgid "&Rename"
 #~ msgid "Renaming"
 #~ msgstr "ئات ئۆزگەرت(&R)"
@@ -4672,7 +4622,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Und&o: Create Folder"
 #~ msgstr "يېنىۋال: قىسقۇچ قۇر(&O)"
 
-#, fuzzy
 #~| msgid "Und&o: Create Folder"
 #~ msgid "Und&o: Create Folder(s)"
 #~ msgstr "يېنىۋال: قىسقۇچ قۇر(&O)"
@@ -4680,7 +4629,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Und&o: Create File"
 #~ msgstr "يېنىۋال: ھۆججەت قۇر(&O)"
 
-#, fuzzy
 #~| msgid "Und&o: Rename"
 #~ msgid "Und&o: Batch Rename"
 #~ msgstr "يېنىۋال: ئات ئۆزگەرت(&O)"
@@ -4700,7 +4648,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Undo File Copy Confirmation"
 #~ msgstr "ھۆججەت كۆچۈرۈشتىن يېنىۋېلىشنى جەزملە"
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -4714,18 +4661,15 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgid "Delete Entry"
 #~ msgid "Delete Permanently"
 #~ msgstr "تۈر ئۆچۈر"
 
-#, fuzzy
 #~| msgid "Delete Entry"
 #~ msgctxt "@action:button"
 #~ msgid "Delete Permanently"
 #~ msgstr "تۈر ئۆچۈر"
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -4741,7 +4685,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -4758,7 +4701,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Empty Trash"
 #~ msgstr "ئەخلەتخانىنى تازىلاش"
 
-#, fuzzy
 #~| msgid "Do you really want to move this item to the trash?"
 #~| msgid_plural "Do you really want to move these %1 items to the trash?"
 #~ msgctxt "@info"
@@ -4767,7 +4709,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "filename>"
 #~ msgstr "سىز راستلا %1 تۈرنى ئەخلەتخانىغا يۆتكەمسىز؟"
 
-#, fuzzy
 #~| msgid "Do you really want to move this item to the trash?"
 #~| msgid_plural "Do you really want to move these %1 items to the trash?"
 #~ msgid "Do you really want to move this item to the Trash?"
@@ -4780,55 +4721,46 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "SSL"
 #~ msgstr "SSL"
 
-#, fuzzy
 #~| msgid "Add..."
 #~ msgctxt "@action:button"
 #~ msgid "Add..."
 #~ msgstr "قوش…"
 
-#, fuzzy
 #~| msgid "Edit"
 #~ msgctxt "@action:button"
 #~ msgid "Edit..."
 #~ msgstr "تەھرىرلەش"
 
-#, fuzzy
 #~| msgid "Delete"
 #~ msgctxt "@action:button"
 #~ msgid "Delete"
 #~ msgstr "ئۆچۈر"
 
-#, fuzzy
 #~| msgid "Owner"
 #~ msgctxt "Unix permissions"
 #~ msgid "Owner"
 #~ msgstr "ئىگىسى"
 
-#, fuzzy
 #~| msgid "Owning Group"
 #~ msgctxt "UNIX permissions"
 #~ msgid "Owning Group"
 #~ msgstr "تەۋە گۇرۇپپا"
 
-#, fuzzy
 #~| msgid "Others"
 #~ msgctxt "UNIX permissions"
 #~ msgid "Others"
 #~ msgstr "باشقىلار"
 
-#, fuzzy
 #~| msgid "Mask"
 #~ msgctxt "UNIX permissions"
 #~ msgid "Mask"
 #~ msgstr "ماسكا"
 
-#, fuzzy
 #~| msgid "Named User"
 #~ msgctxt "UNIX permissions"
 #~ msgid "Named User"
 #~ msgstr "ئاتالغان ئىشلەتكۈچى"
 
-#, fuzzy
 #~| msgid " (Default)"
 #~ msgid "Owner (Default)"
 #~ msgstr " (كۆڭۈلدىكى)"
@@ -4932,7 +4864,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Actions"
 #~ msgstr "مەشغۇلاتلار(&A)"
 
-#, fuzzy
 #~| msgctxt "@title:menu"
 #~| msgid "&Open With..."
 #~ msgctxt "@title:menu"
@@ -4943,7 +4874,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Open With..."
 #~ msgstr "بۇنىڭدا ئاچ(&O)…"
 
-#, fuzzy
 #~| msgid "&Open with %1"
 #~ msgid "&Open folder with %1"
 #~ msgstr "%1 دا ئاچ(&O)"
@@ -4951,7 +4881,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Open with %1"
 #~ msgstr "%1 دا ئاچ(&O)"
 
-#, fuzzy
 #~| msgctxt "@title:menu"
 #~| msgid "&Open With"
 #~ msgctxt "@title:menu"
@@ -4962,7 +4891,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Open With"
 #~ msgstr "بۇنىڭدا ئاچ(&O)"
 
-#, fuzzy
 #~| msgid "&Application"
 #~ msgctxt "@action:inmenu Open With"
 #~ msgid "&Other Application..."
@@ -4980,7 +4908,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Stop"
 #~ msgstr "توختا"
 
-#, fuzzy
 #~| msgid "Mounted on:"
 #~ msgid "Mounted From:"
 #~ msgstr "ئېگەرلەش نۇقتىسى:"
@@ -4991,12 +4918,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Location:"
 #~ msgstr "ئورنى:"
 
-#, fuzzy
 #~| msgid "C&hange..."
 #~ msgid "Change..."
 #~ msgstr "ئۆزگەرت(&H)…"
 
-#, fuzzy
 #~| msgid "Contents:"
 #~ msgid "Content:"
 #~ msgstr "مەزمۇنلىرى:"
@@ -5010,17 +4935,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Created:"
 #~ msgstr "قۇرۇلغان:"
 
-#, fuzzy
 #~| msgid "File system:"
 #~ msgid "File System:"
 #~ msgstr "ھۆججەت سىستېمىسى:"
 
-#, fuzzy
 #~| msgid "Unknown Host"
 #~ msgid "Unknown size"
 #~ msgstr "يوچۇن ماشىنا"
 
-#, fuzzy
 #~| msgid "Mounted on:"
 #~ msgid "Mounted On:"
 #~ msgstr "ئېگەرلەش نۇقتىسى:"
@@ -5028,7 +4950,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Accessed:"
 #~ msgstr "زىيارەت:"
 
-#, fuzzy
 #~| msgid "Open With"
 #~ msgid "Open With:"
 #~ msgstr "بۇنىڭدا ئېچىش"
@@ -5099,21 +5020,18 @@ msgstr "ئارىلاشما ھالەت"
 #~ "%m - كىچىك سىنبەلگە\n"
 #~ "%c - ئىزاھات"
 
-#, fuzzy
 #~| msgid "&Remember application association for this type of file"
 #~ msgid ""
 #~ "&Remember application association for all files of type\n"
 #~ "\"%1\" (%2)"
 #~ msgstr "بۇ خىل ھۆججەتنى ئاچىدىغان پروگرامما باغلىنىشىنى ئەستە تۇت(&R)"
 
-#, fuzzy
 #~| msgid "&Remember application association for this type of file"
 #~ msgid ""
 #~ "&Remember application association for all files of type\n"
 #~ "\"%1\""
 #~ msgstr "بۇ خىل ھۆججەتنى ئاچىدىغان پروگرامما باغلىنىشىنى ئەستە تۇت(&R)"
 
-#, fuzzy
 #~| msgid "&Terminal options:"
 #~ msgid "Terminal options"
 #~ msgstr "تېرمىنال تاللانمىسى(&T):"
@@ -5146,12 +5064,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ "بولسا ياكى سىز ئېھتىياجلىق ئۇچۇرنى تېرمىنال تەقلىد كۆزنىكى تەمىنلىسە بۇ "
 #~ "تاللانمىنى تاللاڭ."
 
-#, fuzzy
 #~| msgid "&Run in terminal"
 #~ msgid "Run in terminal"
 #~ msgstr "تېرمىنال ئىجرا قىل(&R)"
 
-#, fuzzy
 #~| msgid "&Terminal options:"
 #~ msgid "Terminal options:"
 #~ msgstr "تېرمىنال تاللانمىسى(&T):"
@@ -5165,7 +5081,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "تەمىنلىسە بۇ تاللانمىنى تاللاڭ. تېرمىنال تەقلىدلىگۈچ ئوچۇق ھالەتتە "
 #~ "تۇرغۇزۇلسا بۇ ئۇچۇرغا ئېرىشىشىڭىزگە يول قويىدۇ."
 
-#, fuzzy
 #~| msgid "&Do not close when command exits"
 #~ msgid "Do not close when command exits"
 #~ msgstr "بۇيرۇقتىن چېكىنگەندە ياپما(&D)"
@@ -5188,7 +5103,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ھوقۇقلىرىنى بەلگىلەيدۇ. سىز بۇنىڭ ئۈچۈن شۇ ئىشلەتكۈچىنىڭ ئىمىنى "
 #~ "تەمىنلىسىڭىز ئاندىن بۇ تاللانمىنى ئىشلىتەلەيسىز."
 
-#, fuzzy
 #~| msgid "Ru&n as a different user"
 #~ msgid "Run as a different user"
 #~ msgstr "پەرقلىق ئىشلەتكۈچى سۈپىتىدە ئىجرا قىل(&N)"
@@ -5203,7 +5117,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgstr ""
 #~ "پروگراممىنى ئىجرا قىلماقچى بولغان ئىشلەتكۈچىنىڭ ئاتىنى بۇ جايغا كىرگۈزۈڭ."
 
-#, fuzzy
 #~| msgctxt ""
 #~| "@title:group Title of a group that lets the user choose options regargin "
 #~| "program startup"
@@ -5223,7 +5136,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "بولسىڭىز بۇ تاللانمىنى تاللاڭ. بۇ كۆرۈنۈشچان ئىنكاس ئالدىراش سىنبەلگىدەك "
 #~ "كۆرۈنۈشى مۇمكىن، ۋەزىپە بالداقتا ئىپادىلىنىشىمۇ مۇمكىن."
 
-#, fuzzy
 #~| msgid "Enable &launch feedback"
 #~ msgid "Enable launch feedback"
 #~ msgstr "ئىجرا قايتما ئىنكاسنى قوزغات(&L)"
@@ -5253,12 +5165,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Comm&ent:"
 #~ msgstr "ئىزاھات(&E):"
 
-#, fuzzy
 #~| msgid "Use preset proxy environment &variables"
 #~ msgid "Environment Variables:"
 #~ msgstr "ئالدىن بەلگىلەنگەن ۋاكالەتچى مۇھىت ئۆزگەرگۈچىلىرىنى ئىشلەت(&V)"
 
-#, fuzzy
 #~| msgid "Enter the user name you want to run the application as here."
 #~ msgid "Type the command to start this application here."
 #~ msgstr ""
@@ -5274,7 +5184,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Browse..."
 #~ msgstr "كۆز يۈگۈرت(&B)…"
 
-#, fuzzy
 #~| msgid ""
 #~| "Type the command to start this application here.\n"
 #~| "\n"
@@ -5320,7 +5229,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "%m - كىچىك سىنبەلگە\n"
 #~ "%c - ئىزاھات"
 
-#, fuzzy
 #~| msgid "FIXME: Document this"
 #~ msgid "&Arguments:"
 #~ msgstr "FIXME: بۇنى پۈتۈكلە"
@@ -5406,7 +5314,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Ad&vanced Options"
 #~ msgstr "ئالىي تاللانما(&V)"
 
-#, fuzzy
 #~| msgid ""
 #~| "<qt>Could not save properties. You do not have sufficient access to "
 #~| "write to <b>%1</b>.</qt>"
@@ -5432,7 +5339,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Refresh"
 #~ msgstr "يېڭىلا"
 
-#, fuzzy
 #~| msgctxt "@item:inmenu Create New"
 #~| msgid "%1"
 #~ msgid "%1:"
@@ -5442,7 +5348,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "%1 free of %2 (%3% used)"
 #~ msgstr "%1 بىكار(جەمئىي %2، %3% ئىشلىتىلگەن)"
 
-#, fuzzy
 #~| msgid "Unknown Host"
 #~ msgctxt "@info:status"
 #~ msgid "Unknown size"
@@ -5463,12 +5368,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid_plural "%1 sub-folders"
 #~ msgstr[0] "%1 تارماق قىسقۇچ"
 
-#, fuzzy
 #~| msgid "Calculating..."
 #~ msgid "Calculating...\n"
 #~ msgstr "ھېسابلاۋاتىدۇ…"
 
-#, fuzzy
 #~| msgid "At least %1"
 #~ msgid "At least %1\n"
 #~ msgstr "ئاز دېگەندە %1"
@@ -5476,39 +5379,32 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "The new file name is empty."
 #~ msgstr "يېڭى ھۆججەت ئاتى بوش."
 
-#, fuzzy
 #~| msgid "&Supported file types:"
 #~ msgid "No registered file type"
 #~ msgstr "قوللايدىغان ھۆججەت تىپلىرى(&S):"
 
-#, fuzzy
 #~| msgid "Choose Application"
 #~ msgid "No associated application"
 #~ msgstr "پروگرامما تاللا"
 
-#, fuzzy
 #~| msgid "Created:"
 #~ msgctxt "@action:button Create new file type"
 #~ msgid "Create…"
 #~ msgstr "قۇرۇلغان:"
 
-#, fuzzy
 #~| msgid "C&hange..."
 #~ msgctxt "@action:button"
 #~ msgid "Change…"
 #~ msgstr "ئۆزگەرت(&H)…"
 
-#, fuzzy
 #~| msgid "Accessed:"
 #~ msgid "No Access"
 #~ msgstr "زىيارەت:"
 
-#, fuzzy
 #~| msgid "Can View & Modify Content"
 #~ msgid "Can View & Modify"
 #~ msgstr "مەزمۇننى كۆرۈپ ئۆزگەرتەلەيدۇ"
 
-#, fuzzy
 #~| msgid "Can View Content"
 #~ msgid "Can Only View Content"
 #~ msgstr "مەزمۇن كۆرەلەيدۇ"
@@ -5516,7 +5412,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Can View & Modify Content"
 #~ msgstr "مەزمۇننى كۆرۈپ ئۆزگەرتەلەيدۇ"
 
-#, fuzzy
 #~| msgid "Can View Content"
 #~ msgid "Can Only View/Read Content"
 #~ msgstr "مەزمۇن كۆرەلەيدۇ"
@@ -5743,7 +5638,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "These files use advanced permissions."
 #~ msgstr "بۇ ھۆججەتلەر ئالىي ھوقۇقنى ئىشلىتىدۇ."
 
-#, fuzzy
 #~| msgid "Calculating..."
 #~ msgctxt "@action:button"
 #~ msgid "Calculating..."
@@ -5752,7 +5646,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "U&RL"
 #~ msgstr "U&RL"
 
-#, fuzzy
 #~| msgid "Only executables on local file systems are supported."
 #~ msgid ""
 #~ "Could not save properties. Only entries on local file systems are "
@@ -5829,14 +5722,12 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "%1 to %2"
 #~ msgstr "%1 دىن %2"
 
-#, fuzzy
 #~| msgctxt "@item:inmenu Create New"
 #~| msgid "%1"
 #~ msgctxt "@action:inmenu Search for <text> with"
 #~ msgid "%1"
 #~ msgstr "%1"
 
-#, fuzzy
 #~| msgctxt "@action:button"
 #~| msgid "Configure..."
 #~ msgid "Configure Web Shortcuts..."
@@ -5859,26 +5750,22 @@ msgstr "ئارىلاشما ھالەت"
 #~ "مەلۇماتنىڭ پىچىمىنى قوبۇل قىلالمايدۇ. چاپلىماقچى بولغان مەزمۇننى قايتا "
 #~ "كۆچۈرۈڭ."
 
-#, fuzzy
 #~| msgid "Parent Folder"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Paste One Folder"
 #~ msgstr "ئاتا قىسقۇچ"
 
-#, fuzzy
 #~| msgid "&Paste File"
 #~| msgid_plural "&Paste %1 Files"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Paste One File"
 #~ msgstr "%1 ھۆججەت چاپلا(&P)"
 
-#, fuzzy
 #~| msgid "&Paste Clipboard Contents"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Paste Clipboard Contents..."
 #~ msgstr "چاپلاش تاختىسىدىكى مەزمۇنلارنى چاپلا(&P)"
 
-#, fuzzy
 #~| msgid "Paste"
 #~ msgctxt "@action:inmenu"
 #~ msgid "Paste"
@@ -5887,17 +5774,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Data format:"
 #~ msgstr "سانلىق-مەلۇمات پىچىمى:"
 
-#, fuzzy
 #~| msgid "Filename for clipboard content:"
 #~ msgid "Filename for dropped contents:"
 #~ msgstr "چاپلاش تاختا مەزمۇنىنىڭ ھۆججەت ئاتى:"
 
-#, fuzzy
 #~| msgid "Drive: %1"
 #~ msgid "Date: %1"
 #~ msgstr "قوزغاتقۇچ: %1"
 
-#, fuzzy
 #~| msgid "Size:"
 #~ msgid "Size: %1"
 #~ msgstr "چوڭلۇقى:"
@@ -5952,7 +5836,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەگەر بىر مۇندەرىجىدە ئوخشاش ئاتلىق ھۆججەت توقۇنۇشى كۆرۈلسە، مۇناسىۋەتلىك "
 #~ "ئۇچۇرنى قايتا كۆرىسىز."
 
-#, fuzzy
 #~| msgid "Overwrite File?"
 #~ msgctxt "Overwrite files into an existing folder when files are older"
 #~ msgid "&Overwrite older files"
@@ -5980,22 +5863,18 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Destination"
 #~ msgstr "نىشان"
 
-#, fuzzy
 #~| msgid "Warning, the destination is more recent."
 #~ msgid "The destination is <b>smaller by %1</b>"
 #~ msgstr "ئاگاھلاندۇرۇش، نىشان تېخىمۇ يېڭىكەن."
 
-#, fuzzy
 #~| msgid "the extension <b>%1</b>"
 #~ msgid "The destination is <b>bigger by %1</b>"
 #~ msgstr "كېڭەيتىلمە <b>%1</b>"
 
-#, fuzzy
 #~| msgid "The new file name is empty."
 #~ msgid "The files are identical."
 #~ msgstr "يېڭى ھۆججەت ئاتى بوش."
 
-#, fuzzy
 #~| msgid "The new file name is empty."
 #~ msgid "The files are different."
 #~ msgstr "يېڭى ھۆججەت ئاتى بوش."
@@ -6012,25 +5891,21 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Rename:"
 #~ msgstr "ئات ئۆزگەرت:"
 
-#, fuzzy
 #~| msgid "&Rename"
 #~ msgctxt "@title:window"
 #~ msgid "Rename Item"
 #~ msgstr "ئات ئۆزگەرت(&R)"
 
-#, fuzzy
 #~| msgid "&Rename"
 #~ msgctxt "@title:window"
 #~ msgid "Rename Items"
 #~ msgstr "ئات ئۆزگەرت(&R)"
 
-#, fuzzy
 #~| msgid "&Rename"
 #~ msgctxt "@action:button"
 #~ msgid "&Rename"
 #~ msgstr "ئات ئۆزگەرت(&R)"
 
-#, fuzzy
 #~| msgid "File name:"
 #~ msgctxt ""
 #~ "This a template for new filenames, # is replaced by a number later, must "
@@ -6038,7 +5913,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "New name #"
 #~ msgstr "ھۆججەت ئىسمى:"
 
-#, fuzzy
 #~| msgid "Change the selected identifier text."
 #~ msgctxt "@label:textbox"
 #~ msgid "Rename the %1 selected item to:"
@@ -6048,7 +5922,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Information"
 #~ msgstr "ئۇچۇر"
 
-#, fuzzy
 #~| msgid "Replace"
 #~ msgid "Replace All"
 #~ msgstr "ئالماشتۇر"
@@ -6056,7 +5929,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Skip"
 #~ msgstr "ئۆتكۈزۈۋەت"
 
-#, fuzzy
 #~| msgid "Skip"
 #~ msgid "Skip All"
 #~ msgstr "ئۆتكۈزۈۋەت"
@@ -6106,7 +5978,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "شۇڭلاشقا ماشىنا بىلەن دەلىللەنگەن باغلىنىش قۇرالمايدۇ، مەشغۇلات بىكار "
 #~ "قىلىندى."
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -6120,7 +5991,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -6136,7 +6006,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -6150,7 +6019,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -6168,7 +6036,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgid "Do you really want to move this item to the trash?"
 #~| msgid_plural "Do you really want to move these %1 items to the trash?"
 #~ msgctxt "@info"
@@ -6176,25 +6043,21 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid_plural "Do you really want to move these %1 items to the Trash?"
 #~ msgstr[0] "سىز راستلا %1 تۈرنى ئەخلەتخانىغا يۆتكەمسىز؟"
 
-#, fuzzy
 #~| msgid "Do not ask again"
 #~ msgctxt "@option:checkbox"
 #~ msgid "Do not ask again"
 #~ msgstr "قايتا سورىما"
 
-#, fuzzy
 #~| msgid "Do not ask again"
 #~ msgctxt "@option:check"
 #~ msgid "Do not ask again"
 #~ msgstr "قايتا سورىما"
 
-#, fuzzy
 #~| msgid "Do not ask again"
 #~ msgctxt "@option:check"
 #~ msgid "Do not show this message again"
 #~ msgstr "قايتا سورىما"
 
-#, fuzzy
 #~| msgctxt "Warning about executing unknown .desktop file"
 #~| msgid "Warning"
 #~ msgctxt "Warning about executing unknown program"
@@ -6217,7 +6080,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "<h1>Cookie Management Quick Help</h1>"
 #~ msgstr "<h1>Cookie باشقۇرۇش ھەققىدە ئاددىي ياردەم</h1>"
 
-#, fuzzy
 #~| msgctxt "@title:window"
 #~| msgid "Configure Shown Data"
 #~ msgid "Configure enhanced browsing features"
@@ -6241,12 +6103,10 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "The desktop is offline"
 #~ msgstr "ئۈستەلئۈستى تورسىز"
 
-#, fuzzy
 #~| msgid "mounting is not supported by wince."
 #~ msgid "mounting is not supported by Windows CE."
 #~ msgstr "wince ئېگەرلەشنى قوللىمايدۇ."
 
-#, fuzzy
 #~| msgid "mounting is not supported by wince."
 #~ msgid "unmounting is not supported by Windows CE."
 #~ msgstr "wince ئېگەرلەشنى قوللىمايدۇ."
@@ -6282,7 +6142,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "<qt>بەلگىلەنگەن بۇيرۇقنى ئىجرا قىلالمايدۇ بۇ <b>%1</b> ھۆججەت ياكى قىسقۇچ "
 #~ "مەۋجۇت ئەمەس.</qt>"
 
-#, fuzzy
 #~| msgid "Could not change ownership for %1."
 #~ msgid "Could not find any application or handler for %1"
 #~ msgstr "%1 نىڭ ئىگىدارلىق ھوقۇقىنى ئۆزگەرتەلمىدى."
@@ -6310,18 +6169,15 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Run Until Finished"
 #~ msgstr "تاماملانغۇچە ئىجرا قىل"
 
-#, fuzzy
 #~| msgid "&D-Bus registration:"
 #~ msgid "D-Bus registration:"
 #~ msgstr "&D-Bus خەتلەش:"
 
-#, fuzzy
 #~| msgid "All Files"
 #~ msgctxt "KFile System Bookmarks"
 #~ msgid "Audio"
 #~ msgstr "بارلىق ھۆججەتلەر"
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -6346,32 +6202,26 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Icon size: %1 pixels (standard size)"
 #~ msgstr "سىنبەلگە چوڭلۇقى: %1 پىكسېل(ئۆلچەملىك چوڭلۇقى)"
 
-#, fuzzy
 #~| msgid "Open With"
 #~ msgid "Open %1 in tab"
 #~ msgstr "بۇنىڭدا ئېچىش"
 
-#, fuzzy
 #~| msgid "You are not authorized to execute this file."
 #~ msgid "Authentication is required to delete this file."
 #~ msgstr "سىزگە بۇ ھۆججەتنى ئىجرا قىلىش ھوقۇقى بېرىلمىگەن."
 
-#, fuzzy
 #~| msgid "Click this button to create a new folder."
 #~ msgid "Authentication is required to create a folder."
 #~ msgstr "بۇ توپچا چېكىلسە يېڭى بىر قىسقۇچ قۇرىدۇ."
 
-#, fuzzy
 #~| msgid "Cannot open file"
 #~ msgid "Authentication is required to open this file."
 #~ msgstr "ھۆججەت ئاچالمىدى"
 
-#, fuzzy
 #~| msgid "You are not authorized to execute this file."
 #~ msgid "Authentication is required to rename this file."
 #~ msgstr "سىزگە بۇ ھۆججەتنى ئىجرا قىلىش ھوقۇقى بېرىلمىگەن."
 
-#, fuzzy
 #~| msgid "You are not authorized to execute this file."
 #~ msgid "Authentication is required to delete this folder."
 #~ msgstr "سىزگە بۇ ھۆججەتنى ئىجرا قىلىش ھوقۇقى بېرىلمىگەن."
@@ -6388,14 +6238,12 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Remove Entry '%1'"
 #~ msgstr "'%1' تۈرنى چىقىرىۋەت(&R)"
 
-#, fuzzy
 #~| msgctxt "@action:button"
 #~| msgid "Enter a different name"
 #~ msgctxt "@action:button"
 #~ msgid "Enter a Different Name"
 #~ msgstr "باشقا ئات كىرگۈزۈڭ"
 
-#, fuzzy
 #~| msgid "Invalid Filenames"
 #~ msgid "Invalid Directory Name"
 #~ msgstr "ئىناۋەتسىز ھۆججەت ئاتى"
@@ -6415,7 +6263,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Cannot talk to klauncher: %1"
 #~ msgstr "klauncher بىلەن ئالاقە قىلالمىدى: %1"
 
-#, fuzzy
 #~| msgid "Launching %1"
 #~ msgid "klauncher said: %1"
 #~ msgstr "%1 ئىجرا قىلىۋاتىدۇ"
@@ -6627,19 +6474,16 @@ msgstr "ئارىلاشما ھالەت"
 #~ "URL تىزىمىنى كۆرسىتەلمەيدۇ\n"
 #~ "%1"
 
-#, fuzzy
 #~| msgctxt "@title:window"
 #~| msgid "Invalid Entry"
 #~ msgid "Invalid link target"
 #~ msgstr "ئىناۋەتسىز كىرگۈ"
 
-#, fuzzy
 #~| msgctxt "Default name for a new folder"
 #~| msgid "New Folder"
 #~ msgid "Add Network Folder"
 #~ msgstr "يېڭى قىسقۇچ"
 
-#, fuzzy
 #~| msgctxt "@info"
 #~| msgid ""
 #~| "Do you want to permanently delete all items from Trash? This action "
@@ -6652,7 +6496,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەخلەتخانىدىكى تۈرلەرنى مەڭگۈلۈك ئۆچۈرەمسىز؟ بۇ مەشغۇلاتتىن يېنىۋالغىلى "
 #~ "بولمايدۇ."
 
-#, fuzzy
 #~| msgid "Do you really want to move this item to the trash?"
 #~| msgid_plural "Do you really want to move these %1 items to the trash?"
 #~ msgctxt "@info"
@@ -6686,24 +6529,20 @@ msgstr "ئارىلاشما ھالەت"
 #~ "SSL گۇۋاھنامە تەلەپ بويىچە رەت قىلىندى. سىز KDE سىستېما تەڭشىكىدە بۇ "
 #~ "تاللانمىنى چەكلىسىڭىز بولىدۇ."
 
-#, fuzzy
 #~| msgid "A folder named %1 already exists."
 #~ msgid "A folder named \"%1\" already exists."
 #~ msgstr "%1 ئاتلىق بىر قىسقۇچ مەۋجۇت."
 
-#, fuzzy
 #~| msgid "Name"
 #~ msgctxt "@title:column Name label from web shortcuts column"
 #~ msgid "Name"
 #~ msgstr "ئاتى"
 
-#, fuzzy
 #~| msgid "None"
 #~ msgctxt "@item:inlistbox No default web shortcut"
 #~ msgid "None"
 #~ msgstr "يوق"
 
-#, fuzzy
 #~| msgid ""
 #~| "The name \"%1\" starts with a dot, so the directory will be hidden by "
 #~| "default."
@@ -6718,7 +6557,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Drive: %1"
 #~ msgstr "قوزغاتقۇچ: %1"
 
-#, fuzzy
 #~| msgid "The new file name is empty."
 #~ msgid "The source file is bigger."
 #~ msgstr "يېڭى ھۆججەت ئاتى بوش."
@@ -6747,43 +6585,35 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "You are not authorized to execute this service."
 #~ msgstr "سىزگە بۇ مۇلازىمەتنى ئىجرا قىلىش ھوقۇقى بېرىلمىگەن."
 
-#, fuzzy
 #~| msgid "The certificate is invalid."
 #~ msgid "Specified socket path is invalid"
 #~ msgstr "بۇ گۇۋاھنامە ئىناۋەتسىز."
 
-#, fuzzy
 #~| msgid "The protocol %1 is not supported."
 #~ msgid "The socket operation is not supported"
 #~ msgstr "%1 كېلىشىمىنى قوللىمايدۇ."
 
-#, fuzzy
 #~| msgid "Connection to Server Refused"
 #~ msgid "Connection refused"
 #~ msgstr "مۇلازىمېتىرغا باغلىنىش رەت قىلىندى"
 
-#, fuzzy
 #~| msgctxt "@label"
 #~| msgid "Permissions"
 #~ msgid "Permission denied"
 #~ msgstr "ئىمتىيازلار"
 
-#, fuzzy
 #~| msgid "Connection timed out."
 #~ msgid "Connection timed out"
 #~ msgstr "باغلىنىشنىڭ مۆھلىتى ئېشىپ كەتتى"
 
-#, fuzzy
 #~| msgid "Unknown Error"
 #~ msgid "Unknown error"
 #~ msgstr "نامەلۇم خاتالىق"
 
-#, fuzzy
 #~| msgid "Could not login to %1."
 #~ msgid "Could not set non-blocking mode"
 #~ msgstr "%1 غا كىرەلمىدى."
 
-#, fuzzy
 #~| msgid ""
 #~| "URL cannot be listed\n"
 #~| "%1"
@@ -6792,18 +6622,15 @@ msgstr "ئارىلاشما ھالەت"
 #~ "URL تىزىمىنى كۆرسىتەلمەيدۇ\n"
 #~ "%1"
 
-#, fuzzy
 #~| msgctxt "@action:button"
 #~| msgid "Create directory"
 #~ msgid "Not a directory"
 #~ msgstr "مۇندەرىجە قۇر"
 
-#, fuzzy
 #~| msgid "Unknown Error"
 #~ msgid "Unknown socket error"
 #~ msgstr "نامەلۇم خاتالىق"
 
-#, fuzzy
 #~| msgid "Writing to %1 is not supported."
 #~ msgid "Operation not supported"
 #~ msgstr "%1 غا يېزىشنى قوللىمايدۇ."
@@ -6814,43 +6641,36 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "SSL support is not available in this build of KDE."
 #~ msgstr "بۇ KDE نەشرى SSL قوللاشنى ئۆز ئىچىگە ئالمايدۇ."
 
-#, fuzzy
 #~| msgid "The certificate's CA (Certificate Authority) is invalid."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate authority's certificate is invalid"
 #~ msgstr "گۇۋاھنامەنىڭ CA (گۇۋاھنامە تارقاتقۇچى)سى ئىناۋەتسىز."
 
-#, fuzzy
 #~| msgid "The certificate has been revoked."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate has expired"
 #~ msgstr "بۇ گۇۋاھنامە بىكار قىلىنغان."
 
-#, fuzzy
 #~| msgid "The certificate is invalid."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate is invalid"
 #~ msgstr "بۇ گۇۋاھنامە ئىناۋەتسىز."
 
-#, fuzzy
 #~| msgid "The certificate has not been issued for this host."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate is not signed by any trusted certificate authority"
 #~ msgstr "گۇۋاھنامە بۇ ماشىنىغا تارقىتىلمىغان."
 
-#, fuzzy
 #~| msgid "The certificate has been revoked."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate has been revoked"
 #~ msgstr "بۇ گۇۋاھنامە بىكار قىلىنغان."
 
-#, fuzzy
 #~| msgid "The certificate has not been issued for this host."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate is unsuitable for this purpose"
 #~ msgstr "گۇۋاھنامە بۇ ماشىنىغا تارقىتىلمىغان."
 
-#, fuzzy
 #~| msgid ""
 #~| "The CA's (Certificate Authority) certificate can not be found. Most "
 #~| "likely, your trust chain is broken."
@@ -6862,7 +6682,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "CA (گۇۋاھنامە تارقاتقۇچى)نىڭ گۇۋاھنامىسىنى تاپالمىدى. مۇمكىنلىكى يۇقىرى "
 #~ "سەۋەب ئىشەنچلىك ئۇلانمىڭىز بۇزۇلغان."
 
-#, fuzzy
 #~| msgid ""
 #~| "The certificate's CA (Certificate Authority) is not allowed to sign "
 #~| "certificates."
@@ -6872,31 +6691,26 @@ msgstr "ئارىلاشما ھالەت"
 #~ "certificate's purpose"
 #~ msgstr "CA (گۇۋاھنامە تارقاتقۇچى) غا گۇۋاھنامە تارقىتىش ھوقۇقى بېرىلمىگەن."
 
-#, fuzzy
 #~| msgid "Do not send a certificate"
 #~ msgctxt "SSL error"
 #~ msgid "The peer did not present any certificate"
 #~ msgstr "گۇۋاھنامە يوللىما"
 
-#, fuzzy
 #~| msgid "The certificate has not been issued for this host."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate does not apply to the given host"
 #~ msgstr "گۇۋاھنامە بۇ ماشىنىغا تارقىتىلمىغان."
 
-#, fuzzy
 #~| msgid "The certificate has not been issued for this host."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate cannot be verified for internal reasons"
 #~ msgstr "گۇۋاھنامە بۇ ماشىنىغا تارقىتىلمىغان."
 
-#, fuzzy
 #~| msgid "The certificate is valid."
 #~ msgctxt "SSL error"
 #~ msgid "The certificate chain is too long"
 #~ msgstr "گۇۋاھنامە ئۈنۈملۈك."
 
-#, fuzzy
 #~| msgid "Unknown Error"
 #~ msgctxt "SSL error"
 #~ msgid "Unknown error"
@@ -6909,7 +6723,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "Root"
 #~ msgstr "غول مۇندەرىجە"
 
-#, fuzzy
 #~| msgid "Could not change permissions for %1."
 #~ msgid "Could not change permissions for '%1'"
 #~ msgstr "%1 نىڭ ھوقۇقىنى ئۆزگەرتەلمىدى."
@@ -6966,17 +6779,14 @@ msgstr "ئارىلاشما ھالەت"
 #~ msgid "&Other..."
 #~ msgstr "باشقا(&O)..."
 
-#, fuzzy
 #~| msgid "C&ontinue"
 #~ msgid "Continue"
 #~ msgstr "داۋاملاشتۇر(&O)"
 
-#, fuzzy
 #~| msgid "<qt>The template file <b>%1</b> does not exist.</qt>"
 #~ msgid "<qt>The file or folder <b>%1</b> does not exist.</qt>"
 #~ msgstr "<qt>قېلىپ ھۆججەت<b>%1</b> مەۋجۇت ئەمەس.</qt>"
 
-#, fuzzy
 #~| msgid "Ad&vanced Options"
 #~ msgid "Advanced options"
 #~ msgstr "ئالىي تاللانما(&V)"
@@ -6988,7 +6798,6 @@ msgstr "ئارىلاشما ھالەت"
 #~ "ئەگەر قوللىنىشچان پروگراممىڭىزغا سىستېما قوندىقىغا قوندۇرما تەمىنلىمەكچى "
 #~ "بولسىڭىز بۇ تاللانمىنى تاللاڭ."
 
-#, fuzzy
 #~| msgid "&Place in system tray"
 #~ msgid "Place in system tray"
 #~ msgstr "سىستېما قوندىقىغا قوي(&P)"
