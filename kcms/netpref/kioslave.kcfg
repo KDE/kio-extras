@@ -13,10 +13,6 @@
      <whatsthis>While a file is being uploaded its extension is ".part". When fully uploaded it is renamed to its real name.</whatsthis>
      <default>true</default>
    </entry>
-   <entry name="MinimumKeepSize" type="Int">
-     <label>The minimum file size for keeping aborted downloads</label>
-     <default>DEFAULT_MINIMUM_KEEP_SIZE</default>
-   </entry>
  </group>
  <group name="Proxy Settings" >
    <entry name="AuthMode" type="String" >

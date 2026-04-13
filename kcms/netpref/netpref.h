@@ -33,7 +33,6 @@ private:
     QCheckBox *cb_ftpEnablePasv;
     QCheckBox *cb_ftpMarkPartial;
     QGroupBox *gb_Ftp;
-    QSpinBox  *sb_globalMinimumKeepSize;
     KioFtp ftpConfig;
     KioSlave kioConfig;
 };

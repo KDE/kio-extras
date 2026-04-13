@@ -48,11 +48,6 @@ KIOPreferences::KIOPreferences(QObject *parent, const KPluginMetaData &data)
     partialLayout->setFormAlignment(Qt::AlignHCenter);
     partialLayout->setContentsMargins(0, 0, 0, 0);
 
-    sb_globalMinimumKeepSize = new QSpinBox(widget());
-    KLocalization::setupSpinBoxFormatString(sb_globalMinimumKeepSize, ki18ncp("@label:spinbox", "%v byte", "%v bytes"));
-    connect(sb_globalMinimumKeepSize, qOverload<int>(&QSpinBox::valueChanged), this, &KIOPreferences::configChanged);
-    partialLayout->addRow(i18nc("@label:spinbox", "If cancelled, automatically delete partially uploaded files smaller than:"), sb_globalMinimumKeepSize);
-
     gb_Ftp = new QGroupBox(i18n("FTP Options"), widget());
     gb_Ftp->setFlat(true);
     mainLayout->addWidget(gb_Ftp);
@@ -90,8 +85,6 @@ void KIOPreferences::load()
     kioConfig.load();
 
     cb_globalMarkPartial->setChecked(kioConfig.markPartial());
-    sb_globalMinimumKeepSize->setRange(0, 1024 * 1024 * 1024 /* 1 GiB */);
-    sb_globalMinimumKeepSize->setValue(kioConfig.minimumKeepSize());
 
     ftpConfig.load();
 
@@ -103,7 +96,6 @@ void KIOPreferences::load()
 void KIOPreferences::save()
 {
     kioConfig.setMarkPartial(cb_globalMarkPartial->isChecked());
-    kioConfig.setMinimumKeepSize(sb_globalMinimumKeepSize->value());
     kioConfig.save();
 
     ftpConfig.setDisablePassiveMode(!cb_ftpEnablePasv->isChecked());
@@ -121,7 +113,6 @@ void KIOPreferences::defaults()
     ftpConfig.setDefaults();
 
     cb_globalMarkPartial->setChecked(kioConfig.markPartial());
-    sb_globalMinimumKeepSize->setValue(kioConfig.minimumKeepSize());
 
     cb_ftpEnablePasv->setChecked(!ftpConfig.disablePassiveMode());
     cb_ftpMarkPartial->setChecked(ftpConfig.markPartial());
