@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-10-09 00:55+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -66,18 +66,12 @@ msgstr ""
 "업로드 중인 파일의 확장자를 \".part\"로 바꿉니다. 업로드가 완료되면 다시 원"
 "래 이름으로 바꿉니다."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "중단된 다운로드 항목을 유지할 최소 크기"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "전역 설정"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "부분적으로 업로드된 파일 표시(&P)"
@@ -94,31 +88,17 @@ msgstr ""
 "을 사용하면 업로드가 완료되지 않은 파일에 \".part\"라는 확장자가 붙습니다. "
 "이 확장자는 전송이 완료되었을 때 사라집니다.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v바이트"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "취소되었을 때 다음보다 작은 부분적으로 업로드된 파일 삭제:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP 옵션"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive 모드 사용(PASV)(&M)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -127,7 +107,7 @@ msgstr ""
 "FTP의 \"passive\" 모드를 사용합니다. FTP가 방화벽 뒤에서 작동하도록 하려면 이"
 "것을 사용해야 합니다."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1112,6 +1092,19 @@ msgstr "문자 인코딩(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "쿼리 자리 비움자 삽입"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "중단된 다운로드 항목을 유지할 최소 크기"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v바이트"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr "취소되었을 때 다음보다 작은 부분적으로 업로드된 파일 삭제:"
 
 #~ msgid " days"
 #~ msgstr " 일"

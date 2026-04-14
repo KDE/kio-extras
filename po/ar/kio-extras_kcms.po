@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-10-15 20:19+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -74,18 +74,12 @@ msgstr ""
 "أثناء رفع ملف سيكون امتداده \"‎\".part. عند انتهاء الرفع ستُعاد تسميته إلى "
 "اسمه الحقيقي."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "الحد الأدنى لحجم الملفات المحتفظ بها عند إلغاء التنزيلات"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "خيارات عالمية"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "علّم المل&فّات المرفوعة جزئيًّا"
@@ -102,36 +96,17 @@ msgstr ""
 "</p><p>عند تمكين هذا الخيار، ستملك الملفات المرفوعة جزئيًا الامتداد ‎\".part"
 "\". هذا الامتداد سيُزال ما إن تكتمل عملية النقل.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "صفر بايت"
-msgstr[1] "بايت واحد"
-msgstr[2] "بايتان"
-msgstr[3] "%v بايتات"
-msgstr[4] "%v بايتا"
-msgstr[5] "%v بايت"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "في حالة الإلغاء، احذف آليًّا الملفات المُحملة جزئيًا والتي يقل حجمها عن:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "خيارات FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "مكّن الو&ضع السلبي (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -139,7 +114,7 @@ msgid ""
 msgstr ""
 "مكّن وضع \"passive\" لِـ FTP. هذا ضروري للسماح لِ FTP بالعمل وراء جدار النار."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1136,6 +1111,25 @@ msgstr "&طقم المحارف:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "أدرج عنصر نائب للاستعلام"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "الحد الأدنى لحجم الملفات المحتفظ بها عند إلغاء التنزيلات"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "صفر بايت"
+#~ msgstr[1] "بايت واحد"
+#~ msgstr[2] "بايتان"
+#~ msgstr[3] "%v بايتات"
+#~ msgstr[4] "%v بايتا"
+#~ msgstr[5] "%v بايت"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "في حالة الإلغاء، احذف آليًّا الملفات المُحملة جزئيًا والتي يقل حجمها عن:"
 
 # plural!
 # يمكن إصلاحها بسهولة

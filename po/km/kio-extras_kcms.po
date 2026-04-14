@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -64,19 +64,13 @@ msgstr ""
 "ខណៈ​ពេល​ឯកសារ​មួយ​កំពុង​ត្រូវ​បាន​ផ្ទុកឡើង កន្ទុយ​របស់​វា​គឺ \".part\" ។ នៅ​ពេល​ផ្ទុក​ឡើង​រួច វា​ត្រូវ​បាន​ប្ដូរ​"
 "ឈ្មោះ​ទៅ​ជា​ឈ្មោះ​ពិត​របស់​វា​វិញ ។"
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "ជម្រើស"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "សម្គាល់​ឯកសារ​ផ្ទុកឡើង​មិន​ពេញ​លេញ"
@@ -97,31 +91,17 @@ msgstr ""
 "ផ្ទុក​ឡើង​តាម​ផ្នែក ហើយ​​មាន​កន្ទុយ \".part\" ។ កន្ទុយ​នេះ​នឹង​ត្រូវ​បាន​យក​ចេញ នៅ​ពេល​ការ​ផ្ទេរ​នេះ​បាន​"
 "បញ្ចប់​ទាំងស្រុង ។</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] ""
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "ជម្រើស FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "អនុញ្ញាត​របៀប​អកម្ម (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -130,7 +110,7 @@ msgstr ""
 "អនុញ្ញាត​របៀប \"អកម្ម\" របស់ FTP ។ អំពើ​នេះ​ត្រូវ​បាន​ទាមទារ ដើម្បី​អនុញ្ញាត​ឲ្យ FTP ដំណើរការ​ពី​"
 "ក្រោយ​ជញ្ជាំង​ភ្លើង ។"
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

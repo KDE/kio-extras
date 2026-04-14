@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2026-02-28 23:16+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -67,18 +67,12 @@ msgstr ""
 "La încărcarea unui fișier, extensia acestuia va fi „*.part”. După încheierea "
 "încărcării, acesta este redenumit cu denumirea reală."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "Dimensiunea minimă de fișier pentru păstrarea descărcărilor abandonate"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Opțiuni globale"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marchează fișierele încărcate &parțial"
@@ -96,34 +90,17 @@ msgstr ""
 "încărcate parțial vor avea extensia „.part”. Această extensie va fi "
 "eliminată în momentul în care transferul se încheie.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v octet"
-msgstr[1] "%v octeți"
-msgstr[2] "%v de octeți"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Dacă se renunță, șterge automat fișierele încărcate parțial mai mici de:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Opțiuni FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Activează regi&mul pasiv (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -132,7 +109,7 @@ msgstr ""
 "Activează „regimul pasiv”. Acesta e necesar pentru a permite protocolului "
 "FTP să lucreze din spatele unui zid de foc (firewall)."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1119,6 +1096,23 @@ msgstr "Set de &caractere:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserează substituent pentru interogare"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr ""
+#~ "Dimensiunea minimă de fișier pentru păstrarea descărcărilor abandonate"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v octet"
+#~ msgstr[1] "%v octeți"
+#~ msgstr[2] "%v de octeți"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Dacă se renunță, șterge automat fișierele încărcate parțial mai mici de:"
 
 #, fuzzy
 #~| msgid " days"

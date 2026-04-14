@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2026-03-01 20:14+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@lister.huftis.org>\n"
@@ -70,18 +70,12 @@ msgstr ""
 "Når ei fil vert lasta opp, har ho etternamnet «*.part». Når opplastinga er "
 "ferdig, får ho sitt eigentlege namn."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Globale val"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marker &delvis opplasta filer"
@@ -98,32 +92,17 @@ msgstr ""
 "<p>Når denne funksjonen er på, får delvis opplasta filer etternamnet «."
 "part». Etternamnet vert fjerna så snart overføringa er ferdig.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v byte"
-msgstr[1] "%v byte"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "Ved avbrot, slett automatisk delvis opplasta filer som er mindre enn:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-val"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Bruk &passivmodus (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -132,7 +111,7 @@ msgstr ""
 "Slår på «passiv» FTP-modus. Det trengst ofte for at FTP skal verka gjennom "
 "brannmurar."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1122,3 +1101,15 @@ msgstr "&Teiknkoding:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Set inn søkjeplasshaldar"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v byte"
+#~ msgstr[1] "%v byte"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Ved avbrot, slett automatisk delvis opplasta filer som er mindre enn:"

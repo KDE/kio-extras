@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2022-07-10 22:32+0100\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -72,18 +72,12 @@ msgstr ""
 "Tra fod ffeil yn cael ei uwchlwytho y mae ei estyniad yn \".part\". Pan mae "
 "e'n wedi uwchlwytho yn gwbl y mae e'n cael ei ailenwyd i'w enw go iawn."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Dewisiadau Hollfydol"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Nodi ffeiliau a lwythwyd i fyny'n &rhannol"
@@ -100,36 +94,17 @@ msgstr ""
 "alluog, bydd gan ffeiliau a lwythwyd i fyny'n rhannol estyniad \".part\". "
 "Gwaredir yr estyniad yma wedi i'r trosglwyddiad gyflawni.</p>"
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " beit"
-msgstr[1] " beitiau"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Os diddymwyd, yn hunanweithredol dileu ffeiliau uwchlwythwyd yn rhanniedig "
-"yn llai na:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Dewisiadau FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Galluogu &modd goddefol (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -138,7 +113,7 @@ msgstr ""
 "Galluoga modd \"goddefol\" FTP. Mae hyn yn angenrhaid i ganiatáu i FTP i "
 "weithio tu ôl i fur cadarn."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1245,6 +1220,22 @@ msgstr "&Charset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Mewnbynnwch safleddaliwr holiad"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " beit"
+#~ msgstr[1] " beitiau"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Os diddymwyd, yn hunanweithredol dileu ffeiliau uwchlwythwyd yn "
+#~ "rhanniedig yn llai na:"
 
 #~ msgid " days"
 #~ msgstr " dyddiau"

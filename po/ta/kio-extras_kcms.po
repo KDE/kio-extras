@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-09-21 13:29+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
@@ -73,18 +73,12 @@ msgstr ""
 "ஒரு கோப்பு பதிவேற்றப்படும்போது அதன் வகைப்பெயர் \"*.part\"-ஆக இருக்கும். முழுதாக "
 "பதிவேற்றிய பின் அதற்கு சரியான பெயர் இடப்படும்."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "தோல்வியுற்ற பதிவிறக்கங்கள் இந்த அளவைவிட பெரிதாக இருந்தால் வைத்திரு"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "பொதுவான விருப்பத்தேர்வுகள்"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&முழுதாக பதிவேற்றப்படாத கோப்புகளை குறி"
@@ -101,34 +95,17 @@ msgstr ""
 "p><p> இந்த விருப்பத்தை இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற "
 "வகைப்பெயர் இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v பைட்டு"
-msgstr[1] "%v பைட்டுகள்"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"கைவிடப்பட்டால், இதைவிட சிறிய கோப்புகள் முழுதாக பதிவேற்றப் படவில்லையெனில் தானாக "
-"அகற்றவும்:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP விருப்பங்கள்"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passive &பயன்முறையை (PASV) இயக்கு"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -137,7 +114,7 @@ msgstr ""
 "FTP-இன் 'passive' பயன்முறையை இயக்கும். தீயரண்களுக்கு பின்னாலிருந்து FTP வேலை செய்ய இது "
 "தேவை."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1137,6 +1114,22 @@ msgstr "&உருத்தொகுதி:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "கேள்விக்கான கொள்ளிடத்தை உள்ளிடு"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "தோல்வியுற்ற பதிவிறக்கங்கள் இந்த அளவைவிட பெரிதாக இருந்தால் வைத்திரு"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v பைட்டு"
+#~ msgstr[1] "%v பைட்டுகள்"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "கைவிடப்பட்டால், இதைவிட சிறிய கோப்புகள் முழுதாக பதிவேற்றப் படவில்லையெனில் தானாக "
+#~ "அகற்றவும்:"
 
 #~ msgid " days"
 #~ msgstr " நாட்கள்"

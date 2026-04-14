@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2022-08-29 08:53\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -69,18 +69,12 @@ msgstr ""
 "Pakuĺ fajl spampoŭvajecca, jaho pašyrennie - \".part\". Kali spampoŭvannie "
 "zaviaršajecca, jaho nazva zmianiajecca na aryhinaĺnuju."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Hlabaĺnyja paramietry"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Paznačać &častkova spampavanyja fajly"
@@ -98,38 +92,17 @@ msgstr ""
 "pašyrennie \".part\". Hetaje pašyrennie budzie vydaliena paslia zaviaršennia "
 "pieradačy.</p>"
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " bajt"
-msgstr[1] " bajty"
-msgstr[2] " bajtaŭ"
-msgstr[3] " bajty"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Kali skasavana, aŭtamatyčna vydaliać častkova zapampavanyja fajly pamieram "
-"mienš za:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Paramietry FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ukliučyć pasiŭny &režym (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, fuzzy, kde-format
 #| msgid ""
 #| "Enables FTPs \"passive\" mode. This is required to allow FTP to work from "
@@ -141,7 +114,7 @@ msgstr ""
 "Ukliučaje \"pasiŭny\" režym FTP. Heta nieabchodna, kab dazvolić FTP pracavać "
 "u abychod fajrvola."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1300,6 +1273,24 @@ msgstr "&Kadavannie:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Ustavić zapaŭniaĺnik zapytu"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " bajt"
+#~ msgstr[1] " bajty"
+#~ msgstr[2] " bajtaŭ"
+#~ msgstr[3] " bajty"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Kali skasavana, aŭtamatyčna vydaliać častkova zapampavanyja fajly "
+#~ "pamieram mienš za:"
 
 #~ msgid " days"
 #~ msgstr " dzion"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio stable\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2005-11-26 17:02+0200\n"
 "Last-Translator: Kobus <kabousv@therugby.co.za>\n"
 "Language-Team: AFRIKAANS <translate-discuss-af@lists.sourceforge.net>\n"
@@ -67,19 +67,13 @@ msgstr ""
 "Wanneer 'n lêer afgelaai word, sal sy agtervoegsel \".part\" wees. Nadat dit "
 "ten volle afgelaai het sal dit die ware agtervoegsel vertoon."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, fuzzy, kde-format
 #| msgid "Operation"
 msgid "Global Options"
 msgstr "Operasie"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Merk gedeeltelik opgelaaide lêers"
@@ -100,32 +94,17 @@ msgstr ""
 "is, sal gedeeltelik opgelaaide lêers 'n \".deel\" uitbreiding hê. Hierdie "
 "uitbreiding sal verander as die oordra volledig is.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Ftp Opsies"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Aktiveer passief modus (Pasv)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -134,7 +113,7 @@ msgstr ""
 "Skakel Ftp se \"passiewe\" modus aan. Dit is nodig om Ftp te laat werk agter "
 "vuur-mure."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

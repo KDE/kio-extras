@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-11-07 21:26+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -68,18 +68,12 @@ msgstr ""
 "Amíg a feltöltés tart, a fájl \"*.part\" kiterjesztést kap. A feltöltés "
 "befejeződése után kapja meg a fájl a végleges nevét."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "A megszakított letöltések megtartásához szükséges minimális fájlméret"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Globális beállítások"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "A részben &feltöltött fájlok megjelölése"
@@ -97,34 +91,17 @@ msgstr ""
 "part” kiterjesztést kapnak. A kiterjesztés csak a feltöltés befejeződése "
 "után fog eltűnni.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v bájt"
-msgstr[1] "%v bájt"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Ha megszakítják a feltöltést, az ennél kisebb részben feltöltött fájlok "
-"automatikus törlése:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-beállítások"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "A passzív üzemmód (PASV) enge&délyezése"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -133,7 +110,7 @@ msgstr ""
 "Engedélyezi az FTP passzív üzemmódját. Néhány tűzfal mögül csak ezzel az "
 "opcióval lehet FTP-vel kijutni az internetre."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1139,6 +1116,23 @@ msgstr "K&arakterkészlet:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Lekérdezés helykitöltő beszúrása"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr ""
+#~ "A megszakított letöltések megtartásához szükséges minimális fájlméret"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v bájt"
+#~ msgstr[1] "%v bájt"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Ha megszakítják a feltöltést, az ennél kisebb részben feltöltött fájlok "
+#~ "automatikus törlése:"
 
 #~ msgid " days"
 #~ msgstr " nap"

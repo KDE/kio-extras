@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -66,18 +66,12 @@ msgstr ""
 "यदा सञ्चिका अपलोड् भवति तदा तस्याः विस्तारः \".part\" भवति । यदा पूर्णतया अपलोड् "
 "भवति तदा तस्य नामकरणं तस्य वास्तविकं नाम भवति ।"
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "वैश्विकविकल्पाः"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
@@ -95,34 +89,17 @@ msgstr ""
 "part&quot; विस्तारः भविष्यति । स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् "
 "भविष्यति ।</p>"
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " बाइट्"
-msgstr[1] " बाइट्"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "यदि रद्दं भवति तर्हि स्वयमेव आंशिकरूपेण अपलोड् कृताः सञ्चिकाः अपास्यन्ति यत्:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP विकल्पाः"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "निष्क्रिय &mode (PASV) सक्षमं कुर्वन्तु ।"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -131,7 +108,7 @@ msgstr ""
 "FTP इत्यस्य \"निष्क्रिय\" मोड् सक्षमं करोति । एतत् आवश्यकं यत् FTP अग्निप्रावरणानां पृष्ठतः "
 "कार्यं कर्तुं शक्नोति ।"
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1090,6 +1067,20 @@ msgstr "&वर्णसमूहः :"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "प्रश्नस्थानधारकं सम्मिलितं कुर्वन्तु"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " बाइट्"
+#~ msgstr[1] " बाइट्"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr "यदि रद्दं भवति तर्हि स्वयमेव आंशिकरूपेण अपलोड् कृताः सञ्चिकाः अपास्यन्ति यत्:"
 
 #~ msgid " days"
 #~ msgstr " दिवसाः"

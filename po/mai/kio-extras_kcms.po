@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2010-01-29 13:15+0530\n"
 "Last-Translator: Rajesh Ranjan <rajesh672@gmail.com>\n"
 "Language-Team: Maithili <maithili.sf.net>\n"
@@ -68,19 +68,13 @@ msgstr ""
 "जखन कोनो फाइल अपलोड भए रहल हाएत तँ एकर एक्सटेंशन हाएत \".part\". जखन ई पूर्ण तरह "
 "लोड भए जाएत तँ फिनु एकर वास्तविक नाम सँ बदएल देल जएताह."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, fuzzy, kde-format
 #| msgid "Options"
 msgid "Global Options"
 msgstr "विकल्प"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "आधा-अधूरा अपलोडेड फाइलसभ केँ चिह्नित करू (&p)"
@@ -101,32 +95,17 @@ msgstr ""
 "तँ आधा अपलोडेड फाइलसभ मे \".part\" एक्सटेंशन होइछ. ई एक्सटेंशन जखन ट्रांसफर पूरा भए जाइछ "
 "तखन हटाए देल जाइछ.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] ""
-msgstr[1] ""
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "एफटीपी विकल्प"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "पैसिव मोड सक्षम करू (PASV) (&m)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -135,7 +114,7 @@ msgstr ""
 "एफटीपी क'  \"पैसिव\" मोड सक्षम करू. ई एफटीपी केँ फायरवाल केर पाछाँ सँ कार्य करब देत "
 "अछि."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "

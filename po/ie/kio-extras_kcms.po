@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2022-10-23 00:30+0700\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: kde-i18n-doc@kde.org\n"
@@ -63,18 +63,12 @@ msgstr ""
 "Quande li file ea cargat, su extension es «.part». Quande it es cargat "
 "completmen, it es renominat a su propri nómine."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Global parametres"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marcar &partialmen cargat files"
@@ -88,34 +82,17 @@ msgid ""
 "complete.</p>"
 msgstr ""
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " octete"
-msgstr[1] " octetes"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "Si interruptet, remover li partialmen cargat files minu grand quam:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Parametres de FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Activar &passiv mode (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -124,7 +101,7 @@ msgstr ""
 "Activar li «passiv» mode de FTP. To es besonat por permisser a FTP operar "
 "tra firewalles."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1094,6 +1071,20 @@ msgstr "&Codification:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserter li variabile del demande"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " octete"
+#~ msgstr[1] " octetes"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr "Si interruptet, remover li partialmen cargat files minu grand quam:"
 
 #~ msgid " days"
 #~ msgstr " dies"

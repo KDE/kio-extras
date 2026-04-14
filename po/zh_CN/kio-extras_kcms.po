@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2024-04-22 15:58\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -63,18 +63,12 @@ msgstr ""
 "文件在上传过程中的扩展名将被更改为“*.part”。文件上传完成后，它将被改回实际的"
 "扩展名。"
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "保留已中断下载的最小文件大小"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "全局选项"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "标记部分上传的文件(&P)"
@@ -90,38 +84,24 @@ msgstr ""
 "<p>标记通过 SMB、SFTP 以及其他协议的部分上传文件。</p><p>勾选此项时，部分上传"
 "的文件将被附加“.part”扩展名。此扩展名将在传输完成后自动去除。</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v 字节"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "如果传输被取消，自动删除体积小于此值的部分上传文件："
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP 选项"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "启用被动模式 (PASV) (&M)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr "启用 FTP 的“被动模式”。这是在防火墙后面使用 FTP 的必须功能。"
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1087,3 +1067,16 @@ msgstr "字符集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入搜索占位符"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "保留已中断下载的最小文件大小"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v 字节"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr "如果传输被取消，自动删除体积小于此值的部分上传文件："

@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-09-15 22:22+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
@@ -74,18 +74,12 @@ msgstr ""
 "Fitxategi bat kargatzen ari den bitartean, bere luzapena \".part\" da. "
 "Guztiz kargatuta dagoenean bere izen benetakora berrizendatzen da."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "Bertan behera utzitako zama-jaitsierak mantentzeko gutxieneko neurria"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Aukera orokorrak"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Markatu &partzialki igotako fitxategiak"
@@ -103,34 +97,17 @@ msgstr ""
 "fitxategiek \".part\" luzapena izango dute. Luzapen hau ezabatuko da "
 "transferentzia osatutakoan.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v byte"
-msgstr[1] "%v byte"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Bertan behera uzten bada, automatikoki ezabatu hau baino txikiagoak diren "
-"erdizka zama-igotako fitxategiak:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP aukerak"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Gaitu &modu pasiboa (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -139,7 +116,7 @@ msgstr ""
 "FTP-ren modu \"pasiboa\" gaitzen du. Hau beharrezkoa da FTP-ri suebakien "
 "azpitik lan egiten uzteko."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1157,6 +1134,23 @@ msgstr "&Karaktere-multzoa:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Txertatu itauneko leku-marka"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr ""
+#~ "Bertan behera utzitako zama-jaitsierak mantentzeko gutxieneko neurria"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v byte"
+#~ msgstr[1] "%v byte"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Bertan behera uzten bada, automatikoki ezabatu hau baino txikiagoak diren "
+#~ "erdizka zama-igotako fitxategiak:"
 
 #~ msgid " days"
 #~ msgstr " egun"

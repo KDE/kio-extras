@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio trunk\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2021-08-26 06:59+0000\n"
 "Last-Translator: Vivek K J <vivekkj2004@gmail.com>\n"
 "Language-Team: Malayalam <https://kde.smc.org.in/projects/kde/kiokio5/ml/>\n"
@@ -60,18 +60,12 @@ msgid ""
 "uploaded it is renamed to its real name."
 msgstr ""
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, fuzzy, kde-format
 msgid "Global Options"
 msgstr "എഫ്‌ടിപി ഐച്ഛികങ്ങള്‍"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ അടയാളപ്പെടുത്തുക"
@@ -88,34 +82,17 @@ msgstr ""
 "ഭാഗികമായി അപ്ലോഡ് ചെയ്ത ഫയലുകള്‍ക്ക് ഒരു \".part\" എക്സ്റ്റന്‍ഷനുണ്ടാകും. ഈ എക്സ്റ്റന്‍ഷന്‍ മാറ്റം പൂര്‍"
 "ത്തിയാകുന്നതോടെ നീക്കം ചെയ്യപ്പെടും."
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " ബൈറ്റ്"
-msgstr[1] " ബൈറ്റുകൾ"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "എഫ്‌ടിപി ഐച്ഛികങ്ങള്‍"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "&നിര്‍ജ്ജീവാവസ്ഥ (PASV) പ്രാവര്‍ത്തികമാക്കുക"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -124,7 +101,7 @@ msgstr ""
 "എഫ്‌ടിപിയുടെ \"നിര്‍ജ്ജീവം\" (\"passive\") എന്ന അവസ്ഥ പ്രാവര്‍ത്തികമാക്കുന്നു. എഫ്‌ടിപി ഫയര്‍"
 "വാളുകളുടെ പിറകില്‍നിന്നു പ്രവര്‍ത്തിക്കാന്‍ ഇതാവശ്യമാണ്."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -982,6 +959,15 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " ബൈറ്റ്"
+#~ msgstr[1] " ബൈറ്റുകൾ"
 
 #~ msgid " days"
 #~ msgstr " ദിവസങ്ങൾ"

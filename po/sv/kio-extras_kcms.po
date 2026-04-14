@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-09-17 16:58+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -68,18 +68,12 @@ msgstr ""
 "Medan en fil laddas upp är dess filändelse \".part\". När den är helt "
 "uppladdad får den sitt riktiga namn."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "Den minimala filstorleken för att behålla avbrutna nerladdningar"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Allmänna alternativ"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&Markera delvis uppladdade filer"
@@ -97,32 +91,17 @@ msgstr ""
 "filändelsen \".part\". Filändelsen tas bort så fort överföringen är färdig.</"
 "p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v byte"
-msgstr[1] "%v byte"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "Om avbruten, ta automatiskt bort delvis uppladdade filer mindre än:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-alternativ"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Aktivera passivt &läge (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -131,7 +110,7 @@ msgstr ""
 "Aktiverar det \"passiva\" läget för FTP. Det här krävs för att FTP ska kunna "
 "fungera bakom brandväggar."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1145,6 +1124,20 @@ msgstr "Te&ckenuppsättning:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Infoga frågemarkör"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "Den minimala filstorleken för att behålla avbrutna nerladdningar"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v byte"
+#~ msgstr[1] "%v byte"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr "Om avbruten, ta automatiskt bort delvis uppladdade filer mindre än:"
 
 #~ msgid " days"
 #~ msgstr " dagar"

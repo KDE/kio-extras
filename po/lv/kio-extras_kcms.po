@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-03-26 16:09+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -71,18 +71,12 @@ msgstr ""
 "Datnes ielādes procesā tam pievieno „.part“ paplašinājums. Kad datne ir "
 "pilnībā lejupielādēta, to pārdēvē uz īsto nosaukumu."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Globālās opcijas"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Atzīmēt &daļēji augšupielādētās datnes"
@@ -99,35 +93,17 @@ msgstr ""
 "protokoliem.</p><p>Ieslēdzot šo iespēju, daļēji augšupielādētām datnēm būs „."
 "part“ paplašinājums, ko noņems tiklīdz datnes augšupielāde būs pabeigta.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v baits"
-msgstr[1] "%v baiti"
-msgstr[2] "%v baitu"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Ja atcelts, automātiski dzēst daļēji augšupielādētas datnes, kas ir mazākas "
-"par:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP opcijas"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ieslēgt pasīvo režī&mu (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -136,7 +112,7 @@ msgstr ""
 "Ieslēdz FTP „pasīvo“ režīmu. Šī opcija atļauj FTP darboties arī tad, ja jūsu "
 "ierīce atrodas aiz ugunsmūra."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1148,6 +1124,20 @@ msgstr "&Rakstzīmju kopa:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Ierakstiet vaicājuma vietturi"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v baits"
+#~ msgstr[1] "%v baiti"
+#~ msgstr[2] "%v baitu"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Ja atcelts, automātiski dzēst daļēji augšupielādētas datnes, kas ir "
+#~ "mazākas par:"
 
 #~ msgid " days"
 #~ msgstr " dienas"

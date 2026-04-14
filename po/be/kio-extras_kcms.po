@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2024-11-24 09:40\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -70,18 +70,12 @@ msgstr ""
 "Пакуль файл спампоўваецца, яго пашырэнне - \".part\". Калі спампоўванне "
 "завяршаецца, яго назва змяняецца на арыгінальную."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Глабальныя параметры"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Пазначаць &часткова спампаваныя файлы"
@@ -99,38 +93,17 @@ msgstr ""
 "пашырэнне \".part\". Гэтае пашырэнне будзе выдалена пасля завяршэння "
 "перадачы.</p>"
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " байт"
-msgstr[1] " байты"
-msgstr[2] " байтаў"
-msgstr[3] " байты"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Калі скасавана, аўтаматычна выдаляць часткова запампаваныя файлы памерам "
-"менш за:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Параметры FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Уключыць пасіўны &рэжым (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -139,7 +112,7 @@ msgstr ""
 "Уключае \"пасіўны\" рэжым FTP. Гэта неабходна, каб дазволіць FTP працаваць у "
 "абыход файрвола."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1164,6 +1137,24 @@ msgstr "&Кадаванне:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Уставіць запаўняльнік запыту"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " байт"
+#~ msgstr[1] " байты"
+#~ msgstr[2] " байтаў"
+#~ msgstr[3] " байты"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Калі скасавана, аўтаматычна выдаляць часткова запампаваныя файлы памерам "
+#~ "менш за:"
 
 #~ msgid " days"
 #~ msgstr " дзён"

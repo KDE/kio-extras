@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_trash\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2023-02-07 20:29+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -69,18 +69,12 @@ msgstr ""
 "Selagi berkas sedang diunggah ekstensinya adalah \".part\". Ketika diunggah "
 "secara penuh itu diubah namanya ke nama yang hakiki."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Opsi Global"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Tandai &sebagian berkas terunggah"
@@ -98,36 +92,17 @@ msgstr ""
 "memiliki ekstensi \".part\". Ekstensi ini akan dihapus setelah transfer "
 "selesai.</p>"
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "Byte"
-msgstr[1] " bytes"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Jika dibatalkan, secara otomatis menghapus bagian-bagian file yang diunggah "
-"yang lebih kecil dari:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Opsi FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Fungsikan &mode pasif (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -136,7 +111,7 @@ msgstr ""
 "Mengfungsikan mode FTP \"passive\". Ini diperlukan untuk membolehkan FTP "
 "untuk bekerja dari belakang firewall."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1224,6 +1199,22 @@ msgstr "&Perangkat Karakter:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sisipkan query placeholder"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "Byte"
+#~ msgstr[1] " bytes"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Jika dibatalkan, secara otomatis menghapus bagian-bagian file yang "
+#~ "diunggah yang lebih kecil dari:"
 
 #~ msgid " days"
 #~ msgstr " hari"

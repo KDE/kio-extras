@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-09-22 03:29+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -72,18 +72,12 @@ msgstr ""
 "當檔案開始上傳時為它加上延伸檔名「.part」。當檔案完整的上傳時將它的名稱改變為"
 "真實名稱。"
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "保留中斷下載的最低檔案大小"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "全域選項"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "標記部分上傳的檔案(&P)"
@@ -100,38 +94,24 @@ msgstr ""
 "上傳部分的檔案會加上「.part」的延伸檔名。這個延伸檔名會在傳輸全部完成後移除。"
 "</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v 位元組"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr "若被取消，將部分上傳的檔案中小於以下大小的進行自動刪除："
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP 選項"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "啟用被動模式(PASV)(&M)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
 "behind firewalls."
 msgstr "啟用 FTP 的「被動」模式。要讓 FTP 在防火牆下運作的話這是必要的。"
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1091,6 +1071,19 @@ msgstr "字元集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入查詢佔位符"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "保留中斷下載的最低檔案大小"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v 位元組"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr "若被取消，將部分上傳的檔案中小於以下大小的進行自動刪除："
 
 #~ msgid " days"
 #~ msgstr " 天"

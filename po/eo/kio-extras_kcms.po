@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-03-15 10:38+0100\n"
 "Last-Translator: Oliver Kellogg <olivermkellogg@gmail.com>\n"
 "Language-Team: Esperanto <kde-i18n-eo@kde.org>\n"
@@ -72,18 +72,12 @@ msgstr ""
 "Dum dosiero estas alŝutita ĝia etendaĵo estas \".part\". Kiam plene alŝutite "
 "ĝi estas renomita al sia reala nomo."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Ĉieaj Elektebloj"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Marki &parte alŝutitajn dosierojn"
@@ -101,33 +95,17 @@ msgstr ""
 "etendon \".part\". Ĉi tiu etendo estos forigita post kiam la translokigo "
 "estos finita.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v bajto"
-msgstr[1] "%v bajtoj"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Se nuligite, aŭtomate forigu parte alŝutitajn dosierojn pli malgrandajn ol:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-Ebloj"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Ebligi pasivan reĝi&mon (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -136,7 +114,7 @@ msgstr ""
 "Ebligas la \"pasivan\" reĝimon de FTP. Ĉi tio estas postulata por permesi al "
 "FTP funkcii de malantaŭ fajroŝirmiloj."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1143,3 +1121,16 @@ msgstr "&Signaro:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Enmetu demandan anstataŭilon"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v bajto"
+#~ msgstr[1] "%v bajtoj"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Se nuligite, aŭtomate forigu parte alŝutitajn dosierojn pli malgrandajn "
+#~ "ol:"

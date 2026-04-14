@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-09-15 06:48+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -75,18 +75,12 @@ msgstr ""
 "Ko se datoteka pošilja, bo njena končnica ».part«. Ko je datoteka poslana v "
 "celoti, se preimenuje v njeno pravo ime."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "Najmanjša velikost datoteke za shranjevanje prekinjenih prenosov"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Splošne možnosti"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Označi &delno poslane datoteke"
@@ -103,35 +97,17 @@ msgstr ""
 "p><p>Ko je ta možnost omogočena, bodo imele delno poslane datoteke končnico "
 "».part«. Ta končnica bo odstranjena, ko bo pošiljanje zaključeno.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v bajtov"
-msgstr[1] "%v bajt"
-msgstr[2] "%v bajta"
-msgstr[3] "%v bajti"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Če je preklicano, samodejno izbriši delno naložene datoteke, manjše od:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "Možnosti FTP"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "O&mogoči pasiven način (PASV)"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -140,7 +116,7 @@ msgstr ""
 "Omogoči »pasiven« način FTP. To je zahtevano za delovanje FTP izza požarnih "
 "zidov."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1157,6 +1133,23 @@ msgstr "Nabor znakov:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Vstavite vsebnik poizvedbe"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr "Najmanjša velikost datoteke za shranjevanje prekinjenih prenosov"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v bajtov"
+#~ msgstr[1] "%v bajt"
+#~ msgstr[2] "%v bajta"
+#~ msgstr[3] "%v bajti"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Če je preklicano, samodejno izbriši delno naložene datoteke, manjše od:"
 
 #~ msgid " days"
 #~ msgstr " dni"

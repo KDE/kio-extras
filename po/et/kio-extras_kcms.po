@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2022-10-19 21:51+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -71,18 +71,12 @@ msgstr ""
 "Faili üleslaadimisel on selle laiendiks \"*.part\". Pärast täielikku "
 "üleslaadimist saab fail endale oma algse nime tagasi."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Globaalsed valikud"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "&Osaliselt üleslaaditud failide märkimine"
@@ -100,36 +94,17 @@ msgstr ""
 "osaliselt üleslaaditud failidel laiend \".part\". Laiend võetakse maha siis, "
 "kui üleslaadimine on edukalt lõpetatud.</p>"
 
-#: netpref/netpref.cpp:52
-#, fuzzy, kde-format
-#| msgid " byte"
-#| msgid_plural " bytes"
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] " bait"
-msgstr[1] " baiti"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Tühistamise korral kustutatakse osaliselt üleslaaditud failid, mis on "
-"väiksemad kui"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP valikud"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passiivse režiimi (PASV) luba&mine"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -138,7 +113,7 @@ msgstr ""
 "Lubab FTP passiivse režiimi. See on vajalik, et FTP töötaks tulemüüride "
 "tagant."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1218,6 +1193,22 @@ msgstr "Koo&ditabel:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Päringu kohatäitja lisamine"
+
+#, fuzzy
+#~| msgid " byte"
+#~| msgid_plural " bytes"
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] " bait"
+#~ msgstr[1] " baiti"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Tühistamise korral kustutatakse osaliselt üleslaaditud failid, mis on "
+#~ "väiksemad kui"
 
 #~ msgid " days"
 #~ msgstr " päeva"

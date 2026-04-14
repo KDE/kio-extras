@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-04-14 00:43+0000\n"
 "PO-Revision-Date: 2025-09-15 09:55+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -69,18 +69,12 @@ msgstr ""
 "part\". Als het bestand volledig is verzonden wordt deze extensie weer "
 "verwijderd en de oorspronkelijke naam van het bestand hersteld."
 
-#. i18n: ectx: label, entry (MinimumKeepSize), group (&lt;default&gt;)
-#: netpref/kioslave.kcfg:17
-#, kde-format
-msgid "The minimum file size for keeping aborted downloads"
-msgstr "De minimale bestandsgrootte voor het behouden van afgebroken downloads"
-
 #: netpref/netpref.cpp:26
 #, kde-format
 msgid "Global Options"
 msgstr "Globale opties"
 
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:70
+#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
 msgstr "Gedeeltelijk ver&zonden bestanden markeren"
@@ -98,34 +92,17 @@ msgstr ""
 "gedeeltelijk naar de server zijn gezonden de extensie \".part\". Deze "
 "extensie zal worden verwijderd als de overdracht is voltooid.</p>"
 
-#: netpref/netpref.cpp:52
-#, kde-format
-msgctxt "@label:spinbox"
-msgid "%v byte"
-msgid_plural "%v bytes"
-msgstr[0] "%v byte"
-msgstr[1] "%v bytes"
-
-#: netpref/netpref.cpp:54
-#, kde-format
-msgctxt "@label:spinbox"
-msgid ""
-"If cancelled, automatically delete partially uploaded files smaller than:"
-msgstr ""
-"Indien geannuleerd, automatisch gedeeltelijk geüploade bestanden verwijderen "
-"kleiner dan:"
-
-#: netpref/netpref.cpp:56
+#: netpref/netpref.cpp:51
 #, kde-format
 msgid "FTP Options"
 msgstr "FTP-opties"
 
-#: netpref/netpref.cpp:62
+#: netpref/netpref.cpp:57
 #, kde-format
 msgid "Enable passive &mode (PASV)"
 msgstr "Passieve &modus (PASV) inschakelen"
 
-#: netpref/netpref.cpp:64
+#: netpref/netpref.cpp:59
 #, kde-format
 msgid ""
 "Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
@@ -134,7 +111,7 @@ msgstr ""
 "Schakelt de passieve modus van FTP in. Dit is noodzakelijk om FTP te laten "
 "werken van achter firewalls."
 
-#: netpref/netpref.cpp:72
+#: netpref/netpref.cpp:67
 #, kde-format
 msgid ""
 "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
@@ -1168,6 +1145,23 @@ msgstr "&Tekenset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Plaatshouder voor zoekopdracht invoegen"
+
+#~ msgid "The minimum file size for keeping aborted downloads"
+#~ msgstr ""
+#~ "De minimale bestandsgrootte voor het behouden van afgebroken downloads"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid "%v byte"
+#~ msgid_plural "%v bytes"
+#~ msgstr[0] "%v byte"
+#~ msgstr[1] "%v bytes"
+
+#~ msgctxt "@label:spinbox"
+#~ msgid ""
+#~ "If cancelled, automatically delete partially uploaded files smaller than:"
+#~ msgstr ""
+#~ "Indien geannuleerd, automatisch gedeeltelijk geüploade bestanden "
+#~ "verwijderen kleiner dan:"
 
 #~ msgid " days"
 #~ msgstr " dagen"
