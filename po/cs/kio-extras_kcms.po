@@ -5,20 +5,21 @@
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012, 2013.
 # Vit Pelcak <vit@pelcak.org>, 2021, 2022, 2023.
 #
+# SPDX-FileCopyrightText: 2026 Jan Papez (honyczek)
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2024-09-19 07:57+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
-"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2026-04-14 22:41+0200\n"
+"Last-Translator: Jan Papez (honyczek) <honyczek@centrum.cz>\n"
+"Language-Team: Czech <kde-i18n-cs@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 24.08.1\n"
+"X-Generator: Lokalize 26.03.90\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -71,7 +72,7 @@ msgstr ""
 #: netpref/kioslave.kcfg:17
 #, kde-format
 msgid "The minimum file size for keeping aborted downloads"
-msgstr ""
+msgstr "Nejmenší velikost souboru pro zachování zrušeného stahování"
 
 #: netpref/netpref.cpp:26
 #, kde-format
@@ -101,9 +102,9 @@ msgstr ""
 msgctxt "@label:spinbox"
 msgid "%v byte"
 msgid_plural "%v bytes"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%v bajt"
+msgstr[1] "%v bajty"
+msgstr[2] "%v bajtů"
 
 #: netpref/netpref.cpp:54
 #, kde-format
@@ -335,6 +336,16 @@ msgid ""
 "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"<p>Zadejte čárkou oddělený seznam názvů hostů nebo IP adres, které by měly "
+"být vyloučeny z používání výše uvedených nastavení proxy.</p>\n"
+"<p>Pokud chcete vyloučit všechny hosty pro danou doménu, stačí zadat název "
+"domény předcházený tečkou. Například pro vyloučení všech názvů hostů pro "
+"<i>kde.org</i> zadejte <i>.kde.org</i>. Znaky zástupné znaky jako '*' nebo "
+"'?' nejsou podporovány a nebudou mít žádný efekt.</p>\n"
+"<p>Kromě toho můžete také zadat IP adresy, např. 127.0.0.1 a IP adresy s "
+"podsítí, např. 192.168.0.1/24.</p>\n"
+"</qt>"
 
 #. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
 #: proxy/kproxydlg.ui:351
@@ -364,7 +375,7 @@ msgstr "Použít zadaný konfigurační skript pro nastavení proxy."
 #: proxy/kproxydlg.ui:370
 #, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr ""
+msgstr "Použít &URL s automatickým nastavením proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -401,7 +412,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:420
 #, kde-format
 msgid "H&TTP proxy:"
-msgstr ""
+msgstr "H&TTP proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
@@ -426,7 +437,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:455
 #, kde-format
 msgid "SS&L proxy:"
-msgstr ""
+msgstr "SS&L Proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
@@ -469,7 +480,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:525
 #, kde-format
 msgid "SOC&KS proxy:"
-msgstr ""
+msgstr "SOC&KS proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
 #: proxy/kproxydlg.ui:544
@@ -489,7 +500,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:557
 #, kde-format
 msgid "E&xceptions:"
-msgstr ""
+msgstr "&Výjimky:"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
 #: proxy/kproxydlg.ui:576
@@ -535,7 +546,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:603
 #, kde-format
 msgid "&Detect proxy configuration automatically"
-msgstr ""
+msgstr "Automaticky &detekovat nastavení proxy"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:634
@@ -558,12 +569,22 @@ msgid ""
 "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
 "</qt>"
 msgstr ""
+"<qt><p>Použít nastavení proxy definovaná na systému.</p>\n"
+"<p>Některé platformy nabízejí systémová nastavení proxy konfigurace a výběr "
+"této možnosti umožňuje použít tato nastavení.</p>\n"
+"<p>Na platformách Mac</p>\n"
+"<p>Na platformách Windows</p>\n"
+"<p>Na platformách Unix a Linux jsou tato systémová nastavení proxy obvykle "
+"definována prostřednictvím proměnných prostředí. Následující proměnné "
+"prostředí jsou detekovány a použity, pokud jsou přítomny: <b>HTTP_PROXY</b>, "
+"<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
 #: proxy/kproxydlg.ui:661
 #, kde-format
 msgid "Use s&ystem proxy configuration:"
-msgstr ""
+msgstr "Použít s&ystémové nastavení proxy:"
 
 #. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
 #: proxy/kproxydlg.ui:673
@@ -574,12 +595,16 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"Automatická konfigurace, také známá jako Web Proxy Auto-Discovery (WPAD), "
+"není téměř nikdy správnou konfigurací. Jejím povolením, i když není "
+"vyžadována, se může zpomalit přístup k síti a učinit vaši síť méně "
+"bezpečnou. Váš správce sítě bude vědět, zda je povolení vyžadováno."
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
 msgid "Slow network performance detected"
-msgstr ""
+msgstr "Byl zjištěn pomalý výkon sítě"
 
 #: proxy/wpad-detector/module.cpp:77
 #, kde-format
@@ -589,18 +614,21 @@ msgid ""
 "network performance. Check your proxy settings to make sure that using this "
 "setting is really necessary."
 msgstr ""
+"Byla povolena automatická detekce proxy, ale snižuje výkon sítě systému. "
+"Zkontrolujte nastavení proxy, abyste se ujistili, že použití tohoto "
+"nastavení je opravdu nutné."
 
 #: proxy/wpad-detector/module.cpp:84
 #, kde-format
 msgctxt "@action:button"
 msgid "Open Settings"
-msgstr ""
+msgstr "Otevřít nastavení"
 
 #: proxy/wpad-detector/module.cpp:89
 #, kde-format
 msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
-msgstr ""
+msgstr "Ignorovat navždy"
 
 #: trash/kcmtrash.cpp:206
 #, kde-format
@@ -608,6 +636,8 @@ msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
+"<para>Odpadkový koš KDE je nakonfigurován k použití koše <b>Finder</b>.<br></"
+"para>"
 
 #: trash/kcmtrash.cpp:208
 #, kde-format
@@ -618,6 +648,10 @@ msgid ""
 "para><para>KDE's trash items will show up in a folder called KDE.trash, in "
 "the Trash can.</para>"
 msgstr ""
+"<para>Vyprázdnění odpadkového koše KDE odstraní pouze položky odpadkového "
+"koše KDE, zatímco<br>vyprázdnění Koše přes Finder odstraní vše.</"
+"para><para>Položky odpadkového koše KDE se zobrazí v složce s názvem KDE."
+"trash v Koši.</para>"
 
 #: trash/kcmtrash.cpp:249
 #, kde-format
@@ -643,9 +677,9 @@ msgstr ""
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] ""
-msgstr[1] ""
-msgstr[2] ""
+msgstr[0] "%v den"
+msgstr[1] "%v dny"
+msgstr[2] "%v dnů"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -686,7 +720,7 @@ msgstr "Velikost:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v %"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -806,13 +840,13 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr ""
+msgstr "&Povolit klíčová slova webového vyhledávání"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:30
 #, kde-format
 msgid "&Use preferred keywords only"
-msgstr ""
+msgstr "Po&užít pouze preferovaná klíčová slova"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
@@ -824,7 +858,7 @@ msgstr "Hledat klíčová slova pro hledání na webu"
 #: webshortcuts/ikwsopts_ui.ui:71
 #, kde-format
 msgid "Add a new Web search keyword"
-msgstr ""
+msgstr "Přidat nové klíčové slovo webového vyhledávání"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:74
@@ -836,7 +870,7 @@ msgstr "&Nový…"
 #: webshortcuts/ikwsopts_ui.ui:84
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr ""
+msgstr "Upravit zvýrazněné klíčové slovo webového vyhledávání"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:87
@@ -848,7 +882,7 @@ msgstr "Uprav&it..."
 #: webshortcuts/ikwsopts_ui.ui:97
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
-msgstr ""
+msgstr "Smazat zvýrazněné klíčové slovo webového vyhledávání"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:100
@@ -876,7 +910,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:141
 #, kde-format
 msgid "Default Web &search keyword:"
-msgstr ""
+msgstr "Výchozí klíčové &slovo vyhledávání:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:166
@@ -973,6 +1007,10 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
+"URL neobsahuje substituční značku %1, která je nahrazena uživatelskými "
+"dotazy.\n"
+"To znamená, že bude navštěvována stále stejná stránka bez ohledu na text "
+"zadaný se klíčovým slovem."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
