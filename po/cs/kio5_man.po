@@ -3,20 +3,21 @@
 # Tomáš Chvátal <tomas.chvatal@gmail.com>, 2012.
 # Vit Pelcak <vit@pelcak.org>, 2013, 2014, 2019, 2020, 2021.
 #
+# SPDX-FileCopyrightText: 2026 Jan Papez (honyczek)
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 09:01+0000\n"
-"PO-Revision-Date: 2021-09-07 15:23+0200\n"
-"Last-Translator: Vit Pelcak <vit@pelcak.org>\n"
-"Language-Team: Czech <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2026-04-14 22:50+0200\n"
+"Last-Translator: Jan Papez (honyczek) <honyczek@centrum.cz>\n"
+"Language-Team: Czech <kde-i18n-cs@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 21.08.1\n"
+"X-Generator: Lokalize 26.03.90\n"
 
 #: kio_man.cpp:460
 #, kde-kuit-format
@@ -29,6 +30,12 @@ msgid ""
 "envar> environment variable or a configuration file in the <filename>/etc</"
 "filename> directory."
 msgstr ""
+"Nebyla nalezena žádná manuálová stránka odpovídající <resource>%1</resource>."
+"<nl/><nl/>Zkontrolujte, zda jste nezadali název stránky nesprávně. Berte na "
+"vědomí, že názvy manuálových stránek jsou citlivé na velikost písmen.<nl/"
+"><nl/>Pokud je název správný, možná budete muset rozšířit cestu hledání "
+"manuálových stránek pomocí proměnné prostředí <envar>MANPATH</envar> nebo "
+"konfiguračního souboru v adresáři <filename>/etc</filename>."
 
 #: kio_man.cpp:574
 #, kde-kuit-format
