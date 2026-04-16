@@ -1067,16 +1067,3 @@ msgstr "字符集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入搜索占位符"
-
-#~ msgid "The minimum file size for keeping aborted downloads"
-#~ msgstr "保留已中断下载的最小文件大小"
-
-#~ msgctxt "@label:spinbox"
-#~ msgid "%v byte"
-#~ msgid_plural "%v bytes"
-#~ msgstr[0] "%v 字节"
-
-#~ msgctxt "@label:spinbox"
-#~ msgid ""
-#~ "If cancelled, automatically delete partially uploaded files smaller than:"
-#~ msgstr "如果传输被取消，自动删除体积小于此值的部分上传文件："
