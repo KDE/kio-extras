@@ -1101,15 +1101,3 @@ msgstr "&Teiknkoding:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Set inn søkjeplasshaldar"
-
-#~ msgctxt "@label:spinbox"
-#~ msgid "%v byte"
-#~ msgid_plural "%v bytes"
-#~ msgstr[0] "%v byte"
-#~ msgstr[1] "%v byte"
-
-#~ msgctxt "@label:spinbox"
-#~ msgid ""
-#~ "If cancelled, automatically delete partially uploaded files smaller than:"
-#~ msgstr ""
-#~ "Ved avbrot, slett automatisk delvis opplasta filer som er mindre enn:"
