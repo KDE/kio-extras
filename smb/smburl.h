@@ -32,6 +32,7 @@
 #define KIO_SMB_INTERNAL_H_INCLUDED
 
 #include <QByteArray>
+#include <QString>
 #include <QUrl>
 
 /**
@@ -116,6 +117,12 @@ public:
      * Returns the partial URL.
      */
     SMBUrl partUrl() const;
+
+    /**
+     * Splits "DOMAIN/user" or "DOMAIN\user" into {domain, user}.
+     * domain is empty if there is no separator.
+     */
+    static std::pair<QString, QString> splitDomainUser(const QString &combined);
 
 private:
     void updateCache();
