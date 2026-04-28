@@ -1006,9 +1006,9 @@ msgid ""
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"The URL does not contain a %1 placeholder for the user query.\n"
-"This means that rovnaký page is always going to be visited, bez ohľadu na "
-"the text typed in with the keyword."
+"URL neobsahuje zástupný symbol %1 pre dopyt používateľa.\n"
+"To znamená, že sa vždy navštívi rovnaká stránka, bez ohľadu na text zadaný s "
+"kľúčovým slovom."
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
