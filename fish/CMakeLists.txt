@@ -60,7 +60,6 @@ if (MD5SUM_EXECUTABLE)
       IDENTIFIER KIO_FISH_DEBUG
       CATEGORY_NAME kf.kio.workers.fish
       OLD_CATEGORY_NAMES kio_fish kf.kio.slaves.fish
-      DEFAULT_SEVERITY Info
       DESCRIPTION "KIO fish"
       EXPORT KIO_EXTRAS
    )
