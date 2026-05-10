@@ -741,7 +741,7 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerprint(ssh_session session)
     ServerKeyInspection inspection;
 
     ssh_key srv_pubkey = nullptr;
-    const auto freeKey = qScopeGuard([srv_pubkey] {
+    const auto freeKey = qScopeGuard([&srv_pubkey] {
         ssh_key_free(srv_pubkey);
     });
     int rc = ssh_get_server_publickey(session, &srv_pubkey);
@@ -767,7 +767,7 @@ Q_REQUIRED_RESULT ServerKeyInspection fingerprint(ssh_session session)
     }
 
     char *fingerprint = ssh_get_fingerprint_hash(SSH_PUBLICKEY_HASH_SHA256, hash, hlen);
-    const auto freeFingerprint = qScopeGuard([fingerprint] {
+    const auto freeFingerprint = qScopeGuard([&fingerprint] {
         ssh_string_free_char(fingerprint);
     });
 
@@ -2215,7 +2215,7 @@ using UniqueAIO = std::unique_ptr<struct sftp_aio_struct>;
 QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file, size_t size)
 {
     const auto limit = sftp_limits(file->sftp);
-    const auto freeLimit = qScopeGuard([limit] {
+    const auto freeLimit = qScopeGuard([&limit] {
         sftp_limits_free(limit);
     });
     if (!limit) {
@@ -2303,7 +2303,7 @@ QCoro::Generator<SFTPWorker::ReadResponse> SFTPWorker::asyncRead(sftp_file file,
 QCoro::Generator<SFTPWorker::WriteResponse> SFTPWorker::asyncWrite(sftp_file file, QCoro::Generator<ReadResponse> reader)
 {
     const auto limit = sftp_limits(file->sftp);
-    const auto freeLimit = qScopeGuard([limit] {
+    const auto freeLimit = qScopeGuard([&limit] {
         sftp_limits_free(limit);
     });
     if (!limit) {
