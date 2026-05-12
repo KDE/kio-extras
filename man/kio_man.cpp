@@ -37,6 +37,8 @@ MANProtocol *MANProtocol::s_self = nullptr;
 static const char *SGML2ROFF_DIRS = "/usr/lib/sgml";
 static const char *SGML2ROFF_EXECUTABLE = "sgml2roff";
 
+Q_DECLARE_OPERATORS_FOR_FLAGS(MANProtocol::FindFlags);
+
 /*
  * Drop trailing compression suffix from name
  */
@@ -279,7 +281,7 @@ QStringList MANProtocol::manDirectories()
     return man_dirs;
 }
 
-QStringList MANProtocol::findPages(const QString &_section, const QString &title, bool full_path)
+QStringList MANProtocol::findPages(const QString &_section, const QString &title, FindFlags flags)
 {
     QStringList list;
     // qCDebug(KIO_MAN_LOG) << "findPages '" << section << "' '" << title << "'\n";
@@ -359,10 +361,10 @@ QStringList MANProtocol::findPages(const QString &_section, const QString &title
             if (it_s != star) // finding pages, not just sections
             {
                 const QString dir = man_dir + '/' + man + it_real + '/';
-                list.append(findManPagesInSection(dir, title, full_path));
+                list.append(findManPagesInSection(dir, title, flags));
 
                 const QString sdir = man_dir + '/' + sman + it_real + '/';
-                list.append(findManPagesInSection(sdir, title, full_path));
+                list.append(findManPagesInSection(sdir, title, flags));
             }
         }
     }
@@ -371,12 +373,17 @@ QStringList MANProtocol::findPages(const QString &_section, const QString &title
     return list;
 }
 
-QStringList MANProtocol::findManPagesInSection(const QString &dir, const QString &title, bool full_path)
+QStringList MANProtocol::findManPagesInSection(const QString &dir, const QString &title, FindFlags flags)
 {
     QStringList list;
 
     qCDebug(KIO_MAN_LOG) << "in" << dir << "title" << title;
     const bool title_given = !title.isEmpty();
+    const Qt::CaseSensitivity sens = ((flags & CaseInsensitive) ? Qt::CaseInsensitive : Qt::CaseSensitive);
+
+    // Regular expression to match those characters that are
+    // considered "fuzzy".  It must match only a single character.
+    static const QRegularExpression charRx("[-_\\. ]");
 
     QDir dp(dir);
     dp.setFilter(QDir::Files);
@@ -384,15 +391,37 @@ QStringList MANProtocol::findManPagesInSection(const QString &dir, const QString
     for (const QString &name : names) {
         if (title_given) {
             // check title if we're looking for a specific page
-            if (!name.startsWith(title))
-                continue;
-            // beginning matches, do a more thorough check...
-            const QString tmp_name = stripExtension(name);
-            if (tmp_name != title)
+            bool matched = false;
+            QString tmp_name = stripExtension(name);
+
+            // first try an initial substring match
+            if (name.startsWith(title, sens)) {
+                // beginning matches, do a more thorough check...
+                if (tmp_name.compare(title, sens) == 0) {
+                    matched = true;
+                }
+            }
+
+            if (!matched && (flags & FuzzyMatch)) {
+                // not matched yet, try for a fuzzy match
+                QString tmp_title = title.simplified();
+                // An unequal length name cannot match
+                if (tmp_title.length() == tmp_name.length()) {
+                    const int rxPos = tmp_name.indexOf(charRx);
+                    if (rxPos != -1) {
+                        tmp_title[rxPos] = tmp_name[rxPos];
+                        if (tmp_name.compare(tmp_title, sens) == 0) {
+                            matched = true;
+                        }
+                    }
+                }
+            }
+
+            if (!matched)
                 continue;
         }
 
-        list.append(full_path ? dir + name : name);
+        list.append(dir + name);
     }
 
     qCDebug(KIO_MAN_LOG) << "returning" << list.count() << "pages";
@@ -455,17 +484,26 @@ KIO::WorkerResult MANProtocol::get(const QUrl &url)
 
     QStringList foundPages = findPages(section, title);
     if (foundPages.isEmpty()) {
-        outputError(xi18nc("@info",
-                           "No man page matching <resource>%1</resource> could be found."
-                           "<nl/><nl/>"
-                           "Check that you have not mistyped the name of the page, "
-                           "and note that man page names are case sensitive."
-                           "<nl/><nl/>"
-                           "If the name is correct, then you may need to extend the search path "
-                           "for man pages, either using the <envar>MANPATH</envar> environment "
-                           "variable or a configuration file in the <filename>/etc</filename> "
-                           "directory.",
-                           title.toHtmlEscaped()));
+        // No man page matching the provided title could be found.
+        // Check for possible alternatives and close matches.
+        foundPages = findPages(QString(), title, CaseInsensitive | FuzzyMatch);
+
+        if (!foundPages.isEmpty()) {
+            outputCloseMatchPages(title.toHtmlEscaped(), foundPages);
+        } else {
+            outputError(xi18nc("@info",
+                               "No man page matching <resource>%1</resource> could be found."
+                               "<nl/><nl/>"
+                               "Check that you have not mistyped the name of the page, "
+                               "and note that man page names are case sensitive."
+                               "<nl/><nl/>"
+                               "If the name is correct, then you may need to extend the search path "
+                               "for man pages, either using the <envar>MANPATH</envar> environment "
+                               "variable or a configuration file in the <filename>/etc</filename> "
+                               "directory.",
+                               title.toHtmlEscaped()));
+        }
+
         return KIO::WorkerResult::pass();
     }
 
@@ -658,12 +696,12 @@ void MANProtocol::outputError(const QString &errmsg)
     data(QByteArray());
 }
 
-void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
+void MANProtocol::outputAlternatives(const QStringList &matchingPages, const QString &pageTitle, const QString &listHeader, const QString &explanation)
 {
     QByteArray array;
     QTextStream os(&array, QIODevice::WriteOnly);
 
-    outputHeader(os, i18n("There is more than one matching man page:"), i18n("Multiple Manual Pages"));
+    outputHeader(os, listHeader, pageTitle);
     os << "<ul>\n";
 
     int acckey = 1;
@@ -674,16 +712,32 @@ void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
 
     os << "</ul>\n";
     os << "<hr>\n";
-    os << "<p>"
-       << i18n(
-              "Note: if you read a man page in your language,"
-              " be aware it can contain some mistakes or be obsolete."
-              " In case of doubt, you should have a look at the English version.")
-       << "</p>";
+    os << "<p>" << explanation << "</p>";
 
     outputFooter(os);
     data(array);
     // Do not call finished(), the caller will do that
+}
+
+void MANProtocol::outputMatchingPages(const QStringList &matchingPages)
+{
+    outputAlternatives(matchingPages,
+                       i18n("Multiple Manual Pages"),
+                       i18n("There is more than one matching man page:"),
+                       i18n("Note: if you read a man page in your language,"
+                            " be aware it can contain some mistakes or be obsolete."
+                            " In case of doubt, you should have a look at the English version."));
+}
+
+void MANProtocol::outputCloseMatchPages(const QString &title, const QStringList &matchingPages)
+{
+    outputAlternatives(matchingPages,
+                       i18n("Possible Alternative Manual Pages"),
+                       i18n("There were possible close matches:"),
+                       xi18nc("@info",
+                              "No man page matching <resource>%1</resource> could be found,"
+                              " but there were close or case insensitive matches as above.",
+                              title));
 }
 
 KIO::WorkerResult MANProtocol::stat(const QUrl &url)
