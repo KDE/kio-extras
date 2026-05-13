@@ -129,8 +129,6 @@ WorkerResult SMBWorker::stat(const QUrl &kurl)
     m_current_url = url;
 
     UDSEntry udsentry;
-    // Set name
-    udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, kurl.fileName());
 
     switch (m_current_url.getType()) {
     case SMBURLTYPE_UNKNOWN:
@@ -138,11 +136,59 @@ WorkerResult SMBWorker::stat(const QUrl &kurl)
     case SMBURLTYPE_PRINTER:
         return WorkerResult::fail(ERR_UNSUPPORTED_ACTION, url.toDisplayString());
     case SMBURLTYPE_ENTIRE_NETWORK:
-    case SMBURLTYPE_WORKGROUP_OR_SERVER:
+        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, kurl.fileName());
         udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         statEntry(udsentry);
         return WorkerResult::pass();
+    case SMBURLTYPE_WORKGROUP_OR_SERVER: {
+        QEventLoop e;
+
+        QList<QSharedPointer<Discoverer>> discoverers;
+        QSharedPointer<DNSSDDiscoverer> dnssd(new DNSSDDiscoverer);
+        QSharedPointer<WSDiscoverer> wsd(new WSDiscoverer);
+        discoverers << dnssd << wsd;
+
+        bool entryFound = false;
+        auto checkDiscovery = [&](const Discovery::Ptr &discovery) {
+            auto entry = discovery->toEntry();
+            const auto url = entry.stringValue(KIO::UDSEntry::UDS_URL);
+            if (m_current_url.url() == url) {
+                statEntry(entry);
+                entryFound = true;
+                e.quit();
+            }
+        };
+
+        auto maybeFinished = [&] {
+            bool allFinished = true;
+            for (const auto &discoverer : std::as_const(discoverers)) {
+                allFinished = allFinished && discoverer->isFinished();
+            }
+            if (allFinished) {
+                e.quit();
+            }
+        };
+
+        connect(dnssd.data(), &DNSSDDiscoverer::newDiscovery, this, checkDiscovery);
+        connect(wsd.data(), &WSDiscoverer::newDiscovery, this, checkDiscovery);
+
+        connect(dnssd.data(), &DNSSDDiscoverer::finished, this, maybeFinished);
+        connect(wsd.data(), &WSDiscoverer::finished, this, maybeFinished);
+
+        dnssd->start();
+        wsd->start();
+
+        e.exec();
+
+        if (entryFound) {
+            return WorkerResult::pass();
+        } else {
+            return WorkerResult::fail(ERR_DOES_NOT_EXIST, url.toDisplayString());
+        }
+    }
     case SMBURLTYPE_SHARE_OR_PATH: {
+        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, kurl.fileName());
+
         int ret = browse_stat_path(m_current_url, udsentry);
 
         if (ret == EPERM || ret == EACCES || workaroundEEXIST(ret)) {
