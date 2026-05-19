@@ -1176,7 +1176,7 @@ Result SFTPWorker::open(const QUrl &url, QIODevice::OpenMode mode)
     // If we're not opening the file ReadOnly or ReadWrite, don't attempt to
     // read the file and send the mimetype.
     if (mode & QIODevice::ReadOnly) {
-        if (const Result result = sftpSendMimetype(mOpenFile, mOpenUrl); !result.success()) {
+        if (const Result result = sftpSendMimetype(mOpenFile, url); !result.success()) {
             (void)close();
             return result;
         }
@@ -1377,15 +1377,17 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
     }
 
     // If we can resume, offset the buffer properly.
+    KIO::filesize_t readSize = sb->size;
     if (offset > 0 && ((unsigned long long)offset < sb->size)) {
         if (sftp_seek64(file.get(), offset) == 0) {
             canResume();
             totalbytesread = offset;
+            readSize = sb->size - offset;
             qCDebug(KIO_SFTP_LOG) << "Resume offset: " << QString::number(offset);
         }
     }
 
-    auto reader = asyncRead(file.get(), sb->size);
+    auto reader = asyncRead(file.get(), readSize);
     for (const auto &response : reader) {
         if (response.error != KJob::NoError) {
             return Result::fail(response.error, url.toString());
