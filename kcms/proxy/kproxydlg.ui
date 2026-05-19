@@ -587,22 +587,49 @@ Alternatively, you can click on the &lt;b&gt;&quot;Auto Detect&quot;&lt;/b&gt; b
      </layout>
     </widget>
    </item>
-   <item row="1" column="0">
-    <widget class="QRadioButton" name="autoDiscoverProxyRadioButton">
-     <property name="enabled">
-      <bool>true</bool>
-     </property>
-     <property name="whatsThis">
-      <string>&lt;qt&gt;
+   <item row="1" column="0" colspan="4">
+    <layout class="QHBoxLayout" name="horizontalLayout_5">
+     <item>
+      <widget class="QRadioButton" name="autoDiscoverProxyRadioButton">
+       <property name="enabled">
+        <bool>true</bool>
+       </property>
+       <property name="whatsThis">
+        <string>&lt;qt&gt;
 Automatically detect and configure the proxy settings.&lt;p&gt;
 Automatic detection is performed using the &lt;b&gt;Web Proxy Auto-Discovery Protocol (WPAD)&lt;/b&gt;.&lt;p&gt;
 &lt;b&gt;NOTE:&lt;/b&gt; This option might not work properly or not work at all in some UNIX/Linux distributions.
 &lt;/qt&gt;</string>
-     </property>
-     <property name="text">
-      <string>&amp;Detect proxy configuration automatically</string>
-     </property>
-    </widget>
+       </property>
+       <property name="text">
+        <string>&amp;Detect proxy configuration automatically</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <widget class="KContextualHelpButton" name="wpadHelpButton">
+       <property name="layoutDirection">
+        <enum>Qt::LayoutDirection::LeftToRight</enum>
+       </property>
+       <property name="contextualHelpText">
+        <string>Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is almost never the correct configuration. Enabling it when it is not required may slow down network access and make your network less secure. Your network administrator will know whether enabling it is required.</string>
+       </property>
+      </widget>
+     </item>
+     <item>
+      <spacer name="horizontalSpacer">
+       <property name="orientation">
+        <enum>Qt::Orientation::Horizontal</enum>
+       </property>
+       <property name="sizeHint" stdset="0">
+        <size>
+         <width>40</width>
+         <height>20</height>
+        </size>
+       </property>
+      </spacer>
+     </item>
+    </layout>
    </item>
    <item row="3" column="0" colspan="4">
     <widget class="QGroupBox" name="proxyConfigScriptGroupBox">
@@ -662,33 +689,7 @@ Automatic detection is performed using the &lt;b&gt;Web Proxy Auto-Discovery Pro
      </property>
     </widget>
    </item>
-   <item row="1" column="1">
-    <layout class="QHBoxLayout" name="horizontalLayout_5">
-     <item>
-      <widget class="KContextualHelpButton" name="wpadHelpButton">
-       <property name="layoutDirection">
-        <enum>Qt::LayoutDirection::LeftToRight</enum>
-       </property>
-       <property name="contextualHelpText">
-        <string>Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is almost never the correct configuration. Enabling it when it is not required may slow down network access and make your network less secure. Your network administrator will know whether enabling it is required.</string>
-       </property>
-      </widget>
-     </item>
-     <item>
-      <spacer name="horizontalSpacer">
-       <property name="orientation">
-        <enum>Qt::Orientation::Horizontal</enum>
-       </property>
-       <property name="sizeHint" stdset="0">
-        <size>
-         <width>40</width>
-         <height>20</height>
-        </size>
-       </property>
-      </spacer>
-     </item>
-    </layout>
-   </item>
+
   </layout>
  </widget>
  <customwidgets>
