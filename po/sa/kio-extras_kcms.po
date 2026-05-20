@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-04-14 00:43+0000\n"
+"POT-Creation-Date: 2026-05-20 00:44+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -474,7 +474,7 @@ msgid "Show the &value of the environment variables"
 msgstr "वातावरणचरानाम् &मूल्यं दर्शयतु"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:600
+#: proxy/kproxydlg.ui:602
 #, kde-format
 msgid ""
 "<qt>\n"
@@ -491,19 +491,33 @@ msgstr ""
 "qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:603
+#: proxy/kproxydlg.ui:605
 #, kde-format
 msgid "&Detect proxy configuration automatically"
 msgstr "&स्वतः प्रॉक्सी विन्यासस्य अन्वेषणं कुर्वन्तु"
 
+#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
+#: proxy/kproxydlg.ui:615
+#, kde-format
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+"स्वचालितविन्यासः, यत् Web Proxy Auto-Discovery (WPAD) इति अपि ज्ञायते, प्रायः "
+"कदापि सम्यक् विन्यासः न भवति । यदा तस्य आवश्यकता नास्ति तदा तस्य सक्षमीकरणेन जालप्रवेशः "
+"मन्दः भवति तथा च भवतः जालं न्यूनसुरक्षितं भवति । भवतः जालप्रशासकः ज्ञास्यति यत् तस्य "
+"सक्षमीकरणम् आवश्यकम् अस्ति वा।"
+
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:634
+#: proxy/kproxydlg.ui:661
 #, kde-format
 msgid "Enter the address for the proxy configuration script."
 msgstr "प्रॉक्सी विन्यासस्क्रिप्ट् इत्यस्य पतां प्रविशन्तु ।"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:658
+#: proxy/kproxydlg.ui:685
 #, kde-format
 msgid ""
 "<qt><p>Use proxy settings defined on the system.</p>\n"
@@ -525,24 +539,10 @@ msgstr ""
 "<b>HTTPS_PROXY</b> , <b>FTP_PROXY</b> , <b>NO_PROXY</b> .</p></qt>"
 
 #. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:661
+#: proxy/kproxydlg.ui:688
 #, kde-format
 msgid "Use s&ystem proxy configuration:"
 msgstr "s&ystem प्रॉक्सी विन्यासस्य उपयोगं कुर्वन्तु:"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:673
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"स्वचालितविन्यासः, यत् Web Proxy Auto-Discovery (WPAD) इति अपि ज्ञायते, प्रायः "
-"कदापि सम्यक् विन्यासः न भवति । यदा तस्य आवश्यकता नास्ति तदा तस्य सक्षमीकरणेन जालप्रवेशः "
-"मन्दः भवति तथा च भवतः जालं न्यूनसुरक्षितं भवति । भवतः जालप्रशासकः ज्ञास्यति यत् तस्य "
-"सक्षमीकरणम् आवश्यकम् अस्ति वा।"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
