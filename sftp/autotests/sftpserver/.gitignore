@@ -1,0 +1,8 @@
+# SPDX-FileCopyrightText: 2026 Ian Monroe <imonroe@kde.org>
+# SPDX-License-Identifier: CC0-1.0
+
+*.egg-info*
+*.pyc
+known_hosts
+test_server_key
+test_server_key.pub

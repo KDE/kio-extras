@@ -53,3 +53,7 @@ target_link_libraries(kio_sftp
 kde_target_enable_exceptions(kio_sftp PRIVATE)
 
 install(TARGETS kio_sftp DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
+
+if(BUILD_TESTING)
+    add_subdirectory(autotests)
+endif()

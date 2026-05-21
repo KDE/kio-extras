@@ -1,0 +1,6 @@
+# SPDX-FileCopyrightText: 2011-2017 Ruslan Spivak
+# SPDX-FileCopyrightText: 2020 Steven Fernandez <steve@lonetwin.net>
+#
+# SPDX-License-Identifier: MIT
+
+include README.rst
