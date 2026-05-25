@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2022-12-10 06:26+0100\n"
+"PO-Revision-Date: 2026-05-24 05:31+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.2.2\n"
+"X-Generator: Poedit 3.9\n"
 
 #: kio_man.cpp:495
 #, kde-kuit-format
@@ -84,15 +84,14 @@ msgstr ""
 "ინგლისურ ვერსიას გადახედეთ."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "ბევრი წიგნი"
+msgstr "შესაძლო ალტერნატიული სახელმძღვანელოს (man) გვერდები"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "შესაძლებელი თითქმის დამთხვევები:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -101,6 +100,9 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"სახელმძღვანელოს (man) გვერდი, რომელიც <resource>%1</resource>-ს ემთხვევა, "
+"აღმოჩენილი არაა, მაგრამ აღმოჩენილია თითქმის იგივე, ან განსხვავებული დიდი და "
+"პატარა ასოების მქონე დამთხვევები."
 
 #: kio_man.cpp:801
 #, kde-format

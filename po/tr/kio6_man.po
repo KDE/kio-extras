@@ -7,13 +7,13 @@
 # Serdar Soytetir <tulliana@gmail.com>, 2008.
 # H. İbrahim Güngör <ibrahim@pardus.org.tr>, 2010.
 # Volkan Gezer <volkangezer@gmail.com>, 2013.
-# Emir SARI <emir_sari@icloud.com>, 2022, 2023.
+# SPDX-FileCopyrightText: 2022-2023, 2026 Emir SARI <emir_sari@icloud.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2023-08-31 19:41+0300\n"
+"PO-Revision-Date: 2026-05-24 13:53+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 23.11.70\n"
+"X-Generator: Lokalize 26.04.0\n"
 
 #: kio_man.cpp:495
 #, kde-kuit-format
@@ -90,15 +90,14 @@ msgstr ""
 "şüphelenirseniz İngilizce sürümüne bakmalısınız."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Çoklu Kılavuz Sayfaları"
+msgstr "Olası Alternatif Kılavuz Sayfaları"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Olası yakın eşleşmeler bulundu:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -107,6 +106,8 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"<resource>%1</resource> ile eşleşen hiçbir kılavuz sayfası bulunamadı; ancak "
+"yukarıdakiler gibi yakın veya BÜYÜK/küçük harfi farklı eşleşmeler bulundu."
 
 #: kio_man.cpp:801
 #, kde-format

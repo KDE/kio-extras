@@ -88,15 +88,14 @@ msgstr ""
 "mali pozrieť anglickú verziu."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Viacero stránok manuálu"
+msgstr "Možné alternatívne manuálové stránky"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Boli nájdené možné blízke zhody:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -105,6 +104,9 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"Nenašla sa žiadna manuálová stránka zodpovedajúca <resource>%1</resource>, "
+"ale existovali blízke zhody alebo zhody bez rozlišovania veľkosti písmen ako "
+"vyššie."
 
 #: kio_man.cpp:801
 #, kde-format

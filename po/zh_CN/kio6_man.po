@@ -81,10 +81,9 @@ msgstr ""
 "如果您对其内容抱有疑问，请以英文版为准。"
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "多个手册页面"
+msgstr ""
 
 #: kio_man.cpp:736
 #, kde-format

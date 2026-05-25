@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Freek de Kruijf <freekdekruijf@kde.nl>, 2015, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2015, 2019-2021, 2026 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2021-09-03 10:50+0200\n"
+"PO-Revision-Date: 2026-05-24 14:13+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 21.08.0\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #: kio_man.cpp:495
 #, kde-kuit-format
@@ -85,15 +85,14 @@ msgstr ""
 "bekijk de Engelstalige versie."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Meerdere man-pagina's"
+msgstr "Mogelijke alternatieve man-pagina's"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Er waren mogelijk bijna-overeenkomsten:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -102,6 +101,9 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"Geen overeenkomende man-pagina voor <resource>%1</resource> kon gevonden "
+"worden, maar er waren bijna- of hoofd-/kleine letter ongevoelige "
+"overeenkomsten zoals boven."
 
 #: kio_man.cpp:801
 #, kde-format

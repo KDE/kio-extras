@@ -1,25 +1,25 @@
 # Translation of kio6_man.po to Catalan (Valencian)
-# Copyright (C) 2000-2022 This_file_is_part_of_KDE
+# Copyright (C) 2000-2026 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
 # SPDX-FileCopyrightText: 2000, 2001, 2004, 2006 Sebastià Pla i Sanz <sps@sastia.com>
-# SPDX-FileCopyrightText: 2002, 2003, 2016, 2020, 2021 Antoni Bella Pérez <antonibella5@yahoo.com>
+# SPDX-FileCopyrightText: 2002, 2003, 2016, 2020, 2021, 2026 Antoni Bella Pérez <antonibella5@yahoo.com>
 # SPDX-FileCopyrightText: 2005 Albert Astals Cid <aacid@kde.org>
-# SPDX-FileCopyrightText: 2007, 2008, 2009, 2012, 2013, 2015, 2019, 2020, 2022 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2012, 2013, 2015, 2019, 2020, 2022, 2026 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2022-09-07 19:17+0200\n"
-"Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
+"PO-Revision-Date: 2026-05-24 18:36+0200\n"
+"Last-Translator: Antoni Bella Pérez <antonibella5@yahoo.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca@valencia\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.12.0\n"
+"X-Generator: Lokalize 25.12.3\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Accelerator-Marker: &\n"
 
@@ -92,15 +92,14 @@ msgstr ""
 "donar un colp d'ull a la versió anglesa."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Múltiples pàgines de manual"
+msgstr "Possibles pàgines de manual alternatives"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Hi ha possibles coincidències:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -109,6 +108,9 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"No s'ha trobat cap pàgina «man» que coincidisca amb <resource>%1</resource>, "
+"però hi ha coincidències properes o sense distinció de majúscules i "
+"minúscules com a l'anterior."
 
 #: kio_man.cpp:801
 #, kde-format
