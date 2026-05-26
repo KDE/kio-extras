@@ -3,14 +3,14 @@
 # Sae-keun Kim <segni@susekorea.net>, 2001.
 # KIM KyungHeon <tody@kde.or.kr>, 2002.
 # Seok Lee <ddoman@kde.or.kr>, 2004.
-# Shinjo Park <kde@peremen.name>, 2007, 2008, 2012, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2007, 2008, 2012, 2019, 2020, 2021, 2026 Shinjo Park <kde@peremen.name>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2021-11-12 00:11+0100\n"
+"PO-Revision-Date: 2026-05-25 21:15+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 21.08.1\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: kio_man.cpp:495
 #, kde-kuit-format
@@ -86,15 +86,14 @@ msgstr ""
 "이 들어 있을 수도 있습니다. 의심되는 경우에는 영어 버전을 참고하십시오."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "여러 매뉴얼 페이지"
+msgstr "대체 가능성 있는 매뉴얼 페이지"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "여러 일치 결과를 찾았습니다:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -103,6 +102,8 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"<resource>%1</resource>와(과) 일치하는 man 페이지를 찾을 수 없습니다. 유사하"
+"거나 대소문자를 구분하지 않는 일치를 찾았습니다."
 
 #: kio_man.cpp:801
 #, kde-format
