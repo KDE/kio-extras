@@ -294,14 +294,14 @@ FilterOptions::FilterOptions(QObject *parent, const KPluginMetaData &data)
     connect(m_dlg.searchLineEdit, &QLineEdit::textEdited, searchProviderModel, &QSortFilterProxyModel::setFilterFixedString);
 
     connect(m_dlg.lbQuickHelp, &QLabel::linkActivated, this, [this](const QString &link) {
-        QToolTip::showText(QCursor::pos(), xi18nc("@info:whatsthis",
-                                                  "<para>Here you can configure the web search keywords feature.</para>"
-                                                  "<para>Web search keywords allow you to quickly search or look up words on "
-                                                  "the Internet. They work in <application>Konqueror</application>'s address "
-                                                  "bar, the <application>KRunner</application> search, and in any other "
-                                                  "applications that support them. For example, to search for information "
-                                                  "about the KDE project using the Google search engine, you can simply type "
-                                                  "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"));
+        QToolTip::showText(QCursor::pos(),
+                           xi18nc("@info:whatsthis",
+                                  "<para>Web search keywords allow you to quickly search or look up words on the Internet. "
+                                  "They work in Plasma's <application>KRunner</application> search, "
+                                  "<application>Konqueror</application>'s address bar, and in any other "
+                                  "applications that support them. For example, to search for information "
+                                  "about the KDE project using the Google search engine, you can simply type "
+                                  "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"));
     });
 }
 
