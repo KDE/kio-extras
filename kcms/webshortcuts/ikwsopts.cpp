@@ -221,7 +221,7 @@ QVariant ProvidersListModel::data(const QModelIndex &index, int role) const
     switch (role) {
     case Qt::DisplayRole:
         if (noProvider) {
-            return i18nc("@item:inlistbox No default web search keyword", "(None)");
+            return i18nc("@item:inlistbox No default web search keyword", "None");
         }
         return m_providers.at(index.row())->name();
     case ShortNameRole:
