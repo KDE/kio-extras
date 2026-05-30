@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2025-09-27 08:39+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
@@ -749,66 +749,61 @@ msgstr ""
 msgid "Full trash:"
 msgstr "Przy pełnym koszu:"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Nazwa"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Słowa kluczowe"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Ulubione"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"Zaznacz to pole, aby wybrać podświetlony skrót sieciowy jako ulubiony.<nl/"
-">Preferowane skróty sieciowe są używane w miejscach, gdzie można pokazać "
-"tylko niewiele wybranych skrótów na raz."
+msgid "Check to select this web search keyword as preferred."
+msgstr "Wybierz znak oddzielający skróty sieciowe."
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Brak"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "F&iltry wyszukiwania"
+
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p>Włącz lub wyłącz skróty sieciowe. </p><p>Skróty "
-"sieciowe pozwalają na szybki dostęp lub znajdywanie informacji umieszczonych "
-"w internecie lub na twoim dysku twardym. </p><p>KDE jest dostarczane z "
-"wieloma uprzednio nadanymi skrótami sieciowymi. Jednym z takich skrótów jest "
-"skrót wyszukiwarki Google (TM). Aby go użyć, wpisz słowo kluczowe 'gg', po "
-"nim rozgranicznik słowa kluczowego i szukane wyrażenie, np. <span style=\" "
-"font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -816,124 +811,115 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "Włącz skróty si&eciowe"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "&Użyj tylko ulubionych skrótów"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
+#: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
-msgid "Search for Web search keywords"
-msgstr "Szukaj skrótu sieciowego"
+msgid "Search..."
+msgstr "Znajdź..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "Dodaj nowy skrót sieciowy"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr "&Nowy…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Zmień podświetlony skrót sieciowy"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr "&Edytuj…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "Usuń podświetlony skrót sieciowy"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "&Usuń"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Wybierz wyszukiwarkę do wykorzystania w polach tekstowych zapewniających "
-"usługę automatycznego wyszukiwania w trakcie wpisywania zwykłych słów i fraz "
-"zamiast URL. Żeby wyłączyć tę funkcję, wystarczy wybrać <b>Brak</b> z "
-"listy.\n"
-"</qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "Domyślny &skrót sieciowy:"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"<html><head/><body><p>Wybierz domyślny skrót sieciowy. </p><p> Umożliwia "
-"programom na samoczynne przekształcenie wpisywanych słów lub wyrażeń na "
-"zapytania skrótów sieciowych, jeśli nie będzie można ich przefiltrować do "
-"poprawnych adresów URL. </p><p>Aby wyłączyć tą funkcjonalność wybierz <span "
-"style=\" font-weight:600;\">Brak</span> z listy. </p></body></html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
-#, kde-format
-msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
-msgstr ""
-"Wybierz rozgranicznik oddzielający słowo kluczowe od frazy lub słowa do "
-"wyszukania."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "Rozgranicznik słów &kluczowych:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Wybierz znak oddzielający skróty sieciowe."
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr ""
+"Wybierz rozgranicznik oddzielający słowo kluczowe od frazy lub słowa do "
+"wyszukania."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "Dwukropek"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1115,6 +1101,64 @@ msgstr "&Zestaw znaków:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Wstaw pole zastępcze zapytania"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "Zaznacz to pole, aby wybrać podświetlony skrót sieciowy jako ulubiony.<nl/"
+#~ ">Preferowane skróty sieciowe są używane w miejscach, gdzie można pokazać "
+#~ "tylko niewiele wybranych skrótów na raz."
+
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Włącz lub wyłącz skróty sieciowe. </p><p>Skróty "
+#~ "sieciowe pozwalają na szybki dostęp lub znajdywanie informacji "
+#~ "umieszczonych w internecie lub na twoim dysku twardym. </p><p>KDE jest "
+#~ "dostarczane z wieloma uprzednio nadanymi skrótami sieciowymi. Jednym z "
+#~ "takich skrótów jest skrót wyszukiwarki Google (TM). Aby go użyć, wpisz "
+#~ "słowo kluczowe 'gg', po nim rozgranicznik słowa kluczowego i szukane "
+#~ "wyrażenie, np. <span style=\" font-weight:600;\">gg:KDE</span>.</p></"
+#~ "body></html>"
+
+#~ msgid "Search for Web search keywords"
+#~ msgstr "Szukaj skrótu sieciowego"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Wybierz wyszukiwarkę do wykorzystania w polach tekstowych zapewniających "
+#~ "usługę automatycznego wyszukiwania w trakcie wpisywania zwykłych słów i "
+#~ "fraz zamiast URL. Żeby wyłączyć tę funkcję, wystarczy wybrać <b>Brak</b> "
+#~ "z listy.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Wybierz domyślny skrót sieciowy. </p><p> Umożliwia "
+#~ "programom na samoczynne przekształcenie wpisywanych słów lub wyrażeń na "
+#~ "zapytania skrótów sieciowych, jeśli nie będzie można ich przefiltrować do "
+#~ "poprawnych adresów URL. </p><p>Aby wyłączyć tą funkcjonalność wybierz "
+#~ "<span style=\" font-weight:600;\">Brak</span> z listy. </p></body></html>"
 
 #~ msgid "The minimum file size for keeping aborted downloads"
 #~ msgstr "Najmniejszy rozmiar pliku do zachowania przerwanych pobierań"
@@ -1459,9 +1503,6 @@ msgstr "Wstaw pole zastępcze zapytania"
 
 #~ msgid "Search interactively for domains"
 #~ msgstr "Interaktywnie szukaj domen"
-
-#~ msgid "Search..."
-#~ msgstr "Znajdź..."
 
 #~ msgid ""
 #~ "<qt>\n"

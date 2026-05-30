@@ -3,14 +3,14 @@
 # Andrea Rizzi <rizzi@kde.org>, 2003, 2005.
 # Andrea Rizzi <rizzi@sns.it>, 2007.
 # Nicola Ruggero <nicola@nxnt.org>, 2008, 2009, 2013.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2019-2021, 2026 Luigi Toscano <luigi.toscano@tiscali.it>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2021-09-07 11:06+0200\n"
+"PO-Revision-Date: 2026-05-29 23:31+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 21.08.0\n"
+"X-Generator: Lokalize 26.04.0\n"
 
 #: kio_man.cpp:495
 #, kde-kuit-format
@@ -90,15 +90,14 @@ msgstr ""
 "la versione inglese."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Pagine di manuale multiple"
+msgstr "Possibili pagine di manuale alternative"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Ci sono state possibili corrispondenze simili:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -107,6 +106,9 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"Non è stata trovata nessuna pagina di manuale che corrisponde a <resource>"
+"%1</resource>, ma sono state trovate corrispondenze simili o senza "
+"considerare le maiuscole, come riportato sopra."
 
 #: kio_man.cpp:801
 #, kde-format

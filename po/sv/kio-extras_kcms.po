@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2025-09-17 16:58+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -755,66 +755,61 @@ msgstr ""
 msgid "Full trash:"
 msgstr "Full papperskorg:"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Namn"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Nyckelord"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Föredragna"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"Markera rutan för att välja den markerade webbgenvägen som föredragen.<nl/"
-">Föredragna webbsökningsnyckelord används på platser där bara några få "
-"utvalda genvägar kan visas på en gång."
+msgid "Check to select this web search keyword as preferred."
+msgstr "Välj en avgränsare för att markera webbsökningsnyckelordet."
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Inget"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "Sökfi&lter"
+
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p>Aktivera eller inaktivera webbsökningsnyckelord.</"
-"p><p>Webbsökningsnyckelord låter dig snabbt komma åt eller söka efter "
-"information på nätet eller på hårddisken.</p><p>KDE levereras med många "
-"fördefinierade nyckelord. Ett sådant nyckelord kan användas för att utföra "
-"en sökning på Google™. Skriv helt enkelt nyckelordet 'gg' följt av "
-"nyckelordsavgränsaren och sökbegreppet, t.ex. <span style=\" font-weight:600;"
-"\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -822,124 +817,115 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "Aktivera w&ebbsökningsnyckelord"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "An&vänd bara föredragna nyckelord"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
+#: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
-msgid "Search for Web search keywords"
-msgstr "Sök efter webbsökningsnyckelord"
+msgid "Search..."
+msgstr "Sök..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "Lägg till ett nytt webbsökningsnyckelord"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr "&Nytt…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Ändra det markerade webbsökningsnyckelordet"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr "Red&igera…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "Ta bort det markerade webbsökningsnyckelordet"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "&Ta bort"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Välj en söktjänst som ska användas för att slå upp normala ord eller "
-"meningar när de skrivs in i program som har inbyggt stöd för den här "
-"funktionen. För att inaktivera den här funktionen, välj <b>Ingen</b> i "
-"listan.\n"
-"</qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "Förvalt webb&sökningsnyckelord:"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"<html><head/><body><p>Välj ett förvalt webbsökningsnyckelord.</p><p>Det "
-"låter program automatiskt konvertera det inskrivna ordet eller meningen till "
-"förfrågningar med webbsökningsnyckelord när de inte kan filtreras till en "
-"riktig webbadress.</p><p>Välj <span style=\" font-weight:600;\">Inget</span> "
-"i listan för att inaktivera funktionen.</p></body></html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
-#, kde-format
-msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
-msgstr ""
-"Välj avgränsning som skiljer nyckelordet från meningen eller ordet som ska "
-"sökas efter."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "Nyc&kelordsavgränsning:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Välj en avgränsare för att markera webbsökningsnyckelordet."
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr ""
+"Välj avgränsning som skiljer nyckelordet från meningen eller ordet som ska "
+"sökas efter."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "Kolon"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1124,6 +1110,63 @@ msgstr "Te&ckenuppsättning:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Infoga frågemarkör"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "Markera rutan för att välja den markerade webbgenvägen som föredragen.<nl/"
+#~ ">Föredragna webbsökningsnyckelord används på platser där bara några få "
+#~ "utvalda genvägar kan visas på en gång."
+
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Aktivera eller inaktivera webbsökningsnyckelord.</"
+#~ "p><p>Webbsökningsnyckelord låter dig snabbt komma åt eller söka efter "
+#~ "information på nätet eller på hårddisken.</p><p>KDE levereras med många "
+#~ "fördefinierade nyckelord. Ett sådant nyckelord kan användas för att "
+#~ "utföra en sökning på Google™. Skriv helt enkelt nyckelordet 'gg' följt av "
+#~ "nyckelordsavgränsaren och sökbegreppet, t.ex. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+
+#~ msgid "Search for Web search keywords"
+#~ msgstr "Sök efter webbsökningsnyckelord"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Välj en söktjänst som ska användas för att slå upp normala ord eller "
+#~ "meningar när de skrivs in i program som har inbyggt stöd för den här "
+#~ "funktionen. För att inaktivera den här funktionen, välj <b>Ingen</b> i "
+#~ "listan.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Välj ett förvalt webbsökningsnyckelord.</p><p>Det "
+#~ "låter program automatiskt konvertera det inskrivna ordet eller meningen "
+#~ "till förfrågningar med webbsökningsnyckelord när de inte kan filtreras "
+#~ "till en riktig webbadress.</p><p>Välj <span style=\" font-weight:600;"
+#~ "\">Inget</span> i listan för att inaktivera funktionen.</p></body></html>"
 
 #~ msgid "The minimum file size for keeping aborted downloads"
 #~ msgstr "Den minimala filstorleken för att behålla avbrutna nerladdningar"
@@ -1478,9 +1521,6 @@ msgstr "Infoga frågemarkör"
 
 #~ msgid "Search interactively for domains"
 #~ msgstr "Sök interaktivt efter domäner"
-
-#~ msgid "Search..."
-#~ msgstr "Sök..."
 
 #~ msgid ""
 #~ "<qt>\n"

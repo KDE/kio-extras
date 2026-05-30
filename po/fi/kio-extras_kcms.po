@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2025-10-15 19:39+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -762,65 +762,61 @@ msgstr ""
 msgid "Full trash:"
 msgstr "Koko roskakori:"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Nimi"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Hakusanat"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "Ensisijainen"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"Valitse tämä, niin korostettu verkkohaku merkitään ensisijaiseksi.<nl/"
-">Ensisijaisia verkkohakusanoja käytetään paikoissa, joissa kerralla "
-"näytetään vain muutama valittu hakusana."
+msgid "Check to select this web search keyword as preferred."
+msgstr "Valitse erotin, joka osoittaa verkkohaun hakusanan."
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Ei oletushakua"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "Hakusuodatt&imet:"
+
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p>Ota käyttöön tai poista käytöstä verkkohakusanoja.</"
-"p><p>Verkkohakusanoilla voi nopeasti etsiä tietoa verkosta tai kiintolevyltä."
-"</p><p>KDE:ssa on valmiina monia hakusanoja. Yhdellä niistä tehdään Google™-"
-"haku. Sitä käytetään kirjoittamalla yksinkertaisesti hakusana ”gg”, valittu "
-"erotinmerkki ja mitä haetaan, esim. <span style=\"font-weight:600;\">gg:KDE</"
-"span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -828,124 +824,115 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "&Käytä verkkohaun hakusanoja"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "Käytä vain &ensisijaisia hakusanoja"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
+#: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
-msgid "Search for Web search keywords"
-msgstr "Etsi verkkohakusanoja"
+msgid "Search..."
+msgstr "Etsi…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "Lisää uusi verkkohaun hakusana"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr "&Uusi…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Muuta korostettua verkkohaun hakusanaa"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr "&Muokkaa…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "Poista korostettu verkkohaun hakusana"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "&Poista"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Valitse automaattisen haun tarjoavissa syöttökentissä käytettävä hakukone "
-"kirjoitettaessa tavallisia sanoja tai lausekkeita verkko-osoitteiden sijaan. "
-"Poistaaksesi ominaisuuden käytöstä valitse luettelosta <b>Ei "
-"oletuspikavalintaa</b>.\n"
-"</qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "Verkko&haun oletushakusana:"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"<html><head/><body><p>Valitse verkkohaun oletushakusana.</p><p>Näin "
-"sovellukset voivat automaattisesti muuntaa kirjoitetun sanan tai ilmauksen "
-"verkkohakukyselyksi, ellei sitä voi tulkita kelvolliseksi verkko-osoitteeksi."
-"</p><p>Toiminnon voi poistaa käytöstä valitsemalla luettelosta <span style="
-"\"font-weight:600;\">Ei mitään</span>.</p></body></html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
-#, kde-format
-msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
-msgstr ""
-"Valitse erotin, joka erottaa hakukoneen lyhenteen haettavasta sanasta tai "
-"ilmaisusta."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "Hakusanan &erotin:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Valitse erotin, joka osoittaa verkkohaun hakusanan."
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr ""
+"Valitse erotin, joka erottaa hakukoneen lyhenteen haettavasta sanasta tai "
+"ilmaisusta."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "Kaksoispiste"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1130,6 +1117,63 @@ msgstr "&Merkistö:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Aseta kyselyn paikanvaraus"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "Valitse tämä, niin korostettu verkkohaku merkitään ensisijaiseksi.<nl/"
+#~ ">Ensisijaisia verkkohakusanoja käytetään paikoissa, joissa kerralla "
+#~ "näytetään vain muutama valittu hakusana."
+
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Ota käyttöön tai poista käytöstä verkkohakusanoja.</"
+#~ "p><p>Verkkohakusanoilla voi nopeasti etsiä tietoa verkosta tai "
+#~ "kiintolevyltä.</p><p>KDE:ssa on valmiina monia hakusanoja. Yhdellä niistä "
+#~ "tehdään Google™-haku. Sitä käytetään kirjoittamalla yksinkertaisesti "
+#~ "hakusana ”gg”, valittu erotinmerkki ja mitä haetaan, esim. <span style="
+#~ "\"font-weight:600;\">gg:KDE</span>.</p></body></html>"
+
+#~ msgid "Search for Web search keywords"
+#~ msgstr "Etsi verkkohakusanoja"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Valitse automaattisen haun tarjoavissa syöttökentissä käytettävä hakukone "
+#~ "kirjoitettaessa tavallisia sanoja tai lausekkeita verkko-osoitteiden "
+#~ "sijaan. Poistaaksesi ominaisuuden käytöstä valitse luettelosta <b>Ei "
+#~ "oletuspikavalintaa</b>.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Valitse verkkohaun oletushakusana.</p><p>Näin "
+#~ "sovellukset voivat automaattisesti muuntaa kirjoitetun sanan tai "
+#~ "ilmauksen verkkohakukyselyksi, ellei sitä voi tulkita kelvolliseksi "
+#~ "verkko-osoitteeksi.</p><p>Toiminnon voi poistaa käytöstä valitsemalla "
+#~ "luettelosta <span style=\"font-weight:600;\">Ei mitään</span>.</p></"
+#~ "body></html>"
 
 #~ msgid "The minimum file size for keeping aborted downloads"
 #~ msgstr "Keskeytyneistä latauksista säilytettävän tiedoston vähimmäiskoko"
@@ -1487,9 +1531,6 @@ msgstr "Aseta kyselyn paikanvaraus"
 
 #~ msgid "Search interactively for domains"
 #~ msgstr "Etsi verkkoalueita vuorovaikutteisesti"
-
-#~ msgid "Search..."
-#~ msgstr "Etsi…"
 
 #~ msgid ""
 #~ "<qt>\n"

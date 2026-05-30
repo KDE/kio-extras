@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2022-08-29 08:53\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -833,19 +833,19 @@ msgstr ""
 msgid "Full trash:"
 msgstr "Smietnica poŭnaja:"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Nazva"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Kliučavyja slovy"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
@@ -853,61 +853,41 @@ msgstr "Pieravažny"
 
 #: webshortcuts/ikwsopts.cpp:104
 #, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"Adznačcie hety paramietr, kab zrabić padsvietlienaje kliučavoje slova dlia "
-"sieciŭnaha pošuku pieravažnym.<nl/>Pieravažnyja kliučavyja slovy "
-"vykarystoŭvajucca ŭ miescach, dzie adnačasova mohuć pakazvacca toĺki "
-"niekaĺki abranych kliučavych sloŭ."
+msgid "Check to select this web search keyword as preferred."
+msgstr "Abiarycie padzialiaĺnik dlia addzialiennia kliučavych sloŭ."
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Niama"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "Fil&try pošuku"
 
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword gg followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p>Ukliučyć abo adkliučyć kliučavyja slovy dlia "
-"sieciŭnaha pošuku. </p><p>Kliučavyja slovy dazvaliajuć chutka atrymać dostup "
-"abo vykanać pošuk zviestak, razmieščanych ŭ internecie abo na vašym cviordym "
-"dysku. </p><p>KDE pastaŭliajecca sa šmatlikimi papiarednie vyznačanymi "
-"kliučavymi slovami. Adno z takich kliučavych sloŭ možna vykarystoŭvać dlia "
-"vykanannia pošuku Google (TM). Dlia hetaha prosta ŭviadzicie kliučavoje "
-"slova \"gg\", paslia padzialiaĺnik, a za im termin. Napryklad <span style=\" "
-"font-weight:600;\">gg:KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -915,131 +895,115 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "&Ukliučyć kliučavyja slovy dlia sieciŭnaha pošuku"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "&Vykarystoŭvać toĺki pieravažnyja kliučavyja slovy"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
-msgid "Search for Web search keywords"
-msgstr "Pošuk pa kliučavych slovach"
+#: webshortcuts/ikwsopts_ui.ui:62
+#, kde-format
+msgid "Search..."
+msgstr "Pošuk..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "Dadać novaje kliučavoje slova"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Zmianić padsvietlienaje kliučavoje slova"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "Vydalić padsvietlienaje kliučavoje slova"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "Vy&dalić"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Abiarycie sistemu pošuku, jakaja budzie vykarystoŭvacca ŭ paliach uvodu dlia "
-"pošuku, kali vy ŭvodzicie zvyčajnyja slovy i frazy zamiest URL. Kab "
-"adkliučyć hetu funkcyju, abiarycie ŭ spisie <b>Niama</b>.\n"
-" </qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "&Kliučavoje slova dlia pradvyznačaj sistemy pošuku:"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
-msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
-msgstr ""
-"<html><head/><body><p>Abiarycie kliučavoje slova dlia pradvyznačanaj sistemy "
-"pošuku. </p><p>Heta dazvaliaje prahramam aŭtamatyčna pieraŭtvarać "
-"uviedzienyja slovy abo frazy ŭ zapyty pa kliučavych slovach, kali nie "
-"ŭdajecca pieraŭtvaryć ich u adpaviedny URL. </p><p>Kab adkliučyć hetuju "
-"funkcyju, abiarycie ŭ spisie <span style=\" font-weight:600;\">Niama</span>."
-"</p></body></html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"Abiarycie padzialiaĺnik, jaki addzialiaje kliučavoje slova ad frazy abo "
-"slova dlia pošuku."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "&Padzialiaĺnik kliučavych sloŭ:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Abiarycie padzialiaĺnik dlia addzialiennia kliučavych sloŭ."
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr ""
+"Abiarycie padzialiaĺnik, jaki addzialiaje kliučavoje slova ad frazy abo "
+"slova dlia pošuku."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "Dvukropje"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1273,6 +1237,90 @@ msgstr "&Kadavannie:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Ustavić zapaŭniaĺnik zapytu"
+
+#, fuzzy
+#~| msgctxt "@info:tooltip"
+#~| msgid ""
+#~| "Check this box to select the highlighted web search keyword as preferred."
+#~| "<nl/>Preferred web search keywords are used in places where only a few "
+#~| "select keywords can be shown at one time."
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "Adznačcie hety paramietr, kab zrabić padsvietlienaje kliučavoje slova "
+#~ "dlia sieciŭnaha pošuku pieravažnym.<nl/>Pieravažnyja kliučavyja slovy "
+#~ "vykarystoŭvajucca ŭ miescach, dzie adnačasova mohuć pakazvacca toĺki "
+#~ "niekaĺki abranych kliučavych sloŭ."
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+#~| "search keywords allow you to quickly access or search for information "
+#~| "located online or on your hard drive. </p><p>KDE comes with many "
+#~| "predefined keywords. One such keyword can be used to perform a the "
+#~| "Google (TM) search; to use it, you simply type the keyword gg followed "
+#~| "by the keyword delimiter and the search term, e.g. <span style=\" font-"
+#~| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Ukliučyć abo adkliučyć kliučavyja slovy dlia "
+#~ "sieciŭnaha pošuku. </p><p>Kliučavyja slovy dazvaliajuć chutka atrymać "
+#~ "dostup abo vykanać pošuk zviestak, razmieščanych ŭ internecie abo na "
+#~ "vašym cviordym dysku. </p><p>KDE pastaŭliajecca sa šmatlikimi papiarednie "
+#~ "vyznačanymi kliučavymi slovami. Adno z takich kliučavych sloŭ možna "
+#~ "vykarystoŭvać dlia vykanannia pošuku Google (TM). Dlia hetaha prosta "
+#~ "ŭviadzicie kliučavoje slova \"gg\", paslia padzialiaĺnik, a za im termin. "
+#~ "Napryklad <span style=\" font-weight:600;\">gg:KDE</span>.</p></body></"
+#~ "html>"
+
+#, fuzzy
+#~| msgid "Search for web search keywords"
+#~ msgid "Search for Web search keywords"
+#~ msgstr "Pošuk pa kliučavych slovach"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Abiarycie sistemu pošuku, jakaja budzie vykarystoŭvacca ŭ paliach uvodu "
+#~ "dlia pošuku, kali vy ŭvodzicie zvyčajnyja slovy i frazy zamiest URL. Kab "
+#~ "adkliučyć hetu funkcyju, abiarycie ŭ spisie <b>Niama</b>.\n"
+#~ " </qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
+#~| "allows applications to automatically convert the typed word or phrase to "
+#~| "web search keyword queries when they cannot be filtered into a proper "
+#~| "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~| "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Abiarycie kliučavoje slova dlia pradvyznačanaj "
+#~ "sistemy pošuku. </p><p>Heta dazvaliaje prahramam aŭtamatyčna pieraŭtvarać "
+#~ "uviedzienyja slovy abo frazy ŭ zapyty pa kliučavych slovach, kali nie "
+#~ "ŭdajecca pieraŭtvaryć ich u adpaviedny URL. </p><p>Kab adkliučyć hetuju "
+#~ "funkcyju, abiarycie ŭ spisie <span style=\" font-weight:600;\">Niama</"
+#~ "span>.</p></body></html>"
 
 #, fuzzy
 #~| msgid " byte"
@@ -1668,9 +1716,6 @@ msgstr "Ustavić zapaŭniaĺnik zapytu"
 
 #~ msgid "Search interactively for domains"
 #~ msgstr "Interaktyŭny pošuk damienaŭ"
-
-#~ msgid "Search..."
-#~ msgstr "Pošuk..."
 
 #~ msgid ""
 #~ "<qt>\n"

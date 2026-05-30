@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_trash\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2023-02-07 20:29+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -777,19 +777,19 @@ msgstr ""
 msgid "Full trash:"
 msgstr "Tong Sampah Penuh:"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "Nama"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "Katakunci"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
@@ -797,61 +797,41 @@ msgstr "Kesukaan"
 
 #: webshortcuts/ikwsopts.cpp:104
 #, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"Centang kotak ini untuk memilih kata kunci pencarian web yang disorot "
-"sebagai yang disukai.<nl/>Kata kunci pencarian web yang disukai digunakan "
-"pada tempat di mana hanya beberapa kata kunci terpilih yang bisa ditampilkan "
-"dalam seketika."
+msgid "Check to select this web search keyword as preferred."
+msgstr "Pilih pembatas untuk menandai kata kunci pencarian Web."
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "Nihil"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "F&ilter Pencari"
 
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p>Fungsikan atau nonfungsikan kata kunci pencarian web. "
-"</p><p>Kata kunci pencarian web memungkinkan Anda untuk mengakses secara "
-"cepat atau mencari informasi secara daring atau di diska Anda. </p><p>KDE "
-"hadir dengan banyak kata kunci yang telah ditentukan. Salah satu dari kata "
-"kunci tersebut bisa digunakan untuk melakukan pencarian Google (TM); untuk "
-"menggunakannya, Anda cukup mengetik kata kunci 'gg' diikuti dengan pembatas "
-"kata kunci dan kata pencarian, misalnya <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -859,130 +839,114 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "&Fungsikan kata kunci pencarian Web"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "&Gunakan kata kunci yang disukai saja"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
-msgid "Search for Web search keywords"
-msgstr "Cari untuk kata kunci pencarian web"
+#: webshortcuts/ikwsopts_ui.ui:62
+#, kde-format
+msgid "Search..."
+msgstr "Cari..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "Tambahkan sebuah kata kunci pencarian Web baru"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "Ubah kata kunci pencarian Web yang disorot"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "Hapus kata kunci pencarian Web yang disorot"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "Ha&pus"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Pilih mesin pencari untuk menggunakan kotak input yang menyediakan layanan "
-"pencarian otomatis ketika anda mengetik kata atau frasa normal ketimbang "
-"URL. Untuk menonfungsikan fitur ini pilih <b>Nihil</b> dari senarai.\n"
-"</qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "Kata kunci pen&carian Web default:"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
-msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
-msgstr ""
-"<html><head/><body><p>Pilih kata kunci pencarian web bawaan. </p><p>Ini "
-"memungkinkan aplikasi untuk secara otomatis mengonversi kata atau frasa yang "
-"diketik ke kueri kata kunci pencarian web ketika mereka tidak bisa difilter "
-"ke dalam URL yang benar. </p><p>Untuk menonfungsikan fungsionalitas ini piih "
-"<span style=\" font-weight:600;\">Nihil</span> dari daftar. </p></body></"
-"html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"Pilih pembatas yang memisahkan kata kunci dari frasa atau kata untuk dicari."
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "Pembatas &kata kunci:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "Pilih pembatas untuk menandai kata kunci pencarian Web."
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr ""
+"Pilih pembatas yang memisahkan kata kunci dari frasa atau kata untuk dicari."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "Titik"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1199,6 +1163,90 @@ msgstr "&Perangkat Karakter:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sisipkan query placeholder"
+
+#, fuzzy
+#~| msgctxt "@info:tooltip"
+#~| msgid ""
+#~| "Check this box to select the highlighted web search keyword as preferred."
+#~| "<nl/>Preferred web search keywords are used in places where only a few "
+#~| "select keywords can be shown at one time."
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "Centang kotak ini untuk memilih kata kunci pencarian web yang disorot "
+#~ "sebagai yang disukai.<nl/>Kata kunci pencarian web yang disukai digunakan "
+#~ "pada tempat di mana hanya beberapa kata kunci terpilih yang bisa "
+#~ "ditampilkan dalam seketika."
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+#~| "search keywords allow you to quickly access or search for information "
+#~| "located online or on your hard drive. </p><p>KDE comes with many "
+#~| "predefined keywords. One such keyword can be used to perform a the "
+#~| "Google (TM) search; to use it, you simply type the keyword 'gg' followed "
+#~| "by the keyword delimiter and the search term, e.g. <span style=\" font-"
+#~| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Fungsikan atau nonfungsikan kata kunci pencarian "
+#~ "web. </p><p>Kata kunci pencarian web memungkinkan Anda untuk mengakses "
+#~ "secara cepat atau mencari informasi secara daring atau di diska Anda. </"
+#~ "p><p>KDE hadir dengan banyak kata kunci yang telah ditentukan. Salah satu "
+#~ "dari kata kunci tersebut bisa digunakan untuk melakukan pencarian Google "
+#~ "(TM); untuk menggunakannya, Anda cukup mengetik kata kunci 'gg' diikuti "
+#~ "dengan pembatas kata kunci dan kata pencarian, misalnya <span style=\" "
+#~ "font-weight:600;\">gg:KDE</span>.</p></body></html>"
+
+#, fuzzy
+#~| msgid "Search for web search keywords"
+#~ msgid "Search for Web search keywords"
+#~ msgstr "Cari untuk kata kunci pencarian web"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Pilih mesin pencari untuk menggunakan kotak input yang menyediakan "
+#~ "layanan pencarian otomatis ketika anda mengetik kata atau frasa normal "
+#~ "ketimbang URL. Untuk menonfungsikan fitur ini pilih <b>Nihil</b> dari "
+#~ "senarai.\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
+#~| "allows applications to automatically convert the typed word or phrase to "
+#~| "web search keyword queries when they cannot be filtered into a proper "
+#~| "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~| "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>Pilih kata kunci pencarian web bawaan. </p><p>Ini "
+#~ "memungkinkan aplikasi untuk secara otomatis mengonversi kata atau frasa "
+#~ "yang diketik ke kueri kata kunci pencarian web ketika mereka tidak bisa "
+#~ "difilter ke dalam URL yang benar. </p><p>Untuk menonfungsikan "
+#~ "fungsionalitas ini piih <span style=\" font-weight:600;\">Nihil</span> "
+#~ "dari daftar. </p></body></html>"
 
 #, fuzzy
 #~| msgid " byte"
@@ -1562,9 +1610,6 @@ msgstr "Sisipkan query placeholder"
 
 #~ msgid "Search interactively for domains"
 #~ msgstr "Cari secara interaktif untuk domain"
-
-#~ msgid "Search..."
-#~ msgstr "Cari..."
 
 #~ msgid ""
 #~ "<qt>\n"

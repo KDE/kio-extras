@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -714,65 +714,61 @@ msgstr ""
 msgid "Full trash:"
 msgstr "पूर्ण कचरा :"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "नामः"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "कीवर्ड"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
 msgstr "प्राधान्यम्"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, kde-kuit-format
+#, fuzzy, kde-kuit-format
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"प्रकाशितं जालसन्धानकीवर्डं यथा प्राधान्यं चयनं कर्तुं एतत् पेटीं चिनोतु।<nl/"
-">प्राथमिकजालसन्धानकीवर्डाः तेषु स्थानेषु उपयुज्यन्ते यत्र एकस्मिन् समये केवलं कतिपयानि "
-"चयनितकीवर्डाः दर्शयितुं शक्यन्ते।"
+msgid "Check to select this web search keyword as preferred."
+msgstr "जालसन्धानकीवर्डं चिह्नितुं सीमांककं चिनोतु ।"
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "न कश्चित्"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "F&ilters इति अन्वेषणं कुर्वन्तु"
+
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
 #, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p>जालसन्धानकीवर्ड्स सक्षमं निष्क्रियं वा कुर्वन्तु।</p><p> जाल-अन्वेषण-"
-"कीवर्ड-शब्दाः भवन्तं शीघ्रं ऑनलाइन-रूपेण अथवा स्वस्य हार्डड्राइव्-मध्ये स्थितां सूचनां प्राप्तुं वा "
-"अन्वेष्टुं वा शक्नुवन्ति ।</p><p> KDE बहुभिः पूर्वनिर्धारितकीवर्डैः सह आगच्छति । एतादृशः एकः "
-"कीवर्डः गूगल (TM) अन्वेषणं कर्तुं उपयोक्तुं शक्यते; तस्य उपयोगाय, भवान् केवलं &#39;gg&#39; "
-"इति कीवर्डं टङ्कयति तदनन्तरं कीवर्ड सीमांककः अन्वेषणपदं च टङ्कयति, यथा <span style=\" "
-"font-weight:600;\">gg:KDE</span> .</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -780,118 +776,113 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "&जाल अन्वेषण कीवर्ड सक्षम करें"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "&केवलं प्राधान्ययुक्तानां कीवर्डानाम् उपयोगं कुर्वन्तु"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
+#: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
-msgid "Search for Web search keywords"
-msgstr "Web search keywords अन्वेष्टुम्"
+msgid "Search..."
+msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "नूतनं Web search कीवर्ड योजयन्तु"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr "&नूतनम्‌…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "प्रकाशितं जालसन्धानकीवर्डं परिवर्तयन्तु"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr "सम्पादन…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "हाइलाइट् कृतं Web search कीवर्डं विलोपयन्तु"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "लुप्"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>यदा भवान् URL इत्यस्य स्थाने सामान्यशब्दान् वाक्यानि च टङ्कयति तदा स्वचालितरूपेण "
-"लुकअपसेवाः प्रदातुं निवेशपेटिकानां कृते उपयोक्तुं अन्वेषणयन्त्रं चिनोतु । एतत् विशेषतां निष्क्रियं "
-"कर्तुं सूचीतः <b>None इति</b> चिनोतु ।</qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "पूर्वनिर्धारित Web &search कीवर्ड:"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"<html><head/><body><p>पूर्वनिर्धारितं Web search कीवर्डं चिनोतु ।</p><p> एतेन "
-"अनुप्रयोगाः टङ्कितशब्दं वाक्यं वा स्वयमेव जालसन्धानकीवर्डप्रश्नेषु परिवर्तयितुं शक्नुवन्ति यदा ते "
-"सम्यक् URL मध्ये छानयितुं न शक्यन्ते ।</p><p> एतत् कार्यक्षमतां निष्क्रियं कर्तुं सूचीतः <span "
-"style=\" font-weight:600;\">None इति</span> चिनोतु ।</p></body></html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
-#, kde-format
-msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
-msgstr "अन्वेषणीयवाक्यात् वा शब्दात् वा कीवर्डं पृथक् करोति इति सीमांककं चिनुत ।"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "&कीवर्ड सीमांककः :"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "जालसन्धानकीवर्डं चिह्नितुं सीमांककं चिनोतु ।"
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr "अन्वेषणीयवाक्यात् वा शब्दात् वा कीवर्डं पृथक् करोति इति सीमांककं चिनुत ।"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "बृहदान्त्र"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1067,6 +1058,59 @@ msgstr "&वर्णसमूहः :"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "प्रश्नस्थानधारकं सम्मिलितं कुर्वन्तु"
+
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "प्रकाशितं जालसन्धानकीवर्डं यथा प्राधान्यं चयनं कर्तुं एतत् पेटीं चिनोतु।<nl/"
+#~ ">प्राथमिकजालसन्धानकीवर्डाः तेषु स्थानेषु उपयुज्यन्ते यत्र एकस्मिन् समये केवलं कतिपयानि "
+#~ "चयनितकीवर्डाः दर्शयितुं शक्यन्ते।"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>जालसन्धानकीवर्ड्स सक्षमं निष्क्रियं वा कुर्वन्तु।</p><p> जाल-"
+#~ "अन्वेषण-कीवर्ड-शब्दाः भवन्तं शीघ्रं ऑनलाइन-रूपेण अथवा स्वस्य हार्डड्राइव्-मध्ये स्थितां सूचनां "
+#~ "प्राप्तुं वा अन्वेष्टुं वा शक्नुवन्ति ।</p><p> KDE बहुभिः पूर्वनिर्धारितकीवर्डैः सह आगच्छति "
+#~ "। एतादृशः एकः कीवर्डः गूगल (TM) अन्वेषणं कर्तुं उपयोक्तुं शक्यते; तस्य उपयोगाय, भवान् केवलं "
+#~ "&#39;gg&#39; इति कीवर्डं टङ्कयति तदनन्तरं कीवर्ड सीमांककः अन्वेषणपदं च टङ्कयति, यथा "
+#~ "<span style=\" font-weight:600;\">gg:KDE</span> .</p></body></html>"
+
+#~ msgid "Search for Web search keywords"
+#~ msgstr "Web search keywords अन्वेष्टुम्"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>यदा भवान् URL इत्यस्य स्थाने सामान्यशब्दान् वाक्यानि च टङ्कयति तदा स्वचालितरूपेण "
+#~ "लुकअपसेवाः प्रदातुं निवेशपेटिकानां कृते उपयोक्तुं अन्वेषणयन्त्रं चिनोतु । एतत् विशेषतां निष्क्रियं "
+#~ "कर्तुं सूचीतः <b>None इति</b> चिनोतु ।</qt>"
+
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>पूर्वनिर्धारितं Web search कीवर्डं चिनोतु ।</p><p> एतेन "
+#~ "अनुप्रयोगाः टङ्कितशब्दं वाक्यं वा स्वयमेव जालसन्धानकीवर्डप्रश्नेषु परिवर्तयितुं शक्नुवन्ति यदा "
+#~ "ते सम्यक् URL मध्ये छानयितुं न शक्यन्ते ।</p><p> एतत् कार्यक्षमतां निष्क्रियं कर्तुं सूचीतः "
+#~ "<span style=\" font-weight:600;\">None इति</span> चिनोतु ।</p></body></"
+#~ "html>"
 
 #, fuzzy
 #~| msgid " byte"

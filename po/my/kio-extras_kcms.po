@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-20 00:44+0000\n"
+"POT-Creation-Date: 2026-05-30 00:44+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -751,19 +751,19 @@ msgstr ""
 msgid "Full trash:"
 msgstr "အမှိုက်ပုံး -"
 
-#: webshortcuts/ikwsopts.cpp:41
+#: webshortcuts/ikwsopts.cpp:42
 #, kde-format
 msgctxt "@title:column Name label from web search keyword column"
 msgid "Name"
 msgstr "အမည်"
 
-#: webshortcuts/ikwsopts.cpp:43
+#: webshortcuts/ikwsopts.cpp:44
 #, kde-format
 msgctxt "@title:column"
 msgid "Keywords"
 msgstr "သော့ချက်စာလုံးများ"
 
-#: webshortcuts/ikwsopts.cpp:45
+#: webshortcuts/ikwsopts.cpp:46
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
@@ -771,57 +771,41 @@ msgstr "ပိုနှစ်သက်"
 
 #: webshortcuts/ikwsopts.cpp:104
 #, fuzzy, kde-kuit-format
-#| msgctxt "@info:tooltip"
-#| msgid ""
-#| "Check this box to select the highlighted web search keyword as preferred."
-#| "<nl/>Preferred web search keywords are used in places where only a few "
-#| "select keywords can be shown at one time."
+#| msgid "Choose a delimiter to mark the Web search keyword."
 msgctxt "@info:tooltip"
-msgid ""
-"Check this box to select the highlighted Web search keyword as preferred.<nl/"
-">Preferred Web search keywords are used in places where only a few select "
-"keywords can be shown at one time."
-msgstr ""
-"အလင်းတင်ထားသော ဝက်လ်ရှာဖွေ-သော့ချက်စာလုံးကို ပိုနှစ်သက်မှုအဖြစ်ရွေးရန် အမှန်ခြစ်ပါ။<nl/>ပိုနှစ်သက်သော "
-"ဝက်လ်ရှာဖွေ-သော့ချက်စာလုံးများကို အနည်းငယ်မျှသော သော့ချက်စာလုံးများပြနိုင်သည့်နေရာ၌ အသုံးပြုသည်။"
+msgid "Check to select this web search keyword as preferred."
+msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးကို အမှတ်အသားပြုရန် ခွဲခြား-အက္ခရာ ရွေးချယ်မည်။"
 
-#: webshortcuts/ikwsopts.cpp:205
+#: webshortcuts/ikwsopts.cpp:224
 #, kde-format
 msgctxt "@item:inlistbox No default web search keyword"
 msgid "None"
 msgstr "မသတ်မှတ်ထား"
 
-#: webshortcuts/ikwsopts.cpp:249
+#: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
 msgstr "&iရှာဖွေမှုဆိုင်ရာစစ်ထုတ်ချက်များ"
 
+#: webshortcuts/ikwsopts.cpp:299
+#, kde-kuit-format
+msgctxt "@info:whatsthis"
+msgid ""
+"<para>Web search keywords allow you to quickly search or look up words on "
+"the Internet. They work in Plasma's <application>KRunner</application> "
+"search, <application>Konqueror</application>'s address bar, and in any other "
+"applications that support them. For example, to search for information about "
+"the KDE project using the Google search engine, you can simply type "
+"<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
+msgstr ""
+
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
-#| "search keywords allow you to quickly access or search for information "
-#| "located online or on your hard drive. </p><p>KDE comes with many "
-#| "predefined keywords. One such keyword can be used to perform a the Google "
-#| "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#| "keyword delimiter and the search term, e.g. <span style=\" font-"
-#| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#, kde-format
 msgid ""
-"<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-"search keywords allow you to quickly access or search for information "
-"located online or on your hard drive. </p><p>KDE comes with many predefined "
-"keywords. One such keyword can be used to perform a the Google (TM) search; "
-"to use it, you simply type the keyword 'gg' followed by the keyword "
-"delimiter and the search term, e.g. <span style=\" font-weight:600;\">gg:"
-"KDE</span>.</p></body></html>"
+"Check to recognise and use the web search keywords in applications that can "
+"use them"
 msgstr ""
-"<html><head/><body><p> ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ ဖွင့်မည်၊ ပိတ်မည်။ </p><p>ဝက်ဘ်ရှာဖွေ-"
-"သော့ချက်စာလုံးများကိုသုံး၍ အွန်လိုင်း (သို့) စက်တွင်းမှ သတင်းအချက်အလက်များကို လျင်မြန်စွာရယူနိုင်သည်။</"
-"p><p>ကေဒီအီးတွင် ကြိုသတ်မှတ်ထားသော သော့ချက်စာလုံးများစွာပါဝင်သည်။ ၎င်းတို့တွင် ဂူးဂယ်ရှာဖွေစနစ် "
-"သုံးရန်သော့ချက်စာလုံးလည်းပါသည်။ ယင်းကိုအသုံးပြုရန် 'ဂျီဂျီ'ကိုရေး၊ ပြီးလျှင် "
-"သော့ချက်စာလုံးခွဲခြားအက္ခရာရေး၊ ပြီးလျှင် ရှာဖွေသည့် စာလုံးရေးပါ။ သာဓက။ ။<span style=\" font-"
-"weight:600;\">ဂျီဂျီ:ကေဒီအီး</span> ။</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -829,127 +813,113 @@ msgstr ""
 msgid "&Enable Web search keywords"
 msgstr "&Eဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ ဖွင့်မည်"
 
+#. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
+#: webshortcuts/ikwsopts_ui.ui:36
+#, kde-format
+msgid "<a href=\"whatsthis\">How do these work?</a>"
+msgstr ""
+
+#. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
+#: webshortcuts/ikwsopts_ui.ui:52
+#, kde-format
+msgid ""
+"<p>Check to only use the preferred web search keywords, as selected in the "
+"list below, where necessary.</p><p>If this is checked, then applications "
+"that can only show a limited number of search keywords (for example, "
+"Konqueror when text on a page is selected) will only show the preferred "
+"keywords.</p>"
+msgstr ""
+
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
-#: webshortcuts/ikwsopts_ui.ui:30
+#: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
 msgstr "&Uပိုနှစ်သက်သော သော့ချက်စကားလုံးများသာ သုံးမည်"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
-#: webshortcuts/ikwsopts_ui.ui:37
-#, fuzzy, kde-format
-#| msgid "Search for web search keywords"
-msgid "Search for Web search keywords"
-msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ ရှာမည်"
+#: webshortcuts/ikwsopts_ui.ui:62
+#, kde-format
+msgid "Search..."
+msgstr "ရှာရန်…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:71
+#: webshortcuts/ikwsopts_ui.ui:96
 #, kde-format
 msgid "Add a new Web search keyword"
 msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးသစ်ထည့်မည်"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
-#: webshortcuts/ikwsopts_ui.ui:74
+#: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:84
+#: webshortcuts/ikwsopts_ui.ui:109
 #, kde-format
 msgid "Modify the highlighted Web search keyword"
 msgstr "အလင်းတင်ထားသော ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံး မွမ်းမံမည်"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
-#: webshortcuts/ikwsopts_ui.ui:87
+#: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
 msgstr ""
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:97
+#: webshortcuts/ikwsopts_ui.ui:122
 #, kde-format
 msgid "Delete the highlighted Web search keyword"
 msgstr "အလင်းတင်ထားသော ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးဖျက်မည်"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
-#: webshortcuts/ikwsopts_ui.ui:100
+#: webshortcuts/ikwsopts_ui.ui:125
 #, kde-format
 msgid "De&lete"
 msgstr "&lဖျက်မည်"
 
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:138
-#, kde-format
-msgid ""
-"<qt>\n"
-"Select the search engine to use for input boxes that provide automatic "
-"lookup services when you type in normal words and phrases instead of a URL. "
-"To disable this feature select <b>None</b> from the list.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ယူအာအယ်လ် မဟုတ်ဘဲ ပုံမှန်စာလုံးများ ရေးသွင်းသောအခါ အလိုအလျောက်ရှာဖွေပေးနိုင်သော စာသားလက်ခံ-"
-"ဝင်းဒိုးများတွင် သုံးရန် ရှာဖွေ-အင်ဂျင် ရွေးချယ်မည်။ ဤစွမ်းဆောင်ရည်ကို ပိတ်ထားရန် <b>မသတ်မှတ်ထား</b>ကို "
-"ရွေးပါ။\n"
-"</qt>"
-
 #. i18n: ectx: property (text), widget (QLabel, lbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:141
+#: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
 msgstr "&sမူလသတ်မှတ်ထားသော ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံး -"
 
-#. i18n: ectx: property (whatsThis), widget (QComboBox, cmbDefaultEngine)
-#: webshortcuts/ikwsopts_ui.ui:166
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
-#| "allows applications to automatically convert the typed word or phrase to "
-#| "web search keyword queries when they cannot be filtered into a proper "
-#| "URL. </p><p>To disable this functionality select <span style=\" font-"
-#| "weight:600;\">None</span> from the list. </p></body></html>"
-msgid ""
-"<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-"allows applications to automatically convert the typed word or phrase to Web "
-"search keyword queries when they cannot be filtered into a proper URL. </"
-"p><p>To disable this functionality select <span style=\" font-weight:600;"
-"\">None</span> from the list. </p></body></html>"
-msgstr ""
-"<html><head/><body><p>ပုံသေဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံး ရွေးပါ။ </p><p>ထိုသို့လုပ်ခြင်းအားဖြင့် "
-"အပ္ပလီကေးရှင်းများသည် ရေးသွင်းထားသော စာလုံး၊ စာလုံးစုများကို မှန်ကန်သင့်တော်သော ယူအာအယ်လ်အဖြစ် "
-"အလိုအလျောက်ပြောင်းလဲနိုင်သည်။</p><p> လုပ်ဆောင်မှုကိုပိတ်ပစ်ရန် စာရင်းမှ <span style=\" font-"
-"weight:600;\">မရှိ/မသတ်မှတ်</span> ကိုရွေးပါ။</p></body></html>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:182
+#. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
+#: webshortcuts/ikwsopts_ui.ui:186
 #, kde-format
 msgid ""
-"Choose the delimiter that separates the keyword from the phrase or word to "
-"be searched."
-msgstr "ရှာဖွေရန်စကားစုများမှ သော့ချက်စာလုံးကို ခွဲခြားပေးမည့် ခွဲခြား-အက္ခရာကို ရွေးချယ်ပါ။"
+"<p>Select a default web search keyword.</p><p>This may be used by "
+"applications which automatically search if input cannot be recognised, for "
+"example in Konqueror's address bar.  This keyword will be used for the "
+"search. To disable this feature select <tt>(None)</tt> from the list.</p>"
+msgstr ""
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:185
+#: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
 msgstr "&Kသော့ချက်စာလုံး ခွဲခြားအက္ခရာ -"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:204
-#, kde-format
-msgid "Choose a delimiter to mark the Web search keyword."
-msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးကို အမှတ်အသားပြုရန် ခွဲခြား-အက္ခရာ ရွေးချယ်မည်။"
+#: webshortcuts/ikwsopts_ui.ui:221
+#, fuzzy, kde-format
+#| msgid ""
+#| "Choose the delimiter that separates the keyword from the phrase or word "
+#| "to be searched."
+msgid ""
+"Choose the delimiter to separate the keyword from the phrase or word to be "
+"searched."
+msgstr "ရှာဖွေရန်စကားစုများမှ သော့ချက်စာလုံးကို ခွဲခြားပေးမည့် ခွဲခြား-အက္ခရာကို ရွေးချယ်ပါ။"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:208
+#: webshortcuts/ikwsopts_ui.ui:225
 #, kde-format
 msgctxt "Colon as keyword delimiter"
 msgid "Colon"
 msgstr "ကော်လွန်"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
-#: webshortcuts/ikwsopts_ui.ui:213
+#: webshortcuts/ikwsopts_ui.ui:230
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
@@ -1155,6 +1125,83 @@ msgstr "&Cအက္ခရာအစု -"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယူထားမှု ထည့်သွင်း"
+
+#, fuzzy
+#~| msgctxt "@info:tooltip"
+#~| msgid ""
+#~| "Check this box to select the highlighted web search keyword as preferred."
+#~| "<nl/>Preferred web search keywords are used in places where only a few "
+#~| "select keywords can be shown at one time."
+#~ msgctxt "@info:tooltip"
+#~ msgid ""
+#~ "Check this box to select the highlighted Web search keyword as preferred."
+#~ "<nl/>Preferred Web search keywords are used in places where only a few "
+#~ "select keywords can be shown at one time."
+#~ msgstr ""
+#~ "အလင်းတင်ထားသော ဝက်လ်ရှာဖွေ-သော့ချက်စာလုံးကို ပိုနှစ်သက်မှုအဖြစ်ရွေးရန် အမှန်ခြစ်ပါ။<nl/>ပိုနှစ်သက်သော "
+#~ "ဝက်လ်ရှာဖွေ-သော့ချက်စာလုံးများကို အနည်းငယ်မျှသော သော့ချက်စာလုံးများပြနိုင်သည့်နေရာ၌ အသုံးပြုသည်။"
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head/><body><p>Enable or disable web search keywords. </p><p>Web "
+#~| "search keywords allow you to quickly access or search for information "
+#~| "located online or on your hard drive. </p><p>KDE comes with many "
+#~| "predefined keywords. One such keyword can be used to perform a the "
+#~| "Google (TM) search; to use it, you simply type the keyword 'gg' followed "
+#~| "by the keyword delimiter and the search term, e.g. <span style=\" font-"
+#~| "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgid ""
+#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
+#~ "search keywords allow you to quickly access or search for information "
+#~ "located online or on your hard drive. </p><p>KDE comes with many "
+#~ "predefined keywords. One such keyword can be used to perform a the Google "
+#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
+#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
+#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p> ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ ဖွင့်မည်၊ ပိတ်မည်။ </p><p>ဝက်ဘ်ရှာဖွေ-"
+#~ "သော့ချက်စာလုံးများကိုသုံး၍ အွန်လိုင်း (သို့) စက်တွင်းမှ သတင်းအချက်အလက်များကို လျင်မြန်စွာရယူနိုင်သည်။</"
+#~ "p><p>ကေဒီအီးတွင် ကြိုသတ်မှတ်ထားသော သော့ချက်စာလုံးများစွာပါဝင်သည်။ ၎င်းတို့တွင် ဂူးဂယ်ရှာဖွေစနစ် "
+#~ "သုံးရန်သော့ချက်စာလုံးလည်းပါသည်။ ယင်းကိုအသုံးပြုရန် 'ဂျီဂျီ'ကိုရေး၊ ပြီးလျှင် "
+#~ "သော့ချက်စာလုံးခွဲခြားအက္ခရာရေး၊ ပြီးလျှင် ရှာဖွေသည့် စာလုံးရေးပါ။ သာဓက။ ။<span style=\" "
+#~ "font-weight:600;\">ဂျီဂျီ:ကေဒီအီး</span> ။</p></body></html>"
+
+#, fuzzy
+#~| msgid "Search for web search keywords"
+#~ msgid "Search for Web search keywords"
+#~ msgstr "ဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံးများ ရှာမည်"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Select the search engine to use for input boxes that provide automatic "
+#~ "lookup services when you type in normal words and phrases instead of a "
+#~ "URL. To disable this feature select <b>None</b> from the list.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ယူအာအယ်လ် မဟုတ်ဘဲ ပုံမှန်စာလုံးများ ရေးသွင်းသောအခါ အလိုအလျောက်ရှာဖွေပေးနိုင်သော စာသားလက်ခံ-"
+#~ "ဝင်းဒိုးများတွင် သုံးရန် ရှာဖွေ-အင်ဂျင် ရွေးချယ်မည်။ ဤစွမ်းဆောင်ရည်ကို ပိတ်ထားရန် <b>မသတ်မှတ်ထား</"
+#~ "b>ကို ရွေးပါ။\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<html><head/><body><p>Select a default web search keyword. </p><p>This "
+#~| "allows applications to automatically convert the typed word or phrase to "
+#~| "web search keyword queries when they cannot be filtered into a proper "
+#~| "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~| "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgid ""
+#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
+#~ "allows applications to automatically convert the typed word or phrase to "
+#~ "Web search keyword queries when they cannot be filtered into a proper "
+#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
+#~ "weight:600;\">None</span> from the list. </p></body></html>"
+#~ msgstr ""
+#~ "<html><head/><body><p>ပုံသေဝက်ဘ်ရှာဖွေ-သော့ချက်စာလုံး ရွေးပါ။ </p><p>ထိုသို့လုပ်ခြင်းအားဖြင့် "
+#~ "အပ္ပလီကေးရှင်းများသည် ရေးသွင်းထားသော စာလုံး၊ စာလုံးစုများကို မှန်ကန်သင့်တော်သော ယူအာအယ်လ်အဖြစ် "
+#~ "အလိုအလျောက်ပြောင်းလဲနိုင်သည်။</p><p> လုပ်ဆောင်မှုကိုပိတ်ပစ်ရန် စာရင်းမှ <span style=\" font-"
+#~ "weight:600;\">မရှိ/မသတ်မှတ်</span> ကိုရွေးပါ။</p></body></html>"
 
 #, fuzzy
 #~| msgid " byte"
@@ -1500,9 +1547,6 @@ msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယ
 
 #~ msgid "Search interactively for domains"
 #~ msgstr "ဒိုမန်းများကို တစ်ဆင့်ချင်းရှာရန်"
-
-#~ msgid "Search..."
-#~ msgstr "ရှာရန်…"
 
 #~ msgid ""
 #~ "<qt>\n"
