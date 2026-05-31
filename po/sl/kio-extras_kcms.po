@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-15 06:48+0200\n"
+"PO-Revision-Date: 2026-05-30 06:46+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
 "Translator: Andrej Mernik <andrejm@ubuntu.si>\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -784,11 +784,10 @@ msgid "Preferred"
 msgstr "Prednostna"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Izberite razmejilnik za označevanje ključne besede spletnega iskanja."
+msgstr "Označite za izbiro te ključne besede spletnega iskanja kot prednostne."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -812,6 +811,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Ključne besede spletnega iskanja vam omogočajo hitro iskanje ali "
+"iskanje besed na internetu. Delujejo v iskanju <application>KRunner</"
+"application> v Plasmi, v naslovni vrstici <application>Konqueror</"
+"application> in v vseh drugih aplikacijah, ki jih podpirajo. Na primer, če "
+"želite poiskati informacije o projektu KDE z iskalnikom Google, lahko "
+"preprosto vnesete <icode>gg:KDE</icode> ali <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -820,6 +825,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Označite, če želite prepoznati in uporabljati ključne besede spletnega "
+"iskanja v aplikacijah, ki jih lahko uporabljajo"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -831,7 +838,7 @@ msgstr "Omogoči ključne besede spletnega iskanja"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Kako te delujejo?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -843,6 +850,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Označite, če želite, da se po potrebi uporabljajo le prednostne ključne "
+"besede spletnega iskanja, kot so izbrane na spodnjem seznamu.</p><p>Če je to "
+"označeno, bodo aplikacije, ki lahko prikažejo le omejeno število ključnih "
+"besed za iskanje (na primer Konqueror, ko je izbrano besedilo na strani), "
+"prikazale le prednostne ključne besede.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -907,6 +919,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Izberite privzeto ključno besedo za spletno iskanje.</p><p>To lahko "
+"uporabljajo aplikacije, ki samodejno iščejo, če vnosa ni mogoče prepoznati, "
+"na primer v naslovni vrstici Konquerorja. Ta ključna beseda bo uporabljena "
+"za iskanje. Če želite to funkcijo onemogočiti, na seznamu izberite "
+"<tt>(Brez)</tt>.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -916,16 +933,13 @@ msgstr "Razmejilnik &ključnih besed:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Izberite razmejilnik, ki loči ključno besedo od fraze ali besede, ki naj se "
-"poišče."
+"Izberite razmejilnik za ločevanje ključne besede od fraze ali besede, ki naj "
+"se poišče."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225

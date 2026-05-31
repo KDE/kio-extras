@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# SPDX-FileCopyrightText: 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Freek de Kruijf <freekdekruijf@kde.nl>
+# SPDX-FileCopyrightText: 2014-2026 Freek de Kruijf <freekdekruijf@kde.nl>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-15 09:55+0200\n"
+"PO-Revision-Date: 2026-05-30 11:52+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -786,12 +786,10 @@ msgid "Preferred"
 msgstr "Voorkeur"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr ""
-"Kies een scheidingsteken om het trefwoord voor webzoektrefwoord te markeren."
+msgstr "activeer dit om dit webzoektrefwoord als voorkeur te selecteren."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -815,6 +813,11 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Met webzoektrefwoorden kunt u snel woorden op het internet opzoeken. "
+"Ze werken in de KRunner-zoekfunctie van Plasma, in de adresbalk van "
+"Konqueror en in alle andere toepassingen die ze ondersteunen. Om "
+"bijvoorbeeld informatie over het KDE-project te zoeken met de Google-"
+"zoekmachine, typt u eenvoudigweg gg:KDE of google:KDE.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -823,6 +826,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Controleer of u de webzoektrefwoorden herkent en gebruikt in toepassingen "
+"die ze kunnen gebruiken"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -834,7 +839,7 @@ msgstr "&Webzoektrefwoorden inschakelen"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Hoe werken deze?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -846,6 +851,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Activeer dit om alleen de voorkeurszoektrefwoorden te gebruiken, zoals "
+"geselecteerd in de onderstaande lijst, indien nodig.</p><p>Als dit is "
+"geactiveerd, zullen toepassingen die slechts een beperkt aantal zoekwoorden "
+"kunnen weergeven (bijvoorbeeld Konqueror wanneer tekst op een pagina is "
+"geselecteerd) alleen de voorkeurszoekwoorden weergeven.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -910,6 +920,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Selecteer een standaard zoektrefwoord voor webzoekopdrachten.</p><p>Dit "
+"kan worden gebruikt door toepassingen die automatisch zoeken als de invoer "
+"niet wordt herkend, bijvoorbeeld in de adresbalk van Konqueror. Dit "
+"zoektrefwoord wordt gebruikt voor de zoekopdracht. Om deze functie uit te "
+"schakelen, selecteer <tt>(Geen)</tt> in de lijst.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -919,16 +934,13 @@ msgstr "Scheidingste&ken:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Kies het scheidingsteken dat het trefwoord scheidt van de te zoeken zin of "
-"woord."
+"Kies het scheidingsteken dat het zoektrefwoord scheidt van de te zoeken zin "
+"of woord."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225

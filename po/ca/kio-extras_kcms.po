@@ -1,5 +1,5 @@
 # Translation of kio-extras_kcms.po to Catalan
-# Copyright (C) 1998-2025 This_file_is_part_of_KDE
+# Copyright (C) 1998-2026 This_file_is_part_of_KDE
 # This file is distributed under the license LGPL version 2.1 or
 # version 3 or later versions approved by the membership of KDE e.V.
 #
@@ -7,13 +7,13 @@
 # SPDX-FileCopyrightText: 2007 Albert Astals Cid <aacid@kde.org>
 # SPDX-FileCopyrightText: 2009 Robert Millan <rmh@aybabtu.com>
 # SPDX-FileCopyrightText: 2011, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022 Antoni Bella Pérez <antonibella5@yahoo.com>
-# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Josep M. Ferrer <txemaq@gmail.com>
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Josep M. Ferrer <txemaq@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-15 09:29+0200\n"
+"PO-Revision-Date: 2026-05-30 09:25+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
 "Language: ca\n"
@@ -346,7 +346,7 @@ msgid ""
 "addresses listed in the <i>Exceptions</i> list.</qt>"
 msgstr ""
 "<qt>\n"
-"Activeu aquesta casella si voleu que l'arranjament del servidor intermediari "
+"Marqueu aquesta casella si voleu que l'arranjament del servidor intermediari "
 "anterior s'apliqui només per a les adreces de la llista d'<i>excepcions</i>."
 "</qt>"
 
@@ -799,12 +799,12 @@ msgid "Preferred"
 msgstr "Preferida"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
 msgstr ""
-"Seleccioneu un delimitador per a marcar la paraula clau de la cerca a la web."
+"Marqueu-ho per a seleccionar aquesta paraula clau de cerca web com a "
+"preferida."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -828,6 +828,13 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Les paraules clau de cerca web us permeten cercar ràpidament paraules "
+"a Internet. Funcionen en la cerca del <application>KRunner</application> del "
+"Plasma, la barra d'adreces del <application>Konqueror</application>, i en "
+"qualsevol altra aplicació que les admeti. Per exemple, per a cercar "
+"informació sobre el projecte KDE utilitzant el cercador de Google, "
+"senzillament podeu escriure <icode>gg:KDE</icode> o <icode>google:KDE</"
+"icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -836,6 +843,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Marqueu-ho per a reconèixer i utilitzar les paraules clau de cerca web en "
+"aplicacions que les poden utilitzar"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -847,7 +856,7 @@ msgstr "&Activa les paraules clau de cerca a la web"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Com funciona això?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -859,6 +868,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Marqueu que només utilitzeu les paraules clau de cerca web preferides, "
+"que s'han seleccionat a la llista següent, si cal.</p><p>Si això està "
+"activat, llavors les aplicacions que només poden mostrar un nombre limitat "
+"de paraules clau de cerca (per exemple, el Konqueror quan se selecciona text "
+"en una pàgina) només mostraran les paraules clau preferides.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -870,7 +884,7 @@ msgstr "&Usa només les paraules clau preferides"
 #: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
 msgid "Search..."
-msgstr ""
+msgstr "Cerca..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96
@@ -923,6 +937,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Seleccioneu una paraula clau de cerca web predeterminada.</p><p>Això es "
+"pot utilitzar a les aplicacions que cerquen automàticament si no es pot "
+"reconèixer l'entrada, per exemple, a la barra d'adreces del Konqueror.  "
+"Aquesta paraula clau s'utilitzarà a la cerca. Per a desactivar aquesta "
+"característica, seleccioneu <tt>(Cap)</tt> de la llista.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -932,16 +951,13 @@ msgstr "Delimitador de la paraula &clau:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Seleccioneu el delimitador que separa la paraula clau de la frase o paraula "
-"a cercar."
+"Seleccioneu el delimitador per a separar la paraula clau de la frase o "
+"paraula a cercar."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225

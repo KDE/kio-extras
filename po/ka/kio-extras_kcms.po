@@ -8,7 +8,7 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-15 03:55+0200\n"
+"PO-Revision-Date: 2026-05-30 05:01+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Poedit 3.7\n"
+"X-Generator: Poedit 3.9\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -774,11 +774,10 @@ msgid "Preferred"
 msgstr "მირჩევნია"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "აირჩიეთ გამოყოფი ვებში ძებნის საკვანძო სიტყვის გამოსაყოფად."
+msgstr "ჩართეთ, რომ ეს ვებში ძებნის საკვანძო სიტყვა სასურველად მოინიშნოს."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -802,6 +801,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>ვებში საკვანძო სიტყვების ძებნა საშუალებას გაძლევთ, ინტერნეტში სიტყვები "
+"სწრაფად ეძებოთ. ისინი მუშაობენ Plasmaის <application>KRunner</application> "
+"ძებნით, <application>Konqueror</application>-ის მისამართის ზოლით და "
+"ნებისმიერ სხვა აპლიკაციაში, რომელსაც ამათი მხარდაჭერა აქვს. მაგალითად, "
+"იმისათვის, რომ მოძებნოთ ინფორმაცია პროექტის KDE შესახებ Google-ში, უბრალოდ "
+"აკრიფეთ <icode>gg:KDE</icode>, ან <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -810,6 +815,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"ჩართეთ, რომ მოხდეს ვებში ძებნის საკვანძო სიტყვების ამოცნობა და გამოყენება "
+"აპლიკაციებში, რომლებსაც მისი გამოყენება შეუძლია"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -821,7 +828,7 @@ msgstr "ვებ-ძებნის საკვანძო სიტყვე
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">როგორ მუშაობს?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -833,6 +840,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>ჩართეთ, თუ გნებავთ, გამოიყენოთ, მხოლოდ, სასურველი ვებში ძებნის საკვანძო "
+"სიტყვები, რომლებიც ქვემოთაა ჩამოთვლილი.</p><p>თუ ეს ჩართულია, აპლიკაციებს "
+"შეუძლიათ, მხოლოდ, შეზღუდული რაოდენობის საკვანძო სიტყვების გამოყენება (მაგ: "
+"Konqueror, როცა გვერდზე ტექსტია მონიშნული), მხოლოდ, რჩეულ საკვანძო სიტყვებს "
+"აჩვენებენ.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -897,6 +909,10 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>აირჩიეთ ნაგულისხმევი ვებში ძებნის საკვანძო სიტყვა.</p><p>ეს შეგიძლიათ "
+"გამოიყენოთ აპლიკაციებში, რომლებშიც შეყვანის ამოცნობა ავტომატურად არ ხდება. "
+"მაგ: Konqueror-ის ძებნის პანელში.  ეს საკვანძო სიტყვა ძებნისთვის იქნება "
+"გამოყენებული. ამ ფუნქციის გამოსართავად სიაში აირჩიეთ <tt>(არაფერი)</tt>.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -906,10 +922,7 @@ msgstr "საკვანძო სიტყვის &გამყოფი:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
@@ -929,7 +942,7 @@ msgstr "ორი წერტილი"
 #, kde-format
 msgctxt "Space as keyword delimiter"
 msgid "Space"
-msgstr "გამოტოვება"
+msgstr "ჰარე"
 
 #: webshortcuts/searchproviderdlg.cpp:48
 #, kde-format

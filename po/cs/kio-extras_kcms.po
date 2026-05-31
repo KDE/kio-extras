@@ -840,7 +840,7 @@ msgstr "Po&užít pouze preferovaná klíčová slova"
 #: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
 msgid "Search..."
-msgstr ""
+msgstr "Hledat..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96

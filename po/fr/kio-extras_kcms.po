@@ -884,7 +884,8 @@ msgstr "&Utiliser seulement les mots clé préférés"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
 msgid "Search..."
 msgstr "Chercher…"
 
