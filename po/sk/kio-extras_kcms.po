@@ -765,11 +765,12 @@ msgid "Preferred"
 msgstr "Preferované"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Zvoľte oddeľovač na označenie kľúčového slova webového vyhľadávania."
+msgstr ""
+"Začiarknite na zvolenie tohto kľúčového slova vyhľadávania na webe ako "
+"preferovaného."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -793,6 +794,13 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Kľúčové slová vyhľadávania na webe vám umožňujú rýchlo vyhľadávať "
+"alebo dohľadávať slová na internete. Fungujú vo vyhľadávaní "
+"<application>KRunner</application> v Plasme, v paneli adresy aplikácie "
+"<application>Konqueror</application> a v akýchkoľvek iných aplikáciách, "
+"ktoré ich podporujú. Napríklad na vyhľadanie informácií o projekte KDE "
+"pomocou vyhľadávača Google môžete jednoducho napísať <icode>gg:KDE</icode> "
+"alebo <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -801,6 +809,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Začiarknite na rozpoznávanie a používanie kľúčových slov vyhľadávania na "
+"webe v aplikáciách, ktoré ich vedia použiť"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -812,7 +822,7 @@ msgstr "Povoliť webové skratky"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Ako to funguje?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -824,6 +834,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Začiarknite, aby sa v prípade potreby používali iba preferované kľúčové "
+"slová vyhľadávania na webe, ako sú vybraté v zozname nižšie.</p><p>Ak je "
+"toto začiarknuté, aplikácie, ktoré dokážu zobraziť iba obmedzený počet "
+"kľúčových slov vyhľadávania (napríklad Konqueror, keď je vybratý text na "
+"stránke), zobrazia iba preferované kľúčové slová.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -888,6 +903,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Vyberte predvolené kľúčové slovo vyhľadávania na webe.</p><p>Toto môžu "
+"používať aplikácie, ktoré automaticky vyhľadávajú, ak sa vstup nedá "
+"rozpoznať, napríklad v paneli adresy aplikácie Konqueror. Toto kľúčové slovo "
+"sa použije na vyhľadávanie. Na vypnutie tejto funkcie vyberte zo zoznamu "
+"<tt>(Žiadne)</tt>.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -897,16 +917,13 @@ msgstr "O&ddeľovací znak kľúčových slov:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Vyberte znak, ktorý oddeľuje kľúčové slová od fráz alebo slov, ktoré sa majú "
-"nájsť."
+"Vyberte oddeľovač na oddelenie kľúčového slova od frázy alebo slova, ktoré "
+"sa má vyhľadať."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
