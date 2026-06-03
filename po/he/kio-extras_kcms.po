@@ -14,13 +14,13 @@
 # Netanel_h <netanel@gmx.com>, 2009.
 # elkana bardugo <ttv200@gmail.com>, 2016.
 # Elkana Bardugo <ttv200@gmail.com>, 2017. #zanata
-# SPDX-FileCopyrightText: 2024, 2025 Yaron Shahrabani <sh.yaron@gmail.com>
+# SPDX-FileCopyrightText: 2024-2026 Yaron Shahrabani <sh.yaron@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-17 11:38+0300\n"
+"PO-Revision-Date: 2026-06-02 09:51+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 26.04.1\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -769,11 +769,10 @@ msgid "Preferred"
 msgstr "מועדף"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "נא לבחור מפריד לסימון מילת המפתח לחיפוש באינטרנט."
+msgstr "יש לסמן כדי לבחור את מילת המפתח באינטרנט כמועדפת."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -797,6 +796,11 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>מילות מפתח לחיפוש באינטרנט מאפשרות לך לחפש או לאתר מילים באינטרנט. הן "
+"עובדות בחיפוש של <application>KRunner</application> מבית פלזמה, סרגל הכתובות "
+"של <application>Konqueror</application>ובכל יישום אחר שתומך בהן. למשל, כדי "
+"לחפש מידע על מיזם KDE באמצעות מנוע החיפוש של Google אפשר פשוט להקליד "
+"<icode>gg:KDE</icode> או <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -805,6 +809,7 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"סימון מכיר ומשתמש במילות המפתח לחיפוש באינטרנט ביישומים שיכולים להשתמש בהם"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -816,7 +821,7 @@ msgstr "ה&פעלת מילות מפתח לחיפוש באינטרנט"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">איך הן עובדות?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -837,10 +842,9 @@ msgstr "להשתמש במילות מפתח מו&עדפות בלבד"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:62
-#, fuzzy, kde-format
-#| msgid "Search"
+#, kde-format
 msgid "Search..."
-msgstr "חפש"
+msgstr "חיפוש…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96
@@ -902,14 +906,11 @@ msgstr "מ&פריד מילות מפתח:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
-msgstr "נא לבחור את המפריד בין מילות המפתח מהמונח או המילה לחיפוש."
+msgstr "נא לבחור את המפריד בין מילות המפתח לבין המונח או המילה לחיפוש."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
