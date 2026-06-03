@@ -80,6 +80,7 @@
         "Name[sv]": "Papperskorg",
         "Name[ta]": "அகற்றிடம்",
         "Name[tr]": "Çöp Kutusu",
+        "Name[ug]": "ئەخلەتخانا",
         "Name[uk]": "Смітник",
         "Name[zh_CN]": "回收站",
         "Name[zh_TW]": "垃圾桶"
@@ -121,6 +122,7 @@
     "X-KDE-Keywords[sv]": "papperskorg",
     "X-KDE-Keywords[ta]": "trash,recycle bin,wastebin,குப்பை,அகற்றிடம்",
     "X-KDE-Keywords[tr]": "çöp kutusu,çöp sepeti,geri dönüşüm kutusu",
+    "X-KDE-Keywords[ug]": "ئەخلەتخانا",
     "X-KDE-Keywords[uk]": "trash,смітник",
     "X-KDE-Keywords[zh_CN]": "trash, recycle, bin, 回收站, 垃圾桶, 废件夹, huishouzhan, lajitong, feijianjia",
     "X-KDE-Keywords[zh_TW]": "垃圾桶,垃圾筒,回收桶,回收筒",
