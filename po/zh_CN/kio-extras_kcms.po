@@ -732,11 +732,10 @@ msgid "Preferred"
 msgstr "首选"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "选择用于标识网页搜索关键词的分隔符。"
+msgstr ""
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -864,14 +863,11 @@ msgstr "关键词分隔符(&K)："
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
-msgstr "选择一个分隔符，它用于分隔网页搜索关键词和搜索条件。"
+msgstr ""
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
@@ -1059,54 +1055,3 @@ msgstr "字符集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入搜索占位符"
-
-#~ msgctxt "@info:tooltip"
-#~ msgid ""
-#~ "Check this box to select the highlighted Web search keyword as preferred."
-#~ "<nl/>Preferred Web search keywords are used in places where only a few "
-#~ "select keywords can be shown at one time."
-#~ msgstr ""
-#~ "勾选此项时，当前选中的网页搜索关键词将被设为首选。<nl/>\n"
-#~ "设为首选的网页搜索关键词将在只能显示少量候选关键词的场合中优先显示。"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Enable or disable Web search keywords. </p><p>Web "
-#~ "search keywords allow you to quickly access or search for information "
-#~ "located online or on your hard drive. </p><p>KDE comes with many "
-#~ "predefined keywords. One such keyword can be used to perform a the Google "
-#~ "(TM) search; to use it, you simply type the keyword 'gg' followed by the "
-#~ "keyword delimiter and the search term, e.g. <span style=\" font-"
-#~ "weight:600;\">gg:KDE</span>.</p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>启用或者禁用网页搜索关键词功能。</p>\n"
-#~ "<p>网页搜索关键词可以帮助您快速访问、搜索本机和互联网上的信息。</p>\n"
-#~ "<p>KDE 已经预设了一些关键词，用于调用不同的搜索引擎。例如要使用 Google 搜"
-#~ "索“KDE”时，只需输入关键词“gg”、分隔符 (此例子中是半角冒号) 和搜索条件即"
-#~ "可：<span style=\" font-weight:600;\">gg:KDE</span>。</p></body></html>"
-
-#~ msgid "Search for Web search keywords"
-#~ msgstr "搜索网络搜索关键词"
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "Select the search engine to use for input boxes that provide automatic "
-#~ "lookup services when you type in normal words and phrases instead of a "
-#~ "URL. To disable this feature select <b>None</b> from the list.\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>\n"
-#~ "选择一个默认的搜索引擎。支持自动搜索服务的输入框将使用此引擎来搜索那些无法"
-#~ "被识别为 URL 的输入内容。如需禁用此功能，请从列表中选择<b>无</b>。\n"
-#~ "</qt>"
-
-#~ msgid ""
-#~ "<html><head/><body><p>Select a default Web search keyword. </p><p>This "
-#~ "allows applications to automatically convert the typed word or phrase to "
-#~ "Web search keyword queries when they cannot be filtered into a proper "
-#~ "URL. </p><p>To disable this functionality select <span style=\" font-"
-#~ "weight:600;\">None</span> from the list. </p></body></html>"
-#~ msgstr ""
-#~ "<html><head/><body><p>选择默认的网页搜索关键词。</p>\n"
-#~ "<p>程序会把无法识别成 URL 的输入内容通过默认搜索关键词进行搜索。</p>\n"
-#~ "<p>如需禁用此功能，请从列表中选择 <span style=\" font-weight:600;\">无</"
-#~ "span>。</p></body></html>"

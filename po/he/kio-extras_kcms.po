@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-06-02 09:51+0300\n"
+"PO-Revision-Date: 2026-06-03 08:11+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -833,6 +833,10 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>אפשר לסמן כדי להשתמש רק במילות המפתח המועדפות לחיפוש באינטרנט, כפי שמסומן "
+"ברשימה להלן, היכן שהכרחי.</p><p>אם זה מסומן, אז יישומים שיכולים להציג רק "
+"מספר מוגבל של מילות מפתח (למשל, Konqueror כשנבחר טקסט על המסך) יציגו רק את "
+"מילות המפתח המועדפות.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -897,6 +901,10 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>בחירת מילת מפתח לחיפוש באינטרנט כברירת מחדל.</p><p>יישומים שמחפשים "
+"אוטומטית אם הקלט לא מזוהה יכולים להשתמש בזה, למשל בסרגל הכתובות ב־Konqueror "
+"מילת המפתח הזאת תשמש לחיפוש. כדי לכבות את היכולת הזאת יש לבחור באפשרות "
+"<tt>(ללא)</tt> מהרשימה.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
