@@ -735,7 +735,7 @@ msgstr "首选"
 #, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr ""
+msgstr "勾选后，此网页搜索关键词将被设为首选。"
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -759,6 +759,11 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>网络搜索关键词可用于在互联网上快速搜索内容。它们可在 Plasma 的 "
+"<application>KRunner</application> 搜索、<application>Konqueror</"
+"application> 的地址栏，以及任何支持该功能的其他应用程序中使用。例如，若要使"
+"用 Google 搜索引擎搜索有关 KDE 项目的信息，只需输入 <icode>gg:KDE</icode> 或 "
+"<icode>google:KDE</icode>即可。</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -766,7 +771,7 @@ msgstr ""
 msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
-msgstr ""
+msgstr "勾选后可在支持的应用程序中的使用网络搜索关键词"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -778,7 +783,7 @@ msgstr "启用网页搜索关键词(&E)"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">工作原理说明</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -790,6 +795,9 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>勾选此项后，将在必要时仅使用下方列表中选定的首选网络搜索关键词</p><p>如果"
+"勾选此选项，那些只能显示少量搜索关键词的应用程序 (例如 Konqueror 在网页上选择"
+"了文本时) 将仅显示首选关键词。</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -801,7 +809,7 @@ msgstr "仅使用首选关键词(&U)"
 #: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
 msgid "Search..."
-msgstr ""
+msgstr "搜索..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96
@@ -854,6 +862,9 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>选择默认的网页搜索关键词。</p><p>某些应用程序 (如 Konqueror 的地址栏) 在无"
+"法识别输入的网页搜索关键词时将使用默认关键词进行搜索。要禁用此功能，请在列表"
+"中选择 <tt>(无)</tt>。</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -867,7 +878,7 @@ msgstr "关键词分隔符(&K)："
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
-msgstr ""
+msgstr "选择用于分隔网页搜索关键词和搜索条件的分隔符。"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
