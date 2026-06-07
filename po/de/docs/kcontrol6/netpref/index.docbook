@@ -45,78 +45,14 @@
 >Kontrollzentrum</keyword>
 <keyword
 >Netzwerk</keyword>
-<keyword
->Zeitlimits</keyword>
 </keywordset>
 
 </articleinfo>
 
-<sect1 id="timeouts">
+<sect1>
 
 <title
 >Verbindungseinstellungen</title>
-
-<para
->Hier können Sie Werte für verschiedene Zeitlimits angeben. Bei langsamen Verbindungen können die Werte entsprechend angepasst werden. Die Standardwerte sollte allerdings für die allermeisten Fälle angemessen sein.</para>
-
-<para
->Die <guilabel
->Zeitlimit-Werte</guilabel
-> geben die Zeitspannen an, die eine Anwendung bei einem Netzwerkzugriff auf eine Antwort warten soll.</para>
-
-<para
->Sie können die folgenden Zeitlimits festlegen:</para>
-
-<variablelist>
-<varlistentry>
-<term
-><guilabel
->Socket-Daten:</guilabel
-></term>
-<listitem>
-<para
->Einige Anwendungen verwenden <firstterm
->Sockets</firstterm
->, um miteinander zu kommunizieren. Sie können sich einen Socket wie einen Wasserhahn vorstellen. Solange er offen ist, fließt Wasser (oder Daten, wie in unserem Fall) ohne jede Wechselwirkung. Wird dieser Datenfluss gestoppt, wartet die Anwendung auf weitere Daten. Dies kann sehr lange dauern, aber Sie können die maximale Wartezeit angeben, die eine Anwendung auf neue Daten wartet.</para>
-<para
->Diese Einstellung wirkt sich natürlich nur auf &kde;-Anwendungen aus.</para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Proxy-Verbindung:</guilabel
-></term>
-<listitem>
-<para
->Legt fest, wie lange auf die Verbindung zum Proxy gewartet wird, falls ein Proxy eingerichtet ist. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Server-Verbindung:</guilabel
-></term>
-<listitem>
-<para
->Legt die Wartezeit für den Verbindungsaufbau zu einem entfernten Server fest. </para>
-</listitem>
-</varlistentry>
-
-<varlistentry>
-<term
-><guilabel
->Server-Antwort:</guilabel
-></term>
-<listitem>
-<para
->Legt die Wartezeit für die Antwort eines entfernten Servers fest. </para>
-</listitem>
-</varlistentry>
-
-</variablelist>
 
 <para
 >Hier können Sie <guilabel

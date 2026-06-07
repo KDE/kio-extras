@@ -1,7 +1,7 @@
 # Translation of kio4 to Korean.
 # Copyright (c) 2003, 2004, 2007-2008 Free Software Foundation, Inc.
 # KIM KyungHeon <tody@teoal.net>, 2003, 2004.
-# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Shinjo Park <kde@peremen.name>
+# SPDX-FileCopyrightText: 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Shinjo Park <kde@peremen.name>
 # JungHee Lee <daemul72@gmail.com>, 2019, 2020.
 #
 msgid ""
@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-10-09 00:55+0200\n"
+"PO-Revision-Date: 2026-06-06 13:07+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Lokalize 24.12.3\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -753,11 +753,10 @@ msgid "Preferred"
 msgstr "선호함"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "웹 검색 키워드를 구분할 구분자를 지정하십시오."
+msgstr "이 웹 검색 키워드를 선호하는 것으로 표시하려면 선택하십시오."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -781,6 +780,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>웹 검색 키워드를 사용하면 인터넷을 빠르게 검색하거나 단어를 찾아볼 수 "
+"있습니다. Plasma의 <application>KRunner</application> 검색, "
+"<application>Konqueror</application>의 주소 표시줄, 기타 지원하는 앱에서 사용"
+"할 수 있습니다. 예를 들어서 Google에서 KDE 프로젝트에 대해서 검색하려면 "
+"<icode>gg:KDE</icode> 또는 <icode>google:KDE</icode>를 입력할 수 있습니다.</"
+"para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -788,7 +793,7 @@ msgstr ""
 msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
-msgstr ""
+msgstr "웹 검색 키워드를 지원하는 앱에서 해당 기능을 사용하려면 선택하십시오"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -800,7 +805,7 @@ msgstr "웹 검색 키워드 사용(&E)"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">어떻게 작동하나요?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -812,6 +817,10 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>이 옵션을 사용하면 아래 목록에 있는 키워드 중 선호하는 것으로 선택한 키워"
+"드만 사용합니다.</p><p>활성화되어 있으면 Konqueror에서 페이지의 텍스트를 선택"
+"한 것과 같은 제한된 검색 키워드만 표시할 수 있는 앱에서는 선호하는 키워드만 "
+"표시합니다.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -876,6 +885,10 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>기본 웹 검색 키워드를 선택하십시오.</p><p>Konqueror의 주소 표시줄과 같이 "
+"입력을 감지할 수 없는 경우에 해당 앱에서 사용합니다. 이러한 경우 선택한 키워"
+"드를 사용하여 검색합니다. 이 기능을 사용하지 않으려면 목록에서 <tt>(없음)</"
+"tt>을 선택하십시오.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -885,14 +898,11 @@ msgstr "키워드 구분자(&K):"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
-msgstr "검색할 구 또는 단어와 키워드를 구분하는 문자를 선택하십시오."
+msgstr "검색어와 키워드를 구분하는 문자를 선택하십시오."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
