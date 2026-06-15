@@ -1,5 +1,5 @@
 # translation of kio4.po to Italian
-# SPDX-FileCopyrightText: 2008, 2009, 2010, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Luigi Toscano <luigi.toscano@tiscali.it>
+# SPDX-FileCopyrightText: 2008-2012, 2014-2026 Luigi Toscano <luigi.toscano@tiscali.it>
 # Daniele Medri <madrid@linuxmeeting.net>, 2003.
 # Federico Cozzi <federicocozzi@federicocozzi.it>, 2004.
 # Federico Zenith <federico.zenith@member.fsf.org>, 2004.
@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-15 19:17+0200\n"
+"PO-Revision-Date: 2026-06-07 23:05+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 26.04.0\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -783,11 +783,11 @@ msgid "Preferred"
 msgstr "Preferita"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Scegli un delimitatore per indicare la parola chiave per ricerca web."
+msgstr ""
+"Spunta per selezionare questa parola chiave per ricerca web come preferita."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -811,6 +811,13 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Le parole chiave per la ricerca web permettono di cercare rapidamente "
+"parole su Internet. Funzionano nella ricerca di <application>KRunner</"
+"application> in Plasma, nella barra degli indirizzi <application>Konqueror</"
+"application>, e in ogni altra applicazione che le supporta. Ad esempio. Per "
+"cercare informazioni sul progetto KDE usando il motore di ricerca Google è "
+"sufficiente digitare semplicemente <icode>gg:KDE</icode> o <icode>google:"
+"KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -819,6 +826,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Marca per riconoscere e usare le parole chiave per ricerca web nelle "
+"applicazioni che le usano"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -830,7 +839,7 @@ msgstr "Abilita l&e parole chiave per ricerca web"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Come funzionano questi?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -842,6 +851,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Marca per usare solo le parole chiave per ricerca web preferite, come da "
+"selezione nell'elenco sottostante, dove necessario.</p><p>Se abilitata, le "
+"applicazioni che possono mostrare solo un numero limitato di parole chiave "
+"di ricerca (ad esempio, Konqueror quando è selezionato del testo in una "
+"pagina) mostreranno solo le parole chiave preferite.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -906,6 +920,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Seleziona una parole chiave di ricerca web predefinita.</p><p>Questa "
+"opzione può essere usata da applicazioni che cercano automaticamente se "
+"l'input non può essere riconosciuto, ad esempio nella barra degli indirizzi "
+"di Konqueror. Questa parola chiave sarà usata per la ricerca. Per "
+"disabilitare questa funzione selezionare <tt>[Nessuna]</tt> dall'elenco.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -915,15 +934,12 @@ msgstr "Delimitatore delle parole &chiave:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Scegli il delimitatore che separa la parola chiave dalla frase o parola da "
+"Scegli il delimitatore per separare la parola chiave dalla frase o parola da "
 "cercare."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)

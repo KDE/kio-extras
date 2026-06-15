@@ -158,7 +158,7 @@ msgstr "游戏"
 #: kio_man.cpp:824
 #, kde-format
 msgid "Miscellaneous"
-msgstr "杂项"
+msgstr "其他"
 
 #: kio_man.cpp:826
 #, kde-format
