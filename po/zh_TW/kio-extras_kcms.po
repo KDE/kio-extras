@@ -10,20 +10,20 @@
 # pan93412 <pan93412@gmail.com>, 2018, 2019, 2020.
 # Franklin Weng <franklin at goodhorse dot idv dot tw>, 2007.
 # Frank Weng (a.k.a. Franklin) <franklin at goodhorse dot idv dot tw>, 2008, 2009, 2010.
-# SPDX-FileCopyrightText: 2023, 2024, 2025 Kisaragi Hiu <mail@kisaragi-hiu.com>
+# SPDX-FileCopyrightText: 2023-2026 Kisaragi Hiu <mail@kisaragi-hiu.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-22 03:29+0900\n"
+"PO-Revision-Date: 2026-06-17 13:17+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
 "Language: zh_TW\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.07.70\n"
+"X-Generator: Lokalize 26.07.70\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
 #: ksaveioconfig.cpp:36
@@ -742,11 +742,10 @@ msgid "Preferred"
 msgstr "偏好"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "選擇標記網路搜尋關鍵字用的分隔符。"
+msgstr "勾選來將此網路搜尋關鍵字設為偏好。"
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -770,6 +769,11 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>「網路搜尋關鍵字」讓您快速地在網路上搜尋或查單字。它們能在 Plasma 的 "
+"<application>KRunner</application> 搜尋、<application>Konqueror</"
+"application> 的位址列，以及其他有支援的應用程式中使用。舉例來說，要在 Google "
+"搜尋引擎上搜尋 KDE 的資訊，可以輸入 <icode>gg:KDE</icode> 或是 <icode>google:"
+"KDE</icode>。</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -777,7 +781,7 @@ msgstr ""
 msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
-msgstr ""
+msgstr "勾選來在支援的應用程式中辨識並使用網路搜尋關鍵字"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -789,7 +793,7 @@ msgstr "啟用網路搜尋關鍵字(&E)"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">這是怎麼運作的？</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -801,6 +805,9 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>勾選此選項來在需要時只使用偏好的網路搜尋關鍵字。偏好哪些網路搜尋關鍵字可以"
+"在下方選取。</p><p>勾選時，只能顯示幾個搜尋關鍵字的應用程式（像是 Konqueror "
+"當中選取頁面文字時）就會只顯示偏好的關鍵字。</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -865,6 +872,9 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>選擇預設的網路搜尋關鍵字。</p><p>這會被一些無法辨識輸入時會自動搜尋的應用"
+"程式所使用，像是 Konqueror 的位址列。這種搜尋便會使用這個關鍵字。要停用這個功"
+"能請從清單中選取 <tt>(無)</tt>。</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -874,10 +884,7 @@ msgstr "關鍵字分隔符(&K)："
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
