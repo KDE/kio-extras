@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-05-10 18:40+0900\n"
+"PO-Revision-Date: 2026-06-14 22:00+0900\n"
 "Last-Translator: Mint <5602mint@gmail.com>\n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
 "Language: ja\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -704,13 +704,11 @@ msgstr ""
 "を外しておいてください。</para>"
 
 #: trash/kcmtrash.cpp:259
-#, fuzzy, kde-format
-#| msgid " day"
-#| msgid_plural " days"
+#, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
-msgstr[0] "日"
+msgstr[0] "%v 日"
 
 #: trash/kcmtrash.cpp:261
 #, kde-kuit-format
@@ -751,7 +749,7 @@ msgstr "サイズ:"
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
-msgstr ""
+msgstr "%v%"
 
 #: trash/kcmtrash.cpp:280
 #, kde-kuit-format
@@ -771,20 +769,17 @@ msgid ""
 msgstr "<para>ごみ箱が最大で使用できるディスク領域の量です。</para>"
 
 #: trash/kcmtrash.cpp:289
-#, fuzzy, kde-format
-#| msgid "Show a Warning"
+#, kde-format
 msgid "Show a warning"
-msgstr "警告を表示"
+msgstr "警告を表示する"
 
 #: trash/kcmtrash.cpp:290
-#, fuzzy, kde-format
-#| msgid "Delete Oldest Files From Trash"
+#, kde-format
 msgid "Delete oldest files from trash"
 msgstr "最も古いファイルを削除する"
 
 #: trash/kcmtrash.cpp:291
-#, fuzzy, kde-format
-#| msgid "Delete Biggest Files From Trash"
+#, kde-format
 msgid "Delete biggest files from trash"
 msgstr "最も大きいファイルを削除する"
 
@@ -801,10 +796,9 @@ msgstr ""
 "削除せずに警告メッセージを表示します。</para>"
 
 #: trash/kcmtrash.cpp:295
-#, fuzzy, kde-format
-#| msgid "Full Trash:"
+#, kde-format
 msgid "Full trash:"
-msgstr "ごみ箱が満杯:"
+msgstr "ごみ箱が満杯のとき:"
 
 #: webshortcuts/ikwsopts.cpp:42
 #, kde-format
@@ -822,7 +816,7 @@ msgstr "キーワード"
 #, kde-format
 msgctxt "@title:column"
 msgid "Preferred"
-msgstr ""
+msgstr "優先"
 
 #: webshortcuts/ikwsopts.cpp:104
 #, fuzzy, kde-kuit-format
@@ -872,7 +866,7 @@ msgstr "ウェブ検索キーワードを有効にする(&E)"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">仕組みについて</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -889,13 +883,13 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:55
 #, kde-format
 msgid "&Use preferred keywords only"
-msgstr ""
+msgstr "優先キーワードのみを使用(&U)"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
 msgid "Search..."
-msgstr ""
+msgstr "検索..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96
@@ -908,7 +902,7 @@ msgstr "新しいウェブショートカットを追加する"
 #: webshortcuts/ikwsopts_ui.ui:99
 #, kde-format
 msgid "&New…"
-msgstr ""
+msgstr "追加(&N)…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:109
@@ -921,7 +915,7 @@ msgstr "新しいウェブショートカットを追加する"
 #: webshortcuts/ikwsopts_ui.ui:112
 #, kde-format
 msgid "Ed&it…"
-msgstr ""
+msgstr "編集(&I)…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:122
@@ -1191,19 +1185,3 @@ msgstr "文字セット(&T):"
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "インターレースモード"
-
-#, fuzzy
-#~| msgid "Search for shortcut"
-#~ msgid "Search for Web search keywords"
-#~ msgstr "ショートカットを検索"
-
-#~ msgid ""
-#~ "<qt>\n"
-#~ "Select the search engine to use for input boxes that provide automatic "
-#~ "lookup services when you type in normal words and phrases instead of a "
-#~ "URL. To disable this feature select <b>None</b> from the list.\n"
-#~ "</qt>"
-#~ msgstr ""
-#~ "<qt>URL ではなく普通の単語やフレーズだけを入力して検索するときに使用するデ"
-#~ "フォルトの検索プロバイダを選択します。この機能を無効にする場合は「なし」を"
-#~ "選択してください。</qt>"
