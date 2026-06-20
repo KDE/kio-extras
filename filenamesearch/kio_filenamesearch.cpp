@@ -298,6 +298,23 @@ bool FileNameSearchProtocol::match(const KIO::UDSEntry &entry, QHash<QRegularExp
 
     if (options.testFlag(SearchOption::SearchContent) && !matchedEverything) {
         const QUrl entryUrl(entry.stringValue(KIO::UDSEntry::UDS_URL));
+
+        //  Don't want to content search /dev, /proc and /sys, don't even try to
+        //  get the mimetype
+        if (entryUrl.isLocalFile()) {
+            const QString localPath(entryUrl.toLocalFile());
+            for (auto dir : {QLatin1String("/dev/"), QLatin1String("/proc/"), QLatin1String("/sys/")}) {
+                if (localPath.startsWith(dir)) {
+                    return false;
+                }
+            }
+        }
+
+        //  TODO:
+        //  mimeTypeForUrl doesn't give sensible results if the filename has a
+        //  count appended (as when searching through a recentlyused: list)
+        //  The content search fails in this case.
+
         QMimeDatabase mdb;
         QMimeType mimetype = mdb.mimeTypeForUrl(entryUrl);
         if (mimetype.inherits(QStringLiteral("text/plain"))) {
@@ -459,6 +476,9 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 
     QUrl dirUrl = QUrl(urlQuery.queryItemValue(QStringLiteral("url"), QUrl::FullyDecoded));
 
+    // TODO:
+    // Sanitize the dirUrl just in case any query parameters get through.
+
     // Canonicalise the search base directory
     if (dirUrl.isLocalFile()) {
         const QString canonicalPath = QFileInfo(dirUrl.toLocalFile()).canonicalFilePath();
@@ -578,6 +598,15 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
         return;
     }
 
+    //  Check whether the directory is local, it may be a smb://share url, if not, let
+    //  KIO::listRecursive handle it. If it is local and not readable, return.
+    if (dirUrl.isLocalFile()) {
+        QFileInfo dirInfo(dirPath);
+        if (!dirInfo.isReadable()) {
+            return;
+        }
+    }
+
     KIO::ListJob::ListFlags listFlags = {};
     if (options.testAnyFlags(SearchOption::IncludeHidden)) {
         listFlags = KIO::ListJob::ListFlag::IncludeHidden;
@@ -596,6 +625,13 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
 
         QUrl entryUrl(dirUrl);
         const QString path = ensureTrailingSlash(entryUrl.path());
+
+        //  Don't content index /dev, /proc or /sys
+        for (auto dir : {QLatin1String("/dev/"), QLatin1String("/proc/"), QLatin1String("/sys/")}) {
+            if (path.startsWith(dir)) {
+                return;
+            }
+        }
 
         for (auto entry : list) {
             if (wasKilled()) { // File-by-file searches may take some time, call wasKilled before each file
@@ -625,10 +661,10 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                     // of whether to actually search the folder to later
 
                     // However only do this if the symlink is not hidden or IncludeHiddenFolders is set
-                    // If the folder is hidden, add it to iteratedDirs to stop it being exlored
+                    // If the folder is hidden, add it to iteratedDirs to stop it being explored
                     // (Assume ListRecursive returns the folder name before exploring the folder).
 
-                    if ((!item.isHidden()) || options.testFlag(SearchOption::IncludeHiddenFolders)) {
+                    if (item.isReadable() && (!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFolders))) {
                         const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST);
                         if (!linkDest.isEmpty()) {
                             pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
