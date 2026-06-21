@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_filenamesearch\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-21 00:44+0000\n"
+"POT-Creation-Date: 2026-06-21 00:43+0000\n"
 "PO-Revision-Date: 2026-02-02 11:48+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -24,7 +24,7 @@ msgstr ""
 msgid "Search Folder"
 msgstr "Carpeta de búsquedas"
 
-#: kio_filenamesearch.cpp:486
+#: kio_filenamesearch.cpp:506
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -34,7 +34,7 @@ msgstr ""
 "Ubicación de búsqueda no válida.\n"
 "Se intenta buscar en el directorio %1"
 
-#: kio_filenamesearch.cpp:511
+#: kio_filenamesearch.cpp:531
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -44,7 +44,7 @@ msgstr ""
 "Consulta de búsqueda no válida: «%1»\n"
 "Se esperaba una expresión regular: %2"
 
-#: kio_filenamesearch.cpp:774
+#: kio_filenamesearch.cpp:810
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"

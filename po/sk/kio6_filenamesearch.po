@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio6_filenamesearch\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-03-21 00:44+0000\n"
+"POT-Creation-Date: 2026-06-21 00:43+0000\n"
 "PO-Revision-Date: 2024-11-11 17:47+0100\n"
 "Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <kde-sk@linux.sk>\n"
@@ -20,7 +20,7 @@ msgstr ""
 msgid "Search Folder"
 msgstr "Priečinok hľadania"
 
-#: kio_filenamesearch.cpp:486
+#: kio_filenamesearch.cpp:506
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -30,7 +30,7 @@ msgstr ""
 "Neplatné umiestnenie hľadania\n"
 "Pokus o hľadanie v priečinku %1"
 
-#: kio_filenamesearch.cpp:511
+#: kio_filenamesearch.cpp:531
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -40,7 +40,7 @@ msgstr ""
 "Neplatný vyhľadávací dotaz: „%1“\n"
 "Očakávaný regulárny výraz: %2"
 
-#: kio_filenamesearch.cpp:774
+#: kio_filenamesearch.cpp:810
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
