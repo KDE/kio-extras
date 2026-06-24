@@ -96,6 +96,9 @@ KIO::WorkerResult FilterProtocol::get(const QUrl &url)
     outputBuffer.resize(8 * 1024); // Start with a modest buffer
     filter->setOutBuffer(outputBuffer.data(), outputBuffer.size());
     while (true) {
+        if (wasKilled()) {
+            break;
+        }
         if (filter->inBufferEmpty()) {
             result = localFile.read(inputBuffer.data(), inputBuffer.size());
             qDebug(KIO_FILTER_DEBUG) << "requestData: got " << result;

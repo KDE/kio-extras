@@ -110,6 +110,9 @@ WorkerResult SMBWorker::smbCopy(const QUrl &ksrc, const QUrl &kdst, int permissi
     KIO::filesize_t processed_size = 0;
     TransferSegment segment(srcSize);
     while (true) {
+        if (wasKilled()) {
+            break;
+        }
         ssize_t n = smbc_read(srcfd, segment.buf.data(), segment.buf.size());
         if (n > 0) {
             n = smbc_write(dstfd, segment.buf.data(), n);
@@ -237,8 +240,12 @@ WorkerResult SMBWorker::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permi
 
     std::atomic<bool> isErr(false);
     TransferRingBuffer buffer(st.st_size);
-    auto future = std::async(std::launch::async, [&buffer, &srcfd, &isErr]() -> int {
+    auto future = std::async(std::launch::async, [&buffer, &srcfd, &isErr, this]() -> int {
         while (!isErr) {
+            if (wasKilled()) {
+                buffer.done();
+                break;
+            }
             TransferSegment *segment = buffer.nextFree();
             segment->size = smbc_read(srcfd, segment->buf.data(), segment->buf.capacity());
             if (segment->size <= 0) {
@@ -261,23 +268,29 @@ WorkerResult SMBWorker::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permi
             break;
         }
 
-        const qint64 bytesWritten = file.write(segment->buf.data(), segment->size);
-        if (bytesWritten == -1) {
-            qCDebug(KIO_SMB_LOG) << "copy now KIO::ERR_CANNOT_WRITE";
-            result = WorkerResult::fail(KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
-            isErr = true;
-            buffer.unpop();
-            break;
-        }
+        // Keep draining so the producer thread never blocks on a full buffer.
+        if (!wasKilled()) {
+            const qint64 bytesWritten = file.write(segment->buf.data(), segment->size);
+            if (bytesWritten == -1) {
+                qCDebug(KIO_SMB_LOG) << "copy now KIO::ERR_CANNOT_WRITE";
+                result = WorkerResult::fail(KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
+                isErr = true;
+                buffer.unpop();
+                break;
+            }
 
-        processed_size += bytesWritten;
-        processedSize(processed_size);
+            processed_size += bytesWritten;
+            processedSize(processed_size);
+        }
         buffer.unpop();
     }
     if (!result.success()) { // writing failed
         future.wait();
-    } else if (future.get() != KJob::NoError) { // check if read had an error
-        result = WorkerResult::fail(future.get(), ksrc.toDisplayString());
+    } else {
+        const int readResult = future.get(); // also joins the producer thread
+        if (!wasKilled() && readResult != KJob::NoError) { // check if read had an error
+            result = WorkerResult::fail(readResult, ksrc.toDisplayString());
+        }
     }
 
     // FINISHED
@@ -381,6 +394,9 @@ WorkerResult SMBWorker::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permi
         // Perform the copy
         TransferSegment segment(srcInfo.size());
         while (true) {
+            if (wasKilled()) {
+                break;
+            }
             const ssize_t bytesRead = srcFile.read(segment.buf.data(), segment.buf.size());
             if (bytesRead <= 0) {
                 if (bytesRead < 0) {

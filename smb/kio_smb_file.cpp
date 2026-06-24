@@ -65,8 +65,12 @@ WorkerResult SMBWorker::get(const QUrl &kurl)
     bool isFirstPacket = true;
 
     TransferRingBuffer buffer(st.st_size);
-    auto future = std::async(std::launch::async, [&buffer, &filefd]() -> int {
+    auto future = std::async(std::launch::async, [&buffer, &filefd, this]() -> int {
         while (true) {
+            if (wasKilled()) {
+                buffer.done();
+                break;
+            }
             TransferSegment *s = buffer.nextFree();
             s->size = smbc_read(filefd, s->buf.data(), s->buf.capacity());
             if (s->size <= 0) {
@@ -88,24 +92,31 @@ WorkerResult SMBWorker::get(const QUrl &kurl)
             break;
         }
 
-        filedata = QByteArray::fromRawData(s->buf.data(), s->size);
-        if (isFirstPacket) {
-            QMimeDatabase db;
-            QMimeType type = db.mimeTypeForFileNameAndData(url.fileName(), filedata);
-            mimeType(type.name());
-            isFirstPacket = false;
+        // Keep draining so the producer thread never blocks on a full buffer.
+        if (!wasKilled()) {
+            filedata = QByteArray::fromRawData(s->buf.data(), s->size);
+            if (isFirstPacket) {
+                QMimeDatabase db;
+                QMimeType type = db.mimeTypeForFileNameAndData(url.fileName(), filedata);
+                mimeType(type.name());
+                isFirstPacket = false;
+            }
+            data(filedata);
+            filedata.clear();
+
+            // increment total bytes read
+            totalbytesread += s->size;
+
+            processedSize(totalbytesread);
         }
-        data(filedata);
-        filedata.clear();
-
-        // increment total bytes read
-        totalbytesread += s->size;
-
-        processedSize(totalbytesread);
         buffer.unpop();
     }
-    if (future.get() != KJob::NoError) { // check if read had an error
-        return WorkerResult::fail(future.get(), url.toDisplayString());
+    const int readResult = future.get(); // also joins the producer thread
+    if (wasKilled()) {
+        return WorkerResult::pass();
+    }
+    if (readResult != KJob::NoError) { // check if read had an error
+        return WorkerResult::fail(readResult, url.toDisplayString());
     }
 
     data(QByteArray());
@@ -363,6 +374,9 @@ WorkerResult SMBWorker::put(const QUrl &kurl, int permissions, KIO::JobFlags fla
 
     // Loop until we got 0 (end of data)
     while (true) {
+        if (wasKilled()) {
+            break;
+        }
         qCDebug(KIO_SMB_LOG) << "request data ";
         dataReq(); // Request for data
         qCDebug(KIO_SMB_LOG) << "write " << m_current_url.toSmbcUrl();

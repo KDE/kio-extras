@@ -1389,6 +1389,9 @@ Result SFTPWorker::sftpGet(const QUrl &url, KIO::fileoffset_t offset, int fd)
 
     auto reader = asyncRead(file.get(), readSize);
     for (const auto &response : reader) {
+        if (wasKilled()) {
+            return Result::pass();
+        }
         if (response.error != KJob::NoError) {
             return Result::fail(response.error, url.toString());
         }
@@ -1579,6 +1582,9 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     };
 
     for (const auto &response : asyncWrite(destFile.get(), reader())) {
+        if (wasKilled()) {
+            return closeOnError(KJob::NoError);
+        }
         if (response.error != KJob::NoError) {
             qCDebug(KIO_SFTP_LOG) << "totalBytesSent at error:" << totalBytesSent;
             return closeOnError(KIO::ERR_CANNOT_WRITE);

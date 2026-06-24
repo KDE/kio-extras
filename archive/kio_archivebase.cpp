@@ -289,6 +289,9 @@ KIO::WorkerResult ArchiveProtocolBase::listDir(const QUrl &url)
 
     QStringList::const_iterator it = l.begin();
     for (; it != l.end(); ++it) {
+        if (wasKilled()) {
+            break;
+        }
         qCDebug(KIO_ARCHIVE_LOG) << (*it);
         const KArchiveEntry *archiveEntry = dir->entry((*it));
 
@@ -470,6 +473,9 @@ KIO::WorkerResult ArchiveProtocolBase::get(const QUrl &url)
     KIO::filesize_t processed = 0;
 
     while (!io->atEnd() && fileSize > 0) {
+        if (wasKilled()) {
+            break;
+        }
         if (!firstRead) {
             bufferSize = qMin(maxSize, fileSize);
             buffer.resize(bufferSize);
