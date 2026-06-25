@@ -5,7 +5,7 @@
 # KDE2 - kcmkio.pot Russian translation.
 # Copyright (C) 2000, KDE Team.
 # Leon Kanter <leon@asplinux.ru>
-# SPDX-FileCopyrightText: 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Alexander Yavorsky <kekcuha@gmail.com>
+# SPDX-FileCopyrightText: 2018-2026 Alexander Yavorsky <kekcuha@gmail.com>
 # Mihail Kozlov <kmn@obladm.nso.ru>, 2000.
 # Gregory Mokhin <mokhin@bog.msu.ru>, 2000.
 # Leonid Kanter <leon@asplinux.ru>, 2004, 2005.
@@ -23,14 +23,14 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-27 13:31+0200\n"
+"PO-Revision-Date: 2026-06-24 23:52+0200\n"
 "Last-Translator: Alexander Yavorskiy <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
 "Language: ru\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 26.04.2\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
@@ -783,11 +783,10 @@ msgid "Preferred"
 msgstr "Предпочитаемое"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Выберите разделитель для обозначения ключевого слова для веб-поиска."
+msgstr "Отметить это ключевое слово как предпочитаемое для веб-поиска."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -811,6 +810,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Ключевые слова для веб-поиска позволяют быстро искать или находить "
+"слова в Интернете. Они работают в поиске <application>KRunner</application> "
+"оболочки Plasma, в адресной строке <application>Konqueror</application> и в "
+"любых других поддерживающих их приложениях. Например, чтобы найти информацию "
+"о проекте KDE с помощью поисковой системы Google, можно просто ввести "
+"<icode>gg:KDE</icode> или <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -819,6 +824,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Установите этот флажок, чтобы ключевые слова веб-поиска распознавались и "
+"использовались в приложениях, которые их поддерживают."
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -830,7 +837,7 @@ msgstr "&Использовать ключевые слова для веб-по
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Как они работают?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -842,6 +849,12 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Установка этого флажка ограничивает использование ключевых слов веб-"
+"поиска только предпочитаемыми, выбранными в списке ниже, где это необходимо."
+"</p><p>Если флажок установлен, приложения, способные показывать лишь "
+"ограниченное количество ключевых слов (например, Konqueror при выделении "
+"текста на странице), будут показывать только предпочитаемые ключевые слова.</"
+"p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -906,6 +919,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Выбор ключевого слова для веб-поиска по умолчанию.</p><p>Это ключевое "
+"слово может использоваться приложениями, которые автоматически выполняют "
+"поиск, если введённые данные не распознаны, например, в адресной строке "
+"Konqueror. Это ключевое слово будет использоваться для поиска. Чтобы "
+"отключить эту функцию, выберите <tt>(Нет)</tt> из списка.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -915,10 +933,7 @@ msgstr "&Разделитель:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
