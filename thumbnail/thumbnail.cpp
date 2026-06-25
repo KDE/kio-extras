@@ -606,6 +606,9 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
         // for the same directory and sequence-item
         m_randomGenerator.seed(qHash(directory) + skipValidItems);
         while (dir.hasNext()) {
+            if (wasKilled()) {
+                return QImage();
+            }
             ++iterations;
             if (iterations > 500) {
                 skipValidItems = skipped = 0;
@@ -694,6 +697,9 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
         QDirIterator dir(directory, QDir::Dirs | QDir::NoDotAndDotDot);
         int max = 50;
         while (dir.hasNext() && max > 0) {
+            if (wasKilled()) {
+                return QImage();
+            }
             --max;
             dir.next();
             if (m_propagationDirectories.contains(dir.fileName())) {
