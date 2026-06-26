@@ -51,11 +51,6 @@ bool hasBeenVisited(const QString &path, std::set<QString> &seenDirs)
     return false;
 }
 
-bool isDotOrDotDot(const QString &fileName)
-{
-    return fileName == QLatin1String(".") || fileName == QLatin1String("..");
-}
-
 //  Returns a regex with special characters escaped while still allowing flexible
 //  matches of whitespace.
 
@@ -607,9 +602,9 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
         }
     }
 
-    KIO::ListJob::ListFlags listFlags = {};
+    KIO::ListJob::ListFlags listFlags = KIO::ListJob::ListFlag::ExcludeDotAndDotDot;
     if (options.testAnyFlags(SearchOption::IncludeHidden)) {
-        listFlags = KIO::ListJob::ListFlag::IncludeHidden;
+        listFlags |= KIO::ListJob::ListFlag::IncludeHidden;
     }
     KIO::ListJob *listJob = KIO::listRecursive(dirUrl, KIO::HideProgressInfo, listFlags);
 
@@ -645,9 +640,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
             // UDS_NAME is e.g. "foo/bar/somefile.txt"
             const QString leaf = path + item.name();
 
-            //  .. Avoid dot and dotdot
-
-            if (!isDotOrDotDot(entry.stringValue(KIO::UDSEntry::UDS_NAME)) && !hasBeenVisited(leaf, iteratedDirs)) {
+            if (!hasBeenVisited(leaf, iteratedDirs)) {
                 entryUrl.setPath(leaf);
 
                 const QString urlStr = entryUrl.toDisplayString();
