@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-06-22 19:01+0200\n"
+"PO-Revision-Date: 2026-06-26 17:07+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -791,6 +791,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Vevsøk-nøkkelord lèt deg kjapt søkja eller slå opp orda på Internett. "
+"Dei fungerer med <application>KRunner</application>-søk i Plasma, "
+"adressalinja i <application>Konqueror</application> og i mange andre "
+"program. Eit eksempel på bruk er å søkja etter KDE-prosjektet i med "
+"søkjemotoren Google ved å skriva <icode>gg:KDE</icode> eller <icode>google:"
+"KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -799,6 +805,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Kryss av her for at vevsøk-nøkkelord skal kjennast att og brukast i program "
+"som støttar dette."
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -822,6 +830,10 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Kryss av her for berre å bruka dei føretrekte vevsøk-nøkkelorda, valde i "
+"lista nedanfor, om nødvendig.</p><p>Viss det er kryssa av her, vil program "
+"som berre kan visa eit avgrensa tal søkjenøkkelord (for eksempel Konqueror "
+"når tekst på ei side er merkt), berre visa dei føretrekte nøkkelorda.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -886,6 +898,12 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Vel standard vevsøk-nøkkelord.</p><p>Dette kan brukast av program som "
+"automatisk søkjer viss innskriven tekst ikkje vert attkjend til å vera på "
+"eit gjeve format. Det gjeld for eksempel i adresselinja i Konqueror når det "
+"ein skriv inn, ikkje er ei nettadresse. Då vert nøkkelordet brukt for å "
+"søkja. Du kan slå av denne funksjonen ved å velja <tt>(Ingen)</tt> i lista.</"
+"p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
