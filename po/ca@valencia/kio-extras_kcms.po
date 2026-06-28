@@ -392,7 +392,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:370
 #, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "Utilit&za l'URL de configuració automàtica de l'intermediari:"
+msgstr "&Utilitza l'URL de configuració automàtica de l'intermediari:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -878,7 +878,7 @@ msgstr "&Activa les paraules clau de busca en la web"
 #: webshortcuts/ikwsopts_ui.ui:30
 #, kde-format
 msgid "&Use preferred keywords only"
-msgstr "Utilit&za només les paraules clau preferides"
+msgstr "&Utilitza només les paraules clau preferides"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:37
