@@ -941,7 +941,7 @@ msgstr ""
 "<p>Seleccioneu una paraula clau de busca web predeterminada.</p><p>Açò es "
 "pot utilitzar en les aplicacions que busquen automàticament si no es pot "
 "reconéixer l'entrada, per exemple, a la barra d'adreces de Konqueror.  Esta "
-"paraula clau s'utilitzarà a la busca. Per a desactivar esta característica, "
+"paraula clau s'utilitzarà en la busca. Per a desactivar esta característica, "
 "trieu <tt>(Cap)</tt> de la llista.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)

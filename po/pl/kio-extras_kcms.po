@@ -1,7 +1,7 @@
 # translation of kcmkio.po to Polish
 # translation of kcmkio.po to
 # Version: $Revision: 1409459 $
-# SPDX-FileCopyrightText: 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
+# SPDX-FileCopyrightText: 2011-2012, 2014-2026 Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>
 # Michal Rudolf <mrudolf@kdewebdev.org>, 2003, 2004, 2005, 2008, 2009.
 # Krzysztof Lichota <lichota@mimuw.edu.pl>, 2005, 2006.
 # Marta Rybczyńska <kde-i18n@rybczynska.net>, 2008, 2009, 2010.
@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-27 08:39+0200\n"
+"PO-Revision-Date: 2026-06-27 12:27+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -768,11 +768,11 @@ msgid "Preferred"
 msgstr "Ulubione"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Wybierz znak oddzielający skróty sieciowe."
+msgstr ""
+"Zaznacz, aby domyślnie wybierać to słowo kluczowe przy wyszukiwaniu w sieci."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -796,6 +796,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Słowa kluczowe do wyszukiwania w sieci umożliwiają szybkie "
+"wyszukiwanie słów w Internecie. Działają w wyszukiwarce Plazmy "
+"<application>KRunner</application>, na pasku adresu <application>Konquerora</"
+"application> i w dowolnej aplikacji, która to obsługuje. Na przykład, aby "
+"poszukać informacji o projekcie KDE przy użyciu wyszukiwarki Google, możesz "
+"po prostu wpisać <icode>gg:KDE</icode> lub <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -804,6 +810,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Zaznacz, aby rozpoznawać i wykorzystywać słowa kluczowe do wyszukiwania w "
+"sieci w aplikacjach, które mogą tego używać"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -815,7 +823,7 @@ msgstr "Włącz skróty si&eciowe"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Jak to działa?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -827,6 +835,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Zaznacz, aby używać tylko domyślnych słów kluczowych przy wyszukiwaniu w "
+"sieci, tych które zostały zaznaczone na liście poniżej.</p><p>Po zaznaczeniu "
+"tego, aplikacje, które mogą pokazywać tylko ograniczoną liczbę słów do "
+"wyszukiwania (na przykład Konqueror po zaznaczeniu tekstu na stronie) pokażą "
+"tylko domyślne słowa kluczowe.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -838,7 +851,7 @@ msgstr "&Użyj tylko ulubionych skrótów"
 #: webshortcuts/ikwsopts_ui.ui:62
 #, kde-format
 msgid "Search..."
-msgstr "Znajdź..."
+msgstr "Poszukaj…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96
@@ -891,6 +904,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Wybierz domyślne słowo kluczowe do wyszukiwania w sieci.</p><p>Może ono "
+"zostać wykorzystane przez aplikacje, które same szukają, jeśli nie można "
+"rozpoznać wprowadzonych danych, na przykład na pasku adresowym Konquerora.  "
+"To słowo kluczowe będzie używane przy wyszukiwani. Aby wyłączyć tę możliwość "
+"wybierz <tt>(Brak)</tt> z listy.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -900,10 +918,7 @@ msgstr "Rozgranicznik słów &kluczowych:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
