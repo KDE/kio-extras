@@ -41,7 +41,7 @@ KIO::ThumbnailResult SvgCreator::create(const KIO::ThumbnailRequest &request)
     int height = request.targetSize().height() * request.devicePixelRatio();
 
     if (defaultSize.height() > defaultSize.width()) {
-        const double tmpHeight = width / ratio;
+        const double tmpHeight = width * ratio;
         if (tmpHeight <= std::numeric_limits<int>::max()) {
             height = qRound(tmpHeight);
         }
