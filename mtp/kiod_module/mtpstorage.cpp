@@ -316,7 +316,7 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
     if (childrenSize == -1) {
         return std::nullopt;
     }
-    const std::unique_ptr<uint32_t> childrenOwner(children);
+    const std::unique_ptr<uint32_t, decltype(&LIBMTP_FreeMemory)> childrenOwner(children, &LIBMTP_FreeMemory);
 
     for (const auto &child : std::span<uint32_t>(children, childrenSize)) {
         const KMTPFile mtpFile = createKMTPFile(std::unique_ptr<LIBMTP_file_t>(LIBMTP_Get_Filemetadata(getDevice(), child)));
@@ -585,7 +585,7 @@ QDBusObjectPath MTPStorage::getFilesAndFolders2(const QString &path)
         return {};
     }
 
-    auto lister = new MTPLister(std::unique_ptr<uint32_t>(children), childrenSize, getDevice(), path, this);
+    auto lister = new MTPLister(std::shared_ptr<uint32_t>(children, &LIBMTP_FreeMemory), childrenSize, getDevice(), path, this);
     connect(lister, &MTPLister::entry, this, [this, path](const KMTPFile &file) {
         addPath(path + QLatin1Char('/') + file.filename(), file.itemId()); // add to cache
     });

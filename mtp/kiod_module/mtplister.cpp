@@ -7,7 +7,7 @@
 #include "mtpfile.h"
 #include "mtpstorage.h"
 
-MTPLister::MTPLister(std::unique_ptr<uint32_t> children, int childrenCount, LIBMTP_mtpdevice_t *device, const QString &path, MTPStorage *parent)
+MTPLister::MTPLister(std::shared_ptr<uint32_t> children, int childrenCount, LIBMTP_mtpdevice_t *device, const QString &path, MTPStorage *parent)
     : QObject(parent)
     , m_device(device)
     , m_path(path)
