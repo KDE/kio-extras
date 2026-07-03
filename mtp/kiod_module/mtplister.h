@@ -17,7 +17,7 @@ class MTPLister : public QObject
     Q_OBJECT
     Q_CLASSINFO("D-Bus Interface", "org.kde.kmtp.Lister")
 public:
-    explicit MTPLister(std::unique_ptr<uint32_t> children, int childrenCount, LIBMTP_mtpdevice_t *device, const QString &path, MTPStorage *parent = nullptr);
+    explicit MTPLister(std::shared_ptr<uint32_t> children, int childrenCount, LIBMTP_mtpdevice_t *device, const QString &path, MTPStorage *parent = nullptr);
 
 public Q_SLOTS:
     void run();
@@ -30,7 +30,7 @@ Q_SIGNALS:
 private:
     LIBMTP_mtpdevice_t *const m_device;
     const QString m_path;
-    const std::unique_ptr<uint32_t> m_childrenOwner;
+    const std::shared_ptr<uint32_t> m_childrenOwner;
     const std::span<uint32_t> m_children;
     decltype(m_children)::iterator m_it;
 };
