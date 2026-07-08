@@ -129,7 +129,7 @@ msgstr "Actividade"
 #~ msgstr "Descrição"
 
 #~ msgid "Wallpaper"
-#~ msgstr "Papel de Parede"
+#~ msgstr "Imagem de fundo"
 
 #~ msgid "Change..."
 #~ msgstr "Modificar..."

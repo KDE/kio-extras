@@ -1,13 +1,13 @@
 # Copyright (C) YEAR This_file_is_part_of_KDE
 # This file is distributed under the same license as the PACKAGE package.
 #
-# Stefan Asserhäll <stefan.asserhall@gmail.com>, 2015, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2015, 2019-2021, 2026 Stefan Asserhäll <stefan.asserhall@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-24 00:44+0000\n"
-"PO-Revision-Date: 2021-09-03 17:16+0200\n"
+"PO-Revision-Date: 2026-07-07 10:09+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 20.08.1\n"
+"X-Generator: Lokalize 26.04.2\n"
 
 #: kio_man.cpp:495
 #, kde-kuit-format
@@ -84,15 +84,14 @@ msgstr ""
 "bör du ta en titt på den engelska versionen."
 
 #: kio_man.cpp:735
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Flera manualsidor"
+msgstr "Möjliga alternativa manualsidor"
 
 #: kio_man.cpp:736
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Det finns möjliga nära träffar:"
 
 #: kio_man.cpp:738
 #, kde-kuit-format
@@ -101,6 +100,8 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"Ingen manualsida som motsvarar <resource>%1</resource> kunde hittas, men det "
+"finns nära eller inte skiftlägeskänsliga träffar enligt ovan."
 
 #: kio_man.cpp:801
 #, kde-format

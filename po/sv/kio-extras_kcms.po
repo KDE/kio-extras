@@ -4,21 +4,21 @@
 #
 # Anders Widell <awl@hem.passagen.se>, 1999.
 # Mattias Newzella <newzella@linux.nu>, 2000, 2001, 2002,2003, 2004.
-# SPDX-FileCopyrightText: 2004, 2007, 2008, 2009, 2010, 2024, 2025 Stefan Asserhäll <stefan.asserhall@gmail.com>
+# SPDX-FileCopyrightText: 2004, 2007-2010, 2024-2026 Stefan Asserhäll <stefan.asserhall@gmail.com>
 # Stefan Asserhall <stefan.asserhall@gmail.com>, 2010, 2011, 2012, 2014, 2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022.
 msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-09-17 16:58+0200\n"
+"PO-Revision-Date: 2026-07-07 10:10+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
 "Language: sv\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.0\n"
+"X-Generator: Lokalize 26.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
 #: ksaveioconfig.cpp:36
@@ -774,11 +774,10 @@ msgid "Preferred"
 msgstr "Föredragna"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Välj en avgränsare för att markera webbsökningsnyckelordet."
+msgstr "Markera för att välja webbsökningsnyckelordet som föredraget."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -802,6 +801,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Webbsökningsnyckelord gör det möjligt att snabbt söka eller slå upp "
+"ord på Internet. De fungerar vid sökning i Plasmas <application>Kör program</"
+"application>, på adressraden i <application>Konqueror</application> och i "
+"alla andra program som stöder dem. För att till exempel söka efter "
+"information om KDE-projektet med hjälp av Googles sökgränssnitt kan man helt "
+"enkelt skriva <icode>gg:KDE</icode> eller <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -810,6 +815,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Markera för att känna igen och använda webbsökord i program som kan använda "
+"dem"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -821,7 +828,7 @@ msgstr "Aktivera w&ebbsökningsnyckelord"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Hur fungerar de här?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -833,6 +840,10 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Markera för att bara använda de föredragna sökorden för webbsökning, som "
+"valts i listan nedan, där det behövs.</p><p>Om det är markerat visar program "
+"som bara kan använda ett begränsat antal sökord (till exempel Konqueror när "
+"text på en sida är markerad) bara de föredragna sökorden.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -897,6 +908,10 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Använd ett förvalt webbsökningsnyckelord.</p><p>Det kan användas av "
+"program som automatiskt söker om inmatningen inte känns igen, till exempel "
+"på adressraden i Konqueror. Nyckelordet användas för sökningen. För att "
+"inaktivera funktionen, välj <tt>(Inget)</tt> i listan.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -906,10 +921,7 @@ msgstr "Nyc&kelordsavgränsning:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
