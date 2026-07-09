@@ -1,4 +1,4 @@
-File=../netpref/kioslave.kcfg
+File=kioslave.kcfg
 ClassName=ProxySettings
 Mutators=true
 
