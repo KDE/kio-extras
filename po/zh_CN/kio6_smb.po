@@ -14,8 +14,8 @@ msgstr ""
 "X-Crowdin-Project: kdeorg\n"
 "X-Crowdin-Project-ID: 269464\n"
 "X-Crowdin-Language: zh-CN\n"
-"X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio6_smb.pot\n"
-"X-Crowdin-File-ID: 43923\n"
+"X-Crowdin-File: /kf6-stable/messages/kio-extras/kio6_smb.pot\n"
+"X-Crowdin-File-ID: 52764\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
