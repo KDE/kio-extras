@@ -149,7 +149,7 @@ bool ArchiveProtocolBase::checkNewFile(const QUrl &url, QString &path, KIO::Erro
     }
 
     if (!m_archiveFile->open(QIODevice::ReadOnly)) {
-        qCDebug(KIO_ARCHIVE_LOG) << "Opening" << archiveFile << "failed.";
+        qCDebug(KIO_ARCHIVE_LOG) << "Opening" << archiveFile << "failed:" << m_archiveFile->errorString();
         delete m_archiveFile;
         m_archiveFile = nullptr;
         errorNum = KIO::ERR_CANNOT_OPEN_FOR_READING;
