@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-06-21 00:43+0000\n"
+"POT-Creation-Date: 2026-07-12 00:43+0000\n"
 "PO-Revision-Date: 2026-05-31 18:46-0400\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
@@ -18,12 +18,12 @@ msgstr ""
 "X-Generator: Poedit 3.9\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: kio_filenamesearch.cpp:107
+#: kio_filenamesearch.cpp:102
 #, kde-format
 msgid "Search Folder"
 msgstr "ئىزدەش قىسقۇچى"
 
-#: kio_filenamesearch.cpp:506
+#: kio_filenamesearch.cpp:501
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -31,7 +31,7 @@ msgid ""
 "Trying to search the %1 directory"
 msgstr ""
 
-#: kio_filenamesearch.cpp:531
+#: kio_filenamesearch.cpp:526
 #, kde-format
 msgctxt "@info:status"
 msgid ""
@@ -39,7 +39,7 @@ msgid ""
 "Expected a regular expression: %2"
 msgstr ""
 
-#: kio_filenamesearch.cpp:810
+#: kio_filenamesearch.cpp:803
 #, kde-format
 msgctxt "@info:%1 is the program used to do the search"
 msgid "%1 failed, exit code: %2, error messages: %3"
