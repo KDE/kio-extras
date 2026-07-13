@@ -13,6 +13,7 @@
 
 #include <K7Zip>
 #include <KAr>
+#include <KIO/AuthInfo>
 #include <KIO/StatJob>
 #include <KLocalizedString>
 #include <KTar>
@@ -148,16 +149,68 @@ bool ArchiveProtocolBase::checkNewFile(const QUrl &url, QString &path, KIO::Erro
         return false;
     }
 
-    if (!m_archiveFile->open(QIODevice::ReadOnly)) {
-        qCDebug(KIO_ARCHIVE_LOG) << "Opening" << archiveFile << "failed.";
+    bool openOk = m_archiveFile->open(QIODevice::ReadOnly);
+    if (!openOk) {
+        qCDebug(KIO_ARCHIVE_LOG) << "Opening" << archiveFile << "failed:" << m_archiveFile->errorString();
+        errorNum = KIO::ERR_CANNOT_OPEN_FOR_READING;
+
+        const QString password = checkPassword(url, m_archiveFile);
+
+        if (!password.isNull()) {
+            delete m_archiveFile;
+            m_archiveFile = this->createArchive(url.scheme(), archiveFile);
+
+            auto *sevenZip = static_cast<K7Zip *>(m_archiveFile);
+            sevenZip->setPassword(password);
+
+            openOk = m_archiveFile->open(QIODevice::ReadOnly);
+            if (!openOk) {
+                qCDebug(KIO_ARCHIVE_LOG) << "Opening" << archiveFile << "failed, even with password:" << m_archiveFile->errorString();
+                errorNum = KIO::ERR_ACCESS_DENIED;
+            }
+        }
+    }
+
+    if (!openOk) {
         delete m_archiveFile;
         m_archiveFile = nullptr;
-        errorNum = KIO::ERR_CANNOT_OPEN_FOR_READING;
         return false;
     }
 
     m_archiveName = archiveFile;
     return true;
+}
+
+QString ArchiveProtocolBase::checkPassword(const QUrl &url, KArchive *archive)
+{
+    // KArchive currently only supports 7z with password.
+    if (url.scheme() != QLatin1String("sevenz")) {
+        return QString();
+    }
+
+    auto *sevenZip = static_cast<K7Zip *>(archive);
+    if (!sevenZip->passwordNeeded()) {
+        return QString();
+    }
+
+    AuthInfo info;
+    info.url = url;
+    info.readOnly = true; // no username.
+    info.prompt = i18n("The archive <filename>%1</filename> is password protected. Please enter the password.", url.fileName());
+    info.setExtraField(QStringLiteral("hide-username-line"), true);
+
+    if (!checkCachedAuthentication(info)) {
+        const int errorCode = openPasswordDialog(info);
+        if (errorCode) {
+            return QStringLiteral(""); // empty, not null string.
+        }
+
+        if (info.keepPassword) {
+            cacheAuthentication(info);
+        }
+    }
+
+    return info.password;
 }
 
 uint ArchiveProtocolBase::computeArchiveDirSize(const KArchiveDirectory *dir)

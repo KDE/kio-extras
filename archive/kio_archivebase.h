@@ -36,6 +36,7 @@ private:
 
     KIO::StatDetails getStatDetails() const;
     uint computeArchiveDirSize(const KArchiveDirectory *dir);
+    QString checkPassword(const QUrl &url, KArchive *archive);
 
     /**
      * \brief find, check and open the archive file
