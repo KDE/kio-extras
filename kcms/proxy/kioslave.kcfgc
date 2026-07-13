@@ -1,4 +1,5 @@
 File=kioslave.kcfg
 ClassName=ProxySettings
 Mutators=true
-
+GenerateProperties=true
+ParentInConstructor=true
