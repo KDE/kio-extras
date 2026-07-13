@@ -14,15 +14,16 @@
 #include <QDBusMessage>
 #include <QDBusReply>
 #endif
+#include <QWindow>
 
 // KDE
 #include <KConfig>
 #include <KConfigGroup>
 #include <KLocalizedString>
-#include <KMessageBox>
+#include <KMessageDialog>
 #include <kio/ioworker_defaults.h>
 
-void KSaveIOConfig::updateRunningWorkers(QWidget *parent)
+void KSaveIOConfig::updateRunningWorkers(QWindow *parent)
 {
 #ifdef WITH_DBUS
     // Inform all running KIO workers about the changes...
@@ -32,10 +33,17 @@ void KSaveIOConfig::updateRunningWorkers(QWidget *parent)
     message << QString();
     if (!QDBusConnection::sessionBus().send(message)) {
 #endif
-        KMessageBox::information(parent,
-                                 i18n("You have to restart the running applications "
-                                      "for these changes to take effect."),
-                                 i18nc("@title:window", "Update Failed"));
+        KMessageDialog *dialog;
+        if (parent) {
+            dialog = new KMessageDialog(KMessageDialog::Information,
+                                        i18n("You have to restart the running applications for these changes to take effect."),
+                                        parent->winId());
+            dialog->windowHandle()->setTransientParent(parent);
+        } else {
+            dialog = new KMessageDialog(KMessageDialog::Information, i18n("You have to restart the running applications for these changes to take effect."));
+        }
+        dialog->exec();
+
 #ifdef WITH_DBUS
     }
 #endif

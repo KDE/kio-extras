@@ -2,26 +2,23 @@ if(WITH_LIBPROXY)
     add_subdirectory(wpad-detector)
 endif()
 
-kcoreaddons_add_plugin(kcm_proxy INSTALL_NAMESPACE "plasma/kcms/systemsettings_qwidgets")
-
-kcmutils_generate_desktop_file(kcm_proxy)
-
-target_sources(kcm_proxy PRIVATE
-    kproxydlg.cpp
-    ../ksaveioconfig.cpp
+kcmutils_add_qml_kcm(kcm_proxy
+    SOURCES
+        proxy.cpp
+        proxy.h
+        ksaveioconfig.cpp
+        ksaveioconfig.h
 )
 
-ki18n_wrap_ui(kcm_proxy kproxydlg.ui)
-
-kconfig_add_kcfg_files(kcm_proxy kioslave.kcfgc)
+kconfig_add_kcfg_files(kcm_proxy kioslave.kcfgc GENERATE_MOC)
 
 target_link_libraries(kcm_proxy PRIVATE
-    Qt6::Widgets
     KF6::CoreAddons
     KF6::ConfigCore
     KF6::I18n
+    KF6::I18nQml
     KF6::KCMUtils
-    KF6::KIOWidgets
+    KF6::KIOCore
 )
 
 if(USE_DBUS)
