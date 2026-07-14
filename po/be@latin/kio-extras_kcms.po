@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: 86ff119b1606fcaa910d6b44fc14b611\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2022-08-29 08:53\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -35,32 +35,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Nie ŭdalosia abnavić"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Adkliučyć pasiŭny FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Kali FTP-zlučenni pasiŭnyja, klijent padlučajecca da sierviera, a nie "
-"naadvarot, tamu fajrvoly nie blakujuć zlučennie; staryja sierviery FTP mohuć "
-"nie padtrymlivać pasiŭny FTP."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Paznačać častkova spampavanyja fajly"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -68,62 +50,6 @@ msgid ""
 msgstr ""
 "Pakuĺ fajl spampoŭvajecca, jaho pašyrennie - \".part\". Kali spampoŭvannie "
 "zaviaršajecca, jaho nazva zmianiajecca na aryhinaĺnuju."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Hlabaĺnyja paramietry"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Paznačać &častkova spampavanyja fajly"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Paznačać častkova spampavanyja fajly praz SMB, SFTP i inšyja pratakoly.</"
-"p><p>Kali hety paramietr ukliučany, častkova spampavanyja fajly buduć mieć "
-"pašyrennie \".part\". Hetaje pašyrennie budzie vydaliena paslia zaviaršennia "
-"pieradačy.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Paramietry FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Ukliučyć pasiŭny &režym (PASV)"
-
-#: netpref/netpref.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "Enables FTPs \"passive\" mode. This is required to allow FTP to work from "
-#| "behind firewalls."
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Ukliučaje \"pasiŭny\" režym FTP. Heta nieabchodna, kab dazvolić FTP pracavać "
-"u abychod fajrvola."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Paznačać častkova spampavanyja fajly praz FTP.</p><p>Kali hety paramietr "
-"ukliučany, častkova spampavanyja fajly buduć mieć pašyrennie \".part\". "
-"Hetaje pašyrennie budzie vydaliena paslia zaviaršennia pieradačy.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1237,6 +1163,62 @@ msgstr "&Kadavannie:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Ustavić zapaŭniaĺnik zapytu"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Adkliučyć pasiŭny FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Kali FTP-zlučenni pasiŭnyja, klijent padlučajecca da sierviera, a nie "
+#~ "naadvarot, tamu fajrvoly nie blakujuć zlučennie; staryja sierviery FTP "
+#~ "mohuć nie padtrymlivać pasiŭny FTP."
+
+#~ msgid "Global Options"
+#~ msgstr "Hlabaĺnyja paramietry"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Paznačać &častkova spampavanyja fajly"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Paznačać častkova spampavanyja fajly praz SMB, SFTP i inšyja pratakoly."
+#~ "</p><p>Kali hety paramietr ukliučany, častkova spampavanyja fajly buduć "
+#~ "mieć pašyrennie \".part\". Hetaje pašyrennie budzie vydaliena paslia "
+#~ "zaviaršennia pieradačy.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Paramietry FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Ukliučyć pasiŭny &režym (PASV)"
+
+#, fuzzy
+#~| msgid ""
+#~| "Enables FTPs \"passive\" mode. This is required to allow FTP to work "
+#~| "from behind firewalls."
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Ukliučaje \"pasiŭny\" režym FTP. Heta nieabchodna, kab dazvolić FTP "
+#~ "pracavać u abychod fajrvola."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Paznačać častkova spampavanyja fajly praz FTP.</p><p>Kali hety "
+#~ "paramietr ukliučany, častkova spampavanyja fajly buduć mieć pašyrennie \"."
+#~ "part\". Hetaje pašyrennie budzie vydaliena paslia zaviaršennia pieradačy."
+#~ "</p>"
 
 #, fuzzy
 #~| msgctxt "@info:tooltip"

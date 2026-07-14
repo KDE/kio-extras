@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2025-03-26 16:09+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -37,32 +37,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Neizdevās atjaunināt"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Atslēgt pasīvo FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"KAD FTP savienojumi ir pasīvi, klients pieslēdzas serverim, nevis otrādi. "
-"Tādējādi ugunssienas nebloķē šo savienojumu. Veci FTP serveri var "
-"neatbalstīt pasīvu FTP."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Atzīmēt daļēji augšupielādētās datnes"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -70,58 +52,6 @@ msgid ""
 msgstr ""
 "Datnes ielādes procesā tam pievieno „.part“ paplašinājums. Kad datne ir "
 "pilnībā lejupielādēta, to pārdēvē uz īsto nosaukumu."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Globālās opcijas"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Atzīmēt &daļēji augšupielādētās datnes"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Atzīmē datnes, kas ir daļēji augšupielādētas no SMB, SFTP un citiem "
-"protokoliem.</p><p>Ieslēdzot šo iespēju, daļēji augšupielādētām datnēm būs „."
-"part“ paplašinājums, ko noņems tiklīdz datnes augšupielāde būs pabeigta.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP opcijas"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Ieslēgt pasīvo režī&mu (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Ieslēdz FTP „pasīvo“ režīmu. Šī opcija atļauj FTP darboties arī tad, ja jūsu "
-"ierīce atrodas aiz ugunsmūra."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Atzīmē daļēji augšupielādētās FTP datnes.</p><p>Ieslēdzot šo opciju, "
-"daļēji augšupielādētajām datnēm būs „.part“ paplašinājums, ko sistēma "
-"noņems, kad datnes augšupielāde būs pabeigta.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1110,6 +1040,57 @@ msgstr "&Rakstzīmju kopa:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Ierakstiet vaicājuma vietturi"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Atslēgt pasīvo FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "KAD FTP savienojumi ir pasīvi, klients pieslēdzas serverim, nevis otrādi. "
+#~ "Tādējādi ugunssienas nebloķē šo savienojumu. Veci FTP serveri var "
+#~ "neatbalstīt pasīvu FTP."
+
+#~ msgid "Global Options"
+#~ msgstr "Globālās opcijas"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Atzīmēt &daļēji augšupielādētās datnes"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Atzīmē datnes, kas ir daļēji augšupielādētas no SMB, SFTP un citiem "
+#~ "protokoliem.</p><p>Ieslēdzot šo iespēju, daļēji augšupielādētām datnēm "
+#~ "būs „.part“ paplašinājums, ko noņems tiklīdz datnes augšupielāde būs "
+#~ "pabeigta.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP opcijas"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Ieslēgt pasīvo režī&mu (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Ieslēdz FTP „pasīvo“ režīmu. Šī opcija atļauj FTP darboties arī tad, ja "
+#~ "jūsu ierīce atrodas aiz ugunsmūra."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Atzīmē daļēji augšupielādētās FTP datnes.</p><p>Ieslēdzot šo opciju, "
+#~ "daļēji augšupielādētajām datnēm būs „.part“ paplašinājums, ko sistēma "
+#~ "noņems, kad datnes augšupielāde būs pabeigta.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

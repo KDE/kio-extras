@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2005-10-13 21:27+0200\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -33,89 +33,19 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Янгилаш муваффақиятсиз тугади"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr ""
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Қисман ёзиб олинган файлларни белгилаш"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
 "uploaded it is renamed to its real name."
 msgstr ""
-
-#: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Options"
-msgid "Global Options"
-msgstr "Мосламалар"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Қисман ёзиб олинган файлларни &белгилаш"
-
-#: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Қисман ёзиб олинган FTP файлларни белгилайди.</p><p>Агар бу параметр "
-"ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси қўшилади. "
-"Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP параметрлари"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Пассив &усулини (PASV) ёқиш"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Қисман ёзиб олинган FTP файлларни белгилайди.</p><p>Агар бу параметр "
-"ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси қўшилади. "
-"Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1002,6 +932,44 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Global Options"
+#~ msgstr "Мосламалар"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Қисман ёзиб олинган файлларни &белгилаш"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Marks partially uploaded FTP files.</p><p>When this option is "
+#~| "enabled, partially uploaded files will have a \".part\" extension. This "
+#~| "extension will be removed once the transfer is complete.</p>"
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Қисман ёзиб олинган FTP файлларни белгилайди.</p><p>Агар бу параметр "
+#~ "ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси "
+#~ "қўшилади. Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP параметрлари"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Пассив &усулини (PASV) ёқиш"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Қисман ёзиб олинган FTP файлларни белгилайди.</p><p>Агар бу параметр "
+#~ "ёқилган бўлса, қисман ёзиб олинган файлларга \".part\" кенгайтмаси "
+#~ "қўшилади. Файл тўлиқ ёзиб олингач бу кенгайтма олиб ташланади.</p>"
 
 #, fuzzy
 #~| msgid "Default password:"

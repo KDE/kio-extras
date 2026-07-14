@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2025-10-23 14:31+0000\n"
 "Last-Translator: Sveinn í Felli <sv1@fellsnet.is>\n"
 "Language-Team: Icelandic\n"
@@ -33,32 +33,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Uppfærsla mistókst"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Slökkva á hlutlausu FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Þegar FTP-tengingar eru hlutlausar tengist biðlarinn við þjóninn í stað þess "
-"að þjónninn tengist biðlaranum. Þetta er gert svo eldveggir stöðvi ekki "
-"tenginguna. Eldri FTP-þjónar styðja e.t.v. ekki hlutlaust FTP."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Merkja skrár sendar að hluta"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -66,59 +48,6 @@ msgid ""
 msgstr ""
 "Á meðan verið er að hlaða upp skrá er skráarending hennar \"*.part\". Þegar "
 "upphleðslu er lokið fær hún sitt rétta heiti."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Altækir valkostir"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Merkja skrár hlaðnar u&pp að hluta"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Merkir skrár hlaðnar upp að hluta í gegnum SMB, SFTP og aðrar "
-"samskiptareglur.</p> <p>Þegar þetta er virkjað þá fá skrár sem hafa verið "
-"hlaðnar upp að hluta skráarendinguna \".part\".  Þessi ending er fjarlægð af "
-"skránni þegar upphleðslu er lokið.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP-valkostir"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Virkja hlutlaust s&nið (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Virkjar \"hlutlaust\" snið FTP-tenginga. Þetta er nauðsynlegt til að FTP "
-"virki á bakvið eldvegg."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Merkir skrár hlaðnar upp að hluta með FTP.</p> <p>Þegar þetta er virkjað "
-"fá skrár sem verið er að hlaða upp viðbótarendinguna \".part\".  Þessi "
-"ending er fjarlægð þegar búið er að hlaða upp að fullu.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1109,6 +1038,57 @@ msgstr "&Stafatafla:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Setja inn staðgengilstexta fyrirspurnar"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Slökkva á hlutlausu FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Þegar FTP-tengingar eru hlutlausar tengist biðlarinn við þjóninn í stað "
+#~ "þess að þjónninn tengist biðlaranum. Þetta er gert svo eldveggir stöðvi "
+#~ "ekki tenginguna. Eldri FTP-þjónar styðja e.t.v. ekki hlutlaust FTP."
+
+#~ msgid "Global Options"
+#~ msgstr "Altækir valkostir"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Merkja skrár hlaðnar u&pp að hluta"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Merkir skrár hlaðnar upp að hluta í gegnum SMB, SFTP og aðrar "
+#~ "samskiptareglur.</p> <p>Þegar þetta er virkjað þá fá skrár sem hafa verið "
+#~ "hlaðnar upp að hluta skráarendinguna \".part\".  Þessi ending er fjarlægð "
+#~ "af skránni þegar upphleðslu er lokið.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP-valkostir"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Virkja hlutlaust s&nið (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Virkjar \"hlutlaust\" snið FTP-tenginga. Þetta er nauðsynlegt til að FTP "
+#~ "virki á bakvið eldvegg."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Merkir skrár hlaðnar upp að hluta með FTP.</p> <p>Þegar þetta er "
+#~ "virkjað fá skrár sem verið er að hlaða upp viðbótarendinguna \".part\".  "
+#~ "Þessi ending er fjarlægð þegar búið er að hlaða upp að fullu.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

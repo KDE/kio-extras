@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-06-09 21:55+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
@@ -39,32 +39,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "புதுப்பித்தல் தோல்வியடைந்தது"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Passive FTPஐ முடக்கு"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"FTP இணைப்புகள் 'passive'-ஆக இருக்கும் போது வாங்கியே சேவையகத்தை தொடர்பு கொள்ளும். "
-"இப்படி செய்வதால் தீயரண்கள் இணைப்பை தடுக்காமல் இருக்கும். ஆனால் பழைய FTP சேவையகங்கள் "
-"passive FTP-ஐ ஆதரிக்காமல் இருக்கலாம்."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "முழுதாக பதிவேற்றப்படாத கோப்புகளை குறி"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -72,58 +54,6 @@ msgid ""
 msgstr ""
 "ஒரு கோப்பு பதிவேற்றப்படும்போது அதன் வகைப்பெயர் \"*.part\"-ஆக இருக்கும். முழுதாக "
 "பதிவேற்றிய பின் அதற்கு சரியான பெயர் இடப்படும்."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "பொதுவான விருப்பத்தேர்வுகள்"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "&முழுதாக பதிவேற்றப்படாத கோப்புகளை குறி"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>SMB, SFTP போன்ற நெறிமுறைகள் மூலம் முழுதாக பதிவேற்றப்படாத கோப்புகளைக் குறி.</"
-"p><p> இந்த விருப்பத்தை இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற "
-"வகைப்பெயர் இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP விருப்பங்கள்"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Passive &பயன்முறையை (PASV) இயக்கு"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"FTP-இன் 'passive' பயன்முறையை இயக்கும். தீயரண்களுக்கு பின்னாலிருந்து FTP வேலை செய்ய இது "
-"தேவை."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>FTP மூலம் முழுதாக பதிவேற்றப்படாத கோப்புகளைக் குறி.</p><p> இந்த விருப்பத்தை "
-"இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற வகைப்பெயர் இடப்படும். "
-"இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1108,6 +1038,56 @@ msgstr "&உருத்தொகுதி:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "கேள்விக்கான கொள்ளிடத்தை உள்ளிடு"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Passive FTPஐ முடக்கு"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "FTP இணைப்புகள் 'passive'-ஆக இருக்கும் போது வாங்கியே சேவையகத்தை தொடர்பு கொள்ளும். "
+#~ "இப்படி செய்வதால் தீயரண்கள் இணைப்பை தடுக்காமல் இருக்கும். ஆனால் பழைய FTP சேவையகங்கள் "
+#~ "passive FTP-ஐ ஆதரிக்காமல் இருக்கலாம்."
+
+#~ msgid "Global Options"
+#~ msgstr "பொதுவான விருப்பத்தேர்வுகள்"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "&முழுதாக பதிவேற்றப்படாத கோப்புகளை குறி"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>SMB, SFTP போன்ற நெறிமுறைகள் மூலம் முழுதாக பதிவேற்றப்படாத கோப்புகளைக் குறி.</"
+#~ "p><p> இந்த விருப்பத்தை இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" "
+#~ "என்ற வகைப்பெயர் இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP விருப்பங்கள்"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Passive &பயன்முறையை (PASV) இயக்கு"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "FTP-இன் 'passive' பயன்முறையை இயக்கும். தீயரண்களுக்கு பின்னாலிருந்து FTP வேலை செய்ய "
+#~ "இது தேவை."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>FTP மூலம் முழுதாக பதிவேற்றப்படாத கோப்புகளைக் குறி.</p><p> இந்த விருப்பத்தை "
+#~ "இயக்கினால், முழுதாக பதிவேற்றப்படாத கோப்புகளுக்கு \".part\" என்ற வகைப்பெயர் "
+#~ "இடப்படும். இடமாற்றம் முடிந்த பிறகு இந்த வகைப்பெயர் நீக்கப்படும்.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

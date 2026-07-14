@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -32,32 +32,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "अद्यतनं विफलम्"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "निष्क्रिय FTP निष्क्रियं कुर्वन्तु"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"यदा FTP संयोजनानि निष्क्रियं भवन्ति तदा क्लायन्ट् सर्वरेण सह संयोजयति, तस्य विपरीतम्, अतः "
-"अग्निप्रावरणाः संयोजनं न अवरुद्धयन्ति; पुरातन FTP सर्वरः यद्यपि Passive FTP समर्थयितुं न "
-"शक्नोति।"
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -65,59 +47,6 @@ msgid ""
 msgstr ""
 "यदा सञ्चिका अपलोड् भवति तदा तस्याः विस्तारः \".part\" भवति । यदा पूर्णतया अपलोड् "
 "भवति तदा तस्य नामकरणं तस्य वास्तविकं नाम भवति ।"
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "वैश्विकविकल्पाः"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "&आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>SMB, SFTP इत्यादिप्रोटोकॉलद्वारा आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नयति ।</"
-"p><p> यदा एषः विकल्पः सक्षमः भवति तदा आंशिकरूपेण अपलोड् कृतानां सञ्चिकानां &quot;."
-"part&quot; विस्तारः भविष्यति । स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् "
-"भविष्यति ।</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP विकल्पाः"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "निष्क्रिय &mode (PASV) सक्षमं कुर्वन्तु ।"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"FTP इत्यस्य \"निष्क्रिय\" मोड् सक्षमं करोति । एतत् आवश्यकं यत् FTP अग्निप्रावरणानां पृष्ठतः "
-"कार्यं कर्तुं शक्नोति ।"
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>आंशिकरूपेण अपलोड् कृताः FTP सञ्चिकाः चिह्निताः ।</p><p> यदा एषः विकल्पः सक्षमः "
-"भवति तदा आंशिकरूपेण अपलोड् कृतानां सञ्चिकानां &quot;.part&quot; विस्तारः भविष्यति । "
-"स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् भविष्यति ।</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1058,6 +987,57 @@ msgstr "&वर्णसमूहः :"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "प्रश्नस्थानधारकं सम्मिलितं कुर्वन्तु"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "निष्क्रिय FTP निष्क्रियं कुर्वन्तु"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "यदा FTP संयोजनानि निष्क्रियं भवन्ति तदा क्लायन्ट् सर्वरेण सह संयोजयति, तस्य विपरीतम्, "
+#~ "अतः अग्निप्रावरणाः संयोजनं न अवरुद्धयन्ति; पुरातन FTP सर्वरः यद्यपि Passive FTP "
+#~ "समर्थयितुं न शक्नोति।"
+
+#~ msgid "Global Options"
+#~ msgstr "वैश्विकविकल्पाः"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "&आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नितव्यानि"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>SMB, SFTP इत्यादिप्रोटोकॉलद्वारा आंशिकरूपेण अपलोड् कृतानि सञ्चिकानि चिह्नयति ।</"
+#~ "p><p> यदा एषः विकल्पः सक्षमः भवति तदा आंशिकरूपेण अपलोड् कृतानां सञ्चिकानां &quot;."
+#~ "part&quot; विस्तारः भविष्यति । स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् "
+#~ "भविष्यति ।</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP विकल्पाः"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "निष्क्रिय &mode (PASV) सक्षमं कुर्वन्तु ।"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "FTP इत्यस्य \"निष्क्रिय\" मोड् सक्षमं करोति । एतत् आवश्यकं यत् FTP अग्निप्रावरणानां "
+#~ "पृष्ठतः कार्यं कर्तुं शक्नोति ।"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>आंशिकरूपेण अपलोड् कृताः FTP सञ्चिकाः चिह्निताः ।</p><p> यदा एषः विकल्पः सक्षमः "
+#~ "भवति तदा आंशिकरूपेण अपलोड् कृतानां सञ्चिकानां &quot;.part&quot; विस्तारः भविष्यति । "
+#~ "स्थानान्तरणं सम्पन्नं जातं चेत् एतत् विस्तारं निष्कासितम् भविष्यति ।</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

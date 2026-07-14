@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2007-09-02 13:06+0330\n"
 "Last-Translator: Nazanin Kazemi <kazemi@itland.ir>\n"
 "Language-Team: Persian <kde-i18n-fa@kde.org>\n"
@@ -34,32 +34,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "خرابی در به‌روزرسانی"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "غیرفعال کردن قاپ منفعل"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"وقتی که اتصالها منفعل هستند، کارخواه در عوض تکمیل روش دیگر، به کارساز متصل "
-"می‌‌‌‌‌شود؛ بنابراین، باروها، اتصال را بلوک نمی‌کنند؛ به هر حال ممکن است کارسازان "
-"قدیمی قاپ، قاپ منفعل را پشتیبانی نکنند."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "نشان‌دار کردن پرونده‌هایی که نسبتاً بارگذاری‌شده"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -67,63 +49,6 @@ msgid ""
 msgstr ""
 "زمانی که پرونده‌ای در حال بارگذاری است، پسوندش ».part« می‌باشد. وقتی که کاملاً "
 "بارگذاری می‌شود، به نام حقیقی‌اش تغییر نام می‌دهد."
-
-#: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Options"
-msgid "Global Options"
-msgstr "انتخاب‌ها"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "نشان‌دار کردن پرونده‌هایی که &نسبتاً بارگذاری‌شده‌"
-
-#: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>پرونده‌های FTP که نسبتاً ‌بارگذاری‌شده را مشخص می‌کند.</p><p>وقتی که این "
-"انتخاب فعال می‌شود، پرونده‌هایی که نسبتاً بارگذاری‌ شده، یک پسوند ».part« خواهند "
-"داشت. به محض این که انتقال کامل می‌شود، این پسوند حذف خواهد شد.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "گزینه‌های FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "فعال‌سازی &حالت منفعل  )PASV(‌"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"حالت »منفعل« FTP را فعال می‌کند. برای اجازه دادن به FTP، به منظور کار کردن از "
-"پشت باروها مورد نیاز است."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>پرونده‌های FTP که نسبتاً ‌بارگذاری‌شده را مشخص می‌کند.</p><p>وقتی که این "
-"انتخاب فعال می‌شود، پرونده‌هایی که نسبتاً بارگذاری‌ شده، یک پسوند ».part« خواهند "
-"داشت. به محض این که انتقال کامل می‌شود، این پسوند حذف خواهد شد.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1133,6 +1058,63 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "غیرفعال کردن قاپ منفعل"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "وقتی که اتصالها منفعل هستند، کارخواه در عوض تکمیل روش دیگر، به کارساز "
+#~ "متصل می‌‌‌‌‌شود؛ بنابراین، باروها، اتصال را بلوک نمی‌کنند؛ به هر حال ممکن است "
+#~ "کارسازان قدیمی قاپ، قاپ منفعل را پشتیبانی نکنند."
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Global Options"
+#~ msgstr "انتخاب‌ها"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "نشان‌دار کردن پرونده‌هایی که &نسبتاً بارگذاری‌شده‌"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Marks partially uploaded FTP files.</p><p>When this option is "
+#~| "enabled, partially uploaded files will have a \".part\" extension. This "
+#~| "extension will be removed once the transfer is complete.</p>"
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>پرونده‌های FTP که نسبتاً ‌بارگذاری‌شده را مشخص می‌کند.</p><p>وقتی که این "
+#~ "انتخاب فعال می‌شود، پرونده‌هایی که نسبتاً بارگذاری‌ شده، یک پسوند ».part« "
+#~ "خواهند داشت. به محض این که انتقال کامل می‌شود، این پسوند حذف خواهد شد.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "گزینه‌های FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "فعال‌سازی &حالت منفعل  )PASV(‌"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "حالت »منفعل« FTP را فعال می‌کند. برای اجازه دادن به FTP، به منظور کار کردن "
+#~ "از پشت باروها مورد نیاز است."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>پرونده‌های FTP که نسبتاً ‌بارگذاری‌شده را مشخص می‌کند.</p><p>وقتی که این "
+#~ "انتخاب فعال می‌شود، پرونده‌هایی که نسبتاً بارگذاری‌ شده، یک پسوند ».part« "
+#~ "خواهند داشت. به محض این که انتقال کامل می‌شود، این پسوند حذف خواهد شد.</p>"
 
 #, fuzzy
 #~| msgid "Default password:"

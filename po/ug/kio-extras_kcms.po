@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-05-31 18:49-0400\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
@@ -33,33 +33,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "يېڭىلاش مەغلۇپ بولدى"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "پاسسىپ FTP نى چەكلە"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"FTP باغلىنىشى پاسسىپ ھالەتتە تۇرغاندا، خېرىدار مۇلازىمېتىرغا باغلىنىش "
-"ئىلتىماسى باشلايدۇ ئەكسىچە بولمايدۇ، بۇنداق بولغاندا مۇداپىئە تامنىڭ "
-"باغلىنىشنى توسۇشىنىڭ ئالدىنى ئالغىلى بولىدۇ؛ بەزى كونا FTP مۇلازىمېتىر "
-"بەلكىم پاسسىپ FTP نى قوللىماسلىقى مۇمكىن."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "قىسمەن يۈكلەنگەن ھۆججەتلەرگە بەلگە قوي"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -67,59 +48,6 @@ msgid ""
 msgstr ""
 "ھۆججەتنىڭ يۈكلەش جەريانىدىكى كېڭەيتىلگەن ئاتى «.part» غا ئۆزگەرتىلىدۇ. تولۇق "
 "يۈكلەنگەندىن كېيىن ھەقىقىي ئىسمىغا ئۆزگەرتىلىدۇ."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "ئومۇمىيەت تاللانما"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "قىسمەن يۈكلەنگەن ھۆججەت بەلگىسى قوي(&P)"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>SMB، SFTP ۋە باشقا كېلىشىم بىلەن قىسمەن يۈكلەنگەن ھۆججەتكە بەلگە قويىدۇ.</"
-"p><p>بۇ تاللانما قوزغىتىلغاندا، قىسمەن يۈكلەنگەن ھۆججەتنىڭ «.part» "
-"كېڭەيتىلگەن ئاتى بولىدۇ. يەتكۈزۈش تاماملانغاندا كېڭەيتىلگەن ئاتى "
-"چىقىرىۋېتىلىدۇ.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP تاللانمىسى"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "پاسسىپ ھالەتنى(PASV) قوزغات(&M)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"FTP نىڭ «پاسسىپ» ھالىتىنى قوزغىتىدۇ. FTP نى مۇداپىئە تېمىنىڭ كەينىدە "
-"ئىشلىشىگە ئىجازەت بېرىشتە ئىشلىتىلىدۇ."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>قىسمەن يۈكلەنگەن FTP ھۆججىتىگە بەلگە قويىدۇ.</p><p>بۇ تاللانما "
-"قوزغىتىلسا، قىسمەن يۈكلەنگەن ھۆججەتنىڭ كېڭەيتىلمە ئاتى «.part» بولىدۇ. "
-"يوللاش تاماملانغاندىن كېيىن بۇنداق كېڭەيتىلمە ئاتى بار ھۆججەت ئۆچۈرۈلىدۇ.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1110,6 +1038,59 @@ msgstr "ھەرپ توپلىمى(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "سۈرۈشتۈرۈش ئورۇن بەلگىسى قىستۇر"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "پاسسىپ FTP نى چەكلە"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "FTP باغلىنىشى پاسسىپ ھالەتتە تۇرغاندا، خېرىدار مۇلازىمېتىرغا باغلىنىش "
+#~ "ئىلتىماسى باشلايدۇ ئەكسىچە بولمايدۇ، بۇنداق بولغاندا مۇداپىئە تامنىڭ "
+#~ "باغلىنىشنى توسۇشىنىڭ ئالدىنى ئالغىلى بولىدۇ؛ بەزى كونا FTP مۇلازىمېتىر "
+#~ "بەلكىم پاسسىپ FTP نى قوللىماسلىقى مۇمكىن."
+
+#~ msgid "Global Options"
+#~ msgstr "ئومۇمىيەت تاللانما"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "قىسمەن يۈكلەنگەن ھۆججەت بەلگىسى قوي(&P)"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>SMB، SFTP ۋە باشقا كېلىشىم بىلەن قىسمەن يۈكلەنگەن ھۆججەتكە بەلگە "
+#~ "قويىدۇ.</p><p>بۇ تاللانما قوزغىتىلغاندا، قىسمەن يۈكلەنگەن ھۆججەتنىڭ «."
+#~ "part» كېڭەيتىلگەن ئاتى بولىدۇ. يەتكۈزۈش تاماملانغاندا كېڭەيتىلگەن ئاتى "
+#~ "چىقىرىۋېتىلىدۇ.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP تاللانمىسى"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "پاسسىپ ھالەتنى(PASV) قوزغات(&M)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "FTP نىڭ «پاسسىپ» ھالىتىنى قوزغىتىدۇ. FTP نى مۇداپىئە تېمىنىڭ كەينىدە "
+#~ "ئىشلىشىگە ئىجازەت بېرىشتە ئىشلىتىلىدۇ."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>قىسمەن يۈكلەنگەن FTP ھۆججىتىگە بەلگە قويىدۇ.</p><p>بۇ تاللانما "
+#~ "قوزغىتىلسا، قىسمەن يۈكلەنگەن ھۆججەتنىڭ كېڭەيتىلمە ئاتى «.part» بولىدۇ. "
+#~ "يوللاش تاماملانغاندىن كېيىن بۇنداق كېڭەيتىلمە ئاتى بار ھۆججەت ئۆچۈرۈلىدۇ."
+#~ "</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

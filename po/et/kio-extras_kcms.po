@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2022-10-19 21:51+0200\n"
 "Last-Translator: Mihkel Tõnnov <mihhkel@gmail.com>\n"
 "Language-Team: Estonian <>\n"
@@ -37,32 +37,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Värskendamine nurjus"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Passiivse FTP keelamine"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Kui FTP ühendus on passiivne, võtab klient ühendust serveriga, mitte "
-"vastupidi ning sel juhul ei ole tulemüürid takistuseks. Siiski ei pruugi "
-"vanemad FTP serverid passiivset FTP-d toetada."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Märgitakse osaliselt üleslaaditud failid"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -70,59 +52,6 @@ msgid ""
 msgstr ""
 "Faili üleslaadimisel on selle laiendiks \"*.part\". Pärast täielikku "
 "üleslaadimist saab fail endale oma algse nime tagasi."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Globaalsed valikud"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "&Osaliselt üleslaaditud failide märkimine"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Märgitakse SMB, SFTP ja teiste protokollide vahendusel osaliselt "
-"üleslaaditud failid.</p><p>Kui see valik on sisse lülitatud, siis on "
-"osaliselt üleslaaditud failidel laiend \".part\". Laiend võetakse maha siis, "
-"kui üleslaadimine on edukalt lõpetatud.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP valikud"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Passiivse režiimi (PASV) luba&mine"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Lubab FTP passiivse režiimi. See on vajalik, et FTP töötaks tulemüüride "
-"tagant."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Märgitakse osaliselt üleslaaditud failid.</p><p>Kui see valik on sisse "
-"lülitatud, siis on osaliselt üleslaaditud failidel laiend \".part\". Laiend "
-"võetakse maha siis, kui üleslaadimine on edukalt lõpetatud.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1160,6 +1089,57 @@ msgstr "Koo&ditabel:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Päringu kohatäitja lisamine"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Passiivse FTP keelamine"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Kui FTP ühendus on passiivne, võtab klient ühendust serveriga, mitte "
+#~ "vastupidi ning sel juhul ei ole tulemüürid takistuseks. Siiski ei pruugi "
+#~ "vanemad FTP serverid passiivset FTP-d toetada."
+
+#~ msgid "Global Options"
+#~ msgstr "Globaalsed valikud"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "&Osaliselt üleslaaditud failide märkimine"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Märgitakse SMB, SFTP ja teiste protokollide vahendusel osaliselt "
+#~ "üleslaaditud failid.</p><p>Kui see valik on sisse lülitatud, siis on "
+#~ "osaliselt üleslaaditud failidel laiend \".part\". Laiend võetakse maha "
+#~ "siis, kui üleslaadimine on edukalt lõpetatud.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP valikud"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Passiivse režiimi (PASV) luba&mine"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Lubab FTP passiivse režiimi. See on vajalik, et FTP töötaks tulemüüride "
+#~ "tagant."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Märgitakse osaliselt üleslaaditud failid.</p><p>Kui see valik on sisse "
+#~ "lülitatud, siis on osaliselt üleslaaditud failidel laiend \".part\". "
+#~ "Laiend võetakse maha siis, kui üleslaadimine on edukalt lõpetatud.</p>"
 
 #, fuzzy
 #~| msgctxt "@info:tooltip"

@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2024-11-24 09:40\n"
 "Last-Translator: Darafei Praliaskouski <komzpa@licei2.com>\n"
 "Language-Team: Belarusian\n"
@@ -36,32 +36,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Не ўдалося абнавіць"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Адключыць пасіўны FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Калі FTP-злучэнні пасіўныя, кліент падлучаецца да сервера, а не наадварот, "
-"таму файрволы не блакуюць злучэнне; старыя серверы FTP могуць не "
-"падтрымліваць пасіўны FTP."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Пазначаць часткова спампаваныя файлы"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -69,59 +51,6 @@ msgid ""
 msgstr ""
 "Пакуль файл спампоўваецца, яго пашырэнне - \".part\". Калі спампоўванне "
 "завяршаецца, яго назва змяняецца на арыгінальную."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Глабальныя параметры"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Пазначаць &часткова спампаваныя файлы"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Пазначаць часткова спампаваныя файлы праз SMB, SFTP і іншыя пратаколы.</"
-"p><p>Калі гэты параметр уключаны, часткова спампаваныя файлы будуць мець "
-"пашырэнне \".part\". Гэтае пашырэнне будзе выдалена пасля завяршэння "
-"перадачы.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Параметры FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Уключыць пасіўны &рэжым (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Уключае \"пасіўны\" рэжым FTP. Гэта неабходна, каб дазволіць FTP працаваць у "
-"абыход файрвола."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Пазначаць часткова спампаваныя файлы праз FTP.</p><p>Калі гэты параметр "
-"уключаны, часткова спампаваныя файлы будуць мець пашырэнне \".part\". Гэтае "
-"пашырэнне будзе выдалена пасля завяршэння перадачы.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1122,6 +1051,57 @@ msgstr "&Кадаванне:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Уставіць запаўняльнік запыту"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Адключыць пасіўны FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Калі FTP-злучэнні пасіўныя, кліент падлучаецца да сервера, а не "
+#~ "наадварот, таму файрволы не блакуюць злучэнне; старыя серверы FTP могуць "
+#~ "не падтрымліваць пасіўны FTP."
+
+#~ msgid "Global Options"
+#~ msgstr "Глабальныя параметры"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Пазначаць &часткова спампаваныя файлы"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Пазначаць часткова спампаваныя файлы праз SMB, SFTP і іншыя пратаколы."
+#~ "</p><p>Калі гэты параметр уключаны, часткова спампаваныя файлы будуць "
+#~ "мець пашырэнне \".part\". Гэтае пашырэнне будзе выдалена пасля завяршэння "
+#~ "перадачы.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Параметры FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Уключыць пасіўны &рэжым (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Уключае \"пасіўны\" рэжым FTP. Гэта неабходна, каб дазволіць FTP "
+#~ "працаваць у абыход файрвола."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Пазначаць часткова спампаваныя файлы праз FTP.</p><p>Калі гэты "
+#~ "параметр уключаны, часткова спампаваныя файлы будуць мець пашырэнне \"."
+#~ "part\". Гэтае пашырэнне будзе выдалена пасля завяршэння перадачы.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

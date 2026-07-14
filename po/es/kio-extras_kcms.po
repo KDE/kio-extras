@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras_kcms\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-05-30 15:55+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -42,32 +42,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Actualización fallida"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Desactivar FTP pasivo"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Cuando las conexiones FTP son pasivas el cliente se conecta al servidor, en "
-"lugar de hacerlo a la inversa. De este modo, los cortafuegos no bloquean la "
-"conexión. Puede que los FTP antiguos no admitan el FTP pasivo."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Marcar los archivos parcialmente cargados"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -75,60 +57,6 @@ msgid ""
 msgstr ""
 "Mientras se está cargando al servidor un archivo su extensión es «.part». "
 "Cuando se haya cargado por completo, se renombra con el nombre real."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Opciones globales"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Marcar los archivos &parcialmente cargados"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Marca los archivos parcialmente enviados por SMB, SFTP y otros protocolos."
-"</p><p>Cuando se activa esta opción, los archivos parcialmente enviados "
-"tendrán la extensión «.part». Esta extensión se eliminará una vez que la "
-"transferencia se haya completado.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Opciones FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Activar modo &pasivo (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Activa el modo de FTP «pasivo». Esto es necesario para permitir que el FTP "
-"funcione tras cortafuegos."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Marca los archivos parcialmente cargados por FTP.</p><p>Cuando se activa "
-"esta opción, los archivos parcialmente cargados tendrán una extensión «."
-"part». Esta extensión será eliminada una vez que la transferencia se "
-"complete.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1147,3 +1075,55 @@ msgstr "&Juego de caracteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserte el parámetro de sustitución de la consulta"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Desactivar FTP pasivo"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Cuando las conexiones FTP son pasivas el cliente se conecta al servidor, "
+#~ "en lugar de hacerlo a la inversa. De este modo, los cortafuegos no "
+#~ "bloquean la conexión. Puede que los FTP antiguos no admitan el FTP pasivo."
+
+#~ msgid "Global Options"
+#~ msgstr "Opciones globales"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Marcar los archivos &parcialmente cargados"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Marca los archivos parcialmente enviados por SMB, SFTP y otros "
+#~ "protocolos.</p><p>Cuando se activa esta opción, los archivos parcialmente "
+#~ "enviados tendrán la extensión «.part». Esta extensión se eliminará una "
+#~ "vez que la transferencia se haya completado.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Opciones FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Activar modo &pasivo (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Activa el modo de FTP «pasivo». Esto es necesario para permitir que el "
+#~ "FTP funcione tras cortafuegos."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Marca los archivos parcialmente cargados por FTP.</p><p>Cuando se "
+#~ "activa esta opción, los archivos parcialmente cargados tendrán una "
+#~ "extensión «.part». Esta extensión será eliminada una vez que la "
+#~ "transferencia se complete.</p>"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2009-08-03 17:47+0200\n"
 "Last-Translator: Michôł Òstrowsczi <michol@linuxcsb.org>\n"
 "Language-Team: Kashubian <i18n-csb@linuxcsb.org>\n"
@@ -37,32 +37,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Aktualizacëjô nie darzëła sã"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Wëłączë pasiwné FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Jak sparłãczenia FTP są pasiwné to klient parłãczy sã z serwerã, a nié "
-"apartno, dzãka temù ògniowô scana nie blokòje społãczenia. Stôrszé serwerë "
-"FTP mògą równak nié wspiérac pasiwnegò tribù."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Zaznaczë dzélowò wësłóné lopczi"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -70,63 +52,6 @@ msgid ""
 msgstr ""
 "Jak lopk je wësłóny, jegò rozcygniãcém jest \".part\". Pò ùdałim wësłaniu "
 "jegò miono je zjinaczoné na originalné."
-
-#: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Options"
-msgid "Global Options"
-msgstr "Òptacëje"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Zaznaczë &dzélowò sélóné lopczi"
-
-#: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Zaznaczô dzélowô wësłóné lopczi FTP.</p><p>Pò włączeniu ti òptacëji w "
-"dzélowò sélóné lopczi dostóną rozszerzenié \".part\". rëmniãté pò "
-"zakùńczeniu sélania lopka.</p> "
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Òptacëje FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Włączë pasiwny &trib (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Włączô \"pasiwny\" trib FTP. Je to mùszebné, bë ùmòżlëwic robòtã FTP bùten "
-"ògniowi scanë."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Zaznaczô dzélowô wësłóné lopczi FTP.</p><p>Pò włączeniu ti òptacëji w "
-"dzélowò sélóné lopczi dostóną rozszerzenié \".part\". rëmniãté pò "
-"zakùńczeniu sélania lopka.</p> "
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1128,6 +1053,63 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Wëłączë pasiwné FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Jak sparłãczenia FTP są pasiwné to klient parłãczy sã z serwerã, a nié "
+#~ "apartno, dzãka temù ògniowô scana nie blokòje społãczenia. Stôrszé "
+#~ "serwerë FTP mògą równak nié wspiérac pasiwnegò tribù."
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Global Options"
+#~ msgstr "Òptacëje"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Zaznaczë &dzélowò sélóné lopczi"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Marks partially uploaded FTP files.</p><p>When this option is "
+#~| "enabled, partially uploaded files will have a \".part\" extension. This "
+#~| "extension will be removed once the transfer is complete.</p>"
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Zaznaczô dzélowô wësłóné lopczi FTP.</p><p>Pò włączeniu ti òptacëji w "
+#~ "dzélowò sélóné lopczi dostóną rozszerzenié \".part\". rëmniãté pò "
+#~ "zakùńczeniu sélania lopka.</p> "
+
+#~ msgid "FTP Options"
+#~ msgstr "Òptacëje FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Włączë pasiwny &trib (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Włączô \"pasiwny\" trib FTP. Je to mùszebné, bë ùmòżlëwic robòtã FTP "
+#~ "bùten ògniowi scanë."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Zaznaczô dzélowô wësłóné lopczi FTP.</p><p>Pò włączeniu ti òptacëji w "
+#~ "dzélowò sélóné lopczi dostóną rozszerzenié \".part\". rëmniãté pò "
+#~ "zakùńczeniu sélania lopka.</p> "
 
 #, fuzzy
 #~| msgid "Default password:"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-05-30 09:25+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -39,32 +39,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "L'actualització ha fallat"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Desactiva l'FTP passiu"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Quan les connexions FTP són passives el client es connecta amb el servidor, "
-"en comptes de l'inrevés, per tant, els tallafocs no bloquegen la connexió; "
-"encara que els servidors FTP antics poden no acceptar l'FTP passiu."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Marca els fitxers carregats parcialment"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -72,60 +54,6 @@ msgid ""
 msgstr ""
 "Mentre es carrega un fitxer la seva extensió és «.part». Quan s'ha carregat "
 "del tot es reanomena al seu nom real."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Opcions globals"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Marca els fitxers carregats &parcialment"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Marca els fitxers carregats parcialment per a SMB, SFTP i altres "
-"protocols.</p><p>Quan aquesta opció està activada, els fitxers carregats "
-"parcialment tindran una extensió «.part». Aquesta extensió s'eliminarà quan "
-"s'hagi completat la transferència.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Opcions FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Activa el &mode passiu (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Activa el mode d'FTP «passiu». Això és necessari per a permetre que l'FTP "
-"funcioni darrere de tallafocs."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Marca els fitxers carregats parcialment per FTP.</p><p>Quan aquesta opció "
-"està activada, els fitxers carregats parcialment tindran una extensió «."
-"part». Aquesta extensió serà eliminada una vegada que la transferència hagi "
-"estat completada.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1157,6 +1085,59 @@ msgstr "Joc de &caràcters:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inseriu el text variable de la consulta"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Desactiva l'FTP passiu"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Quan les connexions FTP són passives el client es connecta amb el "
+#~ "servidor, en comptes de l'inrevés, per tant, els tallafocs no bloquegen "
+#~ "la connexió; encara que els servidors FTP antics poden no acceptar l'FTP "
+#~ "passiu."
+
+#~ msgid "Global Options"
+#~ msgstr "Opcions globals"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Marca els fitxers carregats &parcialment"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Marca els fitxers carregats parcialment per a SMB, SFTP i altres "
+#~ "protocols.</p><p>Quan aquesta opció està activada, els fitxers carregats "
+#~ "parcialment tindran una extensió «.part». Aquesta extensió s'eliminarà "
+#~ "quan s'hagi completat la transferència.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Opcions FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Activa el &mode passiu (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Activa el mode d'FTP «passiu». Això és necessari per a permetre que l'FTP "
+#~ "funcioni darrere de tallafocs."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Marca els fitxers carregats parcialment per FTP.</p><p>Quan aquesta "
+#~ "opció està activada, els fitxers carregats parcialment tindran una "
+#~ "extensió «.part». Aquesta extensió serà eliminada una vegada que la "
+#~ "transferència hagi estat completada.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

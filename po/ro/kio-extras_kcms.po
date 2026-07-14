@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-02-28 23:16+0000\n"
 "Last-Translator: Sergiu Bivol <sergiu@cip.md>\n"
 "Language-Team: Romanian <kde-i18n-ro@kde.org>\n"
@@ -33,32 +33,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Actualizare eșuată"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Dezactivează FTP pasiv"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Când conexiunile FTP sunt pasive, clientul se conectează la server astfel "
-"încât zidurile de foc (firewall-urile) nu blochează conexiunea. Serverele "
-"FTP foarte vechi s-ar putea să nu susțină FTP pasiv."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Marchează fișierele încărcate parțial"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -66,60 +48,6 @@ msgid ""
 msgstr ""
 "La încărcarea unui fișier, extensia acestuia va fi „*.part”. După încheierea "
 "încărcării, acesta este redenumit cu denumirea reală."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Opțiuni globale"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Marchează fișierele încărcate &parțial"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Marchează fișierele transferate parțial prin SMB, SFTP și alte protocoale."
-"</p><p>Dacă această opțiune este activă, atunci fișierele care au fost "
-"încărcate parțial vor avea extensia „.part”. Această extensie va fi "
-"eliminată în momentul în care transferul se încheie.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Opțiuni FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Activează regi&mul pasiv (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Activează „regimul pasiv”. Acesta e necesar pentru a permite protocolului "
-"FTP să lucreze din spatele unui zid de foc (firewall)."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Marchează fișierele încărcate parțial prin FTP.</p><p>Dacă această "
-"opțiune este aleasă, atunci fișierele transferate parțial vor avea extensia "
-"„.part”. Această extensie va fi eliminată odată ce transferul este complet.</"
-"p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1088,6 +1016,58 @@ msgstr "Set de &caractere:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserează substituent pentru interogare"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Dezactivează FTP pasiv"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Când conexiunile FTP sunt pasive, clientul se conectează la server astfel "
+#~ "încât zidurile de foc (firewall-urile) nu blochează conexiunea. Serverele "
+#~ "FTP foarte vechi s-ar putea să nu susțină FTP pasiv."
+
+#~ msgid "Global Options"
+#~ msgstr "Opțiuni globale"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Marchează fișierele încărcate &parțial"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Marchează fișierele transferate parțial prin SMB, SFTP și alte "
+#~ "protocoale.</p><p>Dacă această opțiune este activă, atunci fișierele care "
+#~ "au fost încărcate parțial vor avea extensia „.part”. Această extensie va "
+#~ "fi eliminată în momentul în care transferul se încheie.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Opțiuni FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Activează regi&mul pasiv (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Activează „regimul pasiv”. Acesta e necesar pentru a permite protocolului "
+#~ "FTP să lucreze din spatele unui zid de foc (firewall)."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Marchează fișierele încărcate parțial prin FTP.</p><p>Dacă această "
+#~ "opțiune este aleasă, atunci fișierele transferate parțial vor avea "
+#~ "extensia „.part”. Această extensie va fi eliminată odată ce transferul "
+#~ "este complet.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

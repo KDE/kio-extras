@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2023-02-18 20:42+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -32,32 +32,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Yenilənmə Alınmadı"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Passiv FTP söndürün"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"FTP əlaqələri passiv olduqda, müştəri başqa bir yol əvəzinə serverə qoşulur, "
-"buna görə də köhnə FTP serverləri passiv FTP-ni dəstəkləməsə də.firewall "
-"bağlantını blok etmir."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Qismən yüklənən faylları işarələ"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -65,58 +47,6 @@ msgid ""
 msgstr ""
 "Fayl yüklənməyə başlayan zaman faylın adına \".part\" uzantısı əlavə olunur "
 "Yükləmə başa çatdıqdan sonra bu gerçək ada dəyişdirilir."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Qobal Seçimlər"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "&Qismən yüklənən faylları işarələ"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>SMB, SFTP və dogər protokollar vasitəsilə qismən yüklənən faylları "
-"işarələ.</p><p>Əgər bu seçim aktiv edilərsə qismən yüklənən fayllar \".part"
-"\" uzantısına malik olacaq.Bu uzantı fayl tam yüklənən kimi silinəcək.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP seçimlər"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Passiv reji&mi (PASV) aktiv et"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"FTP -nin \"passiv\" rejimini aktiv et. Bu FTP'nin firewallun "
-"ardıncaişləməsinə icazə vermək üçün tələb olunur."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Qismən yüklənən FTP faylları işarələ. </p><p>Bu seçim aktiv olduqda "
-"qismən yüklənən fayllar \".part\" uzantısına malik olacaq. Bu uzantı fayllar "
-"tam yükləndikdən həmən sonra silinəcək.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1153,6 +1083,57 @@ msgstr "&Kodlaşma:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sorğunun nümunəsini yerləşdirin"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Passiv FTP söndürün"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "FTP əlaqələri passiv olduqda, müştəri başqa bir yol əvəzinə serverə "
+#~ "qoşulur, buna görə də köhnə FTP serverləri passiv FTP-ni dəstəkləməsə də."
+#~ "firewall bağlantını blok etmir."
+
+#~ msgid "Global Options"
+#~ msgstr "Qobal Seçimlər"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "&Qismən yüklənən faylları işarələ"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>SMB, SFTP və dogər protokollar vasitəsilə qismən yüklənən faylları "
+#~ "işarələ.</p><p>Əgər bu seçim aktiv edilərsə qismən yüklənən fayllar \"."
+#~ "part\" uzantısına malik olacaq.Bu uzantı fayl tam yüklənən kimi silinəcək."
+#~ "</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP seçimlər"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Passiv reji&mi (PASV) aktiv et"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "FTP -nin \"passiv\" rejimini aktiv et. Bu FTP'nin firewallun "
+#~ "ardıncaişləməsinə icazə vermək üçün tələb olunur."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Qismən yüklənən FTP faylları işarələ. </p><p>Bu seçim aktiv olduqda "
+#~ "qismən yüklənən fayllar \".part\" uzantısına malik olacaq. Bu uzantı "
+#~ "fayllar tam yükləndikdən həmən sonra silinəcək.</p>"
 
 #, fuzzy
 #~| msgctxt "@info:tooltip"

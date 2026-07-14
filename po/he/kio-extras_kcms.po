@@ -19,7 +19,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-06-03 08:11+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
@@ -44,31 +44,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "העדכון נכשל"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "השבתת FTP סביל"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"כאשר חיבורי FTP הם סבילים הלקוח מתחבר לשרת במקום להיפך, כך שחומות אש לא "
-"חוסמות את החיבור, יש שרתי FTP ישנים שלא תומכים ב־FTP סביל."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "סימון קבצים שהועלו חלקית"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -76,55 +59,6 @@ msgid ""
 msgstr ""
 "כאשר קובץ נמצא בתהליך העלאה, הוא מקבל את הסיומת \".part\". כאשר ההעלאה "
 "מסתיימת שמו משתנה לשם הקובץ האמתי."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "אפשרויות מקיפות"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "סימון קב&צים שהועלו באופן חלקי"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>סימון קבצים שהועלו חלקית ל־SMB,‏ SFTP ופרוטוקולים אחרים.</p><p>כשאפשרות זו "
-"פעילה, לקבצים שהועלו חלקית תתווסף הסיומת „‎.part”. הסיומת הזאת תוסר עם השלמת "
-"ההעברה.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "אפשרויות FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "הפעלת מצב &סביל (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr "הפעלת מצב „סביל” של FTP. נחוץ כדי לאפשר ל־FTP לעבור מבעד לחומות־אש."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>מסמן קובצי FTP שהועלו חלקית.</p><p>כאשר האפשרות הזאת פעילה, לקבצים שהועלו "
-"חלקית תתווסף הסיומת „‎.part”. הסיומת הזאת תוסר לאחר השלמת ההעברה.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1107,6 +1041,53 @@ msgstr "&ערכת תווים:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "הוספת ממלא מקום לשאילתה"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "השבתת FTP סביל"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "כאשר חיבורי FTP הם סבילים הלקוח מתחבר לשרת במקום להיפך, כך שחומות אש לא "
+#~ "חוסמות את החיבור, יש שרתי FTP ישנים שלא תומכים ב־FTP סביל."
+
+#~ msgid "Global Options"
+#~ msgstr "אפשרויות מקיפות"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "סימון קב&צים שהועלו באופן חלקי"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>סימון קבצים שהועלו חלקית ל־SMB,‏ SFTP ופרוטוקולים אחרים.</p><p>כשאפשרות "
+#~ "זו פעילה, לקבצים שהועלו חלקית תתווסף הסיומת „‎.part”. הסיומת הזאת תוסר עם "
+#~ "השלמת ההעברה.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "אפשרויות FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "הפעלת מצב &סביל (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr "הפעלת מצב „סביל” של FTP. נחוץ כדי לאפשר ל־FTP לעבור מבעד לחומות־אש."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>מסמן קובצי FTP שהועלו חלקית.</p><p>כאשר האפשרות הזאת פעילה, לקבצים "
+#~ "שהועלו חלקית תתווסף הסיומת „‎.part”. הסיומת הזאת תוסר לאחר השלמת ההעברה.</"
+#~ "p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

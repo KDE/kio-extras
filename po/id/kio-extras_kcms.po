@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_trash\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2023-02-07 20:29+0700\n"
 "Last-Translator: Wantoyèk <wantoyek@gmail.com>\n"
 "Language-Team: Indonesian <kde-i18n-doc@kde.org>\n"
@@ -35,32 +35,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Gagal Pembaruan"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Nonfungsikan FTP Pasif"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Ketika koneksi FTP adalah pasif, klien mengkoneksikan ke server, bukannya "
-"sebaliknya, jadi firewall tidak memblokir koneksi; server FTP lawas mungkin "
-"tidak mendukung FTP Pasif sekalipun."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Tandai sebagian berkas terunggah"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -68,59 +50,6 @@ msgid ""
 msgstr ""
 "Selagi berkas sedang diunggah ekstensinya adalah \".part\". Ketika diunggah "
 "secara penuh itu diubah namanya ke nama yang hakiki."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Opsi Global"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Tandai &sebagian berkas terunggah"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Tandai sebagian berkas yang diunggah melalui SMB, SFTP, dan protokol lain."
-"</p><p>Saat opsi ini difungsikan, sebagian berkas yang diunggah akan "
-"memiliki ekstensi \".part\". Ekstensi ini akan dihapus setelah transfer "
-"selesai.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Opsi FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Fungsikan &mode pasif (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Mengfungsikan mode FTP \"passive\". Ini diperlukan untuk membolehkan FTP "
-"untuk bekerja dari belakang firewall."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Tandai sebagian berkas FTP yang diunggah.</p> <p>Ketika opsi ini "
-"difungsikan, sebagian berkas yang diunggah akan memiliki ekstensi \".part\". "
-"Ekstensi ini akan dihapus setelah transfer selesai.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1163,6 +1092,57 @@ msgstr "&Perangkat Karakter:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sisipkan query placeholder"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Nonfungsikan FTP Pasif"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Ketika koneksi FTP adalah pasif, klien mengkoneksikan ke server, bukannya "
+#~ "sebaliknya, jadi firewall tidak memblokir koneksi; server FTP lawas "
+#~ "mungkin tidak mendukung FTP Pasif sekalipun."
+
+#~ msgid "Global Options"
+#~ msgstr "Opsi Global"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Tandai &sebagian berkas terunggah"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Tandai sebagian berkas yang diunggah melalui SMB, SFTP, dan protokol "
+#~ "lain.</p><p>Saat opsi ini difungsikan, sebagian berkas yang diunggah akan "
+#~ "memiliki ekstensi \".part\". Ekstensi ini akan dihapus setelah transfer "
+#~ "selesai.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Opsi FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Fungsikan &mode pasif (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Mengfungsikan mode FTP \"passive\". Ini diperlukan untuk membolehkan FTP "
+#~ "untuk bekerja dari belakang firewall."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Tandai sebagian berkas FTP yang diunggah.</p> <p>Ketika opsi ini "
+#~ "difungsikan, sebagian berkas yang diunggah akan memiliki ekstensi \".part"
+#~ "\". Ekstensi ini akan dihapus setelah transfer selesai.</p>"
 
 #, fuzzy
 #~| msgctxt "@info:tooltip"

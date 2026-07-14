@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-05-30 11:47+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -37,33 +37,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Помилка поновлення"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Не використовувати пасивний FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"В пасивному FTP режимі клієнтська програма з'єднується з сервером, а не "
-"навпаки (як ще відбувається в активному режимі), тому брандмауери не "
-"блокують такі з'єднання. Але старі FTP сервери можуть не підтримувати "
-"пасивний FTP режим."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Позначати частково вивантажені файли"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -72,59 +53,6 @@ msgstr ""
 "До завершення вивантаження файла його назва міститиме суфікс «.part». Після "
 "завершення вивантаження файла його назву буде змінено на справжню назву для "
 "цього файла."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Загальні параметри"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Позначати &частково вивантажені файли"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Позначає частково вивантажені за допомогою SMB, SFTP та інших протоколів "
-"файли.</p> <p>Якщо цей пункт буде позначено, назви частково вивантажених "
-"файлів міститимуть суфікс «.part». Цей суфікс буде вилучено після завершення "
-"отримання файла.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Параметри FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Використовувати пасивний &режим (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Вмикає використання «пасивного» режиму. Цей режим потрібний для роботи з "
-"протоколом FTP, якщо клієнт знаходиться за брандмауером."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Частково вивантажені з FTP файли будуть позначені.</p> <p>Якщо цей пункт "
-"буде позначено, назви частково вивантажених файлів міститимуть суфікс «."
-"part». Цей суфікс буде вилучено після завершення отримання файла.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1133,6 +1061,59 @@ msgstr "&Кодування символів:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вставити замінник запиту"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Не використовувати пасивний FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "В пасивному FTP режимі клієнтська програма з'єднується з сервером, а не "
+#~ "навпаки (як ще відбувається в активному режимі), тому брандмауери не "
+#~ "блокують такі з'єднання. Але старі FTP сервери можуть не підтримувати "
+#~ "пасивний FTP режим."
+
+#~ msgid "Global Options"
+#~ msgstr "Загальні параметри"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Позначати &частково вивантажені файли"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Позначає частково вивантажені за допомогою SMB, SFTP та інших "
+#~ "протоколів файли.</p> <p>Якщо цей пункт буде позначено, назви частково "
+#~ "вивантажених файлів міститимуть суфікс «.part». Цей суфікс буде вилучено "
+#~ "після завершення отримання файла.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Параметри FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Використовувати пасивний &режим (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Вмикає використання «пасивного» режиму. Цей режим потрібний для роботи з "
+#~ "протоколом FTP, якщо клієнт знаходиться за брандмауером."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Частково вивантажені з FTP файли будуть позначені.</p> <p>Якщо цей "
+#~ "пункт буде позначено, назви частково вивантажених файлів міститимуть "
+#~ "суфікс «.part». Цей суфікс буде вилучено після завершення отримання файла."
+#~ "</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

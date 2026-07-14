@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2023-02-15 16:10+0000\n"
 "Last-Translator: José Nuno Pires <zepires@gmail.com>\n"
 "Language-Team: pt <kde-i18n-pt@kde.org>\n"
@@ -103,32 +103,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Actualização sem Sucesso"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Desactivar o FTP Passivo"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Quando as ligações de FTP são passivas, o cliente liga-se ao servidor, em "
-"vez de ser o inverso, para que as 'firewalls' não bloqueiem a ligação; "
-"porém, os servidores de FTP antigos poderão não suportar o FTP Passivo."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Marcar os ficheiros enviados parcialmente"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -136,59 +118,6 @@ msgid ""
 msgstr ""
 "Enquanto um ficheiro está a ser enviado, a sua extensão é \".part\". Quando "
 "for enviado por completo, muda para o seu nome real."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Opções Globais"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Marcar os ficheiros enviados &parcialmente"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Marca os ficheiros de SMB, SFTP e doutros protocolos parcialmente "
-"enviados.</p><p>Quando esta opção estiver activa, os ficheiros enviados "
-"parcialmente irão ter uma extensão \".part\". Esta extensão será removida "
-"assim que a transferência terminar.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Opções de FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Activar o &modo passivo (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Activa o modo \"passivo\" do FTP. Isto é necessário para que o FTP funcione "
-"atrás de 'firewalls'."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Marca os ficheiros de FTP parcialmente enviados.</p><p>Quando esta opção "
-"estiver activa, os ficheiros enviados parcialmente irão ter uma extensão \"."
-"part\". Esta extensão será removida assim que a transferência terminar.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1237,6 +1166,58 @@ msgstr "&Codificação:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserir o item de substituição da pesquisa"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Desactivar o FTP Passivo"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Quando as ligações de FTP são passivas, o cliente liga-se ao servidor, em "
+#~ "vez de ser o inverso, para que as 'firewalls' não bloqueiem a ligação; "
+#~ "porém, os servidores de FTP antigos poderão não suportar o FTP Passivo."
+
+#~ msgid "Global Options"
+#~ msgstr "Opções Globais"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Marcar os ficheiros enviados &parcialmente"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Marca os ficheiros de SMB, SFTP e doutros protocolos parcialmente "
+#~ "enviados.</p><p>Quando esta opção estiver activa, os ficheiros enviados "
+#~ "parcialmente irão ter uma extensão \".part\". Esta extensão será removida "
+#~ "assim que a transferência terminar.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Opções de FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Activar o &modo passivo (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Activa o modo \"passivo\" do FTP. Isto é necessário para que o FTP "
+#~ "funcione atrás de 'firewalls'."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Marca os ficheiros de FTP parcialmente enviados.</p><p>Quando esta "
+#~ "opção estiver activa, os ficheiros enviados parcialmente irão ter uma "
+#~ "extensão \".part\". Esta extensão será removida assim que a transferência "
+#~ "terminar.</p>"
 
 #, fuzzy
 #~| msgctxt "@info:tooltip"

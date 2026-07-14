@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2010-12-17 20:57+0700\n"
 "Last-Translator: Thanomsub Noppaburana <donga.nb@gmail.com>\n"
 "Language-Team: Thai <thai-l10n@googlegroups.com>\n"
@@ -33,32 +33,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "การอัปเดตล้มเหลว"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "ปิด FTP แบบพาสซีฟ"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"เมื่อการเชื่อมต่อของ FTP เป็นแบบพาสซีฟโดยรอรับการติดต่อจากเครื่องลูกไปยังเซิร์ฟเวอร์ "
-"แทนการใช้วิธีอื่น จะทำให้ไฟร์วอลล์ไม่ปิดกันการเชื่อมต่อนั้น อย่างไรก็ตาม เซิร์ฟเวอร์สำหรับ FTP "
-"แบบเก่า อาจจะไม่รองรับการเชื่อมต่อแบบพาสซีฟ"
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "ป้อนส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -66,60 +48,6 @@ msgid ""
 msgstr ""
 "ขณะที่มีการส่งแฟ้มขึ้นไปยังเซิร์ฟเวอร์ ส่วนขยายของแฟ้มจะเป็น \".part\" "
 "เมื่อการส่งแฟ้มขึ้นเซิร์ฟเวอร์สำเร็จ ก็จะมีการแก้ชื่อเป็นชื่อจริงของแฟ้ม"
-
-#: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Options"
-msgid "Global Options"
-msgstr "ตัวเลือก"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน"
-
-#: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน</p><p>หากเปิดใช้ตัวเลือกนี้ แฟ้มที่อัปโหลดไปได้บางส่วน "
-"จะมีส่วนขยาย \".part\" ซึ่งจะหายไปเมื่อการอัปโหลดเสร็จสมบูรณ์แล้ว</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "ตัวเลือกของ FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "เปิดใช้งานโหมดพาสซีพ (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"เปิดใช้งานโหมด \"passive\" สำหรับ FTP ซึ่งจะอนุญาตให้ FTP ทำงานได้จากหลังไฟร์วอลล์"
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน</p><p>หากเปิดใช้ตัวเลือกนี้ แฟ้มที่อัปโหลดไปได้บางส่วน "
-"จะมีส่วนขยาย \".part\" ซึ่งจะหายไปเมื่อการอัปโหลดเสร็จสมบูรณ์แล้ว</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1104,6 +1032,62 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "โหมดอินเทอร์เลส"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "ปิด FTP แบบพาสซีฟ"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "เมื่อการเชื่อมต่อของ FTP เป็นแบบพาสซีฟโดยรอรับการติดต่อจากเครื่องลูกไปยังเซิร์ฟเวอร์ "
+#~ "แทนการใช้วิธีอื่น จะทำให้ไฟร์วอลล์ไม่ปิดกันการเชื่อมต่อนั้น อย่างไรก็ตาม เซิร์ฟเวอร์สำหรับ FTP "
+#~ "แบบเก่า อาจจะไม่รองรับการเชื่อมต่อแบบพาสซีฟ"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Global Options"
+#~ msgstr "ตัวเลือก"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Marks partially uploaded FTP files.</p><p>When this option is "
+#~| "enabled, partially uploaded files will have a \".part\" extension. This "
+#~| "extension will be removed once the transfer is complete.</p>"
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน</p><p>หากเปิดใช้ตัวเลือกนี้ "
+#~ "แฟ้มที่อัปโหลดไปได้บางส่วน จะมีส่วนขยาย \".part\" "
+#~ "ซึ่งจะหายไปเมื่อการอัปโหลดเสร็จสมบูรณ์แล้ว</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "ตัวเลือกของ FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "เปิดใช้งานโหมดพาสซีพ (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "เปิดใช้งานโหมด \"passive\" สำหรับ FTP ซึ่งจะอนุญาตให้ FTP ทำงานได้จากหลังไฟร์วอลล์"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>เติมส่วนขยายให้แฟ้มที่อัปโหลดไปบางส่วน</p><p>หากเปิดใช้ตัวเลือกนี้ "
+#~ "แฟ้มที่อัปโหลดไปได้บางส่วน จะมีส่วนขยาย \".part\" "
+#~ "ซึ่งจะหายไปเมื่อการอัปโหลดเสร็จสมบูรณ์แล้ว</p>"
 
 #, fuzzy
 #~| msgid "Default password:"

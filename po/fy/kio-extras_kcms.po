@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2009-06-21 13:33+0100\n"
 "Last-Translator: Berend Ytsma <berendy@gmail.com>\n"
 "Language-Team: Frysk <kde-i18n-fry@kde.org>\n"
@@ -34,34 +34,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Bywurkjen mislearre"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Passive FTP útskeakelje"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"As in brûker in fersyk dat om in trien te ûntfangen wurdt in datastream "
-"opsetten. By aktive FTP wurdt dizze datastream start troch de tsjinner, mar "
-"omdat folle brânmuorren dit warje kinne jo brûk meitsje fan passive FTP, "
-"wêrby de datastream start wurdt fan út de client. Aldere ftp-tsjinners "
-"stypje dit miskien net."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Foar in diel ferstjoerde triemmen markearje"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -70,65 +50,6 @@ msgstr ""
 "Under it ferstjoeren fan in triem krijt it de taheaksel  \"*.part\". As de "
 "triem folslein fersjoerd is wurdt dit taheaksel wer ferwidere en wurdt it "
 "oarspronkelike taheaksel wer taheakke."
-
-#: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Operation"
-msgid "Global Options"
-msgstr "Opsjes"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Foar in diel fer&stjoerde triemmen markearje"
-
-#: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Markearret FTP-triemmen dy foar in diel ferstjoerd binne nei de tsjinner."
-"</p><p>As dizze opsje selektearre is ha triemmen dy foar in diel ferstjoerd "
-"binne nei de tsjinner de taheaksel \".part\". Dizze taheaksel sil "
-"fuortsmiten wurde as de oerdracht klear is.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP-opsjes"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Passive &modus (PASV) ynskeakelje"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Skeakelt de passive modus fan FTP yn. Dit is nedich om FTP wurkje te litten "
-"fan efter de brânmuorre."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Markearret FTP-triemmen dy foar in diel ferstjoerd binne nei de tsjinner."
-"</p><p>As dizze opsje selektearre is ha triemmen dy foar in diel ferstjoerd "
-"binne nei de tsjinner de taheaksel \".part\". Dizze taheaksel sil "
-"fuortsmiten wurde as de oerdracht klear is.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1142,6 +1063,67 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Passive FTP útskeakelje"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "As in brûker in fersyk dat om in trien te ûntfangen wurdt in datastream "
+#~ "opsetten. By aktive FTP wurdt dizze datastream start troch de tsjinner, "
+#~ "mar omdat folle brânmuorren dit warje kinne jo brûk meitsje fan passive "
+#~ "FTP, wêrby de datastream start wurdt fan út de client. Aldere ftp-"
+#~ "tsjinners stypje dit miskien net."
+
+#, fuzzy
+#~| msgid "Operation"
+#~ msgid "Global Options"
+#~ msgstr "Opsjes"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Foar in diel fer&stjoerde triemmen markearje"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Marks partially uploaded FTP files.</p><p>When this option is "
+#~| "enabled, partially uploaded files will have a \".part\" extension. This "
+#~| "extension will be removed once the transfer is complete.</p>"
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Markearret FTP-triemmen dy foar in diel ferstjoerd binne nei de "
+#~ "tsjinner.</p><p>As dizze opsje selektearre is ha triemmen dy foar in diel "
+#~ "ferstjoerd binne nei de tsjinner de taheaksel \".part\". Dizze taheaksel "
+#~ "sil fuortsmiten wurde as de oerdracht klear is.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP-opsjes"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Passive &modus (PASV) ynskeakelje"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Skeakelt de passive modus fan FTP yn. Dit is nedich om FTP wurkje te "
+#~ "litten fan efter de brânmuorre."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Markearret FTP-triemmen dy foar in diel ferstjoerd binne nei de "
+#~ "tsjinner.</p><p>As dizze opsje selektearre is ha triemmen dy foar in diel "
+#~ "ferstjoerd binne nei de tsjinner de taheaksel \".part\". Dizze taheaksel "
+#~ "sil fuortsmiten wurde as de oerdracht klear is.</p>"
 
 #, fuzzy
 #~| msgid "Default password:"

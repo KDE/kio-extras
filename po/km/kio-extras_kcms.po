@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -29,33 +29,16 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "បាន​បរាជ័យ​ក្នុងការ​ធ្វើបច្ចុប្បន្នភាព"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "មិន​អនុញ្ញាត FTP អកម្ម"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"ពេល​ការ​តភ្ជាប់ FTP អកម្ម ម៉ាស៊ីន​ភ្ញៀវ​នឹង​តភ្ជាប់​ទៅ​ម៉ាស៊ីន​បម្រើ ដូច្នេះ​ជញ្ជាំង​ភ្លើង​មិន​ទប់ស្កាត់​ការ​តភ្ជាប់​"
-"ទេ ទោះបី​យ៉ាងណា ម៉ាស៊ីន​បម្រើ FTP ចាស់ៗ អាច​នឹង​មិន​គាំទ្រ FTP អកម្ម ។"
-
 #  i18n: file kio_ftprc.kcfg line 16
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "សម្គាល់​ឯកសារ​ដែល​បាន​ផ្ទុក​ឡើង​មិន​ពេញលេញ"
 
 #  i18n: file kio_ftprc.kcfg line 17
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -63,63 +46,6 @@ msgid ""
 msgstr ""
 "ខណៈ​ពេល​ឯកសារ​មួយ​កំពុង​ត្រូវ​បាន​ផ្ទុកឡើង កន្ទុយ​របស់​វា​គឺ \".part\" ។ នៅ​ពេល​ផ្ទុក​ឡើង​រួច វា​ត្រូវ​បាន​ប្ដូរ​"
 "ឈ្មោះ​ទៅ​ជា​ឈ្មោះ​ពិត​របស់​វា​វិញ ។"
-
-#: netpref/netpref.cpp:26
-#, fuzzy, kde-format
-#| msgid "Options"
-msgid "Global Options"
-msgstr "ជម្រើស"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "សម្គាល់​ឯកសារ​ផ្ទុកឡើង​មិន​ពេញ​លេញ"
-
-#: netpref/netpref.cpp:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-#| "partially uploaded files will have a \".part\" extension. This extension "
-#| "will be removed once the transfer is complete.</p>"
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>សម្គាល់​ឯកសារ FTP ដែល​បាន​ផ្ទុក​ឡើង​មិន​ពេញលេញ ។</p><p>ពេល​ជម្រើស​នេះ​អនុញ្ញាត ឯកសារ​ដែល​បាន​"
-"ផ្ទុក​ឡើង​តាម​ផ្នែក ហើយ​​មាន​កន្ទុយ \".part\" ។ កន្ទុយ​នេះ​នឹង​ត្រូវ​បាន​យក​ចេញ នៅ​ពេល​ការ​ផ្ទេរ​នេះ​បាន​"
-"បញ្ចប់​ទាំងស្រុង ។</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "ជម្រើស FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "អនុញ្ញាត​របៀប​អកម្ម (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"អនុញ្ញាត​របៀប \"អកម្ម\" របស់ FTP ។ អំពើ​នេះ​ត្រូវ​បាន​ទាមទារ ដើម្បី​អនុញ្ញាត​ឲ្យ FTP ដំណើរការ​ពី​"
-"ក្រោយ​ជញ្ជាំង​ភ្លើង ។"
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>សម្គាល់​ឯកសារ FTP ដែល​បាន​ផ្ទុក​ឡើង​មិន​ពេញលេញ ។</p><p>ពេល​ជម្រើស​នេះ​អនុញ្ញាត ឯកសារ​ដែល​បាន​"
-"ផ្ទុក​ឡើង​តាម​ផ្នែក ហើយ​​មាន​កន្ទុយ \".part\" ។ កន្ទុយ​នេះ​នឹង​ត្រូវ​បាន​យក​ចេញ នៅ​ពេល​ការ​ផ្ទេរ​នេះ​បាន​"
-"បញ្ចប់​ទាំងស្រុង ។</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1126,6 +1052,62 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "របៀបត្របាញ់"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "មិន​អនុញ្ញាត FTP អកម្ម"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "ពេល​ការ​តភ្ជាប់ FTP អកម្ម ម៉ាស៊ីន​ភ្ញៀវ​នឹង​តភ្ជាប់​ទៅ​ម៉ាស៊ីន​បម្រើ ដូច្នេះ​ជញ្ជាំង​ភ្លើង​មិន​ទប់ស្កាត់​ការ​"
+#~ "តភ្ជាប់​ទេ ទោះបី​យ៉ាងណា ម៉ាស៊ីន​បម្រើ FTP ចាស់ៗ អាច​នឹង​មិន​គាំទ្រ FTP អកម្ម ។"
+
+#, fuzzy
+#~| msgid "Options"
+#~ msgid "Global Options"
+#~ msgstr "ជម្រើស"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "សម្គាល់​ឯកសារ​ផ្ទុកឡើង​មិន​ពេញ​លេញ"
+
+#, fuzzy
+#~| msgid ""
+#~| "<p>Marks partially uploaded FTP files.</p><p>When this option is "
+#~| "enabled, partially uploaded files will have a \".part\" extension. This "
+#~| "extension will be removed once the transfer is complete.</p>"
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>សម្គាល់​ឯកសារ FTP ដែល​បាន​ផ្ទុក​ឡើង​មិន​ពេញលេញ ។</p><p>ពេល​ជម្រើស​នេះ​អនុញ្ញាត ឯកសារ​ដែល​"
+#~ "បាន​ផ្ទុក​ឡើង​តាម​ផ្នែក ហើយ​​មាន​កន្ទុយ \".part\" ។ កន្ទុយ​នេះ​នឹង​ត្រូវ​បាន​យក​ចេញ នៅ​ពេល​ការ​ផ្ទេរ​"
+#~ "នេះ​បាន​បញ្ចប់​ទាំងស្រុង ។</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "ជម្រើស FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "អនុញ្ញាត​របៀប​អកម្ម (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "អនុញ្ញាត​របៀប \"អកម្ម\" របស់ FTP ។ អំពើ​នេះ​ត្រូវ​បាន​ទាមទារ ដើម្បី​អនុញ្ញាត​ឲ្យ FTP ដំណើរការ​ពី​"
+#~ "ក្រោយ​ជញ្ជាំង​ភ្លើង ។"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>សម្គាល់​ឯកសារ FTP ដែល​បាន​ផ្ទុក​ឡើង​មិន​ពេញលេញ ។</p><p>ពេល​ជម្រើស​នេះ​អនុញ្ញាត ឯកសារ​ដែល​"
+#~ "បាន​ផ្ទុក​ឡើង​តាម​ផ្នែក ហើយ​​មាន​កន្ទុយ \".part\" ។ កន្ទុយ​នេះ​នឹង​ត្រូវ​បាន​យក​ចេញ នៅ​ពេល​ការ​ផ្ទេរ​"
+#~ "នេះ​បាន​បញ្ចប់​ទាំងស្រុង ។</p>"
 
 #, fuzzy
 #~| msgid "Default password:"

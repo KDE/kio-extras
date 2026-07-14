@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2023-06-03 21:00+0200\n"
 "Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
@@ -32,32 +32,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Obnova zlyhala"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Zakázať pasívne FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Ak sú FTP spojenia pasívne, klient sa pripojí na server a nie naopak. Preto "
-"firewall neblokuje spojenie. Staré servery FTP ale pasívne FTP nemusia "
-"podporovať."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Označiť čiastočne nahrané súbory"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -65,58 +47,6 @@ msgid ""
 msgstr ""
 "Počas posielania je prípona súboru \".part\". Až po dokončení prenosu sa "
 "premenuje na skutočné meno."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Globálne možnosti"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "O&značiť čiastočne nahrané súbory"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Označí čiastočne nahrané súbory cez SMB, SFTP a iné protokoly.</p><p>Ak "
-"je táto voľba zapnutá, čiastočne nahrané súbory budú mať príponu \".part\". "
-"Táto prípona bude odstránená, keď bude prenos ukončený.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Možnosti FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Povoliť pasívny &mód (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Povolí \"pasívne\" FTP. Toto je požadované pre správnu funckiu FTP spoza "
-"firewallu."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Označí čiastočne nahrané FTP súbory.</p><p>Ak je táto voľba zapnutá, "
-"čiastočne nahrané súbory budú mať príponu \".part\". Táto prípona bude "
-"odstránená, keď bude prenos ukončený.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1115,6 +1045,56 @@ msgstr "Z&naková sada:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Vložiť zástupný znak dotazu"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Zakázať pasívne FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Ak sú FTP spojenia pasívne, klient sa pripojí na server a nie naopak. "
+#~ "Preto firewall neblokuje spojenie. Staré servery FTP ale pasívne FTP "
+#~ "nemusia podporovať."
+
+#~ msgid "Global Options"
+#~ msgstr "Globálne možnosti"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "O&značiť čiastočne nahrané súbory"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Označí čiastočne nahrané súbory cez SMB, SFTP a iné protokoly.</"
+#~ "p><p>Ak je táto voľba zapnutá, čiastočne nahrané súbory budú mať príponu "
+#~ "\".part\". Táto prípona bude odstránená, keď bude prenos ukončený.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Možnosti FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Povoliť pasívny &mód (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Povolí \"pasívne\" FTP. Toto je požadované pre správnu funckiu FTP spoza "
+#~ "firewallu."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Označí čiastočne nahrané FTP súbory.</p><p>Ak je táto voľba zapnutá, "
+#~ "čiastočne nahrané súbory budú mať príponu \".part\". Táto prípona bude "
+#~ "odstránená, keď bude prenos ukončený.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

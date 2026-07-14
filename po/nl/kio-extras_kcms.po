@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-05-30 11:52+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
@@ -32,34 +32,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Het actualiseren is mislukt"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Passieve FTP uitschakelen"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Als een gebruiker een verzoek doet om een bestand te ontvangen wordt een "
-"datastroom opgezet. Bij actieve FTP wordt deze datastroom gestart door de "
-"server, maar omdat veel firewalls dit blokkeren kunt u gebruik maken van "
-"passieve FTP, waarbij de datastroom gestart wordt vanuit de client. Oudere "
-"ftp-servers ondersteunen dit mogelijk niet."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Gedeeltelijk verzonden bestanden markeren"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -68,60 +48,6 @@ msgstr ""
 "Tijdens het verzenden van een bestand wordt het voorzien van de extensie \"*."
 "part\". Als het bestand volledig is verzonden wordt deze extensie weer "
 "verwijderd en de oorspronkelijke naam van het bestand hersteld."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Globale opties"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Gedeeltelijk ver&zonden bestanden markeren"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Markeert bestanden die gedeeltelijk zijn geüpload via SMB, SFTP en andere "
-"protocollen.</p><p>Als deze optie is geselecteerd hebben bestanden die "
-"gedeeltelijk naar de server zijn gezonden de extensie \".part\". Deze "
-"extensie zal worden verwijderd als de overdracht is voltooid.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "FTP-opties"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "Passieve &modus (PASV) inschakelen"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Schakelt de passieve modus van FTP in. Dit is noodzakelijk om FTP te laten "
-"werken van achter firewalls."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Markeert FTP-bestanden die gedeeltelijk naar de server zijn gezonden.</"
-"p><p>Als deze optie is geselecteerd hebben bestanden die gedeeltelijk naar "
-"de server zijn gezonden de extensie \".part\". Deze extensie zal worden "
-"verwijderd als de overdracht is voltooid.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1141,6 +1067,60 @@ msgstr "&Tekenset:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Plaatshouder voor zoekopdracht invoegen"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Passieve FTP uitschakelen"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Als een gebruiker een verzoek doet om een bestand te ontvangen wordt een "
+#~ "datastroom opgezet. Bij actieve FTP wordt deze datastroom gestart door de "
+#~ "server, maar omdat veel firewalls dit blokkeren kunt u gebruik maken van "
+#~ "passieve FTP, waarbij de datastroom gestart wordt vanuit de client. "
+#~ "Oudere ftp-servers ondersteunen dit mogelijk niet."
+
+#~ msgid "Global Options"
+#~ msgstr "Globale opties"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Gedeeltelijk ver&zonden bestanden markeren"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Markeert bestanden die gedeeltelijk zijn geüpload via SMB, SFTP en "
+#~ "andere protocollen.</p><p>Als deze optie is geselecteerd hebben bestanden "
+#~ "die gedeeltelijk naar de server zijn gezonden de extensie \".part\". Deze "
+#~ "extensie zal worden verwijderd als de overdracht is voltooid.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "FTP-opties"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "Passieve &modus (PASV) inschakelen"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Schakelt de passieve modus van FTP in. Dit is noodzakelijk om FTP te "
+#~ "laten werken van achter firewalls."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Markeert FTP-bestanden die gedeeltelijk naar de server zijn gezonden.</"
+#~ "p><p>Als deze optie is geselecteerd hebben bestanden die gedeeltelijk "
+#~ "naar de server zijn gezonden de extensie \".part\". Deze extensie zal "
+#~ "worden verwijderd als de overdracht is voltooid.</p>"
 
 #~ msgctxt "@info:tooltip"
 #~ msgid ""

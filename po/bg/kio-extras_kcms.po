@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2026-06-17 15:32+0200\n"
 "Last-Translator: Mincho Kondarev <mkondarev@yahoo.de>\n"
 "Language-Team: Bulgarian <kde-i18n-doc@kde.org>\n"
@@ -33,34 +33,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "Актуализацията е неуспешна"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "Изключване на пасивните връзки"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Ако връзката е пасивна, клиентът се включва към сървъра. Ако връзката е "
-"пасивна, няма опасност защитната стена да блокира връзката от сървъра до "
-"клиента. При обратния случай може сървъра да се свърже с клиента. Когато сте "
-"зад защитна стена, това не работи. Някои стари сървъри не поддържат тази "
-"възможност."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "Частично маркиране при качване на файлове"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -69,60 +49,6 @@ msgstr ""
 "По време на качване на файл той има разширение \".part\". Когато файлът се "
 "качи напълно, той се преименува до истинското име (т.е. премахва се "
 "разширението \".part\")."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Глобални опции"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "Частично &маркиране при качване на файлове"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Маркира частично качени файлове чрез SMB, SFTP и други протоколи.</"
-"p><p>Когато тази опция е активирана, частично качените файлове ще имат \"."
-"part \"разширение. Това разширение ще бъде премахнато, след като "
-"прехвърлянето е завършен.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "Настройки на FTP"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "&Включване на пасивен режим (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"Включване на пасивен режим на работа на FTP. Това е необходимо, ако ползвате "
-"протокола FTP зад защитна стена (firewall)."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>Отбелязване на частично качените файлове по време на операция по качване "
-"на файлове.</p><p>Файловете, които са се още в процес на качване, ще имат "
-"разширение \".part\". То ще бъде премахнато след пълното качване на файла.</"
-"p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1134,3 +1060,57 @@ msgstr "&Символно кодиране:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вмъкване на заместител на заявка"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "Изключване на пасивните връзки"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Ако връзката е пасивна, клиентът се включва към сървъра. Ако връзката е "
+#~ "пасивна, няма опасност защитната стена да блокира връзката от сървъра до "
+#~ "клиента. При обратния случай може сървъра да се свърже с клиента. Когато "
+#~ "сте зад защитна стена, това не работи. Някои стари сървъри не поддържат "
+#~ "тази възможност."
+
+#~ msgid "Global Options"
+#~ msgstr "Глобални опции"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "Частично &маркиране при качване на файлове"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Маркира частично качени файлове чрез SMB, SFTP и други протоколи.</"
+#~ "p><p>Когато тази опция е активирана, частично качените файлове ще имат \"."
+#~ "part \"разширение. Това разширение ще бъде премахнато, след като "
+#~ "прехвърлянето е завършен.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "Настройки на FTP"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "&Включване на пасивен режим (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "Включване на пасивен режим на работа на FTP. Това е необходимо, ако "
+#~ "ползвате протокола FTP зад защитна стена (firewall)."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>Отбелязване на частично качените файлове по време на операция по "
+#~ "качване на файлове.</p><p>Файловете, които са се още в процес на качване, "
+#~ "ще имат разширение \".part\". То ще бъде премахнато след пълното качване "
+#~ "на файла.</p>"

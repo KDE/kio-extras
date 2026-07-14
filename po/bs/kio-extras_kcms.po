@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-30 00:44+0000\n"
+"POT-Creation-Date: 2026-07-14 00:43+0000\n"
 "PO-Revision-Date: 2022-03-20 11:23+0100\n"
 "Last-Translator: irfan <irfankurtagic@outlook.com>\n"
 "Language-Team: English <kde-i18n-doc@kde.org>\n"
@@ -39,32 +39,14 @@ msgctxt "@title:window"
 msgid "Update Failed"
 msgstr "AÅ¾uriranje nije uspjelo"
 
-#. i18n: ectx: label, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:9
-#, kde-format
-msgid "Disable Passive FTP"
-msgstr "IskljuÄi pasivni FTP"
-
-#. i18n: ectx: whatsthis, entry (DisablePassiveMode), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:10
-#, kde-format
-msgid ""
-"When FTP connections are passive the client connects to the server, instead "
-"of the other way round, so firewalls do not block the connection; old FTP "
-"servers may not support Passive FTP though."
-msgstr ""
-"Kada su FTP veze pasivne klijent se povezuje sa serverom umjesto obratno, "
-"tako da firewall ne blokira vezu; stariji FTP serveri moÅ¾da ne podrÅ¾avaju "
-"pasivni FTP."
-
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:15 netpref/kioslave.kcfg:12
+#: proxy/kioslave.kcfg:12
 #, kde-format
 msgid "Mark partially uploaded files"
 msgstr "OznaÄi djelomiÄno poslane datoteke"
 
 #. i18n: ectx: whatsthis, entry (MarkPartial), group (&lt;default&gt;)
-#: netpref/kio_ftprc.kcfg:16 netpref/kioslave.kcfg:13
+#: proxy/kioslave.kcfg:13
 #, kde-format
 msgid ""
 "While a file is being uploaded its extension is \".part\". When fully "
@@ -72,59 +54,6 @@ msgid ""
 msgstr ""
 "Tokom slanja datoteke njena ekstenzija je \".part\". Po zavrÅ¡etku slanja "
 "ona se preimenuje u svoje pravo ime."
-
-#: netpref/netpref.cpp:26
-#, kde-format
-msgid "Global Options"
-msgstr "Globalne Opcije"
-
-#: netpref/netpref.cpp:31 netpref/netpref.cpp:65
-#, kde-format
-msgid "Mark &partially uploaded files"
-msgstr "OznaÄi &djelomiÄno poslane datoteke"
-
-#: netpref/netpref.cpp:33
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
-"p><p>When this option is enabled, partially uploaded files will have a \"."
-"part\" extension. This extension will be removed once the transfer is "
-"complete.</p>"
-msgstr ""
-"<p>Označava delimično otpremljene datoteke preko SMB, SFTP i drugih "
-"protokola.</p><p>Kada je ova opcija omogućena, delimično otpremljene "
-"datoteke će imati ekstenziju „.part“. Ovaj dodatak će biti uklonjen kada se "
-"transfer završi.</p>"
-
-#: netpref/netpref.cpp:51
-#, kde-format
-msgid "FTP Options"
-msgstr "PodeÅ¡avanje FTP-a"
-
-#: netpref/netpref.cpp:57
-#, kde-format
-msgid "Enable passive &mode (PASV)"
-msgstr "OmoguÄ‡i pasivni &mod (PASV)"
-
-#: netpref/netpref.cpp:59
-#, kde-format
-msgid ""
-"Enables FTP's \"passive\" mode. This is required to allow FTP to work from "
-"behind firewalls."
-msgstr ""
-"UkljuÄuje FTP \"pasivni\" mod. Ovo je potrebno ako Å¾elite da FTP radi iza "
-"firewalla."
-
-#: netpref/netpref.cpp:67
-#, kde-format
-msgid ""
-"<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
-"partially uploaded files will have a \".part\" extension. This extension "
-"will be removed once the transfer is complete.</p>"
-msgstr ""
-"<p>OznaÄava djelomiÄno poslane FTP datoteke.</p><p>Kada je ova opcija "
-"ukljuÄena, djelomiÄno poslane datoteke Ä‡e imati \".part\" ekstenziju. Ova "
-"ekstenzija Ä‡e biti uklonjena kada transfer bude zavrÅ¡en.</p>"
 
 #. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
 #: proxy/kproxydlg.ui:20
@@ -1165,6 +1094,57 @@ msgstr "&Set karaktera:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Umetni čuvar mesta za upit"
+
+#~ msgid "Disable Passive FTP"
+#~ msgstr "IskljuÄi pasivni FTP"
+
+#~ msgid ""
+#~ "When FTP connections are passive the client connects to the server, "
+#~ "instead of the other way round, so firewalls do not block the connection; "
+#~ "old FTP servers may not support Passive FTP though."
+#~ msgstr ""
+#~ "Kada su FTP veze pasivne klijent se povezuje sa serverom umjesto obratno, "
+#~ "tako da firewall ne blokira vezu; stariji FTP serveri moÅ¾da ne "
+#~ "podrÅ¾avaju pasivni FTP."
+
+#~ msgid "Global Options"
+#~ msgstr "Globalne Opcije"
+
+#~ msgid "Mark &partially uploaded files"
+#~ msgstr "OznaÄi &djelomiÄno poslane datoteke"
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded files through SMB, SFTP and other protocols.</"
+#~ "p><p>When this option is enabled, partially uploaded files will have a \"."
+#~ "part\" extension. This extension will be removed once the transfer is "
+#~ "complete.</p>"
+#~ msgstr ""
+#~ "<p>Označava delimično otpremljene datoteke preko SMB, SFTP i drugih "
+#~ "protokola.</p><p>Kada je ova opcija omogućena, delimično otpremljene "
+#~ "datoteke će imati ekstenziju „.part“. Ovaj dodatak će biti uklonjen kada "
+#~ "se transfer završi.</p>"
+
+#~ msgid "FTP Options"
+#~ msgstr "PodeÅ¡avanje FTP-a"
+
+#~ msgid "Enable passive &mode (PASV)"
+#~ msgstr "OmoguÄ‡i pasivni &mod (PASV)"
+
+#~ msgid ""
+#~ "Enables FTP's \"passive\" mode. This is required to allow FTP to work "
+#~ "from behind firewalls."
+#~ msgstr ""
+#~ "UkljuÄuje FTP \"pasivni\" mod. Ovo je potrebno ako Å¾elite da FTP radi "
+#~ "iza firewalla."
+
+#~ msgid ""
+#~ "<p>Marks partially uploaded FTP files.</p><p>When this option is enabled, "
+#~ "partially uploaded files will have a \".part\" extension. This extension "
+#~ "will be removed once the transfer is complete.</p>"
+#~ msgstr ""
+#~ "<p>OznaÄava djelomiÄno poslane FTP datoteke.</p><p>Kada je ova opcija "
+#~ "ukljuÄena, djelomiÄno poslane datoteke Ä‡e imati \".part\" ekstenziju. "
+#~ "Ova ekstenzija Ä‡e biti uklonjena kada transfer bude zavrÅ¡en.</p>"
 
 #, fuzzy
 #~| msgctxt "@info:tooltip"
