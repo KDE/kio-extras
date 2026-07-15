@@ -883,16 +883,3 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
-
-#~ msgid "Global Options"
-#~ msgstr "Oppalaš molssaeavttut"
-
-#~ msgid "Mark &partially uploaded files"
-#~ msgstr "Merke beal&lemuddui sáddejuvvon fiillaid"
-
-#, fuzzy
-#~ msgid "FTP Options"
-#~ msgstr "FTP molssaeavttut"
-
-#~ msgid "Enable passive &mode (PASV)"
-#~ msgstr "Bija passiiva &doibmanvuogi (PASV) doaibmat"
