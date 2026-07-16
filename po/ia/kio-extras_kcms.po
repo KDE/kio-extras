@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-14 00:43+0000\n"
-"PO-Revision-Date: 2026-01-21 16:41+0100\n"
+"PO-Revision-Date: 2026-07-15 18:56+0200\n"
 "Last-Translator: giovanni <g.sora@tiscali.it>\n"
 "Language-Team: Interlingua <kde-i18n-doc@kde.org>\n"
 "Language: ia\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -709,11 +709,10 @@ msgid "Preferred"
 msgstr "Preferite"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Selige un delimitator pro marcar le parola clave de cerca de web."
+msgstr "Marca pro selectionar iste parola-clave de recerca web como preferite."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -737,6 +736,13 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Le parolas-clave de recerca web permitte te cercar o consultar "
+"rapidemente  parolas sur le Internet. Illos functiona in le recerca "
+"<application>KRunner</application> de Plasma,  in le barra de adresse de "
+"<application>Konqueror</application>, e in omne altere applicationes  que "
+"supporta los. Per exemplo, pro cercar information super le projecto KDE "
+"usante  le motor de recerca Google, tu pote simplemente typar <icode>gg:KDE</"
+"icode> o <icode>google:KDE</icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -745,6 +751,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Marca per  recognoscer e usar le parolas clave de web in applicationes que "
+"pote usar los"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -756,7 +764,7 @@ msgstr "&Habilita parolas clave de cerca de Web"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Como illos functiona?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -768,6 +776,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Marca pro usar solmente le parolas-clave de recerca web preferite, como "
+"seligite in le lista infra, ubi necessari.</p><p>Si isto es marcate, tunc le "
+"applicationes que pote monstrar solmente un numero limitate  de parolas-"
+"clave de recerca (per exemplo, Konqueror quando texto  sur un pagina es "
+"seligite) monstrara solmente le parolas-clave preferite.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -832,6 +845,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Selige un parola-clave predefinite pro recerca web.</p><p>Isto pote  "
+"esser usate per applicationes que recerca automaticamente si le entrata  non "
+"pote esser recognoscite, per exemplo in le barra de adresses de Konqueror.  "
+"Iste parola-clave essera usate pro le recerca. Pro dishabilitar  iste "
+"function, selige <tt>(Nulle)</tt> ex le lista.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -841,10 +859,7 @@ msgstr "&Delimitator de parola clave:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
