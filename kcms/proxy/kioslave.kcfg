@@ -6,7 +6,7 @@
  <kcfgfile name="kioslaverc" />
  <include>kio/ioworker_defaults.h</include>
  <group name="&lt;default&gt;">
-   <entry name="ProxyUrlDisplayFlags" type="int">
+   <entry name="ProxyUrlDisplayFlags" type="Int">
    </entry>
    <entry name="MarkPartial" type="Bool">
      <label>Mark partially uploaded files</label>
