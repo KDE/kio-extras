@@ -28,3 +28,5 @@ if(USE_DBUS)
   target_link_libraries(kcm_proxy PRIVATE Qt6::DBus)
   target_compile_definitions(kcm_proxy PUBLIC -DWITH_DBUS)
 endif()
+
+install(FILES kioslave.kcfg DESTINATION ${KDE_INSTALL_KCFGDIR})
