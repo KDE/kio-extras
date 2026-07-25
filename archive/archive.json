@@ -1,7 +1,7 @@
 {
     "KDE-KIO-Protocols": {
         "ar": {
-            "Class": "local",
+            "Class": ":local",
             "Icon": "package-x-generic",
             "archiveMimetype": [
                 "application/x-archive"
@@ -30,7 +30,7 @@
             "writing": false
         },
         "sevenz": {
-            "Class": "local",
+            "Class": ":local",
             "Icon": "package-x-generic",
             "archiveMimetype": [
                 "application/x-7z-compressed"
@@ -59,7 +59,7 @@
             "writing": false
         },
         "tar": {
-            "Class": "local",
+            "Class": ":local",
             "Icon": "package-x-generic",
             "X-DocPath": "kioworker6/tar/index.html",
             "archiveMimetype": [
@@ -95,7 +95,7 @@
             "writing": false
         },
         "zip": {
-            "Class": "local",
+            "Class": ":local",
             "Icon": "package-x-generic",
             "archiveMimetype": [
                 "application/zip"
