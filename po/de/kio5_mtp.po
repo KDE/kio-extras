@@ -1,4 +1,4 @@
-# SPDX-FileCopyrightText: 2014, 2017, 2018, 2019 Burkhard Lück <lueck@hube-lueck.de>
+# SPDX-FileCopyrightText: 2014, 2017-2019 Burkhard Lück <lueck@hube-lueck.de>
 # SPDX-FileCopyrightText: 2022 Alois Spitzbart <spitz234@hotmail.com>
 msgid ""
 msgstr ""
