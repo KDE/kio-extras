@@ -14,6 +14,22 @@
 #include <QHostAddress>
 #include <QUrlQuery>
 
+std::pair<QString, QString> SMBUrl::splitDomainUser(const QString &combined)
+{
+    const qsizetype slashPos = combined.indexOf(QLatin1Char('/'));
+    const qsizetype backslashPos = combined.indexOf(QLatin1Char('\\'));
+    qsizetype separatorPos = -1;
+    if (slashPos >= 0 && backslashPos >= 0) {
+        separatorPos = qMin(slashPos, backslashPos);
+    } else if (slashPos >= 0 || backslashPos >= 0) {
+        separatorPos = qMax(slashPos, backslashPos);
+    }
+    if (separatorPos > 0) {
+        return {combined.left(separatorPos), combined.mid(separatorPos + 1)};
+    }
+    return {{}, combined};
+}
+
 SMBUrl::SMBUrl(const QUrl &kurl)
     : QUrl(kurl)
 {

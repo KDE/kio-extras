@@ -137,6 +137,30 @@ private Q_SLOTS:
         // We tag printers as such cause otherwise we have no way of knowing it was a printer.
         QCOMPARE(SMBUrl(QUrl("smb://host/printer?kio-printer=true")).getType(), SMBURLTYPE_PRINTER);
     }
+
+    void testSplitDomainUser()
+    {
+        // No separator: domain is empty, user is the whole string
+        QCOMPARE(SMBUrl::splitDomainUser("user"), std::make_pair(QString(), QString("user")));
+
+        // Forward slash separator
+        QCOMPARE(SMBUrl::splitDomainUser("DOMAIN/user"), std::make_pair(QString("DOMAIN"), QString("user")));
+
+        // Backslash separator
+        QCOMPARE(SMBUrl::splitDomainUser("DOMAIN\\user"), std::make_pair(QString("DOMAIN"), QString("user")));
+
+        // Both separators present: first one wins (forward slash before backslash)
+        QCOMPARE(SMBUrl::splitDomainUser("DOM/AIN\\user"), std::make_pair(QString("DOM"), QString("AIN\\user")));
+
+        // Both separators present: first one wins (backslash before forward slash)
+        QCOMPARE(SMBUrl::splitDomainUser("DOM\\AIN/user"), std::make_pair(QString("DOM"), QString("AIN/user")));
+
+        // Empty string
+        QCOMPARE(SMBUrl::splitDomainUser(QString()), std::make_pair(QString(), QString()));
+
+        // Separator at position 0: domain part is empty, falls back to no-domain path
+        QCOMPARE(SMBUrl::splitDomainUser("/user"), std::make_pair(QString(), QString("/user")));
+    }
 };
 
 QTEST_GUILESS_MAIN(SMBUrlTest)

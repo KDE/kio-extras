@@ -74,6 +74,17 @@ void SMBAuthenticator::auth(SMBCCTX *context,
 
     if (m_frontend.checkCachedAuthentication(info)) {
         qCDebug(KIO_SMB_LOG) << "got password through cache" << info.username;
+        // Split "DOMAIN/user" or "DOMAIN\user" so the domain goes into the
+        // workgroup buffer and only the bare username into the username buffer.
+        // KIO encodes domain-qualified usernames as "DOMAIN/user" in the URL.
+        // TODO: revisit when https://bugzilla.samba.org/show_bug.cgi?id=16149 gets fixed properly
+        auto [domain, bareUser] = SMBUrl::splitDomainUser(info.username);
+        if (!domain.isEmpty()) {
+            strncpy(workgroup, domain.toUtf8().constData(), static_cast<size_t>(wgmaxlen - 1));
+            workgroup[wgmaxlen - 1] = '\0';
+        }
+        info.username = bareUser;
+        qCDebug(KIO_SMB_LOG) << "got password through cache: user=" << info.username << " domain=" << workgroup;
     } else if (!m_defaultUser.isEmpty()) {
         // user defined a default username/password in kcontrol; try this
         info.username = m_defaultUser;
