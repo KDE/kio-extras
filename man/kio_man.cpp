@@ -6,6 +6,7 @@
 
 #include "kio_man.h"
 #include "kio_man_debug.h"
+#include "udsentry_compat.h"
 
 #include <QByteArray>
 #include <QCoreApplication>
@@ -753,10 +754,12 @@ KIO::WorkerResult MANProtocol::stat(const QUrl &url)
     qCDebug(KIO_MAN_LOG) << "URL" << url.url() << "parsed to title" << title << "section" << section;
 
     UDSEntry entry;
-    entry.reserve(3);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, title);
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, title},
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html")},
+                             });
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html"));
 
     statEntry(entry);
 
@@ -1332,7 +1335,6 @@ KIO::WorkerResult MANProtocol::listDir(const QUrl &url)
     // timed to maximise application performance.
 
     UDSEntry uds_entry;
-    uds_entry.reserve(4);
 
     uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
     uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
@@ -1342,8 +1344,13 @@ KIO::WorkerResult MANProtocol::listDir(const QUrl &url)
     {
         for (const QString &sect : m_sectionNames) {
             uds_entry.clear(); // sectionName() is already I18N'ed
-            uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, (sect + " - " + sectionName(sect)));
-            uds_entry.fastInsert(KIO::UDSEntry::UDS_URL, ("man:/(" + sect + ')'));
+            const QString sectionTitle = sect + " - " + sectionName(sect);
+            const QString sectionUrl = "man:/(" + sect + ')';
+            KIOExtras::insertStrings(uds_entry,
+                                     {
+                                         {KIO::UDSEntry::UDS_NAME, sectionTitle},
+                                         {KIO::UDSEntry::UDS_URL, sectionUrl},
+                                     });
             uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             listEntry(uds_entry);
         }
@@ -1366,12 +1373,16 @@ KIO::WorkerResult MANProtocol::listDir(const QUrl &url)
             }
 
             uds_entry.clear();
-            uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
+            const QString pageUrl = "man:" + page;
+            KIOExtras::insertStrings(uds_entry,
+                                     {
+                                         {KIO::UDSEntry::UDS_NAME, name},
+                                         {KIO::UDSEntry::UDS_URL, pageUrl},
+                                         {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html")},
+                                     });
             if (!displayName.isEmpty())
                 uds_entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, displayName);
-            uds_entry.fastInsert(KIO::UDSEntry::UDS_URL, ("man:" + page));
             uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
-            uds_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html"));
             listEntry(uds_entry);
         }
     }

@@ -7,6 +7,7 @@
 
 #include "kio_filenamesearch.h"
 #include "kio_filenamesearch_p.h"
+#include "udsentry_compat.h"
 
 #include "kio_filenamesearch_debug.h"
 
@@ -94,20 +95,29 @@ KIO::WorkerResult FileNameSearchProtocol::stat(const QUrl &url)
     }
 
     KIO::UDSEntry uds;
-    uds.reserve(9);
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0700);
-    uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-    uds.fastInsert(KIO::UDSEntry::UDS_ICON_OVERLAY_NAMES, QStringLiteral("baloo"));
-    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Search Folder"));
-    uds.fastInsert(KIO::UDSEntry::UDS_URL, url.url());
+    KIOExtras::insertStrings(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 {KIO::UDSEntry::UDS_ICON_OVERLAY_NAMES, QStringLiteral("baloo")},
+                                 {KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Search Folder")},
+                                 {KIO::UDSEntry::UDS_URL, url.url()},
+                             });
 
     QUrlQuery query(url);
     QString title = query.queryItemValue(QStringLiteral("title"), QUrl::FullyDecoded);
     if (!title.isEmpty()) {
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, title);
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, title);
+        KIOExtras::insertStrings(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, title},
+                                     {KIO::UDSEntry::UDS_DISPLAY_NAME, title},
+                                 });
     }
+
+    KIOExtras::insertNumbers(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_ACCESS, 0700},
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                             });
 
     statEntry(uds);
     return KIO::WorkerResult::pass();
@@ -117,11 +127,13 @@ KIO::WorkerResult FileNameSearchProtocol::stat(const QUrl &url)
 void FileNameSearchProtocol::listRootEntry()
 {
     KIO::UDSEntry entry;
-    entry.reserve(4);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_SIZE, 0},
+                                 {KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH},
+                             });
     listEntry(entry);
 }
 
@@ -732,11 +744,14 @@ KIO::WorkerResult FileNameSearchProtocol::searchDirWithExternalTool(const QUrl &
         QString fullPath = rootDir.filePath(relativePath);
         url.setPath(fullPath);
         KIO::UDSEntry uds;
-        uds.reserve(4);
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, url.fileName());
-        uds.fastInsert(KIO::UDSEntry::UDS_URL, url.url());
-        uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, fullPath);
+        const QString fileName = url.fileName();
+        KIOExtras::insertStrings(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, fileName},
+                                     {KIO::UDSEntry::UDS_DISPLAY_NAME, fileName},
+                                     {KIO::UDSEntry::UDS_URL, url.url()},
+                                     {KIO::UDSEntry::UDS_LOCAL_PATH, fullPath},
+                                 });
         listEntry(uds);
     };
 

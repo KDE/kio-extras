@@ -7,6 +7,7 @@
  */
 
 #include "kio_sftp.h"
+#include "udsentry_compat.h"
 #include <config-runtime.h>
 
 #include <array>
@@ -507,9 +508,9 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
     Q_ASSERT(sb.get());
 
     entry.clear();
-    entry.reserve(10);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, name /* awkwardly sftp_lstat doesn't fill the attributes name correctly, calculate from path */);
 
+    QString linkDest;
+    bool isSymlink = false;
     bool isBrokenLink = false;
     if (sb->type == SSH_FILEXFER_TYPE_SYMLINK) {
         std::unique_ptr<char, decltype(&free)> link(sftp_readlink(mSftp, path.constData()), free);
@@ -520,7 +521,8 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
                                       QString::fromUtf8(path),
                                       QString::number(sftp_get_error(mSftp))));
         }
-        entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, QFile::decodeName(link.get()));
+        isSymlink = true;
+        linkDest = QFile::decodeName(link.get());
         // A symlink -> follow it only if details > 1
         if (details > 1) {
             sftp_attributes sb2 = sftp_stat(mSftp, path.constData());
@@ -561,29 +563,39 @@ Result SFTPWorker::createUDSEntry(SFTPAttributesPtr sb, UDSEntry &entry, const Q
         access = modeToOptionalPerms(sb->permissions).value_or(perms::none);
         size = sb->size;
     }
+    const bool withDetails = details > 0;
+    // Availability of the creation time depends on outside factors.
+    // https://bugs.kde.org/show_bug.cgi?id=375305
+    const bool withCreationTime = withDetails && (sb->flags & SSH_FILEXFER_ATTR_CREATETIME);
+
+    QString user;
+    QString group;
+    if (withDetails) {
+        user = sb->owner ? QString::fromUtf8(sb->owner) : QString::number(sb->uid);
+        group = sb->group ? QString::fromUtf8(sb->group) : QString::number(sb->gid);
+    }
+
+    // The string values and the number values go to separate storage, so fill all of one
+    // kind and then all of the other rather than alternating between them.
+    KIOExtras::reserveEntry(entry, 1 + (isSymlink ? 1 : 0) + (withDetails ? 2 : 0), 3 + (withDetails ? 2 : 0) + (withCreationTime ? 1 : 0));
+
+    // awkwardly sftp_lstat doesn't fill the attributes name correctly, calculate from path
+    entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
+    if (isSymlink) {
+        entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, linkDest);
+    }
+    if (withDetails) {
+        entry.fastInsert(KIO::UDSEntry::UDS_USER, user);
+        entry.fastInsert(KIO::UDSEntry::UDS_GROUP, group);
+    }
+
     entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, fileType);
     entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, permsToPosix(access));
     entry.fastInsert(KIO::UDSEntry::UDS_SIZE, narrow<long long>(size));
-
-    if (details > 0) {
-        if (sb->owner) {
-            entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromUtf8(sb->owner));
-        } else {
-            entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::number(sb->uid));
-        }
-
-        if (sb->group) {
-            entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromUtf8(sb->group));
-        } else {
-            entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::number(sb->gid));
-        }
-
+    if (withDetails) {
         entry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, sb->atime);
         entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, sb->mtime);
-
-        if (sb->flags & SSH_FILEXFER_ATTR_CREATETIME) {
-            // Availability depends on outside factors.
-            // https://bugs.kde.org/show_bug.cgi?id=375305
+        if (withCreationTime) {
             entry.fastInsert(KIO::UDSEntry::UDS_CREATION_TIME, narrow<long long>(sb->createtime));
         }
     }

@@ -7,6 +7,7 @@
 
 #include "kio_smb.h"
 #include "smburl.h"
+#include "udsentry_compat.h"
 
 #include <utility>
 
@@ -104,10 +105,13 @@ int SMBWorker::statToUDSEntry(const QUrl &url, const struct stat &st, KIO::UDSEn
     // Also see:
     // https://docs.microsoft.com/en-us/windows/win32/shell/how-to-customize-folders-with-desktop-ini
 
-    udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT);
-    udsentry.fastInsert(KIO::UDSEntry::UDS_SIZE, st.st_size);
-    udsentry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime);
-    udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime);
+    KIOExtras::insertNumbers(udsentry,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, st.st_mode & S_IFMT},
+                                 {KIO::UDSEntry::UDS_SIZE, st.st_size},
+                                 {KIO::UDSEntry::UDS_MODIFICATION_TIME, st.st_mtime},
+                                 {KIO::UDSEntry::UDS_ACCESS_TIME, st.st_atime},
+                             });
     // No, st_ctime is not UDS_CREATION_TIME...
 
     return 0;
@@ -475,9 +479,12 @@ WorkerResult SMBWorker::listDir(const QUrl &kurl)
 
     UDSEntry udsentry;
     if (smbc->dirWasRoot()) {
-        udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
         udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
-        udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
+        KIOExtras::insertNumbers(udsentry,
+                                 {
+                                     {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH)},
+                                 });
     } else {
         udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
         const int statErr = browse_stat_path(m_current_url, udsentry);
@@ -486,8 +493,11 @@ WorkerResult SMBWorker::listDir(const QUrl &kurl)
                 reportWarning(m_current_url, statErr);
             }
             // Create a default UDSEntry if we could not stat the actual directory
-            udsentry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-            udsentry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+            KIOExtras::insertNumbers(udsentry,
+                                     {
+                                         {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                         {KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)},
+                                     });
         }
     }
     listEntry(udsentry);

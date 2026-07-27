@@ -7,6 +7,7 @@
 */
 
 #include "kio_nfs.h"
+#include "udsentry_compat.h"
 
 #include <config-runtime.h>
 
@@ -967,12 +968,18 @@ void NFSProtocol::completeInvalidUDSEntry(KIO::UDSEntry &entry)
 // a blank UDSEntry or one where only UDS_NAME has been filled in.
 void NFSProtocol::createVirtualDirEntry(UDSEntry &entry)
 {
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0); // dummy size
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, "inode/directory");
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH);
-    entry.fastInsert(KIO::UDSEntry::UDS_USER, QString::fromLatin1("root"));
-    entry.fastInsert(KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root"));
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 {KIO::UDSEntry::UDS_USER, QString::fromLatin1("root")},
+                                 {KIO::UDSEntry::UDS_GROUP, QString::fromLatin1("root")},
+                             });
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_SIZE, 0}, // dummy size
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH},
+                             });
 }
 
 #include "kio_nfs.moc"

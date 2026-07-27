@@ -6,6 +6,7 @@
 
 #include "recentlyused.h"
 #include "recentlyused-logsettings.h"
+#include "udsentry_compat.h"
 
 #include <QCoreApplication>
 #include <QDataStream>
@@ -189,14 +190,13 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
     // replace name with a technical unique name
     const auto name = uds.stringValue(KIO::UDSEntry::UDS_NAME);
     uds.replace(KIO::UDSEntry::UDS_NAME, QStringLiteral("%1-%2").arg(name).arg(row));
-    uds.reserve(uds.count() + 5);
-    if (name.isEmpty()) {
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, resource);
-    } else {
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, name);
-    }
-    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mimeType);
-    uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, resourceUrl.toString());
+    KIOExtras::insertStrings(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME, name.isEmpty() ? resource : name},
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, mimeType},
+                                 {KIO::UDSEntry::UDS_TARGET_URL, resourceUrl.toString()},
+                                 {KIO::UDSEntry::UDS_EXTRA, agent},
+                             });
     if (resourceUrl.isLocalFile()) {
         uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, resource);
     }
@@ -210,7 +210,6 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
         // override access time
         uds.replace(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
     }
-    uds.fastInsert(KIO::UDSEntry::UDS_EXTRA, agent);
     return uds;
 }
 
@@ -223,15 +222,21 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 
         // add "." to transmit permissions for current directory
         KIO::UDSEntry uds;
-        uds.reserve(4);
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
-        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        KIOExtras::insertStrings(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, QStringLiteral(".")},
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 });
 #ifdef Q_OS_WIN
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD);
+        const long long access = _S_IREAD;
 #else
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
+        const long long access = S_IRUSR | S_IXUSR;
 #endif
+        KIOExtras::insertNumbers(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {KIO::UDSEntry::UDS_ACCESS, access},
+                                 });
         udslist << uds;
 
         int limit = queryLimit(url);
@@ -295,18 +300,24 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QString &iconName)
 {
     KIO::UDSEntry uds;
-    uds.reserve(7);
-    uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
-    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
-    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
-    uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, iconName);
-    uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    KIOExtras::insertStrings(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, dirName},
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME, dirName},
+                                 {KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName},
+                                 {KIO::UDSEntry::UDS_ICON_NAME, iconName},
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                             });
 #ifdef Q_OS_WIN
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, _S_IREAD);
+    const long long access = _S_IREAD;
 #else
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IXUSR);
+    const long long access = S_IRUSR | S_IXUSR;
 #endif
+    KIOExtras::insertNumbers(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_ACCESS, access},
+                             });
     return uds;
 }
 

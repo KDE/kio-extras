@@ -5,6 +5,8 @@
 
 #include "afcclient.h"
 
+#include <optional>
+
 #include "afc_debug.h"
 
 #include "afcdevice.h"
@@ -152,26 +154,32 @@ WorkerResult AfcClient::entry(const QString &path, UDSEntry &entry)
     });
 
     const int lastSlashIdx = path.lastIndexOf(QLatin1Char('/'));
-    entry.fastInsert(UDSEntry::UDS_NAME, path.mid(lastSlashIdx + 1));
 
     // Apply special icons for known locations
+    QString iconName;
     if (m_appId.isEmpty()) {
         static const QHash<QString, QString> s_folderIcons = {{QStringLiteral("/DCIM"), QStringLiteral("camera-photo")},
                                                               {QStringLiteral("/Documents"), QStringLiteral("folder-documents")},
                                                               {QStringLiteral("/Downloads"), QStringLiteral("folder-downloads")},
                                                               {QStringLiteral("/Photos"), QStringLiteral("folder-pictures")}};
-        const QString iconName = s_folderIcons.value(path);
-        if (!iconName.isEmpty()) {
-            entry.fastInsert(UDSEntry::UDS_ICON_NAME, iconName);
-        }
+        iconName = s_folderIcons.value(path);
     }
+
+    // The device hands the file info back as an unordered list of key and value pairs. Collect the
+    // values here and insert them below, so that the entry gets all its strings and then all its
+    // numbers rather than a mix in whatever order the device chose.
+    bool isDirectory = false;
+    std::optional<long long> size;
+    std::optional<long long> fileType;
+    std::optional<long long> modificationTime;
+    std::optional<long long> creationTime;
 
     for (int i = 0; info[i]; i += 2) {
         const auto *key = info[i];
         const auto *value = info[i + 1];
 
         if (strcmp(key, "st_size") == 0) {
-            entry.fastInsert(UDSEntry::UDS_SIZE, atoll(value));
+            size = atoll(value);
         } else if (strcmp(key, "st_blocks") == 0) {
             // no UDS equivalent
         } else if (strcmp(key, "st_nlink") == 0) {
@@ -182,7 +190,7 @@ WorkerResult AfcClient::entry(const QString &path, UDSEntry &entry)
                 type = S_IFREG;
             } else if (strcmp(value, "S_IFDIR") == 0) {
                 type = S_IFDIR;
-                entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+                isDirectory = true;
             } else if (strcmp(value, "S_IFLNK") == 0) {
                 type = S_IFLNK;
             } else if (strcmp(value, "S_IFBLK") == 0) {
@@ -196,21 +204,42 @@ WorkerResult AfcClient::entry(const QString &path, UDSEntry &entry)
             }
 
             if (type) {
-                entry.fastInsert(UDSEntry::UDS_FILE_TYPE, type);
+                fileType = type;
             } else {
                 qCWarning(KIO_AFC_LOG) << "Encountered unknown" << key << "of" << value << "for" << path;
             }
             // is returned in nanoseconds
         } else if (strcmp(key, "st_mtime") == 0) {
-            entry.fastInsert(UDSEntry::UDS_MODIFICATION_TIME, atoll(value) / 1000000000);
+            modificationTime = atoll(value) / 1000000000;
         } else if (strcmp(key, "st_birthtime") == 0) {
-            entry.fastInsert(UDSEntry::UDS_CREATION_TIME, atoll(value) / 1000000000);
+            creationTime = atoll(value) / 1000000000;
         } else if (strcmp(key, "LinkTarget") == 0) {
             // TODO figure out why afc_make_link fails with AFC_E_OP_NOT_SUPPORTED and then implement this
             // entry.fastInsert(UDSEntry::UDS_LINK_DEST, QString::fromUtf8(value));
         } else {
             qCDebug(KIO_AFC_LOG) << "Encountered unrecognized file info key" << key << "for" << path;
         }
+    }
+
+    entry.fastInsert(UDSEntry::UDS_NAME, path.mid(lastSlashIdx + 1));
+    if (!iconName.isEmpty()) {
+        entry.fastInsert(UDSEntry::UDS_ICON_NAME, iconName);
+    }
+    if (isDirectory) {
+        entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    }
+
+    if (size) {
+        entry.fastInsert(UDSEntry::UDS_SIZE, *size);
+    }
+    if (fileType) {
+        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, *fileType);
+    }
+    if (modificationTime) {
+        entry.fastInsert(UDSEntry::UDS_MODIFICATION_TIME, *modificationTime);
+    }
+    if (creationTime) {
+        entry.fastInsert(UDSEntry::UDS_CREATION_TIME, *creationTime);
     }
 
     return WorkerResult::pass();

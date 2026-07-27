@@ -5,6 +5,7 @@
 */
 
 #include "kio_archivebase.h"
+#include "udsentry_compat.h"
 #include <kio_archive_debug.h>
 
 #include <errno.h>
@@ -188,41 +189,56 @@ KIO::StatDetails ArchiveProtocolBase::getStatDetails() const
 void ArchiveProtocolBase::createRootUDSEntry(KIO::UDSEntry &entry)
 {
     entry.clear();
-    entry.reserve(7);
 
     auto path = m_archiveFile->fileName();
     path = path.mid(path.lastIndexOf(QLatin1Char('/')) + 1);
 
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
-    entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, path);
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime);
-    // entry.fastInsert( KIO::UDSEntry::UDS_ACCESS, 07777 ); // fake 'x' permissions, this is a pseudo-directory
-    entry.fastInsert(KIO::UDSEntry::UDS_USER, m_user);
-    entry.fastInsert(KIO::UDSEntry::UDS_GROUP, m_group);
-
     QMimeDatabase db;
-    QMimeType mt = db.mimeTypeForFile(m_archiveFile->fileName());
+    const QMimeType mt = db.mimeTypeForFile(m_archiveFile->fileName());
+
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, QStringLiteral(".")},
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME, path},
+                                 {KIO::UDSEntry::UDS_USER, m_user},
+                                 {KIO::UDSEntry::UDS_GROUP, m_group},
+                             });
     if (mt.isValid()) {
         entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, mt.name());
     }
+
+    // no UDS_ACCESS, the fake 'x' permissions of this pseudo-directory are left out
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_MODIFICATION_TIME, m_mtime},
+                             });
 }
 
 void ArchiveProtocolBase::createUDSEntry(const KArchiveEntry *archiveEntry, UDSEntry &entry)
 {
     entry.clear();
 
-    entry.reserve(8);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, archiveEntry->name());
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, archiveEntry->isFile() ? archiveEntry->permissions() & S_IFMT : S_IFDIR); // keep file type only
-    if (archiveEntry->isFile()) {
-        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, ((KArchiveFile *)archiveEntry)->size());
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, archiveEntry->name()},
+                                 {KIO::UDSEntry::UDS_USER, archiveEntry->user()},
+                                 {KIO::UDSEntry::UDS_GROUP, archiveEntry->group()},
+                                 {KIO::UDSEntry::UDS_LINK_DEST, archiveEntry->symLinkTarget()},
+                             });
+
+    const bool isFile = archiveEntry->isFile();
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 // keep file type only
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, isFile ? archiveEntry->permissions() & S_IFMT : S_IFDIR},
+                                 {KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toSecsSinceEpoch()},
+                                 // keep permissions only
+                                 {KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777},
+                             });
+    if (isFile) {
+        entry.fastInsert(KIO::UDSEntry::UDS_SIZE, static_cast<const KArchiveFile *>(archiveEntry)->size());
     }
-    entry.fastInsert(KIO::UDSEntry::UDS_MODIFICATION_TIME, archiveEntry->date().toSecsSinceEpoch());
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, archiveEntry->permissions() & 07777); // keep permissions only
-    entry.fastInsert(KIO::UDSEntry::UDS_USER, archiveEntry->user());
-    entry.fastInsert(KIO::UDSEntry::UDS_GROUP, archiveEntry->group());
-    entry.fastInsert(KIO::UDSEntry::UDS_LINK_DEST, archiveEntry->symLinkTarget());
 }
 
 KIO::WorkerResult ArchiveProtocolBase::listDir(const QUrl &url)
@@ -321,7 +337,7 @@ KIO::WorkerResult ArchiveProtocolBase::stat(const QUrl &url)
             // We have any other error
             return KIO::WorkerResult::fail(errorNum, url.toDisplayString());
         }
-        entry.reserve(2);
+        KIOExtras::reserveEntry(entry, 1, 1);
         // Real directory. Return just enough information for KRun to work
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
         qCDebug(KIO_ARCHIVE_LOG) << "returning name" << url.fileName();

@@ -105,7 +105,7 @@ if (BUILD_DOC)
     )
 endif()
 
-include_directories(${CMAKE_CURRENT_BINARY_DIR})
+include_directories(${CMAKE_CURRENT_BINARY_DIR} ${CMAKE_CURRENT_SOURCE_DIR}/common)
 
 if(NOT WIN32)
     # we need a version of samba which has already smbc_set_context(), Alex
