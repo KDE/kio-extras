@@ -9,15 +9,15 @@ msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-11-17 11:51+0000\n"
-"PO-Revision-Date: 2026-04-14 22:53+0200\n"
-"Last-Translator: Jan Papez (honyczek) <honyczek@centrum.cz>\n"
+"PO-Revision-Date: 2026-07-26 11:49+0200\n"
+"Last-Translator: Libor Filípek <libor.filipek@gmail.com>\n"
 "Language-Team: Czech <kde-i18n-cs@kde.org>\n"
 "Language: cs\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
-"X-Generator: Lokalize 26.03.90\n"
+"X-Generator: Poedit 3.9\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -98,7 +98,7 @@ msgstr "Chyba při připojování se k serveru %1"
 #: kio_smb_browse.cpp:302
 #, kde-format
 msgid "Share could not be found on given server"
-msgstr "Na daném serveru nelze najít sdílený prostředek."
+msgstr "Na daném serveru nelze najít sdílený prostředek"
 
 #: kio_smb_browse.cpp:304
 #, kde-format
@@ -157,7 +157,7 @@ msgstr "Nastala chyba při pokusu o přístup k %1<nl/>%2"
 #: kio_smb_file.cpp:35
 #, kde-format
 msgid "libsmbclient failed to create context"
-msgstr "Nelze vytvořit kontext"
+msgstr "libsmbclient nemohl vytvořit kontext"
 
 #: kio_smb_mount.cpp:163 kio_smb_mount.cpp:189
 #, kde-format
