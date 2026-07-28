@@ -1,28 +1,28 @@
 # Translation for kio5.po to Euskara/Basque (eu).
-# Copyright (C) 2003-2025 This file is copyright:
+# Copyright (C) 2003-2026 This file is copyright:
 # This file is distributed under the same license as the kio package.
-# SPDX-FileCopyrightText: 2024, 2025 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
+# SPDX-FileCopyrightText: 2024-2026 KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>
 #
 # Translators:
 # Marcos <marcos@euskalgnu.org>, 2003, 2005, 2006, 2007, 2008, 2010.
 # Asel Luzarraga <asel@euskalnet.net>, 2003, 2004.
 # Ion Gaztañaga <igaztanaga@gmail.com>, 2005.
 # Asier Urio Larrea <asieriko@gmail.com>, 2008.
-# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2010, 2011, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2010, 2011, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026.
 # Iñaki Larrañaga Murgoitio <dooteo@euskalgnu.org>, 2011.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-14 00:43+0000\n"
-"PO-Revision-Date: 2025-09-15 22:22+0200\n"
+"PO-Revision-Date: 2026-07-27 04:32+0200\n"
 "Last-Translator: Iñigo Salvador Azurmendi <xalba@ni.eus>\n"
 "Language-Team: Basque <kde-i18n-eu@kde.org>\n"
 "Language: eu\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 25.08.1\n"
+"X-Generator: Lokalize 26.04.3\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
 #: ksaveioconfig.cpp:36
@@ -711,11 +711,10 @@ msgid "Preferred"
 msgstr "Hobetsia"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Hautatu web bilaketako gako-hitza markatzeko mugatzaile bat."
+msgstr "Markatu web bilaketako gako-hitz hau hobetsi gisa hautatzeko."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -739,6 +738,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"Web bilaketako gako-hitzei esker, Interneten bilaketak edo hitzen kontsultak "
+"azkar egin ditzakezu. Plasmako <application>KRunner</application> bilaketan, "
+"<application>Konqueror</application>en helbide-barran eta onartzen dituzten "
+"gainerako aplikazio guztietan erabil daitezke. Adibidez, Google bilatzailea "
+"erabiliz KDE proiektuari buruzko informazioa bilatzeko, nahikoa da <icode>gg:"
+"KDE</icode> edo <icode>google:KDE</icode> idaztea."
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -747,6 +752,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Markatu aukera hau web bilaketako gako-hitzak ezagutu eta erabiltzeko, "
+"horiek onartzen dituzten aplikazioetan."
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -758,7 +765,7 @@ msgstr "&Gaitu web bilaketako gako-hitzak"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Hau nola dabil?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -770,6 +777,11 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Markatu aukera hau beheko zerrendan hautatutako web bilaketako gako-hitz "
+"hobetsiak soilik erabiltzeko.</p><p> Aukera hau markatuta badago, web "
+"bilaketako gako-hitz kopuru mugatu bat baino erakutsi ezin duten aplikazioek "
+"(adibidez, <application>Konqueror</application>rek orrialde bateko testua "
+"hautatuta dagoenean) gako-hitz hobetsiak baino ez dituzte erakutsiko.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -834,6 +846,11 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Hautatu web bilaketako gako-hitz lehenetsi bat.</p><p> Sartutako testua "
+"ezagutzen ez badute automatikoki bilaketa egiten duten aplikazioek erabil "
+"dezakete, adibidez, Konquerorren helbide-barran. Gako-hitz hau bilatzeko "
+"erabiliko da. Eginbide hau desgaitzeko, hautatu zerrendako <tt>(Bat ere ez)</"
+"tt> aukera.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -843,15 +860,12 @@ msgstr "Ga&ko-hitz mugatzailea:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Hautatu gako-hitza bilatu beharreko esalditik edo hitzetik banatzen duen "
+"Hautatu gako-hitza bilatu beharreko esalditik edo hitzetik banatzeko "
 "mugatzailea."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
