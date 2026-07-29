@@ -4,6 +4,7 @@
  */
 
 #include "afcapp.h"
+#include "udsentry_compat.h"
 
 #include "afc_debug.h"
 
@@ -80,11 +81,14 @@ QString AfcApp::iconPath() const
 UDSEntry AfcApp::entry(const QString &name) const
 {
     UDSEntry entry;
-    entry.fastInsert(UDSEntry::UDS_NAME, !name.isEmpty() ? name : m_bundleId);
-    entry.fastInsert(UDSEntry::UDS_DISPLAY_NAME, m_displayName);
-    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, !name.isEmpty() ? name : m_bundleId},
+                                 {UDSEntry::UDS_DISPLAY_NAME, m_displayName},
+                             });
     if (!m_iconPath.isEmpty()) {
         entry.fastInsert(UDSEntry::UDS_ICON_NAME, m_iconPath);
     }
+    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     return entry;
 }

@@ -7,6 +7,7 @@
 
 #include "KioActivities.h"
 #include "KioActivitiesApi.h"
+#include "udsentry_compat.h"
 
 #include <QCoreApplication>
 
@@ -103,16 +104,22 @@ KIO::WorkerResult ActivitiesProtocol::listDir(const QUrl &url)
         KIO::UDSEntryList udslist;
 
         KIO::UDSEntry uds;
-        uds.reserve(9);
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("current"));
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Current activity"));
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
-        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
-        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
-        uds.fastInsert(KIO::UDSEntry::UDS_USER, KUser().loginName());
-        uds.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, QStringLiteral("activities:/") + activities.currentActivity());
+        const QString currentActivityUrl = QStringLiteral("activities:/") + activities.currentActivity();
+        KIOExtras::insertStrings(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, QStringLiteral("current")},
+                                     {KIO::UDSEntry::UDS_DISPLAY_NAME, i18n("Current activity")},
+                                     {KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity")},
+                                     {KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities")},
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                     {KIO::UDSEntry::UDS_USER, KUser().loginName()},
+                                     {KIO::UDSEntry::UDS_TARGET_URL, currentActivityUrl},
+                                 });
+        KIOExtras::insertNumbers(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {KIO::UDSEntry::UDS_ACCESS, 0500},
+                                 });
         udslist << uds;
 
         for (const auto &activity : activities.activities()) {
@@ -175,13 +182,15 @@ KIO::WorkerResult ActivitiesProtocol::stat(const QUrl &url)
     case ActivitiesProtocolApi::RootItem: {
         QString dirName = i18n("Activities");
         KIO::UDSEntry uds;
-        uds.reserve(6);
-        uds.fastInsert(KIO::UDSEntry::UDS_NAME, dirName);
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, dirName);
-        uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName);
-        uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities"));
+        KIOExtras::insertStrings(uds,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, dirName},
+                                     {KIO::UDSEntry::UDS_DISPLAY_NAME, dirName},
+                                     {KIO::UDSEntry::UDS_DISPLAY_TYPE, dirName},
+                                     {KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("activities")},
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 });
         uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 
         statEntry(uds);
 

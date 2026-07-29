@@ -4,6 +4,7 @@
 */
 
 #include "wsdiscoverer.h"
+#include "udsentry_compat.h"
 
 #include <QCoreApplication>
 #include <QDebug>
@@ -363,21 +364,24 @@ QString WSDiscovery::udsName() const
 KIO::UDSEntry WSDiscovery::toEntry() const
 {
     KIO::UDSEntry entry;
-    const int fastInsertCount = 6;
-    entry.reserve(fastInsertCount);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, udsName());
-
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
-    entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, "network-server");
 
     QUrl u;
     u.setScheme(QStringLiteral("smb"));
     u.setHost(m_remote);
     u.setPath("/"); // https://bugs.kde.org/show_bug.cgi?id=388922
 
-    entry.fastInsert(KIO::UDSEntry::UDS_URL, u.url());
-    entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server"));
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, udsName()},
+                                 {KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("network-server")},
+                                 {KIO::UDSEntry::UDS_URL, u.url()},
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server")},
+                             });
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)},
+                             });
     return entry;
 }
 

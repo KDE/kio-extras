@@ -9,6 +9,7 @@
 
 #include "kio_mtp.h"
 #include "kio_mtp_debug.h"
+#include "udsentry_compat.h"
 
 // #include <KComponentData>
 #include <QCoreApplication>
@@ -35,45 +36,61 @@ class KIOPluginForMetaData : public QObject
 static UDSEntry getEntry(const KMTPDeviceInterface *device)
 {
     UDSEntry entry;
-    entry.reserve(5);
-    entry.fastInsert(UDSEntry::UDS_NAME, device->friendlyName());
-    entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("multimedia-player"));
-    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
-    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, device->friendlyName()},
+                                 {UDSEntry::UDS_ICON_NAME, QStringLiteral("multimedia-player")},
+                                 {UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                             });
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH},
+                             });
     return entry;
 }
 
 static UDSEntry getEntry(const KMTPStorageInterface *storage)
 {
     UDSEntry entry;
-    entry.reserve(5);
-    entry.fastInsert(UDSEntry::UDS_NAME, storage->description());
-    entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("drive-removable-media"));
-    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH);
-    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, storage->description()},
+                                 {UDSEntry::UDS_ICON_NAME, QStringLiteral("drive-removable-media")},
+                                 {UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                             });
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH},
+                             });
     return entry;
 }
 
 static UDSEntry getEntry(const KMTPFile &file)
 {
     UDSEntry entry;
-    entry.reserve(9);
-    entry.fastInsert(UDSEntry::UDS_NAME, file.filename());
-    if (file.isFolder()) {
-        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRWXU | S_IRWXG | S_IRWXO);
-    } else {
-        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFREG);
-        entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
+    const bool isFolder = file.isFolder();
+
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, file.filename()},
+                                 {UDSEntry::UDS_MIME_TYPE, file.filetype()},
+                             });
+
+    const auto modificationDate = file.modificationdate();
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {UDSEntry::UDS_FILE_TYPE, isFolder ? S_IFDIR : S_IFREG},
+                                 {UDSEntry::UDS_ACCESS, isFolder ? S_IRWXU | S_IRWXG | S_IRWXO : S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH},
+                                 {UDSEntry::UDS_INODE, file.itemId()},
+                                 {UDSEntry::UDS_ACCESS_TIME, modificationDate},
+                                 {UDSEntry::UDS_MODIFICATION_TIME, modificationDate},
+                                 {UDSEntry::UDS_CREATION_TIME, modificationDate},
+                             });
+    if (!isFolder) {
         entry.fastInsert(UDSEntry::UDS_SIZE, file.filesize());
     }
-    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, file.filetype());
-    entry.fastInsert(UDSEntry::UDS_INODE, file.itemId());
-    entry.fastInsert(UDSEntry::UDS_ACCESS_TIME, file.modificationdate());
-    entry.fastInsert(UDSEntry::UDS_MODIFICATION_TIME, file.modificationdate());
-    entry.fastInsert(UDSEntry::UDS_CREATION_TIME, file.modificationdate());
     return entry;
 }
 
@@ -177,11 +194,13 @@ WorkerResult MTPWorker::listDir(const QUrl &url)
 
     // list '.' entry, otherwise files cannot be pasted to empty folders
     KIO::UDSEntry entry;
-    entry.reserve(4);
     entry.fastInsert(KIO::UDSEntry::UDS_NAME, QStringLiteral("."));
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(KIO::UDSEntry::UDS_SIZE, 0);
-    entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH);
+    KIOExtras::insertNumbers(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_SIZE, 0},
+                                 {KIO::UDSEntry::UDS_ACCESS, S_IRUSR | S_IWUSR | S_IXUSR | S_IRGRP | S_IWGRP | S_IXGRP | S_IROTH | S_IXOTH},
+                             });
     listEntry(entry);
 
     const QStringList pathItems = url.path().split(QLatin1Char('/'), Qt::SkipEmptyParts);
@@ -300,11 +319,16 @@ WorkerResult MTPWorker::stat(const QUrl &url)
     UDSEntry entry;
     // root
     if (pathItems.size() < 1) {
-        entry.reserve(4);
-        entry.fastInsert(UDSEntry::UDS_NAME, QStringLiteral("mtp:///"));
-        entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        entry.fastInsert(UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH);
-        entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
+        KIOExtras::insertStrings(entry,
+                                 {
+                                     {UDSEntry::UDS_NAME, QStringLiteral("mtp:///")},
+                                     {UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 });
+        KIOExtras::insertNumbers(entry,
+                                 {
+                                     {UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {UDSEntry::UDS_ACCESS, S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH},
+                                 });
     } else {
         const KMTPDeviceInterface *mtpDevice = m_kmtpDaemon.deviceFromName(pathItems.first());
         if (mtpDevice) {

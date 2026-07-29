@@ -8,6 +8,7 @@
 #include <QUrlQuery>
 
 #include "smbcdiscoverer.h"
+#include "udsentry_compat.h"
 
 static QEvent::Type LoopEvent = QEvent::User;
 
@@ -17,11 +18,17 @@ public:
     SMBCServerDiscovery(const UDSEntry &entry)
         : SMBCDiscovery(entry)
     {
-        m_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH));
-        m_entry.fastInsert(KIO::UDSEntry::UDS_URL, url());
-        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server"));
-        m_entry.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("network-server"));
+        KIOExtras::insertStrings(m_entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_URL, url()},
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-server")},
+                                     {KIO::UDSEntry::UDS_ICON_NAME, QStringLiteral("network-server")},
+                                 });
+        KIOExtras::insertNumbers(m_entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IXUSR | S_IRGRP | S_IXGRP | S_IROTH | S_IXOTH)},
+                                 });
     }
 
     QString url()
@@ -38,8 +45,11 @@ public:
     SMBCShareDiscovery(const UDSEntry &entry)
         : SMBCDiscovery(entry)
     {
-        m_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH));
+        KIOExtras::insertNumbers(m_entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {KIO::UDSEntry::UDS_ACCESS, (S_IRWXU | S_IRWXG | S_IROTH | S_IXOTH)},
+                                 });
     }
 };
 
@@ -49,10 +59,16 @@ public:
     SMBCWorkgroupDiscovery(const UDSEntry &entry)
         : SMBCDiscovery(entry)
     {
-        m_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-        m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH));
-        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-workgroup"));
-        m_entry.fastInsert(KIO::UDSEntry::UDS_URL, url());
+        KIOExtras::insertStrings(m_entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("application/x-smb-workgroup")},
+                                     {KIO::UDSEntry::UDS_URL, url()},
+                                 });
+        KIOExtras::insertNumbers(m_entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                     {KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH)},
+                                 });
     }
 
     QString url()
@@ -79,11 +95,15 @@ public:
     SMBCPrinterDiscovery(const UDSEntry &entry)
         : SMBCDiscovery(entry)
     {
+        // The URL is relative to parent, but need to set it so we can append a marker. Subsequent stat calls
+        // wouldn't know that this is a printer because libsmbc doesn't reflect that in the stat output.
+        const QString printerUrl = udsName() + QStringLiteral("?kio-printer=true");
+        KIOExtras::insertStrings(m_entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/vnd.kde.kio.smb.printer")},
+                                     {KIO::UDSEntry::UDS_URL, printerUrl},
+                                 });
         m_entry.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0x0);
-        m_entry.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/vnd.kde.kio.smb.printer"));
-        // Relative to parent, but need to set it so we can append a marker. Subsequent stat calls wouldn't know that this is a printer
-        // because libsmbc doesn't reflect that in the stat output.
-        m_entry.fastInsert(KIO::UDSEntry::UDS_URL, udsName() + QStringLiteral("?kio-printer=true"));
     }
 };
 
@@ -142,7 +162,8 @@ bool SMBCDiscoverer::discoverNextFileInfo()
             return true;
         }
         UDSEntry entry;
-        entry.reserve(5); // Minimal size. stat will set at least 4 fields.
+        // Minimal size. stat will set at least 4 fields.
+        KIOExtras::reserveEntry(entry, 3, 2);
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
 
         m_url.addPath(name);
@@ -212,9 +233,12 @@ void SMBCDiscoverer::discoverNext()
     // Minimal potential size. The actual size depends on this function,
     // possibly the stat function, and lastly the Discovery objects themselves.
     // The smallest will be a ShareDiscovery with 5 fields.
-    entry.reserve(5);
-    entry.fastInsert(KIO::UDSEntry::UDS_NAME, name);
-    entry.fastInsert(KIO::UDSEntry::UDS_COMMENT, comment);
+    KIOExtras::reserveEntry(entry, 3, 2);
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, name},
+                                 {KIO::UDSEntry::UDS_COMMENT, comment},
+                             });
     // Ensure system shares are marked hidden.
     if (name.endsWith(QLatin1Char('$'))) {
         entry.fastInsert(KIO::UDSEntry::UDS_HIDDEN, 1);

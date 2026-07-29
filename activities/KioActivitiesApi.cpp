@@ -7,6 +7,7 @@
 
 #include "KioActivitiesApi.h"
 #include "KioActivities.h"
+#include "udsentry_compat.h"
 
 #include <QCoreApplication>
 
@@ -79,16 +80,21 @@ void ActivitiesProtocolApi::syncActivities(KActivities::Consumer &activities)
 KIO::UDSEntry ActivitiesProtocolApi::activityEntry(const QString &activity)
 {
     KIO::UDSEntry uds;
-    uds.reserve(8);
     KActivities::Info activityInfo(activity);
-    uds.fastInsert(KIO::UDSEntry::UDS_NAME, activity);
-    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, activityInfo.name());
-    uds.fastInsert(KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity"));
-    uds.fastInsert(KIO::UDSEntry::UDS_ICON_NAME, activityInfo.icon());
-    uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    uds.fastInsert(KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
-    uds.fastInsert(KIO::UDSEntry::UDS_ACCESS, 0500);
-    uds.fastInsert(KIO::UDSEntry::UDS_USER, KUser().loginName());
+    KIOExtras::insertStrings(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, activity},
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME, activityInfo.name()},
+                                 {KIO::UDSEntry::UDS_DISPLAY_TYPE, i18n("Activity")},
+                                 {KIO::UDSEntry::UDS_ICON_NAME, activityInfo.icon()},
+                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 {KIO::UDSEntry::UDS_USER, KUser().loginName()},
+                             });
+    KIOExtras::insertNumbers(uds,
+                             {
+                                 {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
+                                 {KIO::UDSEntry::UDS_ACCESS, 0500},
+                             });
     return uds;
 }
 

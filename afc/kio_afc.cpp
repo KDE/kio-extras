@@ -4,6 +4,7 @@
  */
 
 #include "kio_afc.h"
+#include "udsentry_compat.h"
 
 #include "afc_debug.h"
 
@@ -131,10 +132,13 @@ Result AfcWorker::clientForUrl(const AfcUrl &afcUrl, AfcClient::Ptr &client) con
 UDSEntry AfcWorker::overviewEntry(const QString &fileName) const
 {
     UDSEntry entry;
-    entry.fastInsert(UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : i18n("Apple Devices"));
-    entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("phone-apple-iphone"));
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : i18n("Apple Devices")},
+                                 {UDSEntry::UDS_ICON_NAME, QStringLiteral("phone-apple-iphone")},
+                                 {UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                             });
     entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
     return entry;
 }
 
@@ -142,16 +146,6 @@ UDSEntry AfcWorker::deviceEntry(const AfcDevice *device, const QString &fileName
 {
     const QString deviceId = device->id();
     const QString deviceClass = device->deviceClass();
-
-    UDSEntry entry;
-    entry.fastInsert(UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : deviceId);
-    if (!device->name().isEmpty()) {
-        entry.fastInsert(UDSEntry::UDS_DISPLAY_NAME, device->name());
-    }
-    // TODO prettier
-    entry.fastInsert(UDSEntry::UDS_DISPLAY_TYPE, deviceClass);
-    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-    entry.fastInsert(UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory"));
 
     QString iconName;
     // We can assume iPod running iOS/supporting imobiledevice is an iPod touch?
@@ -163,28 +157,45 @@ UDSEntry AfcWorker::deviceEntry(const AfcDevice *device, const QString &fileName
         iconName = QStringLiteral("phone-apple-iphone");
     }
 
-    entry.fastInsert(UDSEntry::UDS_ICON_NAME, iconName);
+    UDSEntry entry;
+    // TODO prettier display type
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : deviceId},
+                                 {UDSEntry::UDS_DISPLAY_TYPE, deviceClass},
+                                 {UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 {UDSEntry::UDS_ICON_NAME, iconName},
+                             });
+    if (!device->name().isEmpty()) {
+        entry.fastInsert(UDSEntry::UDS_DISPLAY_NAME, device->name());
+    }
 
     if (asLink) {
         const QString contentsUrl = QStringLiteral("afc://%1/").arg(deviceId);
-        entry.fastInsert(UDSEntry::UDS_LINK_DEST, contentsUrl);
-        entry.fastInsert(UDSEntry::UDS_TARGET_URL, contentsUrl);
+        KIOExtras::insertStrings(entry,
+                                 {
+                                     {UDSEntry::UDS_LINK_DEST, contentsUrl},
+                                     {UDSEntry::UDS_TARGET_URL, contentsUrl},
+                                 });
     }
 
+    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     return entry;
 }
 
 UDSEntry AfcWorker::appsOverviewEntry(const AfcDevice *device, const QString &fileName) const
 {
     UDSEntry entry;
-    entry.fastInsert(UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : AfcUrl::appsTag());
-    entry.fastInsert(UDSEntry::UDS_DISPLAY_NAME, i18nc("Link to folder with files stored inside apps", "Apps"));
-    entry.fastInsert(UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-documents"));
-    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
-
     const QString appsUrl = QStringLiteral("afc://%1/%2/").arg(device->id(), AfcUrl::appsTag());
-    entry.fastInsert(UDSEntry::UDS_LINK_DEST, appsUrl);
-    entry.fastInsert(UDSEntry::UDS_TARGET_URL, appsUrl);
+    KIOExtras::insertStrings(entry,
+                             {
+                                 {UDSEntry::UDS_NAME, !fileName.isEmpty() ? fileName : AfcUrl::appsTag()},
+                                 {UDSEntry::UDS_DISPLAY_NAME, i18nc("Link to folder with files stored inside apps", "Apps")},
+                                 {UDSEntry::UDS_ICON_NAME, QStringLiteral("folder-documents")},
+                                 {UDSEntry::UDS_LINK_DEST, appsUrl},
+                                 {UDSEntry::UDS_TARGET_URL, appsUrl},
+                             });
+    entry.fastInsert(UDSEntry::UDS_FILE_TYPE, S_IFDIR);
 
     return entry;
 }
