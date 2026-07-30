@@ -67,6 +67,27 @@ static QString stripCompression(const QString &name)
     return (pos > 0 ? name.left(pos) : name);
 }
 
+static QString sectionName(const QString &section);
+
+/*
+ * What the reader sees for a section, its number and what it holds
+ */
+static QString sectionDisplayName(const QString &section)
+{
+    const QString name = sectionName(section);
+    return name.isEmpty() ? '(' + section + ')' : section + " - " + name;
+}
+
+/*
+ * What the reader sees for the file of a page, "411toppm.1.gz" reading as "411toppm (1)"
+ */
+static QString pageDisplayName(const QString &fileName)
+{
+    const QString name = stripCompression(fileName);
+    const int pos = name.lastIndexOf('.');
+    return (pos > 0 ? name.left(pos) + " (" + name.mid(pos + 1) + ')' : name);
+}
+
 /*
  * Drop trailing compression suffix and section from name
  */
@@ -1336,20 +1357,28 @@ KIO::WorkerResult MANProtocol::listDir(const QUrl &url)
 
     UDSEntry uds_entry;
 
-    uds_entry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
+    // The listed folder is named "." for itself, and what the reader sees of it is the pages it holds.
+    KIOExtras::insertStrings(uds_entry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, QStringLiteral(".")},
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME,
+                                  section.isEmpty() ? i18nc("@item the folder that holds every manual page", "Manual Pages") : sectionDisplayName(section)},
+                             });
     uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
     listEntry(uds_entry);
 
     if (section.isEmpty()) // list the top level directory
     {
         for (const QString &sect : m_sectionNames) {
-            uds_entry.clear(); // sectionName() is already I18N'ed
-            const QString sectionTitle = sect + " - " + sectionName(sect);
-            const QString sectionUrl = "man:/(" + sect + ')';
+            uds_entry.clear(); // sectionDisplayName() is already I18N'ed
+            // The name is what the url of the section carries, so that the section can be looked up by
+            // it, and the title is what the user reads.
+            const QString name = '(' + sect + ')';
             KIOExtras::insertStrings(uds_entry,
                                      {
-                                         {KIO::UDSEntry::UDS_NAME, sectionTitle},
-                                         {KIO::UDSEntry::UDS_URL, sectionUrl},
+                                         {KIO::UDSEntry::UDS_NAME, name},
+                                         {KIO::UDSEntry::UDS_DISPLAY_NAME, sectionDisplayName(sect)},
+                                         {KIO::UDSEntry::UDS_URL, "man:/" + name},
                                      });
             uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
             listEntry(uds_entry);
@@ -1358,30 +1387,19 @@ KIO::WorkerResult MANProtocol::listDir(const QUrl &url)
     {
         const QStringList list = findPages(section, QString());
         for (const QString &page : list) {
-            // Remove any compression suffix present
-            QString name = stripCompression(page);
-            QString displayName;
-            // Remove any preceding pathname components, just leave the base name
-            int pos = name.lastIndexOf('/');
-            if (pos > 0)
-                name = name.mid(pos + 1);
-            // Remove the section suffix
-            pos = name.lastIndexOf('.');
-            if (pos > 0) {
-                displayName = name.left(pos) + " (" + name.mid(pos + 1) + ')';
-                name.truncate(pos);
-            }
+            // The name is the name of the file the url of the page points to, so that the page can be
+            // looked up by its url. What the user reads is the page and its section.
+            const QString name = page.mid(page.lastIndexOf('/') + 1);
 
             uds_entry.clear();
             const QString pageUrl = "man:" + page;
             KIOExtras::insertStrings(uds_entry,
                                      {
                                          {KIO::UDSEntry::UDS_NAME, name},
+                                         {KIO::UDSEntry::UDS_DISPLAY_NAME, pageDisplayName(name)},
                                          {KIO::UDSEntry::UDS_URL, pageUrl},
                                          {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html")},
                                      });
-            if (!displayName.isEmpty())
-                uds_entry.fastInsert(KIO::UDSEntry::UDS_DISPLAY_NAME, displayName);
             uds_entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
             listEntry(uds_entry);
         }
