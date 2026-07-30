@@ -775,12 +775,29 @@ KIO::WorkerResult MANProtocol::stat(const QUrl &url)
     qCDebug(KIO_MAN_LOG) << "URL" << url.url() << "parsed to title" << title << "section" << section;
 
     UDSEntry entry;
-    KIOExtras::insertStrings(entry,
-                             {
-                                 {KIO::UDSEntry::UDS_NAME, title},
-                                 {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html")},
-                             });
-    entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+    // The item is named as its url names it, and what the reader sees is the page or the section.
+    const QString name = url.fileName();
+    const bool isRoot = section.isEmpty() && (title.isEmpty() || title == QLatin1String("/"));
+    const bool isSection = title.isEmpty() && !section.isEmpty();
+
+    if (isRoot || isSection) {
+        KIOExtras::insertStrings(entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, isRoot ? QStringLiteral(".") : name},
+                                     {KIO::UDSEntry::UDS_DISPLAY_NAME,
+                                      isRoot ? i18nc("@item the folder that holds every manual page", "Manual Pages") : sectionDisplayName(section)},
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("inode/directory")},
+                                 });
+        entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR);
+    } else {
+        KIOExtras::insertStrings(entry,
+                                 {
+                                     {KIO::UDSEntry::UDS_NAME, name},
+                                     {KIO::UDSEntry::UDS_DISPLAY_NAME, section.isEmpty() ? pageDisplayName(name) : title + " (" + section + ')'},
+                                     {KIO::UDSEntry::UDS_MIME_TYPE, QStringLiteral("text/html")},
+                                 });
+        entry.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, S_IFREG);
+    }
 
     statEntry(entry);
 
