@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2024-01-30 09:54-0600\n"
 "Last-Translator: A S Alam <aalam@punlinux.org>\n"
 "Language-Team: Punjabi <kde-i18n-doc@kde.org>\n"
@@ -51,7 +51,7 @@ msgstr ""
 "ਸਰਵਰ= %1\n"
 "ਸ਼ੇਅਰ = %2"
 
-#: kio_smb_browse.cpp:59
+#: kio_smb_browse.cpp:60
 #, kde-format
 msgid ""
 "%1:\n"
@@ -60,7 +60,7 @@ msgstr ""
 "%1:\n"
 "ਅਣਜਾਣੀ ਫਾਇਲ ਕਿਸਮ, ਨਾ ਡਾਇਰੈਕਟਰੀ ਹੈ ਨਾ ਹੀ ਫਾਇਲ ਹੈ।"
 
-#: kio_smb_browse.cpp:273
+#: kio_smb_browse.cpp:277
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -69,32 +69,32 @@ msgstr ""
 "ਤੁਹਾਡੇ ਲੋਕਲ ਨੈੱਟਵਰਕ ਵਿੱਚ ਕੋਈ ਵਰਕਗਰੁੱਪ ਲੱਭਣ ਤੋਂ ਅਸਫਲ ਹੈ। ਇਹ ਸ਼ਾਇਦ ਫਾਇਰਵਾਲ ਚਾਲੂ ਹੋਣ ਕਰਕੇ ਹੋ ਸਕਦਾ "
 "ਹੈ।"
 
-#: kio_smb_browse.cpp:278
+#: kio_smb_browse.cpp:282
 #, kde-format
 msgid "No media in device for %1"
 msgstr "%1 ਲਈ ਡਿਵਾਈਸ ਵਿੱਚ ਕੋਈ ਮੀਡਿਅਮ ਨਹੀਂ ਹੈ"
 
-#: kio_smb_browse.cpp:284
+#: kio_smb_browse.cpp:288
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "%1 ਲਈ ਹੋਸਟ ਨਾਲ ਜੁੜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ"
 
-#: kio_smb_browse.cpp:296
+#: kio_smb_browse.cpp:300
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "ਸਰਵਰ, ਜੋ ਕਿ %1 ਲਈ ਜਿੰਮੇਵਾਰ ਹੈ, ਨਾਲ ਕਨੈਕਟ ਕਰਨ ਦੌਰਾਨ ਗਲਤੀ"
 
-#: kio_smb_browse.cpp:302
+#: kio_smb_browse.cpp:306
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "ਦਿੱਤੇ ਸਰਵਰ ਤੇ ਸਾਂਝ ਖੋਜੀ ਨਹੀਂ ਜਾ ਸਕੀ ਹੈ"
 
-#: kio_smb_browse.cpp:304
+#: kio_smb_browse.cpp:308
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "ਗਲਤ ਫਾਇਲ ਵਰਣਨਕਰਤਾ"
 
-#: kio_smb_browse.cpp:312
+#: kio_smb_browse.cpp:316
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -104,7 +104,7 @@ msgstr ""
 "ਦਿੱਤੇ ਨਾਂ ਨੂੰ ਵਿੱਲਖਣ ਸਰਵਰ ਦੇ ਰੂਪ ਵਿੱਚ ਖੋਜਿਆ ਨਹੀਂ ਜਾ ਸਕਿਆ ਹੈ। ਇਹ ਪੁਸ਼ਟੀ ਕਰੋ ਕਿ Windows ਅਤੇ "
 "UNIX ਨਾਂ ਖੋਜਣ ਵਿੱਚ ਨਾਂ ਅਪਵਾਦ ਬਿਨਾਂ ਤੁਹਾਡਾ ਨੈਟਵਰਕ ਸੈਟਅੱਪ ਹੋਇਆ ਹੈ।"
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -112,7 +112,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: ਹੋਸਟ ਪਹੁੰਚ 'ਚ ਨਹੀਂ"
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -130,14 +130,14 @@ msgstr ""
 "ਵੇਖਦੇ ਹੋ (ਯਾਦ ਰੱਖੋ ਕਿ ਇਸ ਵਿੱਚ ਨਿੱਜੀ ਡਾਟਾ ਹੋ ਸਕਦਾ ਹੈ, ਇਸ ਕਰਕੇ ਜੇਕਰ ਤੁਹਾਨੂੰ ਜਾਣਕਾਰੀ ਨਾ ਹੋਵੇ ਤਾਂ "
 "ਭੇਜ ਨਾ - ਜੇਕਰ ਖੋਜੀ ਤੁਹਾਨੂੰ ਮੰਗਣ ਤਾਂ ਨਿੱਜੀ ਤੌਰ 'ਤੇ ਭੇਜ ਸਕਦੇ ਹੋ।)"
 
-#: kio_smb_browse.cpp:337
+#: kio_smb_browse.cpp:341
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "ਹਾਲਤ ਵਿੱਚ ਅਣਜਾਣੀ ਗਲਤੀ ਹਾਲਾਤ: %1"
 
-#: kio_smb_browse.cpp:354
+#: kio_smb_browse.cpp:358
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""
@@ -174,7 +174,7 @@ msgstr ""
 "ਮਾਊਟ-ਪੁਆਇੰਟ \"%1\" ਨੂੰ ਅਣ-ਮਾਊਂਟ ਕਰਨਾ ਅਸਫ਼ਲ ਹੈ।\n"
 "%2"
 
-#: wsdiscoverer.cpp:163
+#: wsdiscoverer.cpp:164
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

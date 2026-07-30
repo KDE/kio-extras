@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2009-01-12 19:52+0530\n"
 "Last-Translator: \n"
 "Language-Team: maithili <en@li.org>\n"
@@ -21,37 +21,37 @@ msgstr ""
 "\n"
 "\n"
 
-#: kio_nfs.cpp:151
+#: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
 msgstr ""
 
-#: kio_nfs.cpp:344
+#: kio_nfs.cpp:345
 #, kde-format
 msgid "The NFS protocol requires a server host name."
 msgstr ""
 
-#: kio_nfs.cpp:647
+#: kio_nfs.cpp:648
 #, kde-format
 msgid "Empty destination"
 msgstr ""
 
-#: kio_nfs.cpp:739
+#: kio_nfs.cpp:740
 #, kde-format
 msgid "RPC error %1, %2"
 msgstr ""
 
-#: kio_nfs.cpp:775
+#: kio_nfs.cpp:776
 #, kde-format
 msgid "Filename too long"
 msgstr "फाइलानाम बहुत नमहर अछि"
 
-#: kio_nfs.cpp:780
+#: kio_nfs.cpp:781
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "डिस्क नियतांश सीमा सँ बाहर भ' चुकल अछि"
 
-#: kio_nfs.cpp:784
+#: kio_nfs.cpp:785
 #, kde-format
 msgid "NFS error %1, %2"
 msgstr ""

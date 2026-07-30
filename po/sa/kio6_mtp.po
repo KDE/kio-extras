@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2024-12-13 19:09+0530\n"
 "Last-Translator: Kali <EMAIL@ADDRESS>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n>2);\n"
 
-#: kio_mtp.cpp:221
+#: kio_mtp.cpp:240
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -31,7 +31,7 @@ msgstr ""
 "मध्ये \"Allow\" इति ट्याप् कुर्वन्तु । यदि तत् कार्यं न करोति तर्हि तस्य USB संयोजनसेटिंग्स् "
 "मध्ये MTP सक्षमम् इति सुनिश्चितं कुर्वन्तु ।"
 
-#: kio_mtp.cpp:520
+#: kio_mtp.cpp:544
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "यन्त्रे एव सञ्चिकाः प्रतिलिपिं/चलितुं न शक्यते"

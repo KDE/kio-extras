@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2021-06-16 18:15+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -21,37 +21,37 @@ msgstr ""
 "X-Generator: Lokalize 20.04.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 
-#: kio_nfs.cpp:151
+#: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
 msgstr "Αδυναμία εύρεσης μιας NFS έκδοσης που υποστηρίζει ο υπολογιστής %1"
 
-#: kio_nfs.cpp:344
+#: kio_nfs.cpp:345
 #, kde-format
 msgid "The NFS protocol requires a server host name."
 msgstr "Το NFS πρωτόκολλο απαιτεί ένα όνομα εξυπηρετητή."
 
-#: kio_nfs.cpp:647
+#: kio_nfs.cpp:648
 #, kde-format
 msgid "Empty destination"
 msgstr ""
 
-#: kio_nfs.cpp:739
+#: kio_nfs.cpp:740
 #, kde-format
 msgid "RPC error %1, %2"
 msgstr "Σφάλμα RPC %1, %2"
 
-#: kio_nfs.cpp:775
+#: kio_nfs.cpp:776
 #, kde-format
 msgid "Filename too long"
 msgstr "Πολύ μεγάλο όνομα αρχείου"
 
-#: kio_nfs.cpp:780
+#: kio_nfs.cpp:781
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "Το μερίδιο δίσκου έχει ξεπεραστεί"
 
-#: kio_nfs.cpp:784
+#: kio_nfs.cpp:785
 #, kde-format
 msgid "NFS error %1, %2"
 msgstr "Σφάλμα NFS %1, %2"

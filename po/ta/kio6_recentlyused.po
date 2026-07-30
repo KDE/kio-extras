@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2025-11-30 15:06+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
@@ -43,17 +43,17 @@ msgstr ""
 "டால்பின் மற்றம் பிளாஸ்மாவிலுள்ள சமீபமானவற்றின் பட்டியலிலிருந்து தேர்ந்தெடுத்துள்ள "
 "கோப்புகளையோ அடைவுகளையோ நீக்கும். இது அக்கோப்புகளையோ அடைவுகளையோ அழிக்காது."
 
-#: recentlyused.cpp:323
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Documents"
 msgstr "சமீப ஆவணங்கள்"
 
-#: recentlyused.cpp:331
+#: recentlyused.cpp:342
 #, kde-format
 msgid "Recent Files"
 msgstr "சமீப கோப்புகள்"
 
-#: recentlyused.cpp:334
+#: recentlyused.cpp:345
 #, kde-format
 msgid "Recent Locations"
 msgstr "சமீப இடங்கள்"

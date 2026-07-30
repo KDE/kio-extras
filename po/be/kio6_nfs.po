@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2024-02-11 18:52\n"
 "Last-Translator: Darafei Praliaskouski <symbol@akeeri.tk>\n"
 "Language-Team: Belarusian\n"
@@ -22,37 +22,37 @@ msgstr ""
 "po\n"
 "X-Crowdin-File-ID: 10130\n"
 
-#: kio_nfs.cpp:151
+#: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
 msgstr "Не ўдалося знайсці версію NFS, якую падтрымлівае хост \"%1\""
 
-#: kio_nfs.cpp:344
+#: kio_nfs.cpp:345
 #, kde-format
 msgid "The NFS protocol requires a server host name."
 msgstr "Пратаколу NFS патрэбная назве хоста сервера."
 
-#: kio_nfs.cpp:647
+#: kio_nfs.cpp:648
 #, kde-format
 msgid "Empty destination"
 msgstr ""
 
-#: kio_nfs.cpp:739
+#: kio_nfs.cpp:740
 #, kde-format
 msgid "RPC error %1, %2"
 msgstr "Памылка RPC %1, %2"
 
-#: kio_nfs.cpp:775
+#: kio_nfs.cpp:776
 #, kde-format
 msgid "Filename too long"
 msgstr "Назва файла занадта доўгая"
 
-#: kio_nfs.cpp:780
+#: kio_nfs.cpp:781
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "Ліміт месца на дыску скончыўся"
 
-#: kio_nfs.cpp:784
+#: kio_nfs.cpp:785
 #, kde-format
 msgid "NFS error %1, %2"
 msgstr "Памылка NFS %1, %2"

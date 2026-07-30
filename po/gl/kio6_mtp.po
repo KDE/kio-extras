@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2023-06-17 09:10+0200\n"
 "Last-Translator: Adrián Chaves (Gallaecio) <adrian@chaves.io>\n"
 "Language-Team: Galician <proxecto@trasno.gal>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.04.2\n"
 
-#: kio_mtp.cpp:221
+#: kio_mtp.cpp:240
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -33,7 +33,7 @@ msgstr ""
 "non funciona, asegúrese de que MTP está activado na configuración de "
 "conexión por USB."
 
-#: kio_mtp.cpp:520
+#: kio_mtp.cpp:544
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Non é posíbel copiar nin mover os ficheiros no dispositivo en si."

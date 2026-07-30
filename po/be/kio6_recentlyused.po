@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: fc57ad16a28d02dea100ceb1c60de14e\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2025-01-06 19:10\n"
 "Last-Translator: Antikruk <nashtlumach@gmail.com>\n"
 "Language-Team: Belarusian\n"
@@ -52,17 +52,17 @@ msgstr ""
 "Выдаленне ​​абраных файлаў або размяшчэнняў са спіса нядаўна выкарыстаных у "
 "Dolphin і меню Plasma'. Гэтае дзеянне не выдаляе і не перамяшчае рэсурсы."
 
-#: recentlyused.cpp:323
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Documents"
 msgstr "Нядаўнія дакументы"
 
-#: recentlyused.cpp:331
+#: recentlyused.cpp:342
 #, kde-format
 msgid "Recent Files"
 msgstr "Нядаўнія файлы"
 
-#: recentlyused.cpp:334
+#: recentlyused.cpp:345
 #, kde-format
 msgid "Recent Locations"
 msgstr "Нядаўнія размяшчэнні"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2026-04-14 22:51+0200\n"
 "Last-Translator: Jan Papez (honyczek) <honyczek@centrum.cz>\n"
 "Language-Team: Czech <kde-i18n-cs@kde.org>\n"
@@ -19,37 +19,37 @@ msgstr ""
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
 "X-Generator: Lokalize 26.03.90\n"
 
-#: kio_nfs.cpp:151
+#: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
 msgstr "Nelze najít verzi NFS, kterou hostitel '%1' podporuje"
 
-#: kio_nfs.cpp:344
+#: kio_nfs.cpp:345
 #, kde-format
 msgid "The NFS protocol requires a server host name."
 msgstr "Protokol NFS vyžaduje název hostitele."
 
-#: kio_nfs.cpp:647
+#: kio_nfs.cpp:648
 #, kde-format
 msgid "Empty destination"
 msgstr "Prázdný cíl"
 
-#: kio_nfs.cpp:739
+#: kio_nfs.cpp:740
 #, kde-format
 msgid "RPC error %1, %2"
 msgstr "Chyba RPC %1, %2"
 
-#: kio_nfs.cpp:775
+#: kio_nfs.cpp:776
 #, kde-format
 msgid "Filename too long"
 msgstr "Název souboru je příliš dlouhý"
 
-#: kio_nfs.cpp:780
+#: kio_nfs.cpp:781
 #, kde-format
 msgid "Disk quota exceeded"
 msgstr "Disková kvóta překročena"
 
-#: kio_nfs.cpp:784
+#: kio_nfs.cpp:785
 #, kde-format
 msgid "NFS error %1, %2"
 msgstr "Chyba NFS %1, %2"

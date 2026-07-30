@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2025-09-04 14:20+0300\n"
 "Last-Translator: Automatically generated\n"
 "Language-Team: none\n"
@@ -49,17 +49,17 @@ msgstr ""
 "Pašalinti pažymėtą failą(-us) ar vietą(-as) iš paskiausiai naudotų sąrašo, "
 "esančio Dolphin ir Plasma meniu. Tai nepašalina ir neperkelia ištekliaus(-ų)."
 
-#: recentlyused.cpp:323
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Documents"
 msgstr "Paskiausiai naudoti dokumentai"
 
-#: recentlyused.cpp:331
+#: recentlyused.cpp:342
 #, kde-format
 msgid "Recent Files"
 msgstr "Paskiausiai naudoti failai"
 
-#: recentlyused.cpp:334
+#: recentlyused.cpp:345
 #, kde-format
 msgid "Recent Locations"
 msgstr "Paskiausios vietos"

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_mtp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2022-03-18 23:23+0200\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: kio_mtp.cpp:221
+#: kio_mtp.cpp:240
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -33,7 +33,7 @@ msgstr ""
 "”Salli” sen näytön ponnahdusviestiin. Ellei tämä toimi, varmista, että USB-"
 "yhteysasetuksissa on otettu MTP käyttöön."
 
-#: kio_mtp.cpp:520
+#: kio_mtp.cpp:544
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Tiedostoja ei voi kopioida/siirtää laitteeseen itseensä"

@@ -1,7 +1,7 @@
 # translation of kio_smb.po to Slovenian
 # Translation of kio_smb.po to Slovenian
 # SLOVENIAN TRANSLATION OF K DESKTOP ENVIRONMENT.
-# $Id: kio6_smb.po 1723087 2025-11-17 12:44:32Z scripty $
+# $Id: kio6_smb.po 1742551 2026-07-30 01:29:03Z scripty $
 # $Source$
 #
 # Copyright (C) 2001, 2003, 2004, 2005 Free Software Foundation, Inc.
@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2020-11-05 08:46+0100\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
@@ -68,7 +68,7 @@ msgstr ""
 "Strežnik = %1\n"
 "Souporaba = %2"
 
-#: kio_smb_browse.cpp:59
+#: kio_smb_browse.cpp:60
 #, kde-format
 msgid ""
 "%1:\n"
@@ -77,7 +77,7 @@ msgstr ""
 "%1:\n"
 "Neznana vrsta datoteke, ni niti mapa niti datoteka."
 
-#: kio_smb_browse.cpp:273
+#: kio_smb_browse.cpp:277
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -86,32 +86,32 @@ msgstr ""
 "V krajevnem omrežju ni mogoče najti nobenih delovnih skupin. To je lahko "
 "posledica omogočenega požarnega zidu."
 
-#: kio_smb_browse.cpp:278
+#: kio_smb_browse.cpp:282
 #, kde-format
 msgid "No media in device for %1"
 msgstr "V napravi ni nosilca za %1"
 
-#: kio_smb_browse.cpp:284
+#: kio_smb_browse.cpp:288
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Ni se bilo mogoče povezati z gostiteljem za %1"
 
-#: kio_smb_browse.cpp:296
+#: kio_smb_browse.cpp:300
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Napaka med povezovanjem s strežnikom, ki je odgovoren za %1"
 
-#: kio_smb_browse.cpp:302
+#: kio_smb_browse.cpp:306
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Na podanem strežniku ni bilo mogoče najti souporabe"
 
-#: kio_smb_browse.cpp:304
+#: kio_smb_browse.cpp:308
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Slab opisnik datotek"
 
-#: kio_smb_browse.cpp:312
+#: kio_smb_browse.cpp:316
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -122,7 +122,7 @@ msgstr ""
 "omrežne nastavitve brez imenskih sporov med imeni, ki jih uporablja "
 "razreševanje imen za Windows in UNIX."
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -130,7 +130,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: Gostitelj nedostopen"
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -148,13 +148,13 @@ msgstr ""
 "ga ne pošljite, če niste prepričani o tem - lahko ga pošljete zasebno "
 "raziskovalcem, če zaprosijo zanj)"
 
-#: kio_smb_browse.cpp:337
+#: kio_smb_browse.cpp:341
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Neznano stanje napake: [%1] %2"
 
-#: kio_smb_browse.cpp:354
+#: kio_smb_browse.cpp:358
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Med poskusom dostopanja do %1 je prišlo do napake<nl/>%2"
@@ -191,7 +191,7 @@ msgstr ""
 "Odklapljanje priklopne točke »%1« ni uspelo.\n"
 "%2"
 
-#: wsdiscoverer.cpp:163
+#: wsdiscoverer.cpp:164
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

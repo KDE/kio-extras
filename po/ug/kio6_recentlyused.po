@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2026-05-31 18:47-0400\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
@@ -40,17 +40,17 @@ msgid ""
 "Dolphin and in Plasma's menus. This does not remove or move the resource(s)."
 msgstr ""
 
-#: recentlyused.cpp:323
+#: recentlyused.cpp:334
 #, kde-format
 msgid "Recent Documents"
 msgstr "يېقىنقى پۈتۈك"
 
-#: recentlyused.cpp:331
+#: recentlyused.cpp:342
 #, kde-format
 msgid "Recent Files"
 msgstr "يېقىنقى ھۆججەت"
 
-#: recentlyused.cpp:334
+#: recentlyused.cpp:345
 #, kde-format
 msgid "Recent Locations"
 msgstr "يېقىنقى ئورۇن"

@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2022-12-13 02:12+0100\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -61,7 +61,7 @@ msgstr ""
 "სერვერი = %1\n"
 "გაზიარება = %2"
 
-#: kio_smb_browse.cpp:59
+#: kio_smb_browse.cpp:60
 #, kde-format
 msgid ""
 "%1:\n"
@@ -70,7 +70,7 @@ msgstr ""
 "%1:\n"
 "ფაილის უცნობი ტიპი, საქაღალდე, ან ფაილი."
 
-#: kio_smb_browse.cpp:273
+#: kio_smb_browse.cpp:277
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -79,32 +79,32 @@ msgstr ""
 "ლოკალურ ქსელში სამუშაო ჯგუფები ვერ ვიპოვე. ეს შეიძლება ჩართული ბრანდმაუერის "
 "ბრალი იყოს."
 
-#: kio_smb_browse.cpp:278
+#: kio_smb_browse.cpp:282
 #, kde-format
 msgid "No media in device for %1"
 msgstr "მოწყობილობაში მედია არ დევს %1-თვის"
 
-#: kio_smb_browse.cpp:284
+#: kio_smb_browse.cpp:288
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "%1-სთვის ჰოსტთან მიერთების შეცდომა"
 
-#: kio_smb_browse.cpp:296
+#: kio_smb_browse.cpp:300
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "სერვერთან მიერთების შეცდომა, რომელიც პასუხისმგებელია ობიექტისთვის: %1"
 
-#: kio_smb_browse.cpp:302
+#: kio_smb_browse.cpp:306
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "სერვერზე მითითებული გაზიარებული ვერ ვიპოვე"
 
-#: kio_smb_browse.cpp:304
+#: kio_smb_browse.cpp:308
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "ფაილის ცუდი დესკრიპტორი"
 
-#: kio_smb_browse.cpp:312
+#: kio_smb_browse.cpp:316
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -114,7 +114,7 @@ msgstr ""
 "მითითებული სახელის უნიკალურ სერვერად ამოხსნა შეიძლებელია. დარწმუნდით, რომ "
 "ქსელში Windows-ის და UNIX-ის სახელებს ამოხსნის კონფლიქტი არ ხდება."
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -122,7 +122,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: ჰოსტი მიუწვდომელია"
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -141,13 +141,13 @@ msgstr ""
 "ინფორმაციასაც შეიცავდეს, ასე რომ, ღია წვდომით ნუ გამოდებთ. შეგიძლიათ "
 "გაუგზავნოთ პროგრამისტებს, თუ ისინი გთხოვენ ამას)"
 
-#: kio_smb_browse.cpp:337
+#: kio_smb_browse.cpp:341
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "შეცდომის უცნობი მდგომარეობა: [%1] %2"
 
-#: kio_smb_browse.cpp:354
+#: kio_smb_browse.cpp:358
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "წვდომის შეცდომა %1<nl/>%2"
@@ -185,7 +185,7 @@ msgstr ""
 "მიმაგრების წერტილის \"%1\" მოხსნის შეცდომა.\n"
 "%2"
 
-#: wsdiscoverer.cpp:163
+#: wsdiscoverer.cpp:164
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

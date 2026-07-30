@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2024-11-20 16:54+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "2);\n"
 "X-Generator: Lokalize 24.08.3\n"
 
-#: kio_mtp.cpp:221
+#: kio_mtp.cpp:240
 #, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
@@ -32,7 +32,7 @@ msgstr ""
 "pieskarieties uz „Atļaut“ ierīces ekrānā. Ja tas nestrādā, pārbaudiet, vai "
 "ierīces USB savienojumu iestatījumos ir ieslēgts MTP."
 
-#: kio_mtp.cpp:520
+#: kio_mtp.cpp:544
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "Nevar nokopēt/pārvietot datnes uz pašas ierīces"

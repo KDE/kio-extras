@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-24 00:44+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2008-12-19 09:20+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "\n"
 
-#: kio_man.cpp:495
+#: kio_man.cpp:496
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "No man page matching to %1 found.<br /><br />Check that you have not "
@@ -41,7 +41,7 @@ msgstr ""
 "អ្វីៗ​ត្រឹម​ត្រូវ​ហើយ នោះ​ប្រហែល​ជា​អ្នក​ត្រូវ​ជម្រុញ​ផ្លូវ​ស្វែង​រក​ដ៏​ប្រសើរ​ជាង​មួយ​សម្រាប់​ទំព័រ​​សៀវភៅ​ដៃ ។ កំណត់​វា​"
 "ដោយ​ប្រើ​អថេរ​បរិស្ថាន MANPATH ឬ​ឯកសារ​ដែល​ដូច​ក្នុង​ថត /etc ។"
 
-#: kio_man.cpp:610
+#: kio_man.cpp:611
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -49,36 +49,36 @@ msgid ""
 ">but the referenced page <filename>%2</filename> could not be found."
 msgstr ""
 
-#: kio_man.cpp:627
+#: kio_man.cpp:628
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr ""
 
-#: kio_man.cpp:636
+#: kio_man.cpp:637
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr ""
 
-#: kio_man.cpp:691
+#: kio_man.cpp:692
 #, fuzzy, kde-format
 #| msgid "<h1>KDE Man Viewer Error</h1>"
 msgid "Manual Page Viewer Error"
 msgstr "<h1>កំហុស​ឧបករណ៍​មើល​របស់ KDE Man</h1>"
 
-#: kio_man.cpp:725
+#: kio_man.cpp:726
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:726
+#: kio_man.cpp:727
 #, fuzzy, kde-format
 #| msgid "There is more than one matching man page."
 msgid "There is more than one matching man page:"
 msgstr "មាន​ទំព័រ​របស់​សៀវភៅ​ដៃ​ច្រើន​ជាង​មួយ ដែល​ផ្គូផ្គង​នឹង​ទំព័រ man ។"
 
-#: kio_man.cpp:727
+#: kio_man.cpp:728
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -88,17 +88,17 @@ msgstr ""
 "ចំណាំ ៖ បើអ្នក​អាន​ទំព័រ man ជា​ភាសា​របស់​អ្នក សូម​ជ្រាប​ថា វា​អាច​មាន​កំហុស​មួយ​ចំនួន ឬ​ហួស​សម័យ ក្នុង​ករណី​មាន​"
 "ចម្ងល់ អ្នក​គួរ​តែ​មើល​កំណែ​ជា​ភាសា​អង់គ្លេស ។"
 
-#: kio_man.cpp:735
+#: kio_man.cpp:736
 #, kde-format
 msgid "Possible Alternative Manual Pages"
 msgstr ""
 
-#: kio_man.cpp:736
+#: kio_man.cpp:737
 #, kde-format
 msgid "There were possible close matches:"
 msgstr ""
 
-#: kio_man.cpp:738
+#: kio_man.cpp:739
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -106,116 +106,116 @@ msgid ""
 "close or case insensitive matches as above."
 msgstr ""
 
-#: kio_man.cpp:801
+#: kio_man.cpp:804
 #, kde-format
 msgid "Header Files"
 msgstr ""
 
-#: kio_man.cpp:803
+#: kio_man.cpp:806
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr ""
 
-#: kio_man.cpp:805
+#: kio_man.cpp:808
 #, kde-format
 msgid "User Commands"
 msgstr "ពាក្យ​បញ្ជា​របស់​អ្នក​ប្រើ"
 
-#: kio_man.cpp:807
+#: kio_man.cpp:810
 #, fuzzy, kde-format
 #| msgid "User Commands"
 msgid "User Commands (POSIX)"
 msgstr "ពាក្យ​បញ្ជា​របស់​អ្នក​ប្រើ"
 
-#: kio_man.cpp:809
+#: kio_man.cpp:812
 #, kde-format
 msgid "System Calls"
 msgstr "ការ​ហៅ​ប្រព័ន្ធ"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:814
 #, kde-format
 msgid "Subroutines"
 msgstr "ទម្រង់ការ​រង"
 
-#: kio_man.cpp:814
+#: kio_man.cpp:817
 #, kde-format
 msgid "Perl Modules"
 msgstr "ម៉ូឌុល Perl"
 
-#: kio_man.cpp:816
+#: kio_man.cpp:819
 #, kde-format
 msgid "Network Functions"
 msgstr "មុខងារ​បណ្ដាញ"
 
-#: kio_man.cpp:818
+#: kio_man.cpp:821
 #, kde-format
 msgid "Devices"
 msgstr "ឧបករណ៍"
 
-#: kio_man.cpp:820
+#: kio_man.cpp:823
 #, kde-format
 msgid "File Formats"
 msgstr "ទ្រង់ទ្រាយ​ឯកសារ"
 
-#: kio_man.cpp:822
+#: kio_man.cpp:825
 #, kde-format
 msgid "Games"
 msgstr "ល្បែង"
 
-#: kio_man.cpp:824
+#: kio_man.cpp:827
 #, kde-format
 msgid "Miscellaneous"
 msgstr "ផ្សេងៗ"
 
-#: kio_man.cpp:826
+#: kio_man.cpp:829
 #, kde-format
 msgid "System Administration"
 msgstr "ការ​គ្រប់គ្រង​ប្រព័ន្ធ"
 
-#: kio_man.cpp:828
+#: kio_man.cpp:831
 #, kde-format
 msgid "Kernel"
 msgstr "ខឺណែល"
 
-#: kio_man.cpp:830
+#: kio_man.cpp:833
 #, kde-format
 msgid "Local Documentation"
 msgstr "ឯកសារ​មូលដ្ឋាន"
 
-#: kio_man.cpp:833
+#: kio_man.cpp:836
 #, kde-format
 msgid "New"
 msgstr "ថ្មី"
 
-#: kio_man.cpp:860
+#: kio_man.cpp:863
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Main Manual Page Index"
 msgstr "លិបិក្រម​សៀវភៅ​ដៃ​របស់​យូនីក"
 
-#: kio_man.cpp:885
+#: kio_man.cpp:888
 #, kde-format
 msgid "Section %1"
 msgstr "ភាគ %1"
 
-#: kio_man.cpp:1136
+#: kio_man.cpp:1139
 #, fuzzy, kde-format
 #| msgid "Index for Section %1: %2"
 msgid "Index for section %1: %2"
 msgstr "លិបិក្រម​សម្រាប់​ភាគ %1 ៖ %2"
 
-#: kio_man.cpp:1136
+#: kio_man.cpp:1139
 #, fuzzy, kde-format
 #| msgid "UNIX Manual Index"
 msgid "Manual Page Index"
 msgstr "លិបិក្រម​សៀវភៅ​ដៃ​របស់​យូនីក"
 
-#: kio_man.cpp:1145
+#: kio_man.cpp:1148
 #, kde-format
 msgid "Generating Index"
 msgstr "កំពុង​បង្កើត​លិបិក្រម"
 
-#: kio_man.cpp:1398
+#: kio_man.cpp:1409
 #, fuzzy, kde-kuit-format
 #| msgid ""
 #| "Could not find the sgml2roff program on your system. Please install it, "

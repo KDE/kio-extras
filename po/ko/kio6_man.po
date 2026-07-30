@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-05-24 00:44+0000\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
 "PO-Revision-Date: 2026-05-25 21:15+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -20,7 +20,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Lokalize 25.12.3\n"
 
-#: kio_man.cpp:495
+#: kio_man.cpp:496
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 "<filename>/etc</filename>에 있는 일치하는 파일이 있는지 확인하는 식으로 man "
 "페이지를 찾는 다른 경로를 지정하십시오."
 
-#: kio_man.cpp:610
+#: kio_man.cpp:611
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -48,34 +48,34 @@ msgstr ""
 "지정한 man 페이지에서 <filename>%1</filename> 페이지를 참조하고 있지만,<nl/>"
 "참조하는 <filename>%2</filename> 페이지를 찾을 수 없습니다."
 
-#: kio_man.cpp:627
+#: kio_man.cpp:628
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "man 페이지 <filename>%1</filename>을(를) 읽을 수 없습니다."
 
-#: kio_man.cpp:636
+#: kio_man.cpp:637
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "man 페이지 <filename>%1</filename>을(를) 변환할 수 없습니다."
 
-#: kio_man.cpp:691
+#: kio_man.cpp:692
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "매뉴얼 페이지 뷰어 오류"
 
-#: kio_man.cpp:725
+#: kio_man.cpp:726
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "여러 매뉴얼 페이지"
 
-#: kio_man.cpp:726
+#: kio_man.cpp:727
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "일치하는 맨 페이지가 하나 이상입니다."
 
-#: kio_man.cpp:727
+#: kio_man.cpp:728
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -85,17 +85,17 @@ msgstr ""
 "메모: 만약 man 페이지가 번역되어 되어 있다면 몇몇 실수가 있거나 오래된 항목"
 "이 들어 있을 수도 있습니다. 의심되는 경우에는 영어 버전을 참고하십시오."
 
-#: kio_man.cpp:735
+#: kio_man.cpp:736
 #, kde-format
 msgid "Possible Alternative Manual Pages"
 msgstr "대체 가능성 있는 매뉴얼 페이지"
 
-#: kio_man.cpp:736
+#: kio_man.cpp:737
 #, kde-format
 msgid "There were possible close matches:"
 msgstr "여러 일치 결과를 찾았습니다:"
 
-#: kio_man.cpp:738
+#: kio_man.cpp:739
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -105,112 +105,112 @@ msgstr ""
 "<resource>%1</resource>와(과) 일치하는 man 페이지를 찾을 수 없습니다. 유사하"
 "거나 대소문자를 구분하지 않는 일치를 찾았습니다."
 
-#: kio_man.cpp:801
+#: kio_man.cpp:804
 #, kde-format
 msgid "Header Files"
 msgstr "헤더 파일"
 
-#: kio_man.cpp:803
+#: kio_man.cpp:806
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "헤더 파일(POSIX)"
 
-#: kio_man.cpp:805
+#: kio_man.cpp:808
 #, kde-format
 msgid "User Commands"
 msgstr "사용자 명령"
 
-#: kio_man.cpp:807
+#: kio_man.cpp:810
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "사용자 명령(POSIX)"
 
-#: kio_man.cpp:809
+#: kio_man.cpp:812
 #, kde-format
 msgid "System Calls"
 msgstr "시스템 콜"
 
-#: kio_man.cpp:811
+#: kio_man.cpp:814
 #, kde-format
 msgid "Subroutines"
 msgstr "서브루틴"
 
-#: kio_man.cpp:814
+#: kio_man.cpp:817
 #, kde-format
 msgid "Perl Modules"
 msgstr "펄 모듈"
 
-#: kio_man.cpp:816
+#: kio_man.cpp:819
 #, kde-format
 msgid "Network Functions"
 msgstr "네트워크 함수"
 
-#: kio_man.cpp:818
+#: kio_man.cpp:821
 #, kde-format
 msgid "Devices"
 msgstr "장치"
 
-#: kio_man.cpp:820
+#: kio_man.cpp:823
 #, kde-format
 msgid "File Formats"
 msgstr "파일 형식"
 
-#: kio_man.cpp:822
+#: kio_man.cpp:825
 #, kde-format
 msgid "Games"
 msgstr "게임"
 
-#: kio_man.cpp:824
+#: kio_man.cpp:827
 #, kde-format
 msgid "Miscellaneous"
 msgstr "기타"
 
-#: kio_man.cpp:826
+#: kio_man.cpp:829
 #, kde-format
 msgid "System Administration"
 msgstr "시스템 관리"
 
-#: kio_man.cpp:828
+#: kio_man.cpp:831
 #, kde-format
 msgid "Kernel"
 msgstr "커널"
 
-#: kio_man.cpp:830
+#: kio_man.cpp:833
 #, kde-format
 msgid "Local Documentation"
 msgstr "로컬 문서"
 
-#: kio_man.cpp:833
+#: kio_man.cpp:836
 #, kde-format
 msgid "New"
 msgstr "새로운 항목"
 
-#: kio_man.cpp:860
+#: kio_man.cpp:863
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "주 매뉴얼 페이지 색인"
 
-#: kio_man.cpp:885
+#: kio_man.cpp:888
 #, kde-format
 msgid "Section %1"
 msgstr "섹션 %1"
 
-#: kio_man.cpp:1136
+#: kio_man.cpp:1139
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "섹션 %1의 색인: %2"
 
-#: kio_man.cpp:1136
+#: kio_man.cpp:1139
 #, kde-format
 msgid "Manual Page Index"
 msgstr "매뉴얼 페이지 색인"
 
-#: kio_man.cpp:1145
+#: kio_man.cpp:1148
 #, kde-format
 msgid "Generating Index"
 msgstr "색인 만드는 중"
 
-#: kio_man.cpp:1398
+#: kio_man.cpp:1409
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
