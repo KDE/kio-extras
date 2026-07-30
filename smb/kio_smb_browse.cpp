@@ -18,6 +18,7 @@
 
 #include <QEventLoop>
 #include <QTimer>
+#include <QUrlQuery>
 
 #include <grp.h>
 #include <pwd.h>
@@ -28,6 +29,21 @@
 #include <config-runtime.h>
 
 using namespace KIO;
+
+static QString displayNameForUrl(const QUrl &url)
+{
+    const QString name = url.fileName();
+    if (!name.isEmpty()) {
+        return name;
+    }
+
+    if (!url.host().isEmpty()) {
+        return url.host();
+    }
+
+    const QString workgroup = QUrlQuery(url).queryItemValue("kio-workgroup");
+    return workgroup.isEmpty() ? i18nc("@item the top of the shares that can be browsed", "Shared Folders (SMB)") : workgroup;
+}
 
 int SMBWorker::cache_stat(const SMBUrl &url, struct stat *st)
 {
@@ -134,7 +150,12 @@ WorkerResult SMBWorker::stat(const QUrl &kurl)
 
     UDSEntry udsentry;
     // Set name
-    udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, kurl.fileName());
+    const QString name = kurl.fileName();
+    KIOExtras::insertStrings(udsentry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, name.isEmpty() ? QStringLiteral(".") : name},
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME, displayNameForUrl(kurl)},
+                             });
 
     switch (m_current_url.getType()) {
     case SMBURLTYPE_UNKNOWN:
@@ -478,15 +499,18 @@ WorkerResult SMBWorker::listDir(const QUrl &kurl)
     }
 
     UDSEntry udsentry;
+    KIOExtras::insertStrings(udsentry,
+                             {
+                                 {KIO::UDSEntry::UDS_NAME, QStringLiteral(".")},
+                                 {KIO::UDSEntry::UDS_DISPLAY_NAME, displayNameForUrl(m_current_url)},
+                             });
     if (smbc->dirWasRoot()) {
-        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
         KIOExtras::insertNumbers(udsentry,
                                  {
                                      {KIO::UDSEntry::UDS_FILE_TYPE, S_IFDIR},
                                      {KIO::UDSEntry::UDS_ACCESS, (S_IRUSR | S_IRGRP | S_IROTH | S_IXUSR | S_IXGRP | S_IXOTH)},
                                  });
     } else {
-        udsentry.fastInsert(KIO::UDSEntry::UDS_NAME, ".");
         const int statErr = browse_stat_path(m_current_url, udsentry);
         if (statErr != 0) {
             if (statErr == ENOENT || statErr == ENOTDIR) {
