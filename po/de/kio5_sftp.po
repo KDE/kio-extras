@@ -57,7 +57,7 @@ msgstr "SFTP-Anmeldung"
 #, kde-format
 msgid "Use the username input field to answer this question."
 msgstr ""
-"Benutzen Sie das Eingabefeld für den Benutzernamen, um die Anfrage zu "
+"Verwenden Sie das Eingabefeld für den Benutzernamen, um die Anfrage zu "
 "beantworten."
 
 #: kio_sftp.cpp:365
