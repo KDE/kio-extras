@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2026-04-14 22:47+0200\n"
 "Last-Translator: Jan Papez (honyczek) <honyczek@centrum.cz>\n"
 "Language-Team: Czech <kde-i18n-cs@kde.org>\n"
@@ -74,33 +74,33 @@ msgstr "Nezpracovaný chybový lockdownd kód '%1'"
 msgid "Unhandled sbservices code '%1'"
 msgstr "Nezpracovaný chybový sbservices kód '%1'"
 
-#: kio_afc.cpp:134
+#: kio_afc.cpp:137
 #, kde-format
 msgid "Apple Devices"
 msgstr "Zařízení Apple"
 
-#: kio_afc.cpp:181 kio_afc.cpp:402
+#: kio_afc.cpp:193 kio_afc.cpp:413
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Aplikace"
 
-#: kio_afc.cpp:606
+#: kio_afc.cpp:617
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Nelze přečíst dokud není nejprve soubor otevřený"
 
-#: kio_afc.cpp:626
+#: kio_afc.cpp:637
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Nelze vyhledávat dokud není nejprve soubor otevřený"
 
-#: kio_afc.cpp:654
+#: kio_afc.cpp:665
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Nelze zapisovat dokud není nejprve soubor otevřený"
 
-#: kio_afc.cpp:806
+#: kio_afc.cpp:817
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Nelze přejmenovávat mezi zařízeními."

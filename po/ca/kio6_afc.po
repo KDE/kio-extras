@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2022-12-27 08:03+0100\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -75,33 +75,33 @@ msgstr "Codi «lockdownd» no gestionat «%1»"
 msgid "Unhandled sbservices code '%1'"
 msgstr "Codi «sbservices» no gestionat «%1»"
 
-#: kio_afc.cpp:134
+#: kio_afc.cpp:137
 #, kde-format
 msgid "Apple Devices"
 msgstr "Dispositius d'Apple"
 
-#: kio_afc.cpp:181 kio_afc.cpp:402
+#: kio_afc.cpp:193 kio_afc.cpp:413
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Aplicacions"
 
-#: kio_afc.cpp:606
+#: kio_afc.cpp:617
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "No s'ha pogut llegir sense obrir abans el fitxer"
 
-#: kio_afc.cpp:626
+#: kio_afc.cpp:637
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "No s'ha pogut cercar sense obrir abans el fitxer"
 
-#: kio_afc.cpp:654
+#: kio_afc.cpp:665
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "No s'ha pogut escriure sense obrir abans el fitxer"
 
-#: kio_afc.cpp:806
+#: kio_afc.cpp:817
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "No s'ha pogut reanomenar entre dispositius."

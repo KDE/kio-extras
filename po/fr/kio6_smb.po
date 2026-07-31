@@ -22,7 +22,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2021-01-12 13:53+0100\n"
 "Last-Translator: Xavier Besnard <xavier.besnard@neuf.fr>\n"
 "Language-Team: French <kde-francophone@kde.org>\n"
@@ -81,7 +81,7 @@ msgstr ""
 "Serveur : %1\n"
 "Partage : %2"
 
-#: kio_smb_browse.cpp:59
+#: kio_smb_browse.cpp:60
 #, kde-format
 msgid ""
 "%1:\n"
@@ -90,7 +90,7 @@ msgstr ""
 "%1 :\n"
 "Type de fichier inconnu. Ce n'est ni un dossier ni un fichier."
 
-#: kio_smb_browse.cpp:273
+#: kio_smb_browse.cpp:277
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -99,32 +99,32 @@ msgstr ""
 "Aucun groupe de travail n'a été trouvé dans votre réseau local. Ceci peut "
 "être dû à la présence d'un pare-feu activé."
 
-#: kio_smb_browse.cpp:278
+#: kio_smb_browse.cpp:282
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Aucun média dans le périphérique « %1 »."
 
-#: kio_smb_browse.cpp:284
+#: kio_smb_browse.cpp:288
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Impossible de se connecter à l'hôte « %1 »"
 
-#: kio_smb_browse.cpp:296
+#: kio_smb_browse.cpp:300
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Erreur lors de la connexion au serveur en charge de « %1 »"
 
-#: kio_smb_browse.cpp:302
+#: kio_smb_browse.cpp:306
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Le partage n'a pas pu être trouvé sur le serveur indiqué"
 
-#: kio_smb_browse.cpp:304
+#: kio_smb_browse.cpp:308
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Mauvais descripteur de fichier"
 
-#: kio_smb_browse.cpp:312
+#: kio_smb_browse.cpp:316
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -135,7 +135,7 @@ msgstr ""
 "que votre réseau ne contient pas de conflit de noms entre ceux utilisés par "
 "Windows et Unix."
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -143,7 +143,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1 : hôte injoignable"
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -163,13 +163,13 @@ msgstr ""
 "données privées, donc ne le postez pas si vous avez un doute ; vous pouvez "
 "l'envoyer en privé aux développeurs s'ils le demandent)."
 
-#: kio_smb_browse.cpp:337
+#: kio_smb_browse.cpp:341
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Condition d'erreur inconnue : [%1] %2"
 
-#: kio_smb_browse.cpp:354
+#: kio_smb_browse.cpp:358
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Une erreur s'est produite en tentant d'accéder à %1<nl/> %2"
@@ -208,7 +208,7 @@ msgstr ""
 "Échec du démontage de « %1 ».\n"
 "%2"
 
-#: wsdiscoverer.cpp:163
+#: wsdiscoverer.cpp:164
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

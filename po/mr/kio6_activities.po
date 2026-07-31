@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2013-01-14 22:14+0530\n"
 "Last-Translator: Chetan Khona <chetan@kompkin.com>\n"
 "Language-Team: American English <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=(n!=1);\n"
 "X-Generator: Lokalize 1.5\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:75 KioActivities.cpp:176
+#: fileitemplugin/FileItemLinkingPlugin.cpp:75 KioActivities.cpp:183
 #, fuzzy, kde-format
 #| msgid "Activities"
 msgid "Activities"
@@ -58,13 +58,13 @@ msgstr "यास लिंक करा :"
 msgid "Unlink from:"
 msgstr "या पासून अनलिंक करा :"
 
-#: KioActivities.cpp:108
+#: KioActivities.cpp:111
 #, fuzzy, kde-format
 #| msgid "Link to the current activity"
 msgid "Current activity"
 msgstr "वर्तमान कार्यपध्दतीस लिंक करा"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
+#: KioActivities.cpp:112 KioActivitiesApi.cpp:88
 #, fuzzy, kde-format
 #| msgid "Activities"
 msgid "Activity"

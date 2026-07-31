@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2003-12-27 15:02+0000\n"
 "Last-Translator: KD at KGyfieithu <kyfieithu@dotmon.com>\n"
 "Language-Team: Cymraeg <cy@li.org>\n"
@@ -53,7 +53,7 @@ msgstr ""
 "Gweinydd = %1\n"
 "Rhaniad = %2"
 
-#: kio_smb_browse.cpp:59
+#: kio_smb_browse.cpp:60
 #, kde-format
 msgid ""
 "%1:\n"
@@ -62,40 +62,40 @@ msgstr ""
 "%1:\n"
 "Math ffeil anhysbys, nid cyfeiriadur na ffeil."
 
-#: kio_smb_browse.cpp:273
+#: kio_smb_browse.cpp:277
 #, fuzzy, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr "Methu canfod unrhyw grŵp gwaith ar eich rhwydwaith lleol."
 
-#: kio_smb_browse.cpp:278
+#: kio_smb_browse.cpp:282
 #, kde-format
 msgid "No media in device for %1"
 msgstr ""
 
-#: kio_smb_browse.cpp:284
+#: kio_smb_browse.cpp:288
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr ""
 
-#: kio_smb_browse.cpp:296
+#: kio_smb_browse.cpp:300
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr ""
 
-#: kio_smb_browse.cpp:302
+#: kio_smb_browse.cpp:306
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Methwyd canfod rhaniad ar y gweinydd a benodwyd"
 
-#: kio_smb_browse.cpp:304
+#: kio_smb_browse.cpp:308
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "Disgrifydd Ffeil BAD (llygredig)"
 
-#: kio_smb_browse.cpp:312
+#: kio_smb_browse.cpp:316
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -103,7 +103,7 @@ msgid ""
 "and by UNIX name resolution."
 msgstr ""
 
-#: kio_smb_browse.cpp:321
+#: kio_smb_browse.cpp:325
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -111,7 +111,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:329
 #, fuzzy, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -130,14 +130,14 @@ msgstr ""
 "peidiwch â'i hysbysu os ydych yn ansicr ynglyn â hynny - gallwch ei anfon yn "
 "breifat i'r datblygwyr os byddent yn gofyn amdano)."
 
-#: kio_smb_browse.cpp:337
+#: kio_smb_browse.cpp:341
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Cyflwr gwall anhysbys yn stat: %1"
 
-#: kio_smb_browse.cpp:354
+#: kio_smb_browse.cpp:358
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""
@@ -170,7 +170,7 @@ msgid ""
 "%2"
 msgstr ""
 
-#: wsdiscoverer.cpp:163
+#: wsdiscoverer.cpp:164
 #, kde-kuit-format
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"

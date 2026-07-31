@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kactivitymanagerd\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2012-06-07 16:10+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 
-#: fileitemplugin/FileItemLinkingPlugin.cpp:75 KioActivities.cpp:176
+#: fileitemplugin/FileItemLinkingPlugin.cpp:75 KioActivities.cpp:183
 #, fuzzy, kde-format
 #| msgid "Unlock Activity"
 msgid "Activities"
@@ -61,13 +61,13 @@ msgstr ""
 msgid "Unlink from:"
 msgstr ""
 
-#: KioActivities.cpp:108
+#: KioActivities.cpp:111
 #, fuzzy, kde-format
 #| msgid "Unprotect Activity"
 msgid "Current activity"
 msgstr "សកម្មភាព​ដែល​មិន​បានការពារ"
 
-#: KioActivities.cpp:109 KioActivitiesApi.cpp:86
+#: KioActivities.cpp:112 KioActivitiesApi.cpp:88
 #, fuzzy, kde-format
 #| msgid "Unlock Activity"
 msgid "Activity"

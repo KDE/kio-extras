@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 11:51+0000\n"
+"POT-Creation-Date: 2026-07-31 03:00+0000\n"
 "PO-Revision-Date: 2025-02-05 01:12-0300\n"
 "Last-Translator: Guilherme Marçal Silva <guimarcalsilva@gmail.com>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
@@ -74,33 +74,33 @@ msgstr "Código de lockdownd não tratado '%1'"
 msgid "Unhandled sbservices code '%1'"
 msgstr "Código de sbservices não tratado '%1'"
 
-#: kio_afc.cpp:134
+#: kio_afc.cpp:137
 #, kde-format
 msgid "Apple Devices"
 msgstr "Dispositivos Apple"
 
-#: kio_afc.cpp:181 kio_afc.cpp:402
+#: kio_afc.cpp:193 kio_afc.cpp:413
 #, kde-format
 msgctxt "Link to folder with files stored inside apps"
 msgid "Apps"
 msgstr "Aplicativos"
 
-#: kio_afc.cpp:606
+#: kio_afc.cpp:617
 #, kde-format
 msgid "Cannot read without opening file first"
 msgstr "Não é possível ler sem abrir o arquivo primeiro"
 
-#: kio_afc.cpp:626
+#: kio_afc.cpp:637
 #, kde-format
 msgid "Cannot seek without opening file first"
 msgstr "Não é possível procurar sem abrir o arquivo primeiro"
 
-#: kio_afc.cpp:654
+#: kio_afc.cpp:665
 #, kde-format
 msgid "Cannot write without opening file first"
 msgstr "Não é possível escrever sem abrir o arquivo primeiro"
 
-#: kio_afc.cpp:806
+#: kio_afc.cpp:817
 #, kde-format
 msgid "Cannot rename between devices."
 msgstr "Não é possível renomear entre dispositivos."
