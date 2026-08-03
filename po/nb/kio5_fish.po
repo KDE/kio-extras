@@ -3,6 +3,7 @@
 # Andreas D. Landmark <andreas.landmark@skolelinux.no>, 2003.
 # Knut Yrvin <knut.yrvin@gmail.com>, 2003.
 # Bjørn Steensrud <bjornst@skogkatt.homelinux.org>, 2009, 2012.
+# Kjetil Sørlund <translate@sorlund.no>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_fish\n"
