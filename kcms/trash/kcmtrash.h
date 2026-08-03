@@ -61,7 +61,7 @@ private:
 
     typedef QMap<QString, ConfigEntry> ConfigMap;
     ConfigMap mConfigMap;
-    QMap<int, QString> m_trashMap;
+    QMap<uint, QString> m_trashMap;
 };
 
 #endif // KCMTRASH_H

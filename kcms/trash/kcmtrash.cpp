@@ -47,7 +47,7 @@ TrashConfigModule::TrashConfigModule(QObject *parent, const KPluginMetaData &dat
         auto doc = QJsonDocument::fromJson(job->metaData().value(QStringLiteral("TRASH_DIRECTORIES")).toLocal8Bit());
         const auto map = doc.object().toVariantMap();
         for (auto it = map.begin(); it != map.end(); it++) {
-            m_trashMap.insert(it.key().toInt(), it.value().toString());
+            m_trashMap.insert(it.key().toUInt(), it.value().toString());
         }
         setupGui();
         trashChanged(0);
@@ -217,7 +217,7 @@ void TrashConfigModule::setupGui()
         QListWidget *mountPoints = new QListWidget(widget());
         layout->addWidget(mountPoints);
 
-        QMapIterator<int, QString> it(m_trashMap);
+        QMapIterator<uint, QString> it(m_trashMap);
         while (it.hasNext()) {
             it.next();
 
