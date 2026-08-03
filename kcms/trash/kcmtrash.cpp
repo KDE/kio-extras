@@ -83,6 +83,7 @@ void TrashConfigModule::save()
     }
 
     writeConfig();
+    setNeedsSave(false);
 }
 
 void TrashConfigModule::defaults()
