@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-05 00:45+0000\n"
 "PO-Revision-Date: 2020-11-05 19:24+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -62,7 +62,13 @@ msgstr ""
 "Tenar = %1\n"
 "Delt ressurs = %2"
 
-#: kio_smb_browse.cpp:60
+#: kio_smb_browse.cpp:45
+#, kde-format
+msgctxt "@item the top of the shares that can be browsed"
+msgid "Shared Folders (SMB)"
+msgstr ""
+
+#: kio_smb_browse.cpp:76
 #, kde-format
 msgid ""
 "%1:\n"
@@ -71,7 +77,7 @@ msgstr ""
 "%1:\n"
 "Ukjend filtype, verken katalog eller fil."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:298
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -79,32 +85,32 @@ msgid ""
 msgstr ""
 "Fann ingen arbeidsgrupper i lokalnettet. Dette kan skuldast ein brannmur."
 
-#: kio_smb_browse.cpp:282
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Ingen medium i eininga for %1"
 
-#: kio_smb_browse.cpp:288
+#: kio_smb_browse.cpp:309
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Klarte ikkje kopla til vert for %1"
 
-#: kio_smb_browse.cpp:300
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Feil ved tilkopling til tenaren som er ansvarleg for %1"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:327
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Fann ikkje ressursen på tenaren"
 
-#: kio_smb_browse.cpp:308
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "Dårleg fildeskriptor"
 
-#: kio_smb_browse.cpp:316
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -115,7 +121,7 @@ msgstr ""
 "nettet er sett opp utan konfliktar mellom namn som er brukte i namnesystema "
 "til Windows og UNIX."
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:346
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -123,7 +129,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1: Fekk ikkje kontakt med verten"
 
-#: kio_smb_browse.cpp:329
+#: kio_smb_browse.cpp:350
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -142,13 +148,13 @@ msgstr ""
 "kan innehalda privat informasjon. Du kan senda han privat til ein av "
 "utviklarane om dei ber om det.)"
 
-#: kio_smb_browse.cpp:341
+#: kio_smb_browse.cpp:362
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Ukjend feiltilstand: [%1] %2"
 
-#: kio_smb_browse.cpp:358
+#: kio_smb_browse.cpp:379
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "Feil ved forsøk på å få tilgang til %1<nl/>%2"

@@ -13,7 +13,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-05 00:45+0000\n"
 "PO-Revision-Date: 2025-08-20 20:17+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -67,7 +67,13 @@ msgstr ""
 "الخادم = %1\n"
 "المشاركة =%2"
 
-#: kio_smb_browse.cpp:60
+#: kio_smb_browse.cpp:45
+#, kde-format
+msgctxt "@item the top of the shares that can be browsed"
+msgid "Shared Folders (SMB)"
+msgstr ""
+
+#: kio_smb_browse.cpp:76
 #, kde-format
 msgid ""
 "%1:\n"
@@ -76,39 +82,39 @@ msgstr ""
 "‏%1:\n"
 "نوع ملف مجهول, ليس دليلاً أو ملف."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:298
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr "تعذر إيجاد أي مجموعات عمل في شبكتك المحلية. ربما بسبب وجود جدار ناري."
 
-#: kio_smb_browse.cpp:282
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "No media in device for %1"
 msgstr "لا يوجد وسيط في الجهاز لـ %1"
 
-#: kio_smb_browse.cpp:288
+#: kio_smb_browse.cpp:309
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "لا أستطيع الاتصال بالمضيف لـ %1"
 
-#: kio_smb_browse.cpp:300
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "خطأ عند الاتصال بالخادم المسؤول عن %1"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:327
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "تعذر إيجاد المشاركة على الخادم المعطى"
 
-#: kio_smb_browse.cpp:308
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "واصف الملف سيَء"
 
-#: kio_smb_browse.cpp:316
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -118,7 +124,7 @@ msgstr ""
 "الاسم المعطى لا يمكن تحليله لخادم وحيد. تأكد من أن شبكتك معدّة من غير تضارب "
 "بين الأسماء المستخدمة من قبل ويندوز ويونيكس."
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:346
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -126,7 +132,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "المضيف %1: لا يمكن الوصول إليه"
 
-#: kio_smb_browse.cpp:329
+#: kio_smb_browse.cpp:350
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -143,13 +149,13 @@ msgstr ""
 "التصفح. من فضلك لاحظ أن بعض هذه المعلومات قد تكون سرية عندها ابعثها لمطوري "
 "النظام بسرية.إذا طلبوها)"
 
-#: kio_smb_browse.cpp:341
+#: kio_smb_browse.cpp:362
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "حالة خطأ مجهولة في الحالة: [%1] %2"
 
-#: kio_smb_browse.cpp:358
+#: kio_smb_browse.cpp:379
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "حدث خطأ أثناء محاول الوصول إلى %1<nl/>%2"

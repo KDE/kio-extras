@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-05 00:45+0000\n"
 "PO-Revision-Date: 2012-12-21 22:57+0100\n"
 "Last-Translator: Jean Cayron <jean.cayron@gmail.com>\n"
 "Language-Team: Walloon <linux-wa@walon.org>\n"
@@ -50,7 +50,13 @@ msgstr ""
 "Sierveu = %1\n"
 "Pårtaedje = %2"
 
-#: kio_smb_browse.cpp:60
+#: kio_smb_browse.cpp:45
+#, kde-format
+msgctxt "@item the top of the shares that can be browsed"
+msgid "Shared Folders (SMB)"
+msgstr ""
+
+#: kio_smb_browse.cpp:76
 #, kde-format
 msgid ""
 "%1:\n"
@@ -59,7 +65,7 @@ msgstr ""
 "%1 :\n"
 "Sôre di fitchî nén cnoxhowe, ni come ridant ni come fitchî."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:298
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -68,33 +74,33 @@ msgstr ""
 "Dji n' trove nou groupe di travaye e vosse rantoele coinrece. C' est motoit "
 "a cåze d' on côpe-feu e-n alaedje."
 
-#: kio_smb_browse.cpp:282
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Nou media e l' éndjin po %1"
 
-#: kio_smb_browse.cpp:288
+#: kio_smb_browse.cpp:309
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Dji n' a savou m' raloyî å lodjoe po %1"
 
-#: kio_smb_browse.cpp:300
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Åk n' a nén stî come dji houkive li sierveu responsåve po %1"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:327
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Dji n' a savou trover l' pårtaedje sol sierveu diné"
 
-#: kio_smb_browse.cpp:308
+#: kio_smb_browse.cpp:329
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "MWAIS discrijheu di fitchî"
 
-#: kio_smb_browse.cpp:316
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -105,7 +111,7 @@ msgstr ""
 "rantoele est bén aponteye sins nol afrontmint inte les nos eployîs pas "
 "Windows eyet l' rezolucion di no UNIX."
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:346
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -113,7 +119,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:329
+#: kio_smb_browse.cpp:350
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -134,14 +140,14 @@ msgstr ""
 "dfwait d' ça - vos l' poloz evoyî d' ene façon privêye ås diswalpeus s' i l' "
 "dimandèt)"
 
-#: kio_smb_browse.cpp:341
+#: kio_smb_browse.cpp:362
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Condicion d' aroke nén cnoxhowe e statistike : %1"
 
-#: kio_smb_browse.cpp:358
+#: kio_smb_browse.cpp:379
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""

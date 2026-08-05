@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-05 00:45+0000\n"
 "PO-Revision-Date: 2023-08-17 19:23+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -61,7 +61,13 @@ msgstr ""
 "伺服器 = %1\n"
 "共享裝置 = %2"
 
-#: kio_smb_browse.cpp:60
+#: kio_smb_browse.cpp:45
+#, kde-format
+msgctxt "@item the top of the shares that can be browsed"
+msgid "Shared Folders (SMB)"
+msgstr ""
+
+#: kio_smb_browse.cpp:76
 #, kde-format
 msgid ""
 "%1:\n"
@@ -70,39 +76,39 @@ msgstr ""
 "%1:\n"
 "不明的檔案型態，不是目錄也不是檔案。"
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:298
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr "無法在您的本地網路發現任何工作群組。這可能是由於使用了防火牆造成的。"
 
-#: kio_smb_browse.cpp:282
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "No media in device for %1"
 msgstr "%1 的裝置中沒有媒體"
 
-#: kio_smb_browse.cpp:288
+#: kio_smb_browse.cpp:309
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "無法連線至 %1 的主機"
 
-#: kio_smb_browse.cpp:300
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "當連線到負責 %1 的伺服器時發生錯誤"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:327
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "所指定伺服器上找不到共享裝置"
 
-#: kio_smb_browse.cpp:308
+#: kio_smb_browse.cpp:329
 #, kde-format
 msgid "Bad file descriptor"
 msgstr "錯誤的檔案描述子"
 
-#: kio_smb_browse.cpp:316
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -112,7 +118,7 @@ msgstr ""
 "無法將指定的名稱解析至特定的伺服器。請確定您的網路設定中 Windows 與 UNIX 解析"
 "用的名稱沒有衝突。"
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:346
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -120,7 +126,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr "%1：無法連線至主機"
 
-#: kio_smb_browse.cpp:329
+#: kio_smb_browse.cpp:350
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -137,13 +143,13 @@ msgstr ""
 "私人資料，如果您不確定請勿公開散佈。如果程式開發者跟您要求相關資料，您可以私"
 "底下Email給他)"
 
-#: kio_smb_browse.cpp:341
+#: kio_smb_browse.cpp:362
 #, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "未知錯誤狀態：[%1] %2"
 
-#: kio_smb_browse.cpp:358
+#: kio_smb_browse.cpp:379
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr "在嘗試存取 %1 時發生錯誤<nl/>%2"

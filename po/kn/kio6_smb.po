@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-05 00:45+0000\n"
 "PO-Revision-Date: 2007-07-09 12:17+0530\n"
 "Last-Translator: Umesh Rudrapatna <urudrapatna@yahoo.com>\n"
 "Language-Team: Kannada <kde-l10n-kn@kde.org>\n"
@@ -51,7 +51,13 @@ msgstr ""
 "ಪರಿಚಾರಕ (server)= %1\n"
 "ಹಂಚಿಕೆ (share)= %2"
 
-#: kio_smb_browse.cpp:60
+#: kio_smb_browse.cpp:45
+#, kde-format
+msgctxt "@item the top of the shares that can be browsed"
+msgid "Shared Folders (SMB)"
+msgstr ""
+
+#: kio_smb_browse.cpp:76
 #, kde-format
 msgid ""
 "%1:\n"
@@ -60,7 +66,7 @@ msgstr ""
 "%1:\n"
 "ತಿಳಿಯದ ಕಡತದ ಬಗೆ, ಕಡತವೂ ಅಲ್ಲ, ಕಡತಕೋಶವೂ ಅಲ್ಲ."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:298
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -69,33 +75,33 @@ msgstr ""
 "ನಿಮ್ಮ ಸ್ಥಳೀಯ ಜಾಲದಲ್ಲಿ ಯಾವುದೇ ಕಾರ್ಯತಂಡಗಳು (workgroups) ಕಾಣಬರಲಿಲ್ಲ. ಇದು ಕ್ರಿಯಾಶೀಲ "
 "ಅಗ್ನಿರೇಖೆಯ (firewall) ಕಾರಣದಿಂದಿರಬಹುದು."
 
-#: kio_smb_browse.cpp:282
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "No media in device for %1"
 msgstr "%1 ಸಾಧನದಲ್ಲಿ ಯಾವುದೇ ಮಾಧ್ಯಮವಿಲ್ಲ"
 
-#: kio_smb_browse.cpp:288
+#: kio_smb_browse.cpp:309
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "%1 ಗಾಗಿ ಆತಿಥೇಯ (host) ಗಣಕಕ್ಕೆ ಸಂಪರ್ಕ ಕಲ್ಪಿಸಲಾಗಲಿಲ್ಲ"
 
-#: kio_smb_browse.cpp:300
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "%1 ಗೆ ಕಾರಣವಾದ ಪರಿಚಾರಕಕ್ಕೆ (server) ಸಂಪರ್ಕ ಕಲ್ಪಿಸುವಾಗ ದೋಷ ಕಂಡುಬಂದಿತು"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:327
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "ನಿರ್ದೇಶಿಸಿದ ಪರಿಚಾರಕದಲ್ಲಿ ಹಂಚಿಕೆ (share) ಕಂಡುಬರಲಿಲ್ಲ"
 
-#: kio_smb_browse.cpp:308
+#: kio_smb_browse.cpp:329
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "ಕೆಟ್ಟ ಕಡತ ವಿವರಕ (file descriptor)"
 
-#: kio_smb_browse.cpp:316
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -106,7 +112,7 @@ msgstr ""
 "ವ್ಯವಸ್ಥೆಯು UNIX ಹಾಗೂ Windows ನ ನಾಮನಿರ್ಣಯ ವ್ಯವಸ್ಥೆಗಳು ಬಳಸುವ ಹೆಸರುಗಳ ನಡುವೆ ಯಾವುದೇ "
 "ಘರ್ಷಣೆ ಇಲ್ಲದಂತೆ ಸಿದ್ಧಗೊಂಡಿದೆಯೆಂದು ಖಚಿತಪಡಿಸಿಕೊಳ್ಳಿ."
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:346
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -114,7 +120,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:329
+#: kio_smb_browse.cpp:350
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -126,14 +132,14 @@ msgid ""
 "developers if they ask for it)"
 msgstr ""
 
-#: kio_smb_browse.cpp:341
+#: kio_smb_browse.cpp:362
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "stat ನಲ್ಲಿ ಗೊತ್ತಿಲ್ಲದ ದೋಷ ಸ್ಥಿತಿ: %1"
 
-#: kio_smb_browse.cpp:358
+#: kio_smb_browse.cpp:379
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""

@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-05 00:45+0000\n"
 "PO-Revision-Date: 2005-12-16 12:00+0100\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -53,7 +53,13 @@ msgstr ""
 "Сервер = %1\n"
 "Заедничка = %2"
 
-#: kio_smb_browse.cpp:60
+#: kio_smb_browse.cpp:45
+#, kde-format
+msgctxt "@item the top of the shares that can be browsed"
+msgid "Shared Folders (SMB)"
+msgstr ""
+
+#: kio_smb_browse.cpp:76
 #, kde-format
 msgid ""
 "%1:\n"
@@ -62,7 +68,7 @@ msgstr ""
 "%1:\n"
 "Непознат тип на датотека, не е ни именик ни датотека."
 
-#: kio_smb_browse.cpp:277
+#: kio_smb_browse.cpp:298
 #, kde-format
 msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
@@ -71,33 +77,33 @@ msgstr ""
 "Не можам да најдам ниедна работна група во вашата локална мрежа. Ова може да "
 "е предизвикано од вклучен заштитен ѕид."
 
-#: kio_smb_browse.cpp:282
+#: kio_smb_browse.cpp:303
 #, kde-format
 msgid "No media in device for %1"
 msgstr "Нема медиум во уредот за %1"
 
-#: kio_smb_browse.cpp:288
+#: kio_smb_browse.cpp:309
 #, kde-format
 msgid "Could not connect to host for %1"
 msgstr "Не можев да се поврзам со компјутерот за %1"
 
-#: kio_smb_browse.cpp:300
+#: kio_smb_browse.cpp:321
 #, kde-format
 msgid "Error while connecting to server responsible for %1"
 msgstr "Грешка при поврзување со серверот одговорен за %1"
 
-#: kio_smb_browse.cpp:306
+#: kio_smb_browse.cpp:327
 #, kde-format
 msgid "Share could not be found on given server"
 msgstr "Делениот ресурс не беше пронајден на дадениот сервер"
 
-#: kio_smb_browse.cpp:308
+#: kio_smb_browse.cpp:329
 #, fuzzy, kde-format
 #| msgid "BAD File descriptor"
 msgid "Bad file descriptor"
 msgstr "ЛОШ дескриптор на датотека"
 
-#: kio_smb_browse.cpp:316
+#: kio_smb_browse.cpp:337
 #, kde-format
 msgid ""
 "The given name could not be resolved to a unique server. Make sure your "
@@ -108,7 +114,7 @@ msgstr ""
 "вашата мрежа е поставена без никакви конфликти меѓу имињата кои се користат "
 "од разрешувањето на имиња на Windows и на UNIX."
 
-#: kio_smb_browse.cpp:325
+#: kio_smb_browse.cpp:346
 #, kde-format
 msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
@@ -116,7 +122,7 @@ msgctxt ""
 msgid "%1: Host unreachable"
 msgstr ""
 
-#: kio_smb_browse.cpp:329
+#: kio_smb_browse.cpp:350
 #, kde-format
 msgid ""
 "libsmbclient reported an error, but did not specify what the problem is. "
@@ -135,14 +141,14 @@ msgstr ""
 "тој може да содржи приватни податоци, така што не го праќајте ако не сте "
 "сигурни - може да го пратите приватно на развивачите ако го побараат)"
 
-#: kio_smb_browse.cpp:341
+#: kio_smb_browse.cpp:362
 #, fuzzy, kde-format
 #| msgid "Unknown error condition in stat: %1"
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
 msgstr "Непозната состојба на грешка во stat: %1"
 
-#: kio_smb_browse.cpp:358
+#: kio_smb_browse.cpp:379
 #, kde-kuit-format
 msgid "Error occurred while trying to access %1<nl/>%2"
 msgstr ""
