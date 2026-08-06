@@ -1,7 +1,7 @@
 # translation of kio_smb.po to Slovenian
 # Translation of kio_smb.po to Slovenian
 # SLOVENIAN TRANSLATION OF K DESKTOP ENVIRONMENT.
-# $Id: kio6_smb.po 1743035 2026-08-05 01:31:23Z scripty $
+# $Id: kio6_smb.po 1743125 2026-08-06 01:28:50Z scripty $
 # $Source$
 #
 # Copyright (C) 2001, 2003, 2004, 2005 Free Software Foundation, Inc.
@@ -14,16 +14,16 @@ msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-05 00:45+0000\n"
-"PO-Revision-Date: 2020-11-05 08:46+0100\n"
+"PO-Revision-Date: 2026-08-05 06:59+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 20.08.1\n"
 "Plural-Forms: nplurals=4; plural=(n%100==1 ? 1 : n%100==2 ? 2 : n%100==3 || n"
 "%100==4 ? 3 : 0);\n"
+"X-Generator: Poedit 3.9\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -72,7 +72,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item the top of the shares that can be browsed"
 msgid "Shared Folders (SMB)"
-msgstr ""
+msgstr "Souporabljene mape (SMB)"
 
 #: kio_smb_browse.cpp:76
 #, kde-format
