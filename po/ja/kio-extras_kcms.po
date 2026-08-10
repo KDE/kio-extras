@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2026-06-14 22:00+0900\n"
 "Last-Translator: Mint <5602mint@gmail.com>\n"
 "Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
@@ -592,14 +592,14 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr ""
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -609,12 +609,12 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "次より古いファイルを削除する"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, fuzzy, kde-kuit-format
 #| msgctxt "@info:whatsthis"
 #| msgid ""
@@ -632,14 +632,14 @@ msgstr ""
 "チェックします。経過日数によってファイルを自動的に削除しない場合は、チェック"
 "を外しておいてください。</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] "%v 日"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -649,17 +649,17 @@ msgstr ""
 "<para>ファイルをごみ箱に残しておく日数を指定します。この日数より古いファイル"
 "はすべて自動的に削除されます。</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "整理:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "制限する"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -669,18 +669,18 @@ msgstr ""
 "<para>ごみ箱が使用するディスク領域を下で指定するサイズに制限するには、この"
 "ボックスをチェックします。チェックしなければ無制限になります。</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "サイズ:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr "%v%"
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -689,7 +689,7 @@ msgid ""
 msgstr ""
 "<para>ごみ箱の最大サイズをディスク領域に対するパーセントで指定します。</para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -697,22 +697,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr "<para>ごみ箱が最大で使用できるディスク領域の量です。</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "警告を表示する"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "最も古いファイルを削除する"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "最も大きいファイルを削除する"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -724,7 +724,7 @@ msgstr ""
 "除します。<interface>警告する</interface>を選択した場合は、自動的にファイルを"
 "削除せずに警告メッセージを表示します。</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "ごみ箱が満杯のとき:"

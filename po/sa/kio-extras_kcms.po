@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2024-12-20 21:52+0530\n"
 "Last-Translator: kali <skkalwar999@gmail.com>\n"
 "Language-Team: Sanskrit <kde-i18n-doc@kde.org>\n"
@@ -502,7 +502,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "सदा उपेक्षां कुरुत"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -511,7 +511,7 @@ msgstr ""
 "<para>KDE इत्यस्य wastebin <b>Finder</b> इत्यस्य Trash इत्यस्य उपयोगाय विन्यस्तम् "
 "अस्ति ।<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -524,12 +524,12 @@ msgstr ""
 "यदा...<br> Finder मार्गेण Trash रिक्तं कृत्वा सर्वं विलोपयिष्यति ।</para><para> KDE "
 "इत्यस्य कचरावस्तूनि KDE.trash इति पुटे, Trash can इत्यस्मिन् दर्शयिष्यन्ति ।</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "तः प्राचीनानि सञ्चिकाः विलोपयन्तु"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -543,7 +543,7 @@ msgstr ""
 "strong='true'>not</emphasis> स्वयमेव कस्यापि द्रव्यस्य विलोपनं निश्चितसमयान्तरस्य</"
 "para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -553,7 +553,7 @@ msgid_plural "%v days"
 msgstr[0] " दिनं"
 msgstr[1] " दिवसाः"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -563,17 +563,17 @@ msgstr ""
 "<para>सञ्चिकाः कचरे स्थातुं शक्नुवन्ति इति दिवसानां संख्यां सेट् कुर्वन्तु । अस्मात् प्राचीनाः "
 "सञ्चिकाः स्वयमेव लोपिताः भविष्यन्ति ।</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "स्वच्छता :"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "सीमां यावत्"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -583,18 +583,18 @@ msgstr ""
 "<para>अधः निर्दिष्टस्य अधिकतमं डिस्कस्थानं यावत् कचरा सीमितं कर्तुं एतत् पेटीं चिनोतु । "
 "अन्यथा असीमितं भविष्यति।</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "आकृति:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr ""
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -602,7 +602,7 @@ msgid ""
 "trash.</para>"
 msgstr "<para>एतत् अधिकतमं डिस्कस्थानस्य प्रतिशतं यत् कचराणां कृते उपयुज्यते ।</para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -611,22 +611,22 @@ msgid ""
 msgstr ""
 "<para>एतत् गणितं डिस्कस्थानस्य परिमाणं यत् कचराणां कृते अनुमतं भविष्यति, अधिकतमम् ।</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "चेतावनी दर्शयतु"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "कचरातः प्राचीनतमसञ्चिकाः विलोपयन्तु"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "कचरातः बृहत्तमानि सञ्चिकानि विलोपयन्तु"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -638,7 +638,7 @@ msgstr ""
 "विलोपयितुं रोचते । यदि एतत् भवन्तं चेतयितुं सेट् भवति तर्हि स्वयमेव सञ्चिकानां लोपस्य स्थाने "
 "एवम् करिष्यति ।</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "पूर्ण कचरा :"

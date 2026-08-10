@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2021-02-09 09:02+0800\n"
 "Last-Translator: ye-yu <rafolwen98@gmail.com>\n"
 "Language-Team: Malay <kde-i18n-doc@kde.org>\n"
@@ -518,14 +518,14 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Selamanya"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -535,12 +535,12 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, fuzzy, kde-format
 msgid "Delete files older than"
 msgstr "Hapuskan Folder"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -550,7 +550,7 @@ msgid ""
 "items after a certain timespan</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, fuzzy, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
@@ -558,7 +558,7 @@ msgid_plural "%v days"
 msgstr[0] "%3.1f Hari"
 msgstr[1] ""
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -566,17 +566,17 @@ msgid ""
 "older than this will be automatically deleted.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr ""
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr ""
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -584,18 +584,18 @@ msgid ""
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Saiz:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr ""
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -603,7 +603,7 @@ msgid ""
 "trash.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -611,22 +611,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr ""
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Hapuskan Folder"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, fuzzy, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Hapuskan Folder"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -635,7 +635,7 @@ msgid ""
 "instead of automatically deleting files.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, fuzzy, kde-format
 msgid "Full trash:"
 msgstr "&Tong Sampah"

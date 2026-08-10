@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2026-06-07 23:05+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
@@ -548,7 +548,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Ignora per sempre"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -557,7 +557,7 @@ msgstr ""
 "<para>Il cestino di KDE è configurato per usare il Cestino del <b>Finder</b>."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -571,12 +571,12 @@ msgstr ""
 "para><para>Gli elementi del cestino di KDE appariranno in una cartella "
 "chiamata KDE.trash all'interno del Cestino.</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Elimina file più vecchi di"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -591,7 +591,7 @@ msgstr ""
 "strong='true'>non</emphasis> eliminare automaticamente elementi più vecchi "
 "di un determinato momento</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
@@ -599,7 +599,7 @@ msgid_plural "%v days"
 msgstr[0] "%v giorno"
 msgstr[1] "%v giorni"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -609,17 +609,17 @@ msgstr ""
 "<para>Imposta il numero di giorni che i file possono rimanere nel cestino. "
 "Qualsiasi file più vecchio di questo verrà eliminato automaticamente.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Pulizia:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Limita a"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -630,18 +630,18 @@ msgstr ""
 "disco al valore massimo specificato qui sotto. Altrimenti sarà illimitato.</"
 "para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Dimensione:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr "%v%"
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -651,7 +651,7 @@ msgstr ""
 "<para>Questa è la percentuale massima di spazio disco che verrà usata dal "
 "cestino.</para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -661,22 +661,22 @@ msgstr ""
 "<para>Questa è la quantità calcolata di spazio che è consentita al cestino, "
 "il massimo.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "Mostra un avviso"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Elimina i file più vecchi nel cestino"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Elimina i file più grandi nel cestino"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -688,7 +688,7 @@ msgstr ""
 "file che hai specificato. Se è impostato su avvisami verrai avvertito e non "
 "avverrà alcuna eliminazione automatica.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "Cestino pieno:"

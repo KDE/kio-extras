@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: KDE 4.1\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2025-11-07 21:26+0100\n"
 "Last-Translator: Kristof Kiszel <ulysses@fsf.hu>\n"
 "Language-Team: Hungarian <kde-l10n-hu@kde.org>\n"
@@ -536,7 +536,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Mellőzés örökké"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -545,7 +545,7 @@ msgstr ""
 "<para>A KDE Kukája a <b>Finder</b> Kukájának használatára van beállítva."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -558,12 +558,12 @@ msgstr ""
 "törli,<br>a Finderrel ürítés viszont mindent töröl.</para><para>A KDE "
 "kukaelemei a KDE.trash nevű mappában jelennek meg, a Kukán belül.</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Az ennél régebbi fájlok törlése"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -577,7 +577,7 @@ msgstr ""
 "üresen, ha <emphasis strong='true'>semmit sem</emphasis> szeretne "
 "automatikusan törölni egy bizonyos odő után</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
@@ -585,7 +585,7 @@ msgid_plural "%v days"
 msgstr[0] "%v nap"
 msgstr[1] "%v nap"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -595,17 +595,17 @@ msgstr ""
 "<para>Beállíthatja, hogy hány napig maradhatnak a fájlok a kukában. Az ennél "
 "régebbi fájlok automatikusan törlődnek.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Takarítás:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Méretkorlát"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -615,18 +615,18 @@ msgstr ""
 "<para>Jelölje be ezt a Kuka maximális lemezhasználatának korlátozásához, "
 "amelyet lentebb adhat meg. Ellenkező esetben korlátlan lesz.</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Méret:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr "%v%"
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -636,7 +636,7 @@ msgstr ""
 "<para>Ez a lemezterület maximális százaléka, amelyet a Kuka használhat.</"
 "para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -646,22 +646,22 @@ msgstr ""
 "<para>Ez az a számított lemezterület, amely a Kuka számára maximálisan "
 "engedélyezett.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "Figyelmeztetés megjelenítése"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Legrégebbi törölt fájlok eltávolítása"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Legnagyobb törölt fájlok eltávolítása"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -673,7 +673,7 @@ msgstr ""
 "próbálja meg törölni. Ha ez be van jelölve, figyelmeztetni fogja Önt az a "
 "automatikus törlés helyett.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "Tele Kuka:"

@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2026-05-30 09:25+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -564,7 +564,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Ignora per sempre"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -573,7 +573,7 @@ msgstr ""
 "<para>La paperera de KDE està configurada per a utilitzar el <b>Buscador</b> "
 "de la paperera.<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -588,12 +588,12 @@ msgstr ""
 "mostraran en una carpeta anomenada KDE.trash, en la icona de la paperera.</"
 "para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Suprimix els fitxers més antics de"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -608,7 +608,7 @@ msgstr ""
 "emphasis> suprimir automàticament cap element després d'un lapse de temps "
 "concret</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
@@ -616,7 +616,7 @@ msgid_plural "%v days"
 msgstr[0] "%v dia"
 msgstr[1] "%v dies"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -627,17 +627,17 @@ msgstr ""
 "paperera. Els fitxers més antics que este valor se suprimiran automàticament."
 "</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Neteja:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Limita a"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -648,18 +648,18 @@ msgstr ""
 "d'espai en disc que indiqueu seguidament. En cas contrari, serà sense límit."
 "</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Mida:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr "%v%"
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -669,7 +669,7 @@ msgstr ""
 "<para>Este és el percentatge màxim d'espai del disc que s'utilitzarà per a "
 "la paperera.</para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -679,22 +679,22 @@ msgstr ""
 "<para>Esta és la quantitat calculada d'espai del disc que s'acceptarà per a "
 "la paperera, el màxim.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "Mostra un avís"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Suprimix els fitxers més antics de la paperera"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Suprimix els fitxers més grans de la paperera"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -706,7 +706,7 @@ msgstr ""
 "tipus de fitxers que indiqueu. Si açò s'establix per a avisar-vos, es farà "
 "en lloc de suprimir automàticament els fitxers.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "Paperera plena:"

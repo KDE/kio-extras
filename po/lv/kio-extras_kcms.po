@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2025-03-26 16:09+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -543,7 +543,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "Ignorēt vienmēr"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -552,7 +552,7 @@ msgstr ""
 "<para>KDE atkritne ir konfigurēta, lai izmantotu <b>Finder</b> atkritni."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -566,12 +566,12 @@ msgstr ""
 "atkritnē esošie vienumi būs redzami mapē ar nosaukumu „KDE.trash“, kas "
 "atrodas atkritnē.</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Dzēst datnes, kas ir vecākas par"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -585,7 +585,7 @@ msgstr ""
 "iestatījumu izslēgtu, lai automātiski <emphasis strong='true'>nedzēstu</"
 "emphasis> jebkādus vienumus pēc noteikta laika</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
@@ -594,7 +594,7 @@ msgstr[0] "%v diena"
 msgstr[1] "%v dienas"
 msgstr[2] "%v dienu"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -604,17 +604,17 @@ msgstr ""
 "<para>Norādiet dienu skaitu, cik ilgi datnes var būt atkritnē. Visas datnes, "
 "kas atkritnē pavadīs ilgāku laiku, sistēma dzēsīs.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Sakopšana:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Ierobežot līdz"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -624,18 +624,18 @@ msgstr ""
 "<para>Atzīmējot šo lauciņu, lai ierobežotu atkritnes lielumu diskā līdz "
 "norādītajam. Pretējā gadījumā tās lielums būs neierobežots.</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Lielums:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr "%v %"
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -645,7 +645,7 @@ msgstr ""
 "<para>Šī ir maksimālā vieta diskā procentuāli, ko atkritne var aizņemt.</"
 "para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -655,22 +655,22 @@ msgstr ""
 "<para>Izmanto, lai aprēķinātu maksimālo vietu diskā, ko drīkst aizņemt "
 "vienumi atkritnē.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "Rādīt brīdinājumu"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Dzēst atkritnē esošās vecākās datnes"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Dzēst atkritnē esošās lielākās datnes"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -682,7 +682,7 @@ msgstr ""
 "veida datnes. Ja ir ieslēgts brīdinājums, tad pirms datņu dzēšanas saņemsit "
 "brīdinājumu.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "Pilna atkritne:"

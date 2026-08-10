@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2021-09-05 20:45+0200\n"
 "Last-Translator: Martin Schlander <mschlander@opensuse.org>\n"
 "Language-Team: Danish <kde-i18n-doc@kde.org>\n"
@@ -559,7 +559,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Altid"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -568,7 +568,7 @@ msgstr ""
 "<para>KDE's papirkurv er konfigureret til at bruge <b>Finder</b>s papirkurv."
 "<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -582,12 +582,12 @@ msgstr ""
 "para><para>KDE's papirkurvselementer vil dukke op i en mappe med navnet KDE."
 "trash, i papirkurven.</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Slet filer som er ældre end"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -601,7 +601,7 @@ msgstr ""
 "være deaktiveret for <emphasis strong='true'>ikke</emphasis> at slette nogen "
 "elementer automatisk efter et bestemt tidsrum</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -611,7 +611,7 @@ msgid_plural "%v days"
 msgstr[0] " dag"
 msgstr[1] " dage"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -621,17 +621,17 @@ msgstr ""
 "<para>Angiv det antal dage som filer må blive i papirkurven. Alle filer som "
 "er ældre end dette vil automatisk blive slettet.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Oprydning:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Begræns til"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -641,18 +641,18 @@ msgstr ""
 "<para>Markér dette felt for at begrænse papirkurven til den maksimale mængde "
 "diskplads som du angiver nedenfor. Ellers vil den være ubegrænset.</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Størrelse:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr ""
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -662,7 +662,7 @@ msgstr ""
 "<para>Dette er den maksimale procentdel af diskplads, der vil blive brugt "
 "til papirkurven.</para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -672,25 +672,25 @@ msgstr ""
 "<para>Dette er den beregnede mængde diskplads, som vil blive tilladt til "
 "papirkurven. Dvs. maksimum.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
 #| msgid "Show a Warning"
 msgid "Show a warning"
 msgstr "Vis advarsel"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 #| msgid "Delete Oldest Files From Trash"
 msgid "Delete oldest files from trash"
 msgstr "Slet de ældste filer fra papirkurv"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, fuzzy, kde-format
 #| msgid "Delete Biggest Files From Trash"
 msgid "Delete biggest files from trash"
 msgstr "Slet de største filer fra papirkurv"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -702,7 +702,7 @@ msgstr ""
 "filer, som du angiver, først. Hvis det er sat til at advare dig, så vil den "
 "gøre det, i stedet for at slette filerne automatisk.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, fuzzy, kde-format
 #| msgid "Full Trash:"
 msgid "Full trash:"

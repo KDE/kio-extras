@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2004-09-19 18:24+0200\n"
 "Last-Translator: Thierry Vignaud <tvignaud.com>\n"
 "Language-Team: Brezhoneg <Suav.Icb.fr>\n"
@@ -462,14 +462,14 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Da viken"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -479,13 +479,13 @@ msgid ""
 "the Trash can.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, fuzzy, kde-format
 #| msgid "Delete Folder"
 msgid "Delete files older than"
 msgstr "Distruj renkell"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -495,7 +495,7 @@ msgid ""
 "items after a certain timespan</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, fuzzy, kde-format
 #| msgid "1 day %2"
 #| msgid_plural "%1 days %2"
@@ -505,7 +505,7 @@ msgid_plural "%v days"
 msgstr[0] "%1 deiz %2"
 msgstr[1] ""
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -513,17 +513,17 @@ msgid ""
 "older than this will be automatically deleted.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr ""
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr ""
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -531,18 +531,18 @@ msgid ""
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Ment :"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr ""
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -550,7 +550,7 @@ msgid ""
 "trash.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -558,22 +558,22 @@ msgid ""
 "the trash, the maximum.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
 msgid "Show a warning"
 msgstr "Diwallit"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 msgid "Delete oldest files from trash"
 msgstr "Distruj restroù"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, fuzzy, kde-format
 msgid "Delete biggest files from trash"
 msgstr "Distruj restroù"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -582,7 +582,7 @@ msgid ""
 "instead of automatically deleting files.</para>"
 msgstr ""
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, fuzzy, kde-format
 #| msgid "Trash"
 msgid "Full trash:"

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2026-06-05 13:35+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -536,14 +536,14 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "تجاهلها مطلقًا"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr "<para>ضُبطت سلّة مهملات «كِيدِي» لتستخدم مهملات <b>فايندر</b>.<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -556,12 +556,12 @@ msgstr ""
 "المهملات عبر «فايندر» سيحذف كلّ شيء.</para><para>تُعرض عناصر مهملات «كِيدِي» في "
 "مجلّد اسمه KDE.trash في سلّة المهملات.</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "احذف الملفّات الأقدم من:"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -575,7 +575,7 @@ msgstr ""
 "strong='true'> لعدم </emphasis> حذف أي عناصر آليًّا بعد فترة زمنية معينة </"
 "para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, kde-format
 msgctxt "@label:spinbox"
 msgid "%v day"
@@ -587,7 +587,7 @@ msgstr[3] "%v أيّام"
 msgstr[4] "%v يومًا"
 msgstr[5] "%v يوم"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -597,17 +597,17 @@ msgstr ""
 "<para>اضبط عدد الأيّام التي يمكن للملفّات أن تبقى فيه في المهملات. ستُحذف أيّة "
 "ملفّات أقدم من هذا آليًّا.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "نظف:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "أقصى حد"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -617,18 +617,18 @@ msgstr ""
 "<para> حدد هذا المربع لتقييد سلة المهملات بأقصى قدر من مساحة القرص التي "
 "تحددها أدناه. وإلا فسيكون غير محدود. </para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "الحجم:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr "%v٪"
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -638,7 +638,7 @@ msgstr ""
 "<para> هذه هي النسبة المئوية القصوى من مساحة القرص التي ستُستخدم لسلة "
 "المهملات. </para> "
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -648,22 +648,22 @@ msgstr ""
 "<para> هذه هي المقدار المحسوب من مساحة القرص التي سيسمح بها للمهملات، الحد "
 "الأقصى. </para> "
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, kde-format
 msgid "Show a warning"
 msgstr "أظهر تحذير"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, kde-format
 msgid "Delete oldest files from trash"
 msgstr "احذف أكثر الملفّات قدمًا"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, kde-format
 msgid "Delete biggest files from trash"
 msgstr "احذف أكثر ملفّات حجمًا"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -674,7 +674,7 @@ msgstr ""
 "<para> عند الوصول إلى حد الحجم، سيفضل حذف نوع الملفات التي تحددها أولاً. إذا "
 "عينت هذا لتحذيرك، فسيقوم بذلك بدلاً من حذف الملفات آليًّا. </para> "
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, kde-format
 msgid "Full trash:"
 msgstr "عند امتلاء سلة المهملات:"

@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2023-02-20 10:53+0100\n"
 "Last-Translator: Phu Hung Nguyen <phu.nguyen@kdemail.net>\n"
 "Language-Team: Vietnamese <kde-l10n-vi@kde.org>\n"
@@ -546,7 +546,7 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Mãi mãi"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
@@ -555,7 +555,7 @@ msgstr ""
 "<para>Thùng rác của KDE được cấu hình để dùng \"Thùng rác\" của <b>Finder</"
 "b>.< br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -569,12 +569,12 @@ msgstr ""
 "para><para>Các thứ rác của KDE sẽ xuất hiện trong một thư mục tên là KDE."
 "trash, trong \"Thùng rác\".</para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Xoá các tệp cũ hơn"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -588,7 +588,7 @@ msgstr ""
 "strong='true'>không</emphasis> tự động xoá bất kì thứ nào sau một khoảng "
 "thời gian nhất định</para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -597,7 +597,7 @@ msgid "%v day"
 msgid_plural "%v days"
 msgstr[0] " ngày"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -607,17 +607,17 @@ msgstr ""
 "<para>Đặt số ngày mà các tệp có thể ở trong thùng rác. Tệp nào cũ hơn giá "
 "trị này sẽ tự động bị xoá.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Dọn dẹp:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Giới hạn trong"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -627,18 +627,18 @@ msgstr ""
 "<para>Chọn ô này để giới hạn thùng rác vào một lượng không gian đĩa tối đa "
 "mà bạn chỉ ra bên dưới. Nếu không, nó sẽ là không giới hạn.</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Kích thước:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr ""
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -648,7 +648,7 @@ msgstr ""
 "<para>Đây là số phần trăm không gian đĩa tối đa sẽ được dùng cho thùng rác.</"
 "para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -658,25 +658,25 @@ msgstr ""
 "<para>Đây là lượng không gian đĩa tối đa được tính ra, mà có thể được dùng "
 "cho thùng rác.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
 #| msgid "Show a Warning"
 msgid "Show a warning"
 msgstr "Hiện một cảnh báo"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 #| msgid "Delete Oldest Files From Trash"
 msgid "Delete oldest files from trash"
 msgstr "Xoá các tệp cũ nhất khỏi thùng rác"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, fuzzy, kde-format
 #| msgid "Delete Biggest Files From Trash"
 msgid "Delete biggest files from trash"
 msgstr "Xoá các tệp lớn nhất khỏi thùng rác"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -688,7 +688,7 @@ msgstr ""
 "chỉ ra, trước. Nếu được đặt là cảnh báo cho bạn biết, nó sẽ làm vậy thay vì "
 "tự động xoá các tệp.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, fuzzy, kde-format
 #| msgid "Full Trash:"
 msgid "Full trash:"

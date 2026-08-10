@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-14 00:43+0000\n"
+"POT-Creation-Date: 2026-08-10 00:44+0000\n"
 "PO-Revision-Date: 2023-02-18 20:42+0400\n"
 "Last-Translator: Kheyyam <xxmn77@gmail.com>\n"
 "Language-Team: Azerbaijani <kde-i18n-doc@kde.org>\n"
@@ -550,14 +550,14 @@ msgctxt "@action:button ignore notification"
 msgid "Ignore Forever"
 msgstr "&Həmişə"
 
-#: trash/kcmtrash.cpp:206
+#: trash/kcmtrash.cpp:207
 #, kde-format
 msgid ""
 "<para>KDE's wastebin is configured to use the <b>Finder</b>'s Trash.<br></"
 "para>"
 msgstr "<para>KDE <b>Finder</b>proqramının səbətini istifadə edir.<br></para>"
 
-#: trash/kcmtrash.cpp:208
+#: trash/kcmtrash.cpp:209
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -571,12 +571,12 @@ msgstr ""
 "isəhər şeyi siləcəkdir.</ para></para>KDE'nin zibil əşyaları KDE.trash adlı "
 "qovluqda, zibil qutusundakı görünəcək.<para>"
 
-#: trash/kcmtrash.cpp:249
+#: trash/kcmtrash.cpp:250
 #, kde-format
 msgid "Delete files older than"
 msgstr "Belə köhnə faylları silin"
 
-#: trash/kcmtrash.cpp:252
+#: trash/kcmtrash.cpp:253
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -591,7 +591,7 @@ msgstr ""
 "strong='true'>yox </emphasis> avtomatik silməsi üçün bunu sönülü saxlayın.</"
 "para>"
 
-#: trash/kcmtrash.cpp:259
+#: trash/kcmtrash.cpp:260
 #, fuzzy, kde-format
 #| msgid " day"
 #| msgid_plural " days"
@@ -601,7 +601,7 @@ msgid_plural "%v days"
 msgstr[0] " gün"
 msgstr[1] " günlər"
 
-#: trash/kcmtrash.cpp:261
+#: trash/kcmtrash.cpp:262
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -611,17 +611,17 @@ msgstr ""
 "<para>Faylların zibil qutusunda qala biləcəyi günlərin sayını təyin edin. "
 "Bundan köhnə olan istənilən fayllar silinəcəkdir.</para>"
 
-#: trash/kcmtrash.cpp:265
+#: trash/kcmtrash.cpp:266
 #, kde-format
 msgid "Cleanup:"
 msgstr "Təmizlik:"
 
-#: trash/kcmtrash.cpp:268
+#: trash/kcmtrash.cpp:269
 #, kde-format
 msgid "Limit to"
 msgstr "Məhdudlaşdırın"
 
-#: trash/kcmtrash.cpp:270
+#: trash/kcmtrash.cpp:271
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -632,18 +632,18 @@ msgstr ""
 "ilə məhdudlaşdırmaq üçün bu xananı seçin. Əks təqdirdə, məhdudiyyətsiz "
 "olacaq.</para>"
 
-#: trash/kcmtrash.cpp:273
+#: trash/kcmtrash.cpp:274
 #, kde-format
 msgid "Size:"
 msgstr "Ölçüsü:"
 
-#: trash/kcmtrash.cpp:279
+#: trash/kcmtrash.cpp:280
 #, kde-format
 msgctxt "@label:spinbox Percent value"
 msgid "%v%"
 msgstr ""
 
-#: trash/kcmtrash.cpp:280
+#: trash/kcmtrash.cpp:281
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -651,7 +651,7 @@ msgid ""
 "trash.</para>"
 msgstr "<para>Bu səbət üçün istifadə olunacaq çaksimum disk sahəsidir.</para>"
 
-#: trash/kcmtrash.cpp:285
+#: trash/kcmtrash.cpp:286
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -661,25 +661,25 @@ msgstr ""
 "<para>Bu, zibil qutusuna ayrılacaq disk boşluğunun hesablanmış maksimum "
 "miqdarıdır.</para>"
 
-#: trash/kcmtrash.cpp:289
+#: trash/kcmtrash.cpp:290
 #, fuzzy, kde-format
 #| msgid "Show a Warning"
 msgid "Show a warning"
 msgstr "Xəbərdarlığı Göstər"
 
-#: trash/kcmtrash.cpp:290
+#: trash/kcmtrash.cpp:291
 #, fuzzy, kde-format
 #| msgid "Delete Oldest Files From Trash"
 msgid "Delete oldest files from trash"
 msgstr "Səbətdən Ən Köhnələri Faylları Silin"
 
-#: trash/kcmtrash.cpp:291
+#: trash/kcmtrash.cpp:292
 #, fuzzy, kde-format
 #| msgid "Delete Biggest Files From Trash"
 msgid "Delete biggest files from trash"
 msgstr "Səbətdən Ən Böyük Faylları Silin"
 
-#: trash/kcmtrash.cpp:293
+#: trash/kcmtrash.cpp:294
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
@@ -691,7 +691,7 @@ msgstr ""
 "üstün tutacaqsınız. Əgər bu sizi xəbərdar etmək üçün qurulmuşdursa, faylları "
 "avtomatik silmək əvəzinə bunu edəcəkdir.</para>"
 
-#: trash/kcmtrash.cpp:295
+#: trash/kcmtrash.cpp:296
 #, fuzzy, kde-format
 #| msgid "Full Trash:"
 msgid "Full trash:"
