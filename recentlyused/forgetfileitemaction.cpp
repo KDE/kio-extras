@@ -26,6 +26,9 @@ QList<QAction *> ForgetFileItemAction::actions(const KFileItemListProperties &fi
 {
     Q_UNUSED(parentWidget)
 
+    if (fileItemInfos.items().isEmpty()) {
+        return {};
+    }
     const KFileItemList &fileItems = fileItemInfos.items();
     const auto url = fileItems.first().url();
 
