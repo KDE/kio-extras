@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-11 00:45+0000\n"
 "PO-Revision-Date: 2024-11-20 16:56+0200\n"
 "Last-Translator: Toms Trasuns <toms.trasuns@posteo.net>\n"
 "Language-Team: Latvian <kde-i18n-doc@kde.org>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "2);\n"
 "X-Generator: Lokalize 24.08.3\n"
 
-#: forgetfileitemaction.cpp:46
+#: forgetfileitemaction.cpp:49
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget File"
@@ -27,7 +27,7 @@ msgstr[0] "Aizmirst datni"
 msgstr[1] "Aizmirst datnes"
 msgstr[2] "Aizmirst datnes"
 
-#: forgetfileitemaction.cpp:48
+#: forgetfileitemaction.cpp:51
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
@@ -36,7 +36,7 @@ msgstr[0] "Aizmirst vietu"
 msgstr[1] "Aizmirst vietas"
 msgstr[2] "Aizmirst vietas"
 
-#: forgetfileitemaction.cpp:52
+#: forgetfileitemaction.cpp:55
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""

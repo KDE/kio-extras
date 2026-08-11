@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-11 00:45+0000\n"
 "PO-Revision-Date: 2024-07-20 05:18+0200\n"
 "Last-Translator: Stefan Asserhäll <stefan.asserhall@gmail.com>\n"
 "Language-Team: Swedish <kde-i18n-doc@kde.org>\n"
@@ -17,7 +17,7 @@ msgstr ""
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Generator: Lokalize 23.08.5\n"
 
-#: forgetfileitemaction.cpp:46
+#: forgetfileitemaction.cpp:49
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget File"
@@ -25,7 +25,7 @@ msgid_plural "Forget Files"
 msgstr[0] "Glöm fil"
 msgstr[1] "Glöm filer"
 
-#: forgetfileitemaction.cpp:48
+#: forgetfileitemaction.cpp:51
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
@@ -33,7 +33,7 @@ msgid_plural "Forget Locations"
 msgstr[0] "Glöm plats"
 msgstr[1] "Glöm platser"
 
-#: forgetfileitemaction.cpp:52
+#: forgetfileitemaction.cpp:55
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""

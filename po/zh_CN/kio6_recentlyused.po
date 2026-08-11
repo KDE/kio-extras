@@ -2,7 +2,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kdeorg\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-11 00:45+0000\n"
 "PO-Revision-Date: 2024-07-20 09:38\n"
 "Last-Translator: \n"
 "Language-Team: Chinese Simplified\n"
@@ -17,21 +17,21 @@ msgstr ""
 "X-Crowdin-File: /kf6-trunk/messages/kio-extras/kio6_recentlyused.pot\n"
 "X-Crowdin-File-ID: 54666\n"
 
-#: forgetfileitemaction.cpp:46
+#: forgetfileitemaction.cpp:49
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget File"
 msgid_plural "Forget Files"
 msgstr[0] "忘记文件"
 
-#: forgetfileitemaction.cpp:48
+#: forgetfileitemaction.cpp:51
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
 msgid_plural "Forget Locations"
 msgstr[0] "忘记位置"
 
-#: forgetfileitemaction.cpp:52
+#: forgetfileitemaction.cpp:55
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""

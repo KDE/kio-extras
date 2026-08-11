@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-11 00:45+0000\n"
 "PO-Revision-Date: 2024-11-17 17:09+0300\n"
 "Last-Translator: Alexander Yavorsky <kekcuha@gmail.com>\n"
 "Language-Team: Russian <kde-russian@lists.kde.ru>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
 "X-Generator: Lokalize 21.08.3\n"
 
-#: forgetfileitemaction.cpp:46
+#: forgetfileitemaction.cpp:49
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget File"
@@ -29,7 +29,7 @@ msgstr[1] "Убрать файлы"
 msgstr[2] "Убрать файлы"
 msgstr[3] "Убрать файл"
 
-#: forgetfileitemaction.cpp:48
+#: forgetfileitemaction.cpp:51
 #, kde-format
 msgctxt "@action:inmenu"
 msgid "Forget Location"
@@ -39,7 +39,7 @@ msgstr[1] "Убрать расположения"
 msgstr[2] "Убрать расположения"
 msgstr[3] "Убрать расположение"
 
-#: forgetfileitemaction.cpp:52
+#: forgetfileitemaction.cpp:55
 #, kde-format
 msgctxt "@info:whatsthis"
 msgid ""
