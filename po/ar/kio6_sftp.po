@@ -7,7 +7,7 @@
 # محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
 # AbdulAziz AlSharif <a.a-a.s@hotmail.com>, 2007.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# SPDX-FileCopyrightText: 2008, 2022, 2025 zayed <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2008, 2022, 2025, 2026 zayed <zayed.alsaidi@gmail.com>
 # Ahmed M. Araby <egydev@fedoraproject.org>, 2012.
 # Abderrahim Kitouni <a.kitouni@gmail.com>, 2012.
 # Abdalrahim Fakhouri <abdilra7eem@yahoo.com>, 2012.
@@ -16,7 +16,7 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-31 03:00+0000\n"
-"PO-Revision-Date: 2025-08-20 20:51+0400\n"
+"PO-Revision-Date: 2026-08-10 18:02+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -25,7 +25,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: kio_sftp.cpp:316
 #, kde-format
@@ -249,7 +249,7 @@ msgid ""
 "Could not change permissions for\n"
 "%1"
 msgstr ""
-"تعذر تغيير صلاحيات\n"
+"تعذر تغيير أذون\n"
 "%1"
 
 #~ msgid ""

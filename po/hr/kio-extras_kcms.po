@@ -1,16 +1,17 @@
-# Translation of kcmkio to Croatian
+# Translation of kio4 to Croatian
 #
-# Translators: Anđelko Iharoš <>,Dario Lah <>,Darko Bednjanec <dbednjan@net4u.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Drazen Djimoti <>,Kresimir Kalafatic <>,Mato Kutlić <mate@iskraemeco.hr>,Nikola Planinac <>,Robert Avilov <ravilov@linux.hr>,Robert Pezer <rpezer@phy.hr>,Roko Roic <roko@tis.hr>,sime essert <sime2@nofrx.org>,Vedran Rodic <vedran@quark.fsb.hr>,Vlatko Kosturjak <kost@linux.hr>,
+# Translators: Darko Bednjanec <dbednjan@net4u.hr>,Denis Lackovic <delacko@fly.srk.fer.hr>,Diana Ćorluka <dina@iskrameco.hr>,Hrvoje Spoljar <spole@x.pbf.hr>,Igor Jagec <igorm5@yahoo.com>,Robert Pezer <rpezer@phy.hr>,Vedran Rodic <vedran@quark.fsb.hr>,
+# Andrej Dundović <adundovi@gmail.com>, 2009, 2010.
 # DoDo <DoDoEntertainment@gmail.com>, 2009.
-# Marko Dimjasevic <marko@dimjasevic.net>, 2010, 2011.
-# Andrej Dundovic <adundovi@gmail.com>, 2010.
+# Andrej Dundovic <adundovi@gmail.com>, 2009, 2010.
+# Marko Dimjasevic <marko@dimjasevic.net>, 2009, 2010, 2011.
 # Marko Dimjašević <marko@dimjasevic.net>, 2011.
 msgid ""
 msgstr ""
-"Project-Id-Version: kcmkio 0\n"
+"Project-Id-Version: kio4 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2011-07-18 11:46+0200\n"
+"PO-Revision-Date: 2011-07-22 16:13+0200\n"
 "Last-Translator: Marko Dimjašević <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
 "Language: hr\n"
@@ -726,6 +727,8 @@ msgid ""
 "<para>Set the number of days that files can remain in the trash. Any files "
 "older than this will be automatically deleted.</para>"
 msgstr ""
+"<para>Postavite broj dana tijekom kojih datoteke mogu ostati u smeću. Sve "
+"datoteke starije od toga će automatski biti izbrisane.</para>"
 
 #: trash/kcmtrash.cpp:265
 #, kde-format
@@ -744,6 +747,9 @@ msgid ""
 "<para>Check this box to limit the trash to the maximum amount of disk space "
 "that you specify below. Otherwise, it will be unlimited.</para>"
 msgstr ""
+"<para>Uključite ovu opciju da biste ograničili smeće na najveću količinu "
+"diskovnog prostora koju ispod definirate. U suprotnom, smeće će biti "
+"neograničeno.</para>"
 
 #: trash/kcmtrash.cpp:273
 #, kde-format
@@ -763,6 +769,8 @@ msgid ""
 "<para>This is the maximum percent of disk space that will be used for the "
 "trash.</para>"
 msgstr ""
+"<para>Ovo je najveći postotak diskovnog prostora koji će biti korišten za "
+"smeće.</para>"
 
 #: trash/kcmtrash.cpp:285
 #, kde-kuit-format
@@ -771,6 +779,8 @@ msgid ""
 "<para>This is the calculated amount of disk space that will be allowed for "
 "the trash, the maximum.</para>"
 msgstr ""
+"<para>Ovo je izračunata najveća količina diskovnog prostora koja će biti "
+"dozvoljena za smeće.</para>"
 
 #: trash/kcmtrash.cpp:289
 #, fuzzy, kde-format
@@ -799,6 +809,9 @@ msgid ""
 "files that you specify, first. If this is set to warn you, it will do so "
 "instead of automatically deleting files.</para>"
 msgstr ""
+"<para>Kada se dosegne ograničenje, ovo će dati prednost brisanju datoteka "
+"koje odredite. Ako je to postavljeno da Vas upozorava, tako će biti umjesto "
+"brisanja datoteka.</para>"
 
 #: trash/kcmtrash.cpp:295
 #, fuzzy, kde-format
@@ -842,7 +855,7 @@ msgstr "Nijedna"
 #: webshortcuts/ikwsopts.cpp:269
 #, kde-format
 msgid "Search F&ilters"
-msgstr ""
+msgstr "F&iltri traženja:"
 
 #: webshortcuts/ikwsopts.cpp:299
 #, kde-kuit-format
@@ -961,7 +974,7 @@ msgstr ""
 #: webshortcuts/ikwsopts_ui.ui:202
 #, kde-format
 msgid "&Keyword delimiter:"
-msgstr ""
+msgstr "R&azdvojnik:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
@@ -1012,12 +1025,10 @@ msgid ""
 msgstr ""
 
 #: webshortcuts/searchproviderdlg.cpp:125
-#, fuzzy, kde-format
-#| msgctxt "items: folders, files (size)"
-#| msgid "%1: %2"
+#, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr "%1: %2"
+msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:129
 #, kde-format
@@ -1037,14 +1048,13 @@ msgstr ""
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
 msgid "Keep It"
-msgstr ""
+msgstr "Sačuvaj"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:17
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
+#, kde-format
 msgid "Enter the human-readable name of the search provider here."
-msgstr "Unesite adresu FTP posrednika.."
+msgstr "Ovdje unesite čitljivo ime tražilice:"
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
@@ -1074,6 +1084,20 @@ msgid ""
 "nothing matches from the left of the reference list.\n"
 "</qt>"
 msgstr ""
+"<qt>\n"
+"Ovdje unesite URI koji se koristi za traženje na tražilici.<br/> Cijeli "
+"tekst za pretragu se može odrediti kao \\{@} ili \\{0}.<br/> \n"
+"Preporučeno je \\{@}, jer on ukloni sve varijable upita (ime=vrijednost) iz "
+"rezultata, dok će \\{0} biti zamijenjen sa nepromijenjenim upitom.<br/> "
+"Možete koristiti \\{1}… \\{n} za specificiranje određenih riječi iz upita i "
+"\\{ime} za specificiranje vrijednosti dobivene kao 'ime=vrijednost' iz "
+"korisničkog upita.<br/> Također je moguće specificirati više referenci "
+"(imena, brojevi i tekstovi) odjednom (\\{ime1, ime2,…, \"neki nekst\"}).<br/"
+"> Prva podudarna vrijednost (s lijeva) će se koristiti kao zamjenska "
+"vrijednost za rezultirajući URI.<br/> Tekst pod navodnicima se može "
+"koristiti kao uobičajena vrijednost ako se ništa iz referentnog popisa ne "
+"podudara s lijeva.\n"
+"</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
@@ -1087,6 +1111,8 @@ msgstr "URL:"
 #, kde-format
 msgid "Select the character set that will be used to encode your search query."
 msgstr ""
+"Odaberite skup znakova koji će biti korišten za kodiranje Vašeg upita "
+"tražilici."
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leShortcut)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leShortcut)
@@ -1131,6 +1157,8 @@ msgstr ""
 #, kde-format
 msgid "Select the character set that will be used to encode your search query"
 msgstr ""
+"Odaberite skup znakova koji će biti korišten za kodiranje Vašeg upita "
+"tražilici"
 
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135

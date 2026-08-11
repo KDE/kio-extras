@@ -123,8 +123,7 @@ msgid "Could not parse the config file."
 msgstr "Nije moguće obraditi konfiguracijsku datoteku."
 
 #: kio_sftp.cpp:726
-#, fuzzy, kde-kuit-format
-#| msgid "Opening SFTP connection to host %1:%2"
+#, kde-kuit-format
 msgid "Opening SFTP connection to host %1:%2"
 msgstr "Otvaram SFTP vezu prema računalu %1.%2"
 
