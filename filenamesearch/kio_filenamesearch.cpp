@@ -614,6 +614,14 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
         }
     }
 
+    // Content matching a non-local file downloads it through a nested event loop. Doing that from
+    // inside the directory listing's own event loop (listJob->exec() below) would let the list job
+    // deliver further entries reentrantly, so such files are collected here and matched once the
+    // listing has finished. Local files are read directly, without an event loop, so they stay
+    // matched inline.
+    const bool deferContentMatch = !dirUrl.isLocalFile() && options.testFlag(SearchOption::SearchContent);
+    KIO::UDSEntryList deferredFileEntries;
+
     KIO::ListJob::ListFlags listFlags = KIO::ListJob::ListFlag::ExcludeDotAndDotDot;
     if (options.testAnyFlags(SearchOption::IncludeHidden)) {
         listFlags |= KIO::ListJob::ListFlag::IncludeHidden;
@@ -691,15 +699,32 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                         listEntry(entry);
                     }
 
-                } else if ((!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) && match(entry, regexHash, options)) {
-                    entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
-                    listEntry(entry);
+                } else if (!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFiles)) {
+                    if (deferContentMatch) {
+                        deferredFileEntries.append(entry);
+                    } else if (match(entry, regexHash, options)) {
+                        entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, fileName);
+                        listEntry(entry);
+                    }
                 }
             }
         }
     });
 
     listJob->exec();
+
+    // Now that the listing (and its event loop) is done, content-match the deferred non-local
+    // files. Their get jobs run one event loop at a time here, no longer nested inside the listing.
+    for (KIO::UDSEntry &entry : deferredFileEntries) {
+        if (wasKilled()) {
+            break;
+        }
+        if (match(entry, regexHash, options)) {
+            entry.replace(KIO::UDSEntry::UDS_DISPLAY_NAME, entry.stringValue(KIO::UDSEntry::UDS_NAME));
+            listEntry(entry);
+        }
+    }
+
     // Mark the folder when finished
     iteratedDirs.insert(dirPath);
 }
