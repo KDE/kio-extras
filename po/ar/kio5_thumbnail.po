@@ -67,7 +67,7 @@ msgstr "فشل في الإرفاق إلى قسم الذاكرة المشتركة
 #: thumbnail.cpp:333
 #, kde-format
 msgid "Image is too big for the shared memory segment"
-msgstr "الصورة كبيرة جداً لقسم الذاكرة المشتركة"
+msgstr "الصورة كبيرة جدًا لقسم الذاكرة المشتركة"
 
 #~ msgctxt "@option:check"
 #~ msgid "Rotate the image automatically"

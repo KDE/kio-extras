@@ -36,7 +36,7 @@ msgstr "رمز خطأ instproxy لا يمكن التعامل معه '%1'"
 #, kde-format
 msgid ""
 "The device is locked. Please enter the passcode on the device and try again."
-msgstr "الجهاز مقفل. فضلاً أدخل رمز المرور على الجهاز وحاول مرة أخرى."
+msgstr "الجهاز مقفل. فضلًا أدخل رمز المرور على الجهاز وحاول مرة أخرى."
 
 #: afcutils.cpp:112
 #, kde-format
@@ -49,7 +49,7 @@ msgid ""
 "You need to allow this computer to access the device. Please accept the "
 "prompt on the device and try again."
 msgstr ""
-"أنت بحاجة للسماح لهذا الحاسوب بالوصول إلى الجهاز. فضلاً اقبل الإشعار على "
+"أنت بحاجة للسماح لهذا الحاسوب بالوصول إلى الجهاز. فضلًا اقبل الإشعار على "
 "الجهاز وحاول مرة أخرى."
 
 #: afcutils.cpp:127
@@ -91,17 +91,17 @@ msgstr "%1 (التطبيقات)"
 #: kio_afc.cpp:687
 #, kde-format
 msgid "Cannot read without opening file first"
-msgstr "لا يمكن القراءة دون فتح الملف أولاً"
+msgstr "لا يمكن القراءة دون فتح الملف أولًا"
 
 #: kio_afc.cpp:707
 #, kde-format
 msgid "Cannot seek without opening file first"
-msgstr "لا يمكن القصد دون فتح الملف أولاً"
+msgstr "لا يمكن القصد دون فتح الملف أولًا"
 
 #: kio_afc.cpp:735
 #, kde-format
 msgid "Cannot write without opening file first"
-msgstr "لا يمكن الكتابة دون فتح الملف أولاً"
+msgstr "لا يمكن الكتابة دون فتح الملف أولًا"
 
 #: kio_afc.cpp:887
 #, kde-format
