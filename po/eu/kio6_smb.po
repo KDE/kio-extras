@@ -1,14 +1,14 @@
 # Translation for kio5_smb.po to Euskara/Basque (eu).
 # Copyright (C) 2002-2014, Free Software Foundation, Inc.
-# Copyright (C) 2015-2020, This file is copyright:
+# Copyright (C) 2015-2026 This file is copyright:
 # This file is distributed under the same license as the kio-extras package.
-# KDE euskaratzeko proiektuko arduraduna <xalba@euskalnet.net>.
+# KDE euskaratzeko proiektuaren arduraduna <xalba@ni.eus>.
 #
 # Translators:
 # Marcos  <marcos@euskalgnu.org>, 2002, 2006, 2010.
 # Juan Irigoien <juanirigoien@yahoo.es>, 2004, 2005.
 # Hizkuntza Politikarako Sailburuordetza <hizpol@ej-gv.es>, 2013.
-# Iñigo Salvador Azurmendi <xalba@euskalnet.net>, 2014, 2019, 2020.
+# Iñigo Salvador Azurmendi <xalba@ni.eus>, 2014, 2019, 2020, 2026.
 # Gontzal M. Pujana <juchuf@gmail.com>, 2018.
 msgid ""
 msgstr ""
