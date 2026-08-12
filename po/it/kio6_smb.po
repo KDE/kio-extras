@@ -1,14 +1,14 @@
 # translation of kio_smb.po to Italian
 # Copyright (C) 2003, 2004, 2005 Free Software Foundation, Inc.
 # Andrea Rizzi <rizzi@kde.org>, 2003, 2004, 2005.
-# Luigi Toscano <luigi.toscano@tiscali.it>, 2017, 2020.
+# SPDX-FileCopyrightText: 2017, 2020, 2026 Luigi Toscano <luigi.toscano@tiscali.it>
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-05 00:45+0000\n"
-"PO-Revision-Date: 2020-11-10 23:42+0100\n"
+"PO-Revision-Date: 2026-08-06 15:50+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -16,7 +16,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 20.08.2\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #: kio_smb_auth.cpp:42
 #, kde-kuit-format
@@ -67,7 +67,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item the top of the shares that can be browsed"
 msgid "Shared Folders (SMB)"
-msgstr ""
+msgstr "Cartelle condivise (SMB)"
 
 #: kio_smb_browse.cpp:76
 #, kde-format

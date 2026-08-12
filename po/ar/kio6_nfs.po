@@ -44,7 +44,7 @@ msgstr "خطأ RPC ‏ %1، %2"
 #: kio_nfs.cpp:776
 #, kde-format
 msgid "Filename too long"
-msgstr "اسم الملف طويل جداً"
+msgstr "اسم الملف طويل جدًا"
 
 #: kio_nfs.cpp:781
 #, kde-format
