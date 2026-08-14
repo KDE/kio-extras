@@ -45,6 +45,12 @@ public:
 Q_SIGNALS:
     void newDiscovery(Discovery::Ptr discovery) override;
     void finished() override;
+    /**
+     * Emitted when the network does not carry the discovery this listing asks of it, with a
+     * sentence saying so. Emitted once for each start(), however many messages the network
+     * refuses.
+     */
+    void unavailable(const QString &message);
 
 private Q_SLOTS:
     void matchReceived(const WSDiscoveryTargetService &matchedService);
@@ -56,6 +62,7 @@ private:
 
     WSDiscoveryClient *m_client = nullptr;
     bool m_startedTimer = false;
+    bool m_reportedUnavailable = false;
     QTimer m_probeMatchTimer;
     QStringList m_seenEndpoints;
     QList<PBSDResolver *> m_resolvers;

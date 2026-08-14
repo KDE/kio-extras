@@ -460,6 +460,9 @@ WorkerResult SMBWorker::listDir(const QUrl &kurl)
 
         connect(dnssd.data(), &DNSSDDiscoverer::newDiscovery, this, appendDiscovery);
         connect(wsd.data(), &WSDiscoverer::newDiscovery, this, appendDiscovery);
+        connect(wsd.data(), &WSDiscoverer::unavailable, this, [this](const QString &message) {
+            infoMessage(message);
+        });
 
         connect(dnssd.data(), &DNSSDDiscoverer::finished, this, maybeFinished);
         connect(wsd.data(), &WSDiscoverer::finished, this, maybeFinished);

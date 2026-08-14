@@ -24,6 +24,7 @@
 #include <KLocalizedString>
 
 #include <chrono>
+#include <utility>
 
 #include "kio_smb.h"
 
@@ -228,6 +229,15 @@ WSDiscoverer::WSDiscoverer()
     : m_client(new WSDiscoveryClient(this))
 {
     connect(m_client, &WSDiscoveryClient::probeMatchReceived, this, &WSDiscoverer::matchReceived);
+    connect(m_client, &WSDiscoveryClient::errorOccurred, this, [this] {
+        // Whichever step the network refused, what the person browsing gets is the same: a list
+        // that holds only what libsmbclient found. Said once, so that a network refusing every
+        // message does not repeat itself.
+        if (std::exchange(m_reportedUnavailable, true)) {
+            return;
+        }
+        Q_EMIT unavailable(i18nc("@info:status", "Devices could not be discovered on this network. The list may be incomplete."));
+    });
 
     // Matches may only arrive within a given time period afterwards we no
     // longer care as per the spec. stopping is further contigent on all
@@ -245,6 +255,7 @@ WSDiscoverer::~WSDiscoverer()
 
 void WSDiscoverer::start()
 {
+    m_reportedUnavailable = false;
     m_client->start();
 
     // We only want devices.
