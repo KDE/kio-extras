@@ -1060,6 +1060,10 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
 
 Result SFTPWorker::openConnection()
 {
+    // Another server, or the same one after it was restarted, may well accept the permissions this
+    // one refused.
+    mCanSetPermissions = true;
+
     const Result result = openConnectionWithoutCloseOnError();
     if (!result.success()) {
         closeConnection();
@@ -1631,9 +1635,14 @@ Result SFTPWorker::sftpPut(const QUrl &url, int permissionsMode, JobFlags flags,
     }
 
     // set final permissions
-    if (permissions.has_value() && !(flags & KIO::Resume)) {
+    // The file was created with the write permission the worker needs on top of the ones asked
+    // for, so this is what takes those away again. A server that refuses is asked once and then
+    // left alone: it will refuse for every file of the copy, and each refusal costs a round trip
+    // and, worse, a message the user has to read and dismiss for every single file.
+    if (permissions.has_value() && !(flags & KIO::Resume) && mCanSetPermissions) {
         qCDebug(KIO_SFTP_LOG) << "Trying to set final permissions of " << dest_orig << " to " << Qt::oct << permsToPosix(permissions.value());
         if (sftp_chmod(mSftp, dest_orig_c.constData(), permsToPosix(permissions.value())) < 0) {
+            mCanSetPermissions = false;
             warning(i18n("Could not change permissions for\n%1", url.toString()));
             return Result::pass();
         }

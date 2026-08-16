@@ -91,6 +91,14 @@ private: // Private variables
     /** True if worker is connected to sftp server. */
     bool mConnected = false;
 
+    /**
+     * False once the server has refused to set the permissions of a file that was just written.
+     * A server exporting a filesystem that has no permissions of its own, an e-reader for example,
+     * refuses every single one of them, so the refusal is reported for the first file and the rest
+     * are written without asking again. True again for a new connection.
+     */
+    bool mCanSetPermissions = true;
+
     /** Host we are connected to. */
     QString mHost;
 
