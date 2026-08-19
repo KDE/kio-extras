@@ -12,7 +12,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-19 00:45+0000\n"
 "PO-Revision-Date: 2021-10-17 10:17+0300\n"
 "Last-Translator: Stelios <sstavra@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -258,12 +258,12 @@ msgstr "Αδυναμία αρχικοποίησης της SFTP συνεδρία
 msgid "Successfully connected to %1"
 msgstr "Επιτυχής σύνδεση στο %1"
 
-#: kio_sftp.cpp:1093
+#: kio_sftp.cpp:1097
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Μη έγκυρο sftp πλαίσιο"
 
-#: kio_sftp.cpp:1637
+#: kio_sftp.cpp:1646
 #, kde-format
 msgid ""
 "Could not change permissions for\n"

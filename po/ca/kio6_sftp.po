@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-08-19 00:45+0000\n"
 "PO-Revision-Date: 2022-07-22 13:18+0200\n"
 "Last-Translator: Josep M. Ferrer <txemaq@gmail.com>\n"
 "Language-Team: Catalan <kde-i18n-ca@kde.org>\n"
@@ -242,12 +242,12 @@ msgstr "No s'ha pogut inicialitzar la sessió SFTP."
 msgid "Successfully connected to %1"
 msgstr "S'ha connectat correctament amb %1"
 
-#: kio_sftp.cpp:1093
+#: kio_sftp.cpp:1097
 #, kde-format
 msgid "Invalid sftp context"
 msgstr "Context SFTP no vàlid"
 
-#: kio_sftp.cpp:1637
+#: kio_sftp.cpp:1646
 #, kde-format
 msgid ""
 "Could not change permissions for\n"
