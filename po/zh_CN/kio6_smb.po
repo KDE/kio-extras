@@ -61,7 +61,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item the top of the shares that can be browsed"
 msgid "Shared Folders (SMB)"
-msgstr ""
+msgstr "共享文件夹 (SMB)"
 
 #: kio_smb_browse.cpp:76
 #, kde-format
