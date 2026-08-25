@@ -778,7 +778,8 @@ msgstr "Käytä vain &ensisijaisia hakusanoja"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:62
-#, kde-format
+#, fuzzy, kde-format
+#| msgid "Search..."
 msgid "Search..."
 msgstr "Etsi…"
 
