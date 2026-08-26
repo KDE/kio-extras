@@ -16,13 +16,9 @@
 #endif
 
 // KDE
-#include <KConfig>
-#include <KConfigGroup>
-#include <KLocalizedString>
-#include <KMessageBox>
 #include <kio/ioworker_defaults.h>
 
-void KSaveIOConfig::updateRunningWorkers(QWidget *parent)
+void KSaveIOConfig::updateRunningWorkers()
 {
 #ifdef WITH_DBUS
     // Inform all running KIO workers about the changes...
@@ -30,13 +26,6 @@ void KSaveIOConfig::updateRunningWorkers(QWidget *parent)
     QDBusMessage message =
         QDBusMessage::createSignal(QStringLiteral("/KIO/Scheduler"), QStringLiteral("org.kde.KIO.Scheduler"), QStringLiteral("reparseSlaveConfiguration"));
     message << QString();
-    if (!QDBusConnection::sessionBus().send(message)) {
-#endif
-        KMessageBox::information(parent,
-                                 i18n("You have to restart the running applications "
-                                      "for these changes to take effect."),
-                                 i18nc("@title:window", "Update Failed"));
-#ifdef WITH_DBUS
-    }
+    QDBusConnection::sessionBus().send(message);
 #endif
 }

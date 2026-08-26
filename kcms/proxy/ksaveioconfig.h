@@ -9,12 +9,10 @@
 
 #include <QString>
 
-class QWidget;
-
 namespace KSaveIOConfig
 {
 /** Update all running KIO workers */
-void updateRunningWorkers(QWidget *parent = nullptr);
+void updateRunningWorkers();
 }
 
 #endif
