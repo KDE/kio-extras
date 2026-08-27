@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2026-05-30 11:47+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <trans-uk@lists.fedoraproject.org>\n"
@@ -22,20 +22,6 @@ msgstr ""
 "X-Generator: Lokalize 23.04.3\n"
 "Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
 "%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Вам потрібно перезапустити всі програми, щоб скористатися зробленими змінами."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Помилка поновлення"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -508,6 +494,203 @@ msgstr ""
 #, kde-format
 msgid "Use s&ystem proxy configuration:"
 msgstr "Налаштування с&истемного проксі:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Вам потрібно перезапустити всі програми, щоб скористатися зробленими змінами."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&No proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "&Без проксі"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "&Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "&Визначити налаштування проксі у автоматичному режимі"
+
+#: proxy/ui/main.qml:75
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#| "is almost never the correct configuration. Enabling it when it is not "
+#| "required may slow down network access and make your network less secure. "
+#| "Your network administrator will know whether enabling it is required."
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+"Автоматичне налаштовування, також відоме як Web Proxy Auto-Discovery (WPAD), "
+"майже завжди є неправильним варіантом. Його вмикання, якщо у цьому немає "
+"потреби, може уповільнити доступ до мережі і зашкодити захисту вашого "
+"з'єднання. Зверніться до вашого адміністратора мережі, щоб дізнатися, чи "
+"справді вмикання цього варіанта є необхідним."
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Ви&користовувати адресу автоматичного налаштування проксі:"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "Не вдалося відкрити файл"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use s&ystem proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Налаштування с&истемного проксі:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "А&втовизначення"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "HTTP-проксі:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "SSL-проксі:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "FTP-проксі:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "SOCKS-проксі:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Винятки:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Показувати &значення змінних оточення"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Використовувати вказані налаштування проксі:"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "HTTP-проксі:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "&Один проксі-сервер для всіх протоколів"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "SSL-проксі:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "FTP-проксі:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "SOCKS-проксі:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Використовувати проксі тільки для адрес зі списку винятків"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "Порт:"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Proxy Authentication Failed."
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Помилка розпізнавання на проксі-сервері."
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "Ви&користовувати адресу автоматичного налаштування проксі:"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1061,6 +1244,10 @@ msgstr "&Кодування символів:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Вставити замінник запиту"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Помилка поновлення"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "Не використовувати пасивний FTP"
@@ -4008,9 +4195,6 @@ msgstr "Вставити замінник запиту"
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "Не вдалося знайти файл «%1»"
 
-#~ msgid "Cannot open file"
-#~ msgstr "Не вдалося відкрити файл"
-
 #~ msgid ""
 #~ "<qt>Click this button to enter the parent folder.<br /><br />For "
 #~ "instance, if the current location is file:/home/konqi clicking this "
@@ -4679,9 +4863,6 @@ msgstr "Вставити замінник запиту"
 
 #~ msgid "Proxy:"
 #~ msgstr "Проксі:"
-
-#~ msgid "Proxy Authentication Failed."
-#~ msgstr "Помилка розпізнавання на проксі-сервері."
 
 #~ msgid "There is no documentation available for %1."
 #~ msgstr "Немає документації для %1."

@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras_kcms\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2026-05-30 15:55+0100\n"
 "Last-Translator: Eloy Cuadra <ecuadra@eloihr.net>\n"
 "Language-Team: Spanish <kde-l10n-es@kde.org>\n"
@@ -26,21 +26,6 @@ msgstr ""
 "First-Translator: Boris Wesslowski <Boris@Wesslowski.com>\n"
 "X-Generator: Lokalize 26.04.1\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Debe reiniciar las aplicaciones en ejecución para que estos cambios sean "
-"efectivos."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Actualización fallida"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -525,6 +510,205 @@ msgstr ""
 #, kde-format
 msgid "Use s&ystem proxy configuration:"
 msgstr "Usar conf&iguración de proxy del sistema:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Debe reiniciar las aplicaciones en ejecución para que estos cambios sean "
+"efectivos."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&No proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "&Sin proxy"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "&Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "&Detectar la configuración del proxy automáticamente"
+
+#: proxy/ui/main.qml:75
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#| "is almost never the correct configuration. Enabling it when it is not "
+#| "required may slow down network access and make your network less secure. "
+#| "Your network administrator will know whether enabling it is required."
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+"La configuración automática, también conocida como «Protocolo de "
+"autodescubrimiento de Proxy Web» (WPAD), casi nunca es la configuración "
+"correcta. Si se activa cuando no es necesaria, se puede ralentizar el acceso "
+"a la red y hacer que la red sea menos segura. El administrador de la red "
+"sabrá si es necesario activarla."
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "&Usar URL de configuración del proxy:"
+
+#: proxy/ui/main.qml:104
+#, kde-format
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr ""
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use s&ystem proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Usar conf&iguración de proxy del sistema:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "D&etectar automáticamente"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "Proxy HTTP:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "Proxy SSL:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "Proxy FTP:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "Proxy SOCKS:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Excepciones:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Mostrar el &valor de las variables de entorno"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Usar configuración de proxy manual:"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "Proxy HTTP:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "Usar este servidor proxy para todos &los protocolos"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "Proxy SSL:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "Proxy FTP:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "Proxy SOCKS:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr ""
+"Usar la configuración del proxy solo con las direcciones de la lista de "
+"excepciones"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "Puerto:"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "&Usar URL de configuración del proxy:"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "&Usar URL de configuración del proxy:"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1075,6 +1259,10 @@ msgstr "&Juego de caracteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserte el parámetro de sustitución de la consulta"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Actualización fallida"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "Desactivar FTP pasivo"

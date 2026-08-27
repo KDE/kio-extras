@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: ante-toki-pi-ilo-kde\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2024-01-15 22:34-0500\n"
 "Last-Translator: Janet Blackquill <uhhadd@gmail.com>\n"
 "Language-Team: C <kde-i18n-doc@kde.org>\n"
@@ -13,19 +13,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=n == 0 ? 0 : n == 1 ? 1 : n == 2 ? 2 : 3;\n"
 "X-Generator: Lokalize 22.11.70\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr "sina sin e ilo la ante sina li kama pali."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "sin li pakala"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -453,6 +440,192 @@ msgstr ""
 #| msgid "Use system proxy configuration:"
 msgid "Use s&ystem proxy configuration:"
 msgstr "o kepeken e lawa ilo tawa ilo pi nasin linluwi:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr "sina sin e ilo la ante sina li kama pali."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "ilo pi nasin linluwi li lon ala"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "o kepeken e sona ilo tawa lawa pi ilo nasin linluwi"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "o kepeken e lawa pana tawa ilo pi nasin linluwi:"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "lipu li ken ala kama open"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "o kepeken e lawa ilo tawa ilo pi nasin linluwi:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "alasa &sona"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "ilo pi nasin linluwi pi toki HTTP:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "ilo pi nasin linluwi pi toki SSL:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "ilo pi nasin linluwi pi toki FTP:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "ilo pi nasin linluwi pi toki SOCKS:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "lawa ante:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "o sitelen e &insa pi sona ma"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "o kepeken e lawa pana tawa ilo pi nasin linluwi:"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "ilo pi nasin linluwi pi toki HTTP:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "o kepeken e ilo ni tawa toki &ale"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "ilo pi nasin linluwi pi toki SSL:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "ilo pi nasin linluwi pi toki FTP:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "ilo pi nasin linluwi pi toki SOCKS:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "o kepeken e lawa ni tawa nimi lon kulupu ante taso."
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "nanpa:"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Proxy Authentication Failed."
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "toki sina tawa nasin linluwi li ike."
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "o kepeken e lawa pana tawa ilo pi nasin linluwi:"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -955,6 +1128,10 @@ msgstr "kulupu &sitelen:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "o sitelen e nimi poki"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "sin li pakala"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "o kepeken ala ilo FTP pi lawa ala"
@@ -3198,9 +3375,6 @@ msgstr "o sitelen e nimi poki"
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "ilo li sona ala e lon pi lipu \"%1\""
 
-#~ msgid "Cannot open file"
-#~ msgstr "lipu li ken ala kama open"
-
 #~ msgid ""
 #~ "Click this button to move backwards one step in the browsing history."
 #~ msgstr "sina wile tawa weka la o pilin e nena ni."
@@ -3719,9 +3893,6 @@ msgstr "o sitelen e nimi poki"
 
 #~ msgid "Proxy:"
 #~ msgstr "nasin linluwi:"
-
-#~ msgid "Proxy Authentication Failed."
-#~ msgstr "toki sina tawa nasin linluwi li ike."
 
 #~ msgid "There is no documentation available for %1."
 #~ msgstr "%1 la, lipu pali li lon ala."

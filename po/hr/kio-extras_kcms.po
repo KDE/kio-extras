@@ -10,7 +10,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4 0\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2011-07-22 16:13+0200\n"
 "Last-Translator: Marko Dimjašević <marko@dimjasevic.net>\n"
 "Language-Team: Croatian <kde-croatia-list@lists.sourceforge.net>\n"
@@ -24,19 +24,6 @@ msgstr ""
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr "Morate restartati pokrenute programe da bi ove izmjene bile vidljive."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Neuspjelo ažuriranje"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -572,6 +559,196 @@ msgstr ""
 msgid "Use s&ystem proxy configuration:"
 msgstr "Obnova postavki sustava."
 
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr "Morate restartati pokrenute programe da bi ove izmjene bile vidljive."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid ""
+#| "The proxy configuration script is invalid:\n"
+#| "%1"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr ""
+"Skripta za podešenje proxyja je neispravna:\n"
+"%1"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "Reload configuration file"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Ponovno učitaj konfiguracijsku datoteku"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "Nije moguće otvoriti datoteku"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Updating system configuration."
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Obnova postavki sustava."
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "A&uto detect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "&Automatsko nalaženje"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Encryption:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Šifriranje:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Prikaži &vrijednosti okolišni varijabli"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Updating system configuration."
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Obnova postavki sustava."
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "&Use the same proxy server for all protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "Koristi isti Proxy poslužitelj za sve protokole"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "Proxy:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Koristi proxy samo za stavke u popisu"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, kde-format
+msgctxt "@label"
+msgid "Port:"
+msgstr ""
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgctxt "@title:window"
+#| msgid "Manual Proxy Configuration"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Ručno podešavanje posrednika"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "Reload configuration file"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "Ponovno učitaj konfiguracijsku datoteku"
+
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
@@ -1098,6 +1275,10 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "Način ispreplitanja"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Neuspjelo ažuriranje"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "Onemogući pasivni FTP"
@@ -3883,9 +4064,6 @@ msgstr "Način ispreplitanja"
 
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "Nije moguće naći datoteku \"%1\""
-
-#~ msgid "Cannot open file"
-#~ msgstr "Nije moguće otvoriti datoteku"
 
 #, fuzzy
 #~| msgid ""
@@ -7987,10 +8165,6 @@ msgstr "Način ispreplitanja"
 #~ msgctxt "@title:window"
 #~ msgid "Automatic Proxy Variable Detection"
 #~ msgstr "Automatska detekcija posredničkih varijabli"
-
-#~ msgctxt "@title:window"
-#~ msgid "Manual Proxy Configuration"
-#~ msgstr "Ručno podešavanje posrednika"
 
 #~ msgctxt "@title:window"
 #~ msgid "Invalid Proxy Setting"

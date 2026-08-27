@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -15,19 +15,6 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: KBabel 1.11.4\n"
 "X-Language: km-KH\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr "អ្នក​ត្រូវ​តែ​ចាប់ផ្តើម​កម្មវិធី​ដែល​កំពុង​រត់​ឡើង​វិញ ដើម្បី​ឲ្យ​ការ​ផ្លាស់ប្តូរ​ទាំងនេះ​មាន​ប្រសិទ្ធិភាព ។"
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "បាន​បរាជ័យ​ក្នុងការ​ធ្វើបច្ចុប្បន្នភាព"
 
 #  i18n: file kio_ftprc.kcfg line 16
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
@@ -548,6 +535,200 @@ msgstr ""
 msgid "Use s&ystem proxy configuration:"
 msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ប្រព័ន្ធ ៖"
 
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr "អ្នក​ត្រូវ​តែ​ចាប់ផ្តើម​កម្មវិធី​ដែល​កំពុង​រត់​ឡើង​វិញ ដើម្បី​ឲ្យ​ការ​ផ្លាស់ប្តូរ​ទាំងនេះ​មាន​ប្រសិទ្ធិភាព ។"
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "គ្មាន​ប្រូកស៊ី"
+
+#  i18n: file kproxydlg_ui.ui line 94
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "រក​ឃើញ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ដោយ​ស្វ័យប្រវត្តិ ៖"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#  i18n: file kproxydlg_ui.ui line 94
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី URL ដោយ​ស្វ័យប្រវត្តិ ៖"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "មិន​អាច​បើក​ឯកសារ​បាន​ទេ"
+
+#  i18n: file kproxydlg_ui.ui line 94
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ប្រព័ន្ធ ៖"
+
+#  i18n: file envvarproxy_ui.ui line 102
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "រក​ឃើញ​ស្វ័យ​ប្រវត្តិ"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "ប្រូកស៊ី HTTP ៖"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "ប្រូកស៊ី SSL ៖"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "ប្រូកស៊ី FTP ៖"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "ប្រូកស៊ី SOCKS ៖"
+
+#  i18n: file manualproxy_ui.ui line 193
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "ករណី​លើកលែង ៖"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "បង្ហាញ​តម្លៃ​អថេរ​បរិស្ថាន"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ដែល​បាន​បញ្ជាក់​ដោយ​ដៃ ៖"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "ប្រូកស៊ី HTTP ៖"
+
+#  i18n: file manualproxy_ui.ui line 175
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "ប្រើ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​នេះ​សម្រាប់​ពិធីការ​ទាំងអស់"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "ប្រូកស៊ី SSL ៖"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "ប្រូកស៊ី FTP ៖"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "ប្រូកស៊ី SOCKS ៖"
+
+#  i18n: file manualproxy_ui.ui line 204
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "ប្រើ​ការ​កំណត់​ប្រូកស៊ី​សម្រាប់​អាសយដ្ឋាន​នៅ​ក្នុង​បញ្ជី​លើកលែង​តែប៉ុណ្ណោះ"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "ច្រក ៖"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Proxy Authentication Failed."
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "ការផ្ទៀងផ្ទាត់ភាព​ត្រឹមត្រូវ​ប្រូកស៊ី​បាន​បរាជ័យ ។"
+
+#  i18n: file kproxydlg_ui.ui line 94
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី URL ដោយ​ស្វ័យប្រវត្តិ ៖"
+
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
@@ -1052,6 +1233,10 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "របៀបត្របាញ់"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "បាន​បរាជ័យ​ក្នុងការ​ធ្វើបច្ចុប្បន្នភាព"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "មិន​អនុញ្ញាត FTP អកម្ម"
@@ -3770,9 +3955,6 @@ msgstr "របៀបត្របាញ់"
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "មិនអាច​រកឃើញ​ឯកសារ \"%1\" ទេ"
 
-#~ msgid "Cannot open file"
-#~ msgstr "មិន​អាច​បើក​ឯកសារ​បាន​ទេ"
-
 #, fuzzy
 #~| msgid ""
 #~| "<qt>Click this button to enter the parent folder.<br /><br />For "
@@ -4344,9 +4526,6 @@ msgstr "របៀបត្របាញ់"
 
 #~ msgid "Proxy:"
 #~ msgstr "ប្រូកស៊ី ៖"
-
-#~ msgid "Proxy Authentication Failed."
-#~ msgstr "ការផ្ទៀងផ្ទាត់ភាព​ត្រឹមត្រូវ​ប្រូកស៊ី​បាន​បរាជ័យ ។"
 
 #, fuzzy
 #~| msgid "There are no special actions available for protocol %1."

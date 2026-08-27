@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2002-11-04 09:22SAST\n"
 "Last-Translator: Lwandle Mgidlana <lwandle@translate.org.za>\n"
 "Language-Team: Xhosa <xhosa@translate.org.za>\n"
@@ -24,21 +24,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.0beta2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Kufuneka uqale kwakhona isicelo esisebenzayo xa ufuna olutshintsho lusebenze."
-
-#: ksaveioconfig.cpp:38
-#, fuzzy, kde-format
-#| msgid "Update Failed"
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Ugqibo Aliphemelelanga"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -475,6 +460,184 @@ msgstr ""
 #: proxy/kproxydlg.ui:688
 #, fuzzy, kde-format
 msgid "Use s&ystem proxy configuration:"
+msgstr "Sebenzisa &isazisi esilandelayo:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Kufuneka uqale kwakhona isicelo esisebenzayo xa ufuna olutshintsho lusebenze."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "Sebenzisa &isazisi esilandelayo:"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Sebenzisa &isazisi esilandelayo:"
+
+#: proxy/ui/main.qml:104
+#, kde-format
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr ""
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Sebenzisa &isazisi esilandelayo:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "&Bhaqa Ngokuzenzekelayo"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Ezizodwa"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Cwangcisa kuqala &izahluko zemeko-bume"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Ifayile yoshicilelo olubhaqiweyo oluze&nzekelayo"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr ""
+"Sebenzisa umncedisi onegunya lokusebenzela omnye yayo yonke imithetho "
+"elandelwayo"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "&Into enegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Sebenzisa kuphela umntu onegunya kolu luhlu"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, kde-format
+msgctxt "@label"
+msgid "Port:"
+msgstr ""
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Manual Proxy Configuration"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Uqwalaselo Lwencwadi Yomntu onegunya lokusebenzela omnye"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
 msgstr "Sebenzisa &isazisi esilandelayo:"
 
 #: proxy/wpad-detector/module.cpp:75
@@ -957,6 +1120,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Update Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Ugqibo Aliphemelelanga"
 
 #, fuzzy
 #~| msgid "Operation"
@@ -7191,12 +7360,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Automatic Proxy Variable Detection"
 #~ msgstr "Ubhaqo Lomahluko we Proxy Oluzenzekelayo"
-
-#, fuzzy
-#~| msgid "Manual Proxy Configuration"
-#~ msgctxt "@title:window"
-#~ msgid "Manual Proxy Configuration"
-#~ msgstr "Uqwalaselo Lwencwadi Yomntu onegunya lokusebenzela omnye"
 
 #, fuzzy
 #~ msgctxt "@title:window"

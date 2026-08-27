@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2022-10-23 00:30+0700\n"
 "Last-Translator: OIS <mistresssilvara@hotmail.com>\n"
 "Language-Team: kde-i18n-doc@kde.org\n"
@@ -17,20 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 1.8.12\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Vu deve relansar li executent applicationes por efectuar ti modificationes."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Actualisation ne successat"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -474,6 +460,194 @@ msgstr ""
 #| msgid "Use system proxy configuration:"
 msgid "Use s&ystem proxy configuration:"
 msgstr "Usar li configuration del proxy del sistema:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Vu deve relansar li executent applicationes por efectuar ti modificationes."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "Sin proxy"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "Detecter li configuration de proxy automaticmen"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Usar adresse de automatic configuration:"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "Ne successat aperter li file"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Usar li configuration del proxy del sistema:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "D&etecter automaticmen"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "Proxy HTTP:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "Proxy SSL:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "Proxy FTP:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "Proxy SOCKS:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Exceptiones:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Monstrar li &valore del variabile de ambiente"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Usar li manual configuration de proxy:"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "Proxy HTTP:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "Usar ti servitor proxy por &omni protocoles"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "Proxy SSL:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "Proxy FTP:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "Proxy SOCKS:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr ""
+"Usar li configuration de proxy solmen por adresses in li liste de exceptiones"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "Portu:"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Proxy Authentication Failed."
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Autentication del proxy ne successat."
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "Usar adresse de automatic configuration:"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1003,6 +1177,10 @@ msgstr "&Codification:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Inserter li variabile del demande"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Actualisation ne successat"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "Desactivar passiv FTP"
@@ -2990,9 +3168,6 @@ msgstr "Inserter li variabile del demande"
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "Ne successat trovar li file «%1»"
 
-#~ msgid "Cannot open file"
-#~ msgstr "Ne successat aperter li file"
-
 #~ msgid ""
 #~ "<qt>Click this button to enter the parent folder.<br /><br />For "
 #~ "instance, if the current location is file:/home/konqi clicking this "
@@ -3566,9 +3741,6 @@ msgstr "Inserter li variabile del demande"
 
 #~ msgid "Proxy:"
 #~ msgstr "Proxy:"
-
-#~ msgid "Proxy Authentication Failed."
-#~ msgstr "Autentication del proxy ne successat."
 
 #~ msgid "There is no documentation available for %1."
 #~ msgstr "Null documentation disponibil por %1."

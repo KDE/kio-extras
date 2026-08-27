@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2015-04-28 08:48+0200\n"
 "Last-Translator: Bjørn Steensrud <bjornst@skogkatt.homelinux.org>\n"
 "Language-Team: Norwegian Bokmål <l10n-no@nuug.no>\n"
@@ -28,20 +28,6 @@ msgstr ""
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Du må starte programmene på nytt for at disse endringene skal tre i kraft."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Oppdatering mislyktes"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -509,6 +495,177 @@ msgstr ""
 #, fuzzy, kde-format
 msgid "Use s&ystem proxy configuration:"
 msgstr "Bruk systemets mellomtjeneroppsett:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Du må starte programmene på nytt for at disse endringene skal tre i kraft."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "No proxy"
+msgstr "Ingen mellomtjener"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "Finn mellomtjeneroppsettet automatisk"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Bruk følgende nettadresse for mellomtjeneroppsettet"
+
+#: proxy/ui/main.qml:104
+#, kde-format
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr ""
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Bruk systemets mellomtjeneroppsett:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "Finn &automatisk"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "Mellomtjener for HTTPS:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "Mellomtjener for SSL:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "Mellomtjener for FTP:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "Mellomtjener for SOCKS:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Unntak:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Vis &verdiene til miljøvariablene"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Bruk manuelt mellomtjeneroppsett"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "Mellomtjener for HTTPS:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "Bruk denne mellomtjeneren for &alle protokoller"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "Mellomtjener for SSL:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "Mellomtjener for FTP:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "Mellomtjener for SOCKS:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Bruk mellomtjenere bare for oppføringene i unntakslista."
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "Port:"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Bruk følgende nettadresse for mellomtjeneroppsettet"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "Bruk følgende nettadresse for mellomtjeneroppsettet"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1027,3 +1184,7 @@ msgstr "&Tegnsett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Sett inn spørringsplassholder"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Oppdatering mislyktes"

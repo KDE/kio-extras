@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2022-10-05 21:57+0630\n"
 "Last-Translator: ဇေယျာလွင် <lw1nzayar@yandex.com>\n"
 "Language-Team: Burmese <kde-i18n-doc@kde.org>\n"
@@ -17,19 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.1.1\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr "ထိုပြောင်းလဲချက်များ သက်ဝင်စေရန် အပ္ပလီကေးရှင်းများကို ပြန်စတင်ရမည်။"
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "အပ်ဒိတ်စ်တင်ရန်ကျရှုံးခဲ့သည်"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -512,6 +499,192 @@ msgstr ""
 #| msgid "Use system proxy configuration:"
 msgid "Use s&ystem proxy configuration:"
 msgstr "စစ်စတမ်၏ ဆ.သ.ရ-ကွန်ရက်ကြားခံ ပြင်ဆင်ချက်သုံးမည် -"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr "ထိုပြောင်းလဲချက်များ သက်ဝင်စေရန် အပ္ပလီကေးရှင်းများကို ပြန်စတင်ရမည်။"
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "No Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "ကြားခံမရှိ"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "ဆ.သ.ရ-ကွန်ရက်ကြားခံပြင်ဆင်ချက်ကို အလိုအလျောက်ရှာမည်"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "ဆ.သ.ရ-ကွန်ရက်ကြားခံအလိုအလျောက်ပြင်ဆင်ချက် ယူအာအယ်လ် သုံးမည် -"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "ဖိုင်လ်ဖွင့်မရပါ"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use system proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "စစ်စတမ်၏ ဆ.သ.ရ-ကွန်ရက်ကြားခံ ပြင်ဆင်ချက်သုံးမည် -"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "အလိုအလျောက်ရှာရန်"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "အိပ်ချ်တီတီပီ ကြားခံ -"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "အက်စ်အက်စ်အယ်လ် ကြားခံ -"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "အက်တီပီ ကြားခံ -"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "ဆော့ခ်စ်ကြားခံ -"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "ခြွင်းချက်များ -"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "&vစစ်စတမ်ပတ်ဝန်းကျင်-ကိန်းရှင်းများ၏ တန်ဖိုး ပြမည်"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "ကိုယ်တိုင် သေချာသတ်မှတ်ထားသော ဆ.သ.ရ-ကွန်ရက်ကြားခံ ပြင်ဆင်ချက်သုံးမည် -"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP Proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "အိပ်ချ်တီတီပီ ကြားခံ -"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "&lလုပ်ရိုးလုပ်ထုံးအားလုံးအတွက် ဤကြားခံဆာဗာကို အသုံးပြုမည်"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL Proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "အက်စ်အက်စ်အယ်လ် ကြားခံ -"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP Proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "အက်တီပီ ကြားခံ -"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS Proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "ဆော့ခ်စ်ကြားခံ -"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the Exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "ခြွင်းချက်များ စာရင်းတွင်ပါသော လိပ်စာများအတွက်သာ ကြားခံ-သတ်မှတ်ချက်များကို သုံးမည်"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "ကွန်ရက်ဆိပ်ကမ်း -"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Proxy Authentication Failed."
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "ကြားခံ ယုံကြည်မှုရယူခြင်း မအောင်မြင်ပါ။"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "ဆ.သ.ရ-ကွန်ရက်ကြားခံအလိုအလျောက်ပြင်ဆင်ချက် ယူအာအယ်လ် သုံးမည် -"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1055,6 +1228,10 @@ msgstr "&Cအက္ခရာအစု -"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယူထားမှု ထည့်သွင်း"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "အပ်ဒိတ်စ်တင်ရန်ကျရှုံးခဲ့သည်"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "အငြိမ်အက်ဖ်တီပီပိတ်ရန်"
@@ -3871,9 +4048,6 @@ msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယ
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "\"%1\" ဖိုင်လ်ကိုရှာမတွေ့နိုင်ခဲ့ပါ"
 
-#~ msgid "Cannot open file"
-#~ msgstr "ဖိုင်လ်ဖွင့်မရပါ"
-
 #~ msgid ""
 #~ "<qt>Click this button to enter the parent folder.<br /><br />For "
 #~ "instance, if the current location is file:/home/konqi clicking this "
@@ -4514,9 +4688,6 @@ msgstr "မေးမြန်းချက်ဆိုင်ရာနေရာယ
 
 #~ msgid "Proxy:"
 #~ msgstr "ကြားခံ -"
-
-#~ msgid "Proxy Authentication Failed."
-#~ msgstr "ကြားခံ ယုံကြည်မှုရယူခြင်း မအောင်မြင်ပါ။"
 
 #~ msgid "There is no documentation available for %1."
 #~ msgstr "%1 အတွက် ဒိုကူမန်တေးရှင်း မရှိပါ။"

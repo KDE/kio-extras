@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2005-10-13 21:27+0200\n"
 "Last-Translator: Mashrab Kuvatov <kmashrab@uni-bremen.de>\n"
 "Language-Team: Uzbek <floss-uz-l10n@googlegroups.com>\n"
@@ -16,22 +16,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: KBabel 1.10.2\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Ўзгаришлар кучга кириши учун ишлаётган дастурларни қайтадан ишга "
-"туширишингиз керак."
-
-#: ksaveioconfig.cpp:38
-#, fuzzy, kde-format
-#| msgid "Update Failed"
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Янгилаш муваффақиятсиз тугади"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -440,6 +424,192 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "U&se the following proxy configuration URL"
 msgid "Use s&ystem proxy configuration:"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Ўзгаришлар кучга кириши учун ишлаётган дастурларни қайтадан ишга "
+"туширишингиз керак."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#: proxy/ui/main.qml:104
+#, kde-format
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr ""
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "&Авто-аниқлаш"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "E&xceptions"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "Қоидадан т&ашқари ҳолатлар"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Муҳит ўзгарувчиларнинг қийматини &кўрсатиш"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Прокси &мосламасини авто-аниқлаш"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "&Use the same proxy server for all protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "Ҳамма про&токоллар учун битта прокси серверини ишлатиш"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "&Прокси"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Рўйхатдагилар учун проксини ишлатиш"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, kde-format
+msgctxt "@label"
+msgid "Port:"
+msgstr ""
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Manual Proxy Configuration"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Проксини қўлбола мослаш"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "U&se the following proxy configuration URL"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
 msgstr "Қуйида&ги прокси мослама URL'дан фойдаланиш"
 
 #: proxy/wpad-detector/module.cpp:75
@@ -932,6 +1102,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Update Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Янгилаш муваффақиятсиз тугади"
 
 #, fuzzy
 #~| msgid "Options"
@@ -5410,12 +5586,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Automatic Proxy Variable Detection"
 #~ msgstr "Прокси ўзгарувчиларни авто-аниқлаш"
-
-#, fuzzy
-#~| msgid "Manual Proxy Configuration"
-#~ msgctxt "@title:window"
-#~ msgid "Manual Proxy Configuration"
-#~ msgstr "Проксини қўлбола мослаш"
 
 #, fuzzy
 #~| msgid "Invalid Proxy Setting"

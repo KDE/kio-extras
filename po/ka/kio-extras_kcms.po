@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2026-05-30 05:01+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
@@ -17,21 +17,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 "X-Generator: Poedit 3.9\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"ცვლილებების ძალაში შესასვლელად აუცილებელია გაშვებული აპლიკაციების "
-"გადატვირთვა."
-
-#: ksaveioconfig.cpp:38
-#, kde-format
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "განახლების შეცდომა"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -512,6 +497,206 @@ msgstr ""
 #, kde-format
 msgid "Use s&ystem proxy configuration:"
 msgstr "პროქსის ს&ისტემური კონფიგურაციის გამოყენება:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"ცვლილებების ძალაში შესასვლელად აუცილებელია გაშვებული აპლიკაციების "
+"გადატვირთვა."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&No proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "პროქ&სის გარეშე"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "&Detect proxy configuration automatically"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "პროქსის პარამეტრების ავ&ტომატური მორგება"
+
+#: proxy/ui/main.qml:75
+#, fuzzy, kde-format
+#| msgid ""
+#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#| "is almost never the correct configuration. Enabling it when it is not "
+#| "required may slow down network access and make your network less secure. "
+#| "Your network administrator will know whether enabling it is required."
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+"ავტომატური კონფიგურაცია, რომელიც ასევე ცნობილია, როგორც ვებპროქსის "
+"ავტომატური აღმოჩენა (WPAD), თითქმის არასდროსაა სწორი. მისმა ჩართვამ მაშინ, "
+"როცა ის საჭირო არაა, შეიძლება ქსელთან წვდომა შეანელოს და თქვენი ქსელი "
+"ნაკლებად დაცული გახადოს. ჰკითხეთ ქსელის ადმინისტრატორს, საჭიროა თუ არა, რომ "
+"ჩართოთ ის."
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "პრო&ქსის ავტომატური მორგებს სკრიპტის URL:"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "ფაილის გახსნის შეცდომა"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "Use s&ystem proxy configuration:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "პროქსის ს&ისტემური კონფიგურაციის გამოყენება:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto D&etect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "ავტომტურად გამოცნობა"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "HTTP პროქსი:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "SSL პროქსი:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "FTP proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "FTP პროქსი:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "SOCKS პროქსი:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "Exceptions:"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "გამონაკლისები:"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "გარემოს ცვლადების მნიშვნელობების ჩვენება"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "Use manually specified proxy configuration:"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "პროქსის ხელით მითითებული კონფიგურაციის გამოყენება:"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "HTTP proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "HTTP პროქსი:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "Use this proxy server for a&ll protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "ამ პროქსი სერვერის ყველა პროტოკოლისთვის გამოყენება"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "SSL proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "SSL პროქსი:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "FTP proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "FTP პროქსი:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "SOCKS proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "SOCKS პროქსი:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy settings only for addresses in the exceptions list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr ""
+"პროქსის პარამეტრების, მხოლოდ, გამონაკლისების სიაში ჩამოთვლილი "
+"მისამართებისთვის გამოყენება"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, fuzzy, kde-format
+#| msgid "Port:"
+msgctxt "@label"
+msgid "Port:"
+msgstr "პორტი:"
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Proxy Authentication Failed."
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "პროქსის ავთენტიკაციის შეცდომა."
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "&Use proxy auto configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "პრო&ქსის ავტომატური მორგებს სკრიპტის URL:"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1055,6 +1240,10 @@ msgstr "სიმბოლოთა ნა&კრები:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "შეიყვანეთ მოთხოვნის ადგილმჭერი"
+
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "განახლების შეცდომა"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "პასიური FTP-ის გათიშვა"
@@ -3265,9 +3454,6 @@ msgstr "შეიყვანეთ მოთხოვნის ადგილ�
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "ფაილი %1 ნაპოვნი არაა"
 
-#~ msgid "Cannot open file"
-#~ msgstr "ფაილის გახსნის შეცდომა"
-
 #~ msgid ""
 #~ "Click this button to move backwards one step in the browsing history."
 #~ msgstr ""
@@ -3740,9 +3926,6 @@ msgstr "შეიყვანეთ მოთხოვნის ადგილ�
 
 #~ msgid "Proxy:"
 #~ msgstr "პროქსი:"
-
-#~ msgid "Proxy Authentication Failed."
-#~ msgstr "პროქსის ავთენტიკაციის შეცდომა."
 
 #~ msgid "There is no documentation available for %1."
 #~ msgstr "%1-ს არ გააჩნია დოკუმენტაცია."

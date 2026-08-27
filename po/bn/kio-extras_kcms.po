@@ -11,7 +11,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2009-01-09 21:08-0800\n"
 "Last-Translator: Deepayan Sarkar <deepayan.sarkar@gmail.com>\n"
 "Language-Team: en_US <kde-translation@bengalinux.org>\n"
@@ -21,21 +21,6 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "X-Generator: Lokalize 0.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"এই পরিবর্তনগুলি কার্যকর করতে আপনাকে চালু অ্যাপলিকেশনগুলি বন্ধ করে আবার চালাতে হবে।"
-
-#: ksaveioconfig.cpp:38
-#, fuzzy, kde-format
-#| msgid "Update Failed"
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "আপডেট ব্যর্থ"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -442,6 +427,191 @@ msgstr ""
 #, fuzzy, kde-format
 #| msgid "U&se proxy configuration URL:"
 msgid "Use s&ystem proxy configuration:"
+msgstr "নিম্নোক্ত প্রক্সি কনফিগারেশন ইউ-আর-এল ব্যবহা&র করো:"
+
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"এই পরিবর্তনগুলি কার্যকর করতে আপনাকে চালু অ্যাপলিকেশনগুলি বন্ধ করে আবার চালাতে হবে।"
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "নিম্নোক্ত প্রক্সি কনফিগারেশন ইউ-আর-এল ব্যবহা&র করো:"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "নিম্নোক্ত প্রক্সি কনফিগারেশন ইউ-আর-এল ব্যবহা&র করো:"
+
+#: proxy/ui/main.qml:104
+#, kde-format
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr ""
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "নিম্নোক্ত প্রক্সি কনফিগারেশন ইউ-আর-এল ব্যবহা&র করো:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "স্বয়ংক্রীয় &উদ্ঘাটন"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "E&xceptions"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "এক্সেপ&শন"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "এনভায়রনমেন্ট ভেরিয়েবল-গুলির মা&ন প্রদর্শন করো"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "স্বয়ংক্রিয় প্রক্সি কনফিগারেশন &উদ্ঘাটন"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "&Use the same proxy server for all protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "&একই প্রক্সি সার্ভার সব প্রোটোকলের জন্য ব্যবহার করো"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "প্রক্সি (&প)"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "শুধু এই তালিকাভুক্ত এন্ট্রিগুলির জন্য প্রক্সি ব্যবহার করো"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, kde-format
+msgctxt "@label"
+msgid "Port:"
+msgstr ""
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Manual Proxy Configuration"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "নিজে হাতে প্রক্সি কনফিগারেশন"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
 msgstr "নিম্নোক্ত প্রক্সি কনফিগারেশন ইউ-আর-এল ব্যবহা&র করো:"
 
 #: proxy/wpad-detector/module.cpp:75
@@ -931,6 +1101,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Update Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "আপডেট ব্যর্থ"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "পাসিভ এফ-টি-পি নিষ্ক্রিয় করো"
@@ -4863,12 +5039,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Automatic Proxy Variable Detection"
 #~ msgstr "স্বয়ংক্রিয় প্রক্সি ভেরিয়েবল উদ্ঘাটন"
-
-#, fuzzy
-#~| msgid "Manual Proxy Configuration"
-#~ msgctxt "@title:window"
-#~ msgid "Manual Proxy Configuration"
-#~ msgstr "নিজে হাতে প্রক্সি কনফিগারেশন"
 
 #, fuzzy
 #~| msgid "Invalid Proxy Setting"

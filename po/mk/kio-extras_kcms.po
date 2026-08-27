@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2009-06-22 11:48+0200\n"
 "Last-Translator: Bozidar Proevski <bobibobi@freemail.com.mk>\n"
 "Language-Team: Macedonian <mkde-l10n@lists.sourceforge.net>\n"
@@ -19,22 +19,6 @@ msgstr ""
 "X-Generator: KBabel 1.11.4\n"
 "Plural-Forms: Plural-Forms: nplurals=3; plural=n%10==1 ? 0 : n%10==2 ? 1 : "
 "2;\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"За да се применат овие промени мора да ги рестартирате апликациите што "
-"работат."
-
-#: ksaveioconfig.cpp:38
-#, fuzzy, kde-format
-#| msgid "Update Failed"
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Ажурирањето не успеа"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -568,6 +552,193 @@ msgstr ""
 msgid "Use s&ystem proxy configuration:"
 msgstr "Кори&сти URL за конфигурација на прокси:"
 
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"За да се применат овие промени мора да ги рестартирате апликациите што "
+"работат."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "Кори&сти URL за конфигурација на прокси:"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Кори&сти URL за конфигурација на прокси:"
+
+#: proxy/ui/main.qml:104
+#, fuzzy, kde-format
+#| msgid "Cannot open file"
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr "Не може да биде отворена датотеката"
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Кори&сти URL за конфигурација на прокси:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "Авто&детекција"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "E&xceptions"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "И&склучоци"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Покажи ја &вредноста на променливите на околина"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "А&втоматски пронајди ја конфигурацијата на проксито"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "&Use the same proxy server for all protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "Користи ист &прокси-сервер за сите протоколи"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "Proxy:"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "Прокси:"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Користи го проксито само за елементите од оваа листа"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, kde-format
+msgctxt "@label"
+msgid "Port:"
+msgstr ""
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Manual Proxy Configuration"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Рачна конфигурација на прокси"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "Кори&сти URL за конфигурација на прокси:"
+
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
@@ -1065,6 +1236,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Update Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Ажурирањето не успеа"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "Оневозможи пасивен FTP"
@@ -3878,9 +4055,6 @@ msgstr ""
 
 #~ msgid "The file \"%1\" could not be found"
 #~ msgstr "Датотеката „%1“ не можеше да биде пронајдена"
-
-#~ msgid "Cannot open file"
-#~ msgstr "Не може да биде отворена датотеката"
 
 #, fuzzy
 #~| msgid ""
@@ -7843,12 +8017,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Automatic Proxy Variable Detection"
 #~ msgstr "Автоматска детекција на променлива за прокси"
-
-#, fuzzy
-#~| msgid "Manual Proxy Configuration"
-#~ msgctxt "@title:window"
-#~ msgid "Manual Proxy Configuration"
-#~ msgstr "Рачна конфигурација на прокси"
 
 #, fuzzy
 #~| msgid "Invalid Proxy Setting"

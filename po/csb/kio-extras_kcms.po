@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-10 00:44+0000\n"
+"POT-Creation-Date: 2026-08-27 00:44+0000\n"
 "PO-Revision-Date: 2009-08-03 17:47+0200\n"
 "Last-Translator: Michôł Òstrowsczi <michol@linuxcsb.org>\n"
 "Language-Team: Kashubian <i18n-csb@linuxcsb.org>\n"
@@ -20,22 +20,6 @@ msgstr ""
 "X-Generator: Lokalize 0.3\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2)\n"
-
-#: ksaveioconfig.cpp:36
-#, kde-format
-msgid ""
-"You have to restart the running applications for these changes to take "
-"effect."
-msgstr ""
-"Je nót zrëszëc znowa programë brëkùjącé tich nastôwów, bë ne zjinaczi òstałë "
-"przëjãté."
-
-#: ksaveioconfig.cpp:38
-#, fuzzy, kde-format
-#| msgid "Update Failed"
-msgctxt "@title:window"
-msgid "Update Failed"
-msgstr "Aktualizacëjô nie darzëła sã"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -562,6 +546,192 @@ msgstr ""
 msgid "Use s&ystem proxy configuration:"
 msgstr "Ùżëjë adre&së kònfigùracëji proxy:"
 
+#: proxy/ui/main.qml:33
+#, fuzzy, kde-format
+#| msgid ""
+#| "You have to restart the running applications for these changes to take "
+#| "effect."
+msgctxt "@info"
+msgid ""
+"Restart running applications to make these changes take effect for them."
+msgstr ""
+"Je nót zrëszëc znowa programë brëkùjącé tich nastôwów, bë ne zjinaczi òstałë "
+"przëjãté."
+
+#: proxy/ui/main.qml:49
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "No proxy"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:65
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Detect proxy configuration automatically"
+msgstr "Ùżëjë adre&së kònfigùracëji proxy:"
+
+#: proxy/ui/main.qml:75
+#, kde-format
+msgctxt "@info"
+msgid ""
+"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
+"almost never the correct configuration. Enabling it when it is not required "
+"may slow down network access and make your network less secure. Your network "
+"administrator will know whether enabling it is required."
+msgstr ""
+
+#: proxy/ui/main.qml:83
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Use proxy auto-configuration URL"
+msgstr "Ùżëjë adre&së kònfigùracëji proxy:"
+
+#: proxy/ui/main.qml:104
+#, kde-format
+msgctxt "@label:button"
+msgid "Choose file…"
+msgstr ""
+
+#: proxy/ui/main.qml:119
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Use system proxy configuration"
+msgstr "Ùżëjë adre&së kònfigùracëji proxy:"
+
+#: proxy/ui/main.qml:129
+#, fuzzy, kde-format
+#| msgid "Auto &Detect"
+msgctxt "@action:button"
+msgid "Auto-Detect"
+msgstr "Aùtomatné &rozpòznanié"
+
+#: proxy/ui/main.qml:137
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "HTTP proxy:"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:143
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SSL proxy:"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:149
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "FTP proxy:"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:155
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@label"
+msgid "SOCKS proxy:"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:161 proxy/ui/main.qml:304
+#, fuzzy, kde-format
+#| msgid "E&xceptions"
+msgctxt "@label"
+msgid "Exceptions:"
+msgstr "&Wëjimczi"
+
+#: proxy/ui/main.qml:162 proxy/ui/main.qml:301
+#, kde-format
+msgctxt "@placeholder"
+msgid "Comma-separated list of IP addresses"
+msgstr ""
+
+#: proxy/ui/main.qml:171
+#, fuzzy, kde-format
+#| msgid "Show the &value of the environment variables"
+msgctxt "@label"
+msgid "Show the value of the environment variables"
+msgstr "Wëskrzëni wôrtnotë &zmiennëch òkrãżô"
+
+#: proxy/ui/main.qml:178
+#, fuzzy, kde-format
+#| msgid "A&utomatically detect proxy configuration"
+msgctxt "@label"
+msgid "Use manually-specified proxy configuration"
+msgstr "Wëkrëjë kònfigùracëjã &aùtomatno"
+
+#: proxy/ui/main.qml:196
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "HTTP Proxy"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:219
+#, fuzzy, kde-format
+#| msgid "&Use the same proxy server for all protocols"
+msgctxt "@label"
+msgid "Use this proxy server for all protocols"
+msgstr "&Ten sóm pòstrzédnik dlô wszëtczich protokòlów"
+
+#: proxy/ui/main.qml:233
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SSL Proxy"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:256
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "FTP Proxy"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:279
+#, fuzzy, kde-format
+#| msgid "&Proxy"
+msgctxt "@title"
+msgid "SOCKS Proxy"
+msgstr "&Pòstrzédnik (Proxy)"
+
+#: proxy/ui/main.qml:320
+#, fuzzy, kde-format
+#| msgid "Use proxy only for entries in this list"
+msgctxt "@label"
+msgid "Use proxy settings only for addresses in the exceptions list"
+msgstr "Brëkùjë pòstrzédniczącegò serwera le dlô wpisënków z lëstë"
+
+#: proxy/ui/main.qml:363
+#, kde-format
+msgctxt "@label"
+msgid "Url:"
+msgstr ""
+
+#: proxy/ui/main.qml:387
+#, kde-format
+msgctxt "@label"
+msgid "Port:"
+msgstr ""
+
+#: proxy/ui/main.qml:410
+#, fuzzy, kde-format
+#| msgid "Manual Proxy Configuration"
+msgctxt "@title:dialog"
+msgid "Open Proxy Auto-Configuration File"
+msgstr "Rãcznô kònfigùracëjô pòstrzédnika"
+
+#: proxy/ui/main.qml:411
+#, fuzzy, kde-format
+#| msgid "U&se proxy configuration URL:"
+msgctxt "@label"
+msgid "Proxy auto-configuration files (*.pac)"
+msgstr "Ùżëjë adre&së kònfigùracëji proxy:"
+
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
 msgctxt "@title"
@@ -1053,6 +1223,12 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#, fuzzy
+#~| msgid "Update Failed"
+#~ msgctxt "@title:window"
+#~ msgid "Update Failed"
+#~ msgstr "Aktualizacëjô nie darzëła sã"
 
 #~ msgid "Disable Passive FTP"
 #~ msgstr "Wëłączë pasiwné FTP"
@@ -5712,12 +5888,6 @@ msgstr ""
 #~ msgctxt "@title:window"
 #~ msgid "Automatic Proxy Variable Detection"
 #~ msgstr "Aùtomatné wëkrëwanié zmiennëch z pòdôwkama pòstrzédnika"
-
-#, fuzzy
-#~| msgid "Manual Proxy Configuration"
-#~ msgctxt "@title:window"
-#~ msgid "Manual Proxy Configuration"
-#~ msgstr "Rãcznô kònfigùracëjô pòstrzédnika"
 
 #, fuzzy
 #~| msgid "Invalid Proxy Setting"
