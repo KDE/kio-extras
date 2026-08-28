@@ -15,7 +15,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2026-06-17 13:17+0900\n"
 "Last-Translator: Kisaragi Hiu <mail@kisaragi-hiu.com>\n"
 "Language-Team: Traditional Chinese <zh-l10n@lists.slat.org>\n"
@@ -41,449 +41,6 @@ msgid ""
 msgstr ""
 "當檔案開始上傳時為它加上延伸檔名「.part」。當檔案完整的上傳時將它的名稱改變為"
 "真實名稱。"
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"設定代理伺服器組態。\n"
-"<p>\n"
-"代理伺服器是位於您的電腦和網際網路的中介程式，提供網頁快取和/或過濾的服務。</"
-"p><p>快取式代理伺服器會將您曾經參訪過的網站內容儲存起來，以加速加速網際網路資"
-"料讀取速度；過濾式快取伺服器，則提供阻擋廣告、垃圾以及其他任何你想要阻擋的東"
-"西的能力。\n"
-"<p>\n"
-"若您不知道是否需要設定代理伺服器，請先參考您的網路服務供應商的設定指南，或詢"
-"問系統管理員。\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>自動尋找系統中可能是用來設定 proxy 的環境變數。<p>尋找方法是搜尋一些可能"
-"的變數名稱，像是 HTTP_PROXY, FTP_PROXY 和 NO_PROXY.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "自動偵測(&E)"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "直接連線到網際網路。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "沒有代理伺服器(&N)"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "HTTP 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "請輸入 HTTP 代理伺服器位址。"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "連接埠："
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "請輸入 HTTP 代理伺服器位址。"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "所有通訊協定都使用此代理伺服器(&L)"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "SSL 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "請輸入 HTTPS 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "請輸入 HTTPS 代理伺服器位址。"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "FTP 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "請輸入 FTP 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "請輸入 FTP 代理伺服器位址。"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "SOCKS 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "請輸入 SOCKS 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "請輸入 SOCKS 代理伺服器位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>FTP_PROXY</tt>，這是用來儲存 FTP 代理伺服器的位"
-"址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "例外："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>輸入要排除適用於上面所列的代理伺服器的主機名稱或 IP 位址，以逗號分隔。</"
-"p>\n"
-"<p>若您要排除某個網域裡所有的主機，那麼只要輸入該網域名稱，前面加個點 (.)。例"
-"如，要排除所有 <i>kde.org</i> 的主機，您只要輸入 <i>.kde.org</i>。注意，萬用"
-"字元如 '*' 或 '?' 在此不適用。</p>\n"
-"<p>此外，您也可以輸入 IP 位址，如 127.0.0.1，或是同時加上子網域遮罩，如 "
-"192.168.0.1/24。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"勾選此選項，將只有在「例外」清單中的主機與 IP 才使用代理伺服器。</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "只為例外清單中的地址使用代理伺服器設定"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "使用指定的代理伺服器命令稿來設定代理伺服器設定值。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "使用代理伺服器自動設定網址(&U)："
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "手動輸入代理伺服器的設定資訊。"
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "手動輸入代理伺服器設定："
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>HTTP_PROXY</tt>，這是用來儲存 HTTP 代理伺服器的"
-"位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "H&TTP 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>HTTPS_PROXY</tt>，這是用來儲存 HTTPS 代理伺服器"
-"的位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "SS&L 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>FTP_PROXY</tt>，這是用來儲存 FTP 代理伺服器的位"
-"址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服器"
-"的位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "SOC&KS 代理伺服器："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服器"
-"的位址。<p>\n"
-"或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "例外(&X)："
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>請輸入用於排除使用代理伺服器的位址的環境變數，如 <b>NO_PROXY</b>。\n"
-"<p>或者，您也可以點擊<b>「自動偵測」</b>來自動找出變數。</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "顯示環境變數(&V)"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"自動偵測並設定代理伺服器設定值。<p>\n"
-"自動偵測是使用 <b>網頁代理伺服器自動發現協定 (WPAD)</b> 進行的。<p>\n"
-"<b>注意：</b>這個選項在某些 UNIX/Linux 發行版可能無法正常運作或者完全無法運"
-"作。\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "自動偵測代理伺服器設定(&D)"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"「自動設定」，又稱為「網路代理伺服器自動探尋」(WPAD)，基本上幾乎從來都不會是"
-"正確的設定值。不需要的時候啟用它可能會使網路存取變慢，同時讓網路變得更不安"
-"全。您的網路管理員會知道是否有需要啟用它。"
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "請輸入代理伺服器組態命令稿位址。"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>使用系統上定義的代理伺服器設定。</p>\n"
-"<p>有些平台會提供系統的代理伺服器資訊。選擇此選項讓您可以直接使用這些設定。</"
-"p>\n"
-"<p>在 Mac 平台上</p>\n"
-"<p>在 Windows 平台上</p>\n"
-"<p>在 Unix and Linux 平台上，這些系統端的代理伺服器設定通常是透過環境變數指"
-"定。以下的環境變數若有偵測到就會使用： <b>HTTP_PROXY</b>，<b>HTTPS_PROXY</"
-"b>，<b>FTP_PROXY</b> 以及 <b>NO_PROXY</b>。</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "使用系統代理伺服器設定(&Y)："
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1186,6 +743,305 @@ msgstr "字元集(&C)："
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "插入查詢佔位符"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "設定代理伺服器組態。\n"
+#~ "<p>\n"
+#~ "代理伺服器是位於您的電腦和網際網路的中介程式，提供網頁快取和/或過濾的服"
+#~ "務。</p><p>快取式代理伺服器會將您曾經參訪過的網站內容儲存起來，以加速加速"
+#~ "網際網路資料讀取速度；過濾式快取伺服器，則提供阻擋廣告、垃圾以及其他任何你"
+#~ "想要阻擋的東西的能力。\n"
+#~ "<p>\n"
+#~ "若您不知道是否需要設定代理伺服器，請先參考您的網路服務供應商的設定指南，或"
+#~ "詢問系統管理員。\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>自動尋找系統中可能是用來設定 proxy 的環境變數。<p>尋找方法是搜尋一些可"
+#~ "能的變數名稱，像是 HTTP_PROXY, FTP_PROXY 和 NO_PROXY.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "自動偵測(&E)"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "直接連線到網際網路。"
+
+#~ msgid "&No proxy"
+#~ msgstr "沒有代理伺服器(&N)"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP 代理伺服器："
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "請輸入 HTTP 代理伺服器位址。"
+
+#~ msgid "Port:"
+#~ msgstr "連接埠："
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "請輸入 HTTP 代理伺服器位址。"
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "所有通訊協定都使用此代理伺服器(&L)"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL 代理伺服器："
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "請輸入 HTTPS 代理伺服器位址。"
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "請輸入 HTTPS 代理伺服器位址。"
+
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP 代理伺服器："
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "請輸入 FTP 代理伺服器位址。"
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "請輸入 FTP 代理伺服器位址。"
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS 代理伺服器："
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "請輸入 SOCKS 代理伺服器位址。"
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "請輸入 SOCKS 代理伺服器位址。"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "請輸入環境變數名稱，例如 <tt>FTP_PROXY</tt>，這是用來儲存 FTP 代理伺服器的"
+#~ "位址。<p>\n"
+#~ "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "例外："
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>輸入要排除適用於上面所列的代理伺服器的主機名稱或 IP 位址，以逗號分隔。"
+#~ "</p>\n"
+#~ "<p>若您要排除某個網域裡所有的主機，那麼只要輸入該網域名稱，前面加個點 "
+#~ "(.)。例如，要排除所有 <i>kde.org</i> 的主機，您只要輸入 <i>.kde.org</i>。"
+#~ "注意，萬用字元如 '*' 或 '?' 在此不適用。</p>\n"
+#~ "<p>此外，您也可以輸入 IP 位址，如 127.0.0.1，或是同時加上子網域遮罩，如 "
+#~ "192.168.0.1/24。</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "勾選此選項，將只有在「例外」清單中的主機與 IP 才使用代理伺服器。</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "只為例外清單中的地址使用代理伺服器設定"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "使用指定的代理伺服器命令稿來設定代理伺服器設定值。"
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "使用代理伺服器自動設定網址(&U)："
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "手動輸入代理伺服器的設定資訊。"
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "手動輸入代理伺服器設定："
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "請輸入環境變數名稱，例如 <tt>HTTP_PROXY</tt>，這是用來儲存 HTTP 代理伺服器"
+#~ "的位址。<p>\n"
+#~ "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "H&TTP 代理伺服器："
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "請輸入環境變數名稱，例如 <tt>HTTPS_PROXY</tt>，這是用來儲存 HTTPS 代理伺服"
+#~ "器的位址。<p>\n"
+#~ "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "SS&L 代理伺服器："
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "請輸入環境變數名稱，例如 <tt>FTP_PROXY</tt>，這是用來儲存 FTP 代理伺服器的"
+#~ "位址。<p>\n"
+#~ "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服"
+#~ "器的位址。<p>\n"
+#~ "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOC&KS 代理伺服器："
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "請輸入環境變數名稱，例如 <tt>SOCKS_PROXY</tt>，這是用來儲存 SOCKS 代理伺服"
+#~ "器的位址。<p>\n"
+#~ "或者，您也可以單擊 <b>「自動偵測」</b> 按鈕試著自動取得此變數。</p>\n"
+#~ "</qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "例外(&X)："
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>請輸入用於排除使用代理伺服器的位址的環境變數，如 <b>NO_PROXY</b>。\n"
+#~ "<p>或者，您也可以點擊<b>「自動偵測」</b>來自動找出變數。</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "顯示環境變數(&V)"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "自動偵測並設定代理伺服器設定值。<p>\n"
+#~ "自動偵測是使用 <b>網頁代理伺服器自動發現協定 (WPAD)</b> 進行的。<p>\n"
+#~ "<b>注意：</b>這個選項在某些 UNIX/Linux 發行版可能無法正常運作或者完全無法"
+#~ "運作。\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "自動偵測代理伺服器設定(&D)"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "「自動設定」，又稱為「網路代理伺服器自動探尋」(WPAD)，基本上幾乎從來都不會"
+#~ "是正確的設定值。不需要的時候啟用它可能會使網路存取變慢，同時讓網路變得更不"
+#~ "安全。您的網路管理員會知道是否有需要啟用它。"
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "請輸入代理伺服器組態命令稿位址。"
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>使用系統上定義的代理伺服器設定。</p>\n"
+#~ "<p>有些平台會提供系統的代理伺服器資訊。選擇此選項讓您可以直接使用這些設"
+#~ "定。</p>\n"
+#~ "<p>在 Mac 平台上</p>\n"
+#~ "<p>在 Windows 平台上</p>\n"
+#~ "<p>在 Unix and Linux 平台上，這些系統端的代理伺服器設定通常是透過環境變數"
+#~ "指定。以下的環境變數若有偵測到就會使用： <b>HTTP_PROXY</b>，"
+#~ "<b>HTTPS_PROXY</b>，<b>FTP_PROXY</b> 以及 <b>NO_PROXY</b>。</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "使用系統代理伺服器設定(&Y)："
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

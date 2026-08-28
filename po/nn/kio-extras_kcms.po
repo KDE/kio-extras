@@ -9,7 +9,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2026-06-26 17:07+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -38,455 +38,6 @@ msgid ""
 msgstr ""
 "Når ei fil vert lasta opp, har ho etternamnet «*.part». Når opplastinga er "
 "ferdig, får ho sitt eigentlege namn."
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>Tilpass mellomtenaroppsett.<p>Ein mellomtenar – «proxy» – er eit "
-"formidlande program som står mellom di maskin og Internett og tilbyr "
-"tenester som mellomlagring av nettsider og/eller filtrering. Mellomlagrande "
-"mellomtenarar gjev raskare tilgang til nettstadar du har vitja før ved å "
-"lagra innhaldet mellombels. Filtrerande mellomtenarar gjer det mogleg å "
-"blokkera reklame, søppelpost eller andre ting du vil stenga ute.<p>Dersom du "
-"er usikker på om du treng bruka ein mellomtenar for å kopla til Internett, "
-"ta kontakt med Internett-leverandøren eller systemadministratoren. </qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>Prøv å automatisk oppdaga miljøvariablane for mellomtenar­oppsettet.<p> "
-"Funksjonen verkar ved å sjå etter vanlege variabel­namn som for eksempel "
-"HTTP_PROXY, FTP_PROXY og NO_PROXY.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "&Autooppdaging"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "Kopla direkte til Internett."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "&Ingen mellomtenar"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "HTTP-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Oppgje adressa til HTTP-mellomtenaren."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "Port:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Oppgje portnummeret til HTTP-mellomtenaren."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "Bruk denne mellomtenaren for &alle protokollar"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "SSL-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Oppgje adressa til HTTPS-mellomtenaren."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Oppgje portnummeret til HTTPS-mellomtenaren."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "FTP-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Oppgje adressa til FTP-mellomtenaren."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Oppgje portnummeret til FTP-mellomtenaren."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "SOCKS-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Oppgje adressa til SOCKS-mellomtenaren."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Oppgje portnummeret til SOCKS-mellomtenaren."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Oppgje namnet på miljø­variabelen, for eksempel <b>NO_PROXY</b>, som inneheld "
-"adresser til nettstadar der mellomtenaren ikkje skal brukast.<p>\n"
-"Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga denne "
-"variabelen automatisk.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "Unntak:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Skriv inn ei liste over vertsnamn eller IP-adresser der "
-"mellomtenarinnstillingane over ikkje skal brukast.</p>\n"
-"<p>Viss du vil utelata alle vertar i eit domene, berre skriv inn "
-"domenenamnet med eit punktum føre. For eksempel kan du utelata alle "
-"vertsnamn under <i>kde.org</i> ved å skriva <i>.kde.org</i>. Jokerteikn, som "
-"«*» eller «?», er ikkje støtta og vil ikkje ha nokon verknad.</p>\n"
-"<p>Du kan òg skriva inn IP-adresser, for eksempel 127.0.0.1 og IP-adresser "
-"med subnet-maske, for eksempel 192.168.0.1/24.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"Kryss av her dersom du vil bruka innstillingane for mellomtenar berre for "
-"adresser i <i>unntakslista</i>.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "Bruk berre mellomtenar for adresser i unntakslista"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr ""
-"Bruk det valde oppsettsskriptet for tilpassing av mellomtenaroppsettet."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "&Bruk mellomtenaroppsettet på denne adressa:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Tilpass mellomtenaroppsettet manuelt."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "Bruk sjølvvalt mellomtenaroppsett:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>Oppgje namnet på miljø­variabelen, for eksempel <b>HTTP_PROXY</b>, som "
-"inneheld adressa til HTTP-mellomtenaren.\n"
-"<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
-"denne variabelen automatisk.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "H&TTP-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>Oppgje namnet på miljø­variabelen, for eksempel <b>HTTPS_PROXY</b>, som "
-"inneheld adressa til HTTPS-mellomtenaren.\n"
-"<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
-"denne variabelen automatisk.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "SS&L-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Oppgje namnet på miljø­variabelen, for eksempel <b>FTP_PROXY</b>, som "
-"inneheld adressa til FTP-mellomtenaren.\n"
-"<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
-"denne variabelen automatisk.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>Oppgje namnet på miljøvariabelen, for eksempel <b>SOCKS_PROXY</b>, som "
-"inneheld adressa til SOCKS-mellomtenaren.\n"
-"<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
-"denne variabelen automatisk.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "SOC&KS-mellomtenar:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Oppgje namnet på miljøvariabelen, for eksempel <b>SOCKS_PROXY</b>, som "
-"inneheld adressa til SOCKS-mellomtenaren.<p>Du kan òg trykkja på knappen "
-"<b>«Autooppdag»</b> for å prøva å oppdaga denne variabelen automatisk.</p></"
-"qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "&Unntak:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Oppgje namnet på miljø­variabelen, for eksempel <b>NO_PROXY</b>, som "
-"inneheld adresser til nettstadar der mellomtenar-oppsettet ovanfor ikkje "
-"skal brukast.<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva "
-"å oppdaga denne variabelen automatisk.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "Vis verdiane til tilhøyrande &miljøvariablar"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Finn og set opp mellomtenar­innstillingar automatisk.<p>Automatisk søk vert "
-"utført med protokollen <b>Web Proxy Auto-Discovery Protocol (WPAD)</b>."
-"<p><b>MERK:</b> Dette fungerer kanskje ikkje rett, eller ikkje i det heile, "
-"på enkelte Unix/Linux-distribusjonar.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "&Finn automatisk mellomtenaroppsett"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"Automatisk oppsett, òg kalla «Web Proxy Auto-Discovery» (WPAD), er nesten "
-"aldri rett innstiling. Viss du har dette slått på, kan det gjera tilgangen "
-"til nettverket tregare og mindre trygg. Nettverk­ansvarleg veit om det er "
-"nødvendig å bruka denne innstillinga."
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "Oppgje adressa til skriptet for mellomtenaroppsett."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt> <p>Bruk mellomtenarinnstillingane definerte på systemet.</p>\n"
-"<p>På nokre plattformer finst det mellomtenaroppsett for heile systemet. Vel "
-"du dette, vert desse globale innstillingane brukte.</p>\n"
-"<p>På Mac-plattformer</p> \n"
-"<p>På Windows-plattformer</p>\n"
-"<p>På Unix og Linux-plattformer er slike systeminnstillingar som regel "
-"definerte via miljøvariablar. Desse miljøvariablane vert lesne og brukte "
-"dersom dei er definerte: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b> og <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "Bruk s&ystemoppsett for mellomtenar:"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1221,6 +772,313 @@ msgstr "&Teiknkoding:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Set inn søkjeplasshaldar"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Tilpass mellomtenaroppsett.<p>Ein mellomtenar – «proxy» – er eit "
+#~ "formidlande program som står mellom di maskin og Internett og tilbyr "
+#~ "tenester som mellomlagring av nettsider og/eller filtrering. "
+#~ "Mellomlagrande mellomtenarar gjev raskare tilgang til nettstadar du har "
+#~ "vitja før ved å lagra innhaldet mellombels. Filtrerande mellomtenarar "
+#~ "gjer det mogleg å blokkera reklame, søppelpost eller andre ting du vil "
+#~ "stenga ute.<p>Dersom du er usikker på om du treng bruka ein mellomtenar "
+#~ "for å kopla til Internett, ta kontakt med Internett-leverandøren eller "
+#~ "systemadministratoren. </qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>Prøv å automatisk oppdaga miljøvariablane for mellomtenar­oppsettet."
+#~ "<p> Funksjonen verkar ved å sjå etter vanlege variabel­namn som for "
+#~ "eksempel HTTP_PROXY, FTP_PROXY og NO_PROXY.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "&Autooppdaging"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "Kopla direkte til Internett."
+
+#~ msgid "&No proxy"
+#~ msgstr "&Ingen mellomtenar"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP-mellomtenar:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "Oppgje adressa til HTTP-mellomtenaren."
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "Oppgje portnummeret til HTTP-mellomtenaren."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "Bruk denne mellomtenaren for &alle protokollar"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL-mellomtenar:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "Oppgje adressa til HTTPS-mellomtenaren."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "Oppgje portnummeret til HTTPS-mellomtenaren."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP-mellomtenar:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "Oppgje adressa til FTP-mellomtenaren."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "Oppgje portnummeret til FTP-mellomtenaren."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS-mellomtenar:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "Oppgje adressa til SOCKS-mellomtenaren."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "Oppgje portnummeret til SOCKS-mellomtenaren."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Oppgje namnet på miljø­variabelen, for eksempel <b>NO_PROXY</b>, som "
+#~ "inneheld adresser til nettstadar der mellomtenaren ikkje skal brukast."
+#~ "<p>\n"
+#~ "Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
+#~ "denne variabelen automatisk.\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "Unntak:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Skriv inn ei liste over vertsnamn eller IP-adresser der "
+#~ "mellomtenarinnstillingane over ikkje skal brukast.</p>\n"
+#~ "<p>Viss du vil utelata alle vertar i eit domene, berre skriv inn "
+#~ "domenenamnet med eit punktum føre. For eksempel kan du utelata alle "
+#~ "vertsnamn under <i>kde.org</i> ved å skriva <i>.kde.org</i>. Jokerteikn, "
+#~ "som «*» eller «?», er ikkje støtta og vil ikkje ha nokon verknad.</p>\n"
+#~ "<p>Du kan òg skriva inn IP-adresser, for eksempel 127.0.0.1 og IP-"
+#~ "adresser med subnet-maske, for eksempel 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Kryss av her dersom du vil bruka innstillingane for mellomtenar berre for "
+#~ "adresser i <i>unntakslista</i>.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "Bruk berre mellomtenar for adresser i unntakslista"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr ""
+#~ "Bruk det valde oppsettsskriptet for tilpassing av mellomtenaroppsettet."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "&Bruk mellomtenaroppsettet på denne adressa:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "Tilpass mellomtenaroppsettet manuelt."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "Bruk sjølvvalt mellomtenaroppsett:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Oppgje namnet på miljø­variabelen, for eksempel <b>HTTP_PROXY</b>, som "
+#~ "inneheld adressa til HTTP-mellomtenaren.\n"
+#~ "<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
+#~ "denne variabelen automatisk.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "H&TTP-mellomtenar:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Oppgje namnet på miljø­variabelen, for eksempel <b>HTTPS_PROXY</b>, "
+#~ "som inneheld adressa til HTTPS-mellomtenaren.\n"
+#~ "<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
+#~ "denne variabelen automatisk.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "SS&L-mellomtenar:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Oppgje namnet på miljø­variabelen, for eksempel <b>FTP_PROXY</b>, som "
+#~ "inneheld adressa til FTP-mellomtenaren.\n"
+#~ "<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
+#~ "denne variabelen automatisk.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>Oppgje namnet på miljøvariabelen, for eksempel <b>SOCKS_PROXY</b>, "
+#~ "som inneheld adressa til SOCKS-mellomtenaren.\n"
+#~ "<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å prøva å oppdaga "
+#~ "denne variabelen automatisk.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOC&KS-mellomtenar:"
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>Oppgje namnet på miljøvariabelen, for eksempel <b>SOCKS_PROXY</b>, "
+#~ "som inneheld adressa til SOCKS-mellomtenaren.<p>Du kan òg trykkja på "
+#~ "knappen <b>«Autooppdag»</b> for å prøva å oppdaga denne variabelen "
+#~ "automatisk.</p></qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "&Unntak:"
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>Oppgje namnet på miljø­variabelen, for eksempel <b>NO_PROXY</b>, som "
+#~ "inneheld adresser til nettstadar der mellomtenar-oppsettet ovanfor ikkje "
+#~ "skal brukast.<p>Du kan òg trykkja på knappen <b>«Autooppdag»</b> for å "
+#~ "prøva å oppdaga denne variabelen automatisk.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "Vis verdiane til tilhøyrande &miljøvariablar"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Finn og set opp mellomtenar­innstillingar automatisk.<p>Automatisk søk "
+#~ "vert utført med protokollen <b>Web Proxy Auto-Discovery Protocol (WPAD)</"
+#~ "b>.<p><b>MERK:</b> Dette fungerer kanskje ikkje rett, eller ikkje i det "
+#~ "heile, på enkelte Unix/Linux-distribusjonar.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "&Finn automatisk mellomtenaroppsett"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "Automatisk oppsett, òg kalla «Web Proxy Auto-Discovery» (WPAD), er nesten "
+#~ "aldri rett innstiling. Viss du har dette slått på, kan det gjera "
+#~ "tilgangen til nettverket tregare og mindre trygg. Nettverk­ansvarleg veit "
+#~ "om det er nødvendig å bruka denne innstillinga."
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "Oppgje adressa til skriptet for mellomtenaroppsett."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt> <p>Bruk mellomtenarinnstillingane definerte på systemet.</p>\n"
+#~ "<p>På nokre plattformer finst det mellomtenaroppsett for heile systemet. "
+#~ "Vel du dette, vert desse globale innstillingane brukte.</p>\n"
+#~ "<p>På Mac-plattformer</p> \n"
+#~ "<p>På Windows-plattformer</p>\n"
+#~ "<p>På Unix og Linux-plattformer er slike systeminnstillingar som regel "
+#~ "definerte via miljøvariablar. Desse miljøvariablane vert lesne og brukte "
+#~ "dersom dei er definerte: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+#~ "<b>FTP_PROXY</b> og <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "Bruk s&ystemoppsett for mellomtenar:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

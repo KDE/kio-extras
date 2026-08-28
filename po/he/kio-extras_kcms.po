@@ -19,8 +19,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
-"PO-Revision-Date: 2026-06-03 08:11+0300\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
+"PO-Revision-Date: 2026-08-27 07:44+0300\n"
 "Last-Translator: Yaron Shahrabani <sh.yaron@gmail.com>\n"
 "Language-Team: צוות התרגום של KDE ישראל\n"
 "Language: he\n"
@@ -29,7 +29,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=4; plural=(n == 1) ? 0 : ((n == 2) ? 1 : ((n > 10 && "
 "n % 10 == 0) ? 2 : 3));\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -47,491 +47,28 @@ msgstr ""
 "כאשר קובץ נמצא בתהליך העלאה, הוא מקבל את הסיומת \".part\". כאשר ההעלאה "
 "מסתיימת שמו משתנה לשם הקובץ האמתי."
 
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"הגדרת מתווך.\n"
-"<p>\n"
-"שרת מתווך הוא שרת תווך שיושב בין המחשב שלך לאינטרנט ומספק שירותים כגון מטמון "
-"אתרי אינטרנט וסינון. שרתי תיווך עם מטמון מספקים לך גישה מהירה יותר לאתרים "
-"שכבר ביקרת בהם על ידי אחסון או שמירה במטמון של הדפים האלה, שרתי תייוך מסננים "
-"בדרך כלל מספרים את היכולת לחסום בקשות לפרסומות, ספאם או כל דבר אחר שעדיף לך "
-"לחסום.\n"
-"<p>\n"
-"במקרה של ספק בנוגע לצורך בשימוש בשרת מתווך לחיבור לאינטרנט כדאי להיוועץ "
-"מדריך ההתקנה של ספק שירות האינטרנט שלך או בהנהלת מערכות המחשוב.\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>לנסות לגלות את משתני הסביבה שמשמשים למידע מתווך כלל־מערכתי אוטומטית.<p> "
-"יכולת זו עובדת על ידי חיפוש שמות משתנים נפוצים כגון HTTP_PROXY,‏ FTP_PROXY ו־"
-"NO_PROXY.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "&זיהוי אוטומטי"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "התחברות ישירות לאינטרנט."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "&ללא מתווך"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "מתווך HTTP:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "נא למלא את כתובת שרת מתווך ה־HTTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "פתחה:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "נא למלא את מספר הפתחה של שרת מתווך ה־HTTP."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "להשתמש בשרת מתווך זה ל&כל הפרוטוקולים"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "מתווך SSL:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "נא למלא את כתובת שרת מתווך ה־HTTPS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "נא למלא את מספר הפתחה של שרת מתווך ה־HTTPS."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "מתווך FTP:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "נא למלא את כתובת שרת מתווך ה־FTP."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "נא למלא את מספר הפתחה של שרת מתווך ה־FTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "מתווך SOCKS:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "נא למלא את כתובת שרת מתווך ה־SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "נא למלא את מספר פתחת שרת מתווך ה־SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"נא למלא את משתנה הסביבה, למשל: <b>NO_PROXY</b>, שמשמש לאחסון כתובות האתרים "
-"שעבורם ייעשה שימוש בשרת המתווך.<p>\n"
-"לחלופין, ניתן ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
-"המשתנה אוטומטית.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "חריגות:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>נא למלא רשימה מופרדת בפסיקים של שמות מארחים או כתובות IP שיוחרגו משימוש "
-"בהגדרות המתווך הבאות.</p>\n"
-"<p>כדי לכלול את כל המארחים בשם תחום מסוים, צריך פשוט למלא את שם התחום ולפניו "
-"נקודה. למשל, כדי להחריג את כל שמות המארחים תחת <i>kde.org</i>, יש למלא את "
-"הביטוי <i>.kde.org</i>. אין תמיכה בתווי הכללה כגון ‚*’ או ‚?’ ולא תהיה להם "
-"השפעה.</p>\n"
-"<p>בנוסף, אפשר למלא כתובות IP, למשל: 127.0.0.1 וכתובות IP עם תת־רשת, למשל: "
-"192.168.0.1/24.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"יש לסמן את התיבה הזאת כדי שהגדרות המתווך שלהלן יחולו רק על המתווכים שמופיעים "
-"ברשימת ה<i>החרגות</i>.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "להשתמש בהגדרות מתווך רק לכתובות ברשימת החריגות"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "להשתמש בסקריפט המתווך שצוין כדי להגדיר את המתווך."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "להשתמש בכתובת הגדרות מתווך אוטומטיות:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "מילוי פרטי הגדרות שרת המתווך ידנית."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "להשתמש בהגדרות מתווך שצוינו ידנית:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"נא למלא את שם משתנה הסביבה, למשל: <b>HTTP_PROXY</b>, שמשמש לאחסון כתובת שרת "
-"מתווך ה־HTTP.<p>\n"
-"לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
-"המשתנה הזה אוטומטית.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "מ&תווך HTTP:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"נא למלא את שם משתנה הסביבה, למשל: <b>HTTPS_PROXY</b>, שמשמש לאחסון כתובת שרת "
-"מתווך ה־HTTPS.<p>\n"
-"לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
-"המשתנה הזה אוטומטית.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "מתוו&ך SSL:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"נא למלא את שם משתנה הסביבה, למשל: <b>FTP_PROXY</b>, שמשמש לאחסון כתובת שרת "
-"מתווך ה־FTP.<p>\n"
-"לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
-"המשתנה הזה אוטומטית.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"נא למלא את שם משתנה הסביבה, למשל: <b>SOCKS_PROXY</b>, שמשמש לאחסון כתובת שרת "
-"מתווך ה־SOCKS.<p>\n"
-"לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
-"המשתנה הזה אוטומטית.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "&מתווך SOCKS:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>נא למלא את שם משתנה הסביבה, למשל: <b>SOCKS_PROXY</b>, שמשמש לאחסון כתובת "
-"שרת מתווך ה־SOCKS.<p>לחלופין, אפשר ללחוץ על הכפתור <b>&quot;זיהוי "
-"אוטומטי&quot;</b> כדי לנסות לגלות את המשתנה הזה אוטומטית.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "&חריגות:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>נא למלא את משתנה הסביבה, למשל: <b>NO_PROXY</b>, שמשמש לאחסון כתובות "
-"האתרים שהתקשורת אליהן לא תעבור דרך המתווך.<p>לחלופין, אפשר ללחוץ על הכפתור "
-"<b>&quot;זיהוי אוטומטי&quot;</b> כדי לנסות לגלות את המשתנה הזה אוטומטית.</"
-"p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "הצגת &ערך משתני הסביבה"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"לזהות ולהגדיר את המתווך אוטומטית.<p>\n"
-"זיהוי אוטומטי מתבצע דרך <b>Web Proxy Auto-Discovery Protocol‏ (WPAD)</b>.<p>\n"
-"<b>לתשומת ליבך:</b> יכול להיות שאפשרות זו לא תעבוד כראוי או בכלל לא בחלק "
-"מהפצות יוניקס/לינוקס.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "&זיהוי הגדרות מתווך אוטומטית"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"הגדרות אוטומטיות, ידועות גם בשם גילוי אוטומטי של מתווך רשת (WPAD), הן בדרך "
-"כלל לא ההגדרות הנכונות. הפעלת האפשרות הזאת כשאין צורך בכך עלולה להאט את "
-"הגישה לרשת ולפגוע באבטחת החיבור שלך לרשת. הנהלת הרשת שלך תדע אם צריך להפעיל "
-"את האפשרות הזאת."
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "נא ללא את כתובת סקריפט הגדרות המתווך."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>להשתמש בהגדרות מתווך שמוגדרות במערכת.</p>\n"
-"<p>חלק מהפלטפורמות מציעות מידע הגדרות מתווך כלל־מערכתיות ובחירה באפשרות הזאת "
-"מאפשרת להשתמש בהגדרות האלו.</p>\n"
-"<p>בפלטפורמות Mac</p>\n"
-"<p>בפלטפורמות Windows</p>\n"
-"<p>בפלטפורמות יוניקס ולינוקס, הגדרות מתווך מערכת שכאלה בדרך כלל מוגדרות דרך "
-"משתנים סביבתיים. המשתנים הסביבתיים הבאים זוהו וייעשה בהם שימוש כשהם קיימים: "
-"<b>HTTP_PROXY</b>,‏ <b>HTTPS_PROXY</b>,‏ <b>FTP_PROXY</b>,‏ <b>NO_PROXY</b>.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "להשתמש בהגדרות המתווך של המ&ערכת:"
-
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
-msgstr "יש להפעיל את היישומים הפעילים מחדש כדי שהשינויים האלו ייכנסו לתוקף."
+msgstr ""
+"יש להפעיל את היישומים הפעילים מחדש כדי שהשינויים האלו ייכנסו לתוקף עבורם."
 
 #: proxy/ui/main.qml:49
-#, fuzzy, kde-format
-#| msgid "&No proxy"
+#, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr "&ללא מתווך"
+msgstr "ללא מתווך"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "&זיהוי הגדרות מתווך אוטומטית"
+msgstr "זיהוי הגדרות מתווך אוטומטית"
 
 #: proxy/ui/main.qml:75
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
-#| "is almost never the correct configuration. Enabling it when it is not "
-#| "required may slow down network access and make your network less secure. "
-#| "Your network administrator will know whether enabling it is required."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
@@ -545,64 +82,55 @@ msgstr ""
 "את האפשרות הזאת."
 
 #: proxy/ui/main.qml:83
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy auto-configuration URL"
-msgstr "להשתמש בכתובת הגדרות מתווך אוטומטיות:"
+msgstr "להשתמש בכתובת ההגדרות האוטומטיות של המתווך"
 
 #: proxy/ui/main.qml:104
-#, fuzzy, kde-format
-#| msgid "Cannot open file"
+#, kde-format
 msgctxt "@label:button"
 msgid "Choose file…"
-msgstr "אין אפשרות לפתוח את הקובץ"
+msgstr "בחירת קובץ…"
 
 #: proxy/ui/main.qml:119
-#, fuzzy, kde-format
-#| msgid "Use s&ystem proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use system proxy configuration"
-msgstr "להשתמש בהגדרות המתווך של המ&ערכת:"
+msgstr "להשתמש בהגדרות המתווך של המערכת"
 
 #: proxy/ui/main.qml:129
-#, fuzzy, kde-format
-#| msgid "Auto D&etect"
+#, kde-format
 msgctxt "@action:button"
 msgid "Auto-Detect"
-msgstr "&זיהוי אוטומטי"
+msgstr "זיהוי אוטומטי"
 
 #: proxy/ui/main.qml:137
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "HTTP proxy:"
 msgstr "מתווך HTTP:"
 
 #: proxy/ui/main.qml:143
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SSL proxy:"
 msgstr "מתווך SSL:"
 
 #: proxy/ui/main.qml:149
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "FTP proxy:"
 msgstr "מתווך FTP:"
 
 #: proxy/ui/main.qml:155
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SOCKS proxy:"
 msgstr "מתווך SOCKS:"
 
 #: proxy/ui/main.qml:161 proxy/ui/main.qml:304
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgctxt "@label"
 msgid "Exceptions:"
 msgstr "חריגות:"
@@ -611,60 +139,52 @@ msgstr "חריגות:"
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "רשימה מופרדת בפסיקים של כתובות IP"
 
 #: proxy/ui/main.qml:171
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr "הצגת &ערך משתני הסביבה"
+msgstr "הצגת ערך משתני הסביבה"
 
 #: proxy/ui/main.qml:178
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr "להשתמש בהגדרות מתווך שצוינו ידנית:"
+msgstr "להשתמש בהגדרות מתווך שצוינו ידנית"
 
 #: proxy/ui/main.qml:196
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "HTTP Proxy"
-msgstr "מתווך HTTP:"
+msgstr "מתווך HTTP"
 
 #: proxy/ui/main.qml:219
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
-msgstr "להשתמש בשרת מתווך זה ל&כל הפרוטוקולים"
+msgstr "להשתמש בשרת מתווך זה לכל הפרוטוקולים"
 
 #: proxy/ui/main.qml:233
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SSL Proxy"
-msgstr "מתווך SSL:"
+msgstr "מתווך SSL"
 
 #: proxy/ui/main.qml:256
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "FTP Proxy"
-msgstr "מתווך FTP:"
+msgstr "מתווך FTP"
 
 #: proxy/ui/main.qml:279
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SOCKS Proxy"
-msgstr "מתווך SOCKS:"
+msgstr "מתווך SOCKS"
 
 #: proxy/ui/main.qml:320
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the exceptions list"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "להשתמש בהגדרות מתווך רק לכתובות ברשימת החריגות"
@@ -673,28 +193,25 @@ msgstr "להשתמש בהגדרות מתווך רק לכתובות ברשימת 
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "כתובת:"
 
 #: proxy/ui/main.qml:387
-#, fuzzy, kde-format
-#| msgid "Port:"
+#, kde-format
 msgctxt "@label"
 msgid "Port:"
 msgstr "פתחה:"
 
 #: proxy/ui/main.qml:410
-#, fuzzy, kde-format
-#| msgid "Proxy Authentication Failed."
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr "אימות המתווך נכשל."
+msgstr "פתיחת קובץ הגדרות מתווך אוטומטיות"
 
 #: proxy/ui/main.qml:411
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr "להשתמש בכתובת הגדרות מתווך אוטומטיות:"
+msgstr "קובצי הגדרות מתווך אוטומטיות (‎*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1223,6 +740,317 @@ msgstr "&ערכת תווים:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "הוספת ממלא מקום לשאילתה"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "הגדרת מתווך.\n"
+#~ "<p>\n"
+#~ "שרת מתווך הוא שרת תווך שיושב בין המחשב שלך לאינטרנט ומספק שירותים כגון "
+#~ "מטמון אתרי אינטרנט וסינון. שרתי תיווך עם מטמון מספקים לך גישה מהירה יותר "
+#~ "לאתרים שכבר ביקרת בהם על ידי אחסון או שמירה במטמון של הדפים האלה, שרתי "
+#~ "תייוך מסננים בדרך כלל מספרים את היכולת לחסום בקשות לפרסומות, ספאם או כל "
+#~ "דבר אחר שעדיף לך לחסום.\n"
+#~ "<p>\n"
+#~ "במקרה של ספק בנוגע לצורך בשימוש בשרת מתווך לחיבור לאינטרנט כדאי להיוועץ "
+#~ "מדריך ההתקנה של ספק שירות האינטרנט שלך או בהנהלת מערכות המחשוב.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>לנסות לגלות את משתני הסביבה שמשמשים למידע מתווך כלל־מערכתי אוטומטית."
+#~ "<p> יכולת זו עובדת על ידי חיפוש שמות משתנים נפוצים כגון HTTP_PROXY,‏ "
+#~ "FTP_PROXY ו־NO_PROXY.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "&זיהוי אוטומטי"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "התחברות ישירות לאינטרנט."
+
+#~ msgid "&No proxy"
+#~ msgstr "&ללא מתווך"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "מתווך HTTP:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "נא למלא את כתובת שרת מתווך ה־HTTP."
+
+#~ msgid "Port:"
+#~ msgstr "פתחה:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "נא למלא את מספר הפתחה של שרת מתווך ה־HTTP."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "להשתמש בשרת מתווך זה ל&כל הפרוטוקולים"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "מתווך SSL:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "נא למלא את כתובת שרת מתווך ה־HTTPS."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "נא למלא את מספר הפתחה של שרת מתווך ה־HTTPS."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "מתווך FTP:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "נא למלא את כתובת שרת מתווך ה־FTP."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "נא למלא את מספר הפתחה של שרת מתווך ה־FTP."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "מתווך SOCKS:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "נא למלא את כתובת שרת מתווך ה־SOCKS."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "נא למלא את מספר פתחת שרת מתווך ה־SOCKS."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "נא למלא את משתנה הסביבה, למשל: <b>NO_PROXY</b>, שמשמש לאחסון כתובות "
+#~ "האתרים שעבורם ייעשה שימוש בשרת המתווך.<p>\n"
+#~ "לחלופין, ניתן ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
+#~ "המשתנה אוטומטית.\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "חריגות:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>נא למלא רשימה מופרדת בפסיקים של שמות מארחים או כתובות IP שיוחרגו "
+#~ "משימוש בהגדרות המתווך הבאות.</p>\n"
+#~ "<p>כדי לכלול את כל המארחים בשם תחום מסוים, צריך פשוט למלא את שם התחום "
+#~ "ולפניו נקודה. למשל, כדי להחריג את כל שמות המארחים תחת <i>kde.org</i>, יש "
+#~ "למלא את הביטוי <i>.kde.org</i>. אין תמיכה בתווי הכללה כגון ‚*’ או ‚?’ ולא "
+#~ "תהיה להם השפעה.</p>\n"
+#~ "<p>בנוסף, אפשר למלא כתובות IP, למשל: 127.0.0.1 וכתובות IP עם תת־רשת, "
+#~ "למשל: 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "יש לסמן את התיבה הזאת כדי שהגדרות המתווך שלהלן יחולו רק על המתווכים "
+#~ "שמופיעים ברשימת ה<i>החרגות</i>.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "להשתמש בהגדרות מתווך רק לכתובות ברשימת החריגות"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "להשתמש בסקריפט המתווך שצוין כדי להגדיר את המתווך."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "להשתמש בכתובת הגדרות מתווך אוטומטיות:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "מילוי פרטי הגדרות שרת המתווך ידנית."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "להשתמש בהגדרות מתווך שצוינו ידנית:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "נא למלא את שם משתנה הסביבה, למשל: <b>HTTP_PROXY</b>, שמשמש לאחסון כתובת "
+#~ "שרת מתווך ה־HTTP.<p>\n"
+#~ "לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
+#~ "המשתנה הזה אוטומטית.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "מ&תווך HTTP:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "נא למלא את שם משתנה הסביבה, למשל: <b>HTTPS_PROXY</b>, שמשמש לאחסון כתובת "
+#~ "שרת מתווך ה־HTTPS.<p>\n"
+#~ "לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
+#~ "המשתנה הזה אוטומטית.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "מתוו&ך SSL:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "נא למלא את שם משתנה הסביבה, למשל: <b>FTP_PROXY</b>, שמשמש לאחסון כתובת "
+#~ "שרת מתווך ה־FTP.<p>\n"
+#~ "לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
+#~ "המשתנה הזה אוטומטית.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "נא למלא את שם משתנה הסביבה, למשל: <b>SOCKS_PROXY</b>, שמשמש לאחסון כתובת "
+#~ "שרת מתווך ה־SOCKS.<p>\n"
+#~ "לחלופין, אפשר ללחוץ על הכפתור <b>„זיהוי אוטומטי”</b> כדי לנסות לגלות את "
+#~ "המשתנה הזה אוטומטית.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "&מתווך SOCKS:"
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>נא למלא את שם משתנה הסביבה, למשל: <b>SOCKS_PROXY</b>, שמשמש לאחסון "
+#~ "כתובת שרת מתווך ה־SOCKS.<p>לחלופין, אפשר ללחוץ על הכפתור <b>&quot;זיהוי "
+#~ "אוטומטי&quot;</b> כדי לנסות לגלות את המשתנה הזה אוטומטית.</p></qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "&חריגות:"
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>נא למלא את משתנה הסביבה, למשל: <b>NO_PROXY</b>, שמשמש לאחסון כתובות "
+#~ "האתרים שהתקשורת אליהן לא תעבור דרך המתווך.<p>לחלופין, אפשר ללחוץ על "
+#~ "הכפתור <b>&quot;זיהוי אוטומטי&quot;</b> כדי לנסות לגלות את המשתנה הזה "
+#~ "אוטומטית.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "הצגת &ערך משתני הסביבה"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "לזהות ולהגדיר את המתווך אוטומטית.<p>\n"
+#~ "זיהוי אוטומטי מתבצע דרך <b>Web Proxy Auto-Discovery Protocol‏ (WPAD)</b>."
+#~ "<p>\n"
+#~ "<b>לתשומת ליבך:</b> יכול להיות שאפשרות זו לא תעבוד כראוי או בכלל לא בחלק "
+#~ "מהפצות יוניקס/לינוקס.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "&זיהוי הגדרות מתווך אוטומטית"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "הגדרות אוטומטיות, ידועות גם בשם גילוי אוטומטי של מתווך רשת (WPAD), הן "
+#~ "בדרך כלל לא ההגדרות הנכונות. הפעלת האפשרות הזאת כשאין צורך בכך עלולה להאט "
+#~ "את הגישה לרשת ולפגוע באבטחת החיבור שלך לרשת. הנהלת הרשת שלך תדע אם צריך "
+#~ "להפעיל את האפשרות הזאת."
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "נא ללא את כתובת סקריפט הגדרות המתווך."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>להשתמש בהגדרות מתווך שמוגדרות במערכת.</p>\n"
+#~ "<p>חלק מהפלטפורמות מציעות מידע הגדרות מתווך כלל־מערכתיות ובחירה באפשרות "
+#~ "הזאת מאפשרת להשתמש בהגדרות האלו.</p>\n"
+#~ "<p>בפלטפורמות Mac</p>\n"
+#~ "<p>בפלטפורמות Windows</p>\n"
+#~ "<p>בפלטפורמות יוניקס ולינוקס, הגדרות מתווך מערכת שכאלה בדרך כלל מוגדרות "
+#~ "דרך משתנים סביבתיים. המשתנים הסביבתיים הבאים זוהו וייעשה בהם שימוש כשהם "
+#~ "קיימים: <b>HTTP_PROXY</b>,‏ <b>HTTPS_PROXY</b>,‏ <b>FTP_PROXY</b>,‏ "
+#~ "<b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "להשתמש בהגדרות המתווך של המ&ערכת:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

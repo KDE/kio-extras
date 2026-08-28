@@ -16,7 +16,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2016-12-09 15:05+0200\n"
 "Last-Translator: Dimitris Kardarakos <dimkard@gmail.com>\n"
 "Language-Team: Greek <kde-i18n-el@kde.org>\n"
@@ -42,497 +42,6 @@ msgid ""
 msgstr ""
 "Όταν ένα αρχείο είναι απεσταλμένο μερικώς η επέκτασή του είναι \".part\". Η "
 "επέκταση αυτή θα αφαιρεθεί όταν η μεταφορά του αρχείου ολοκληρωθεί."
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Διαμόρφωση διαμεσολαβητή.\n"
-"<p>\n"
-"Ένας διαμεσολαβητής είναι μια ενδιάμεση εφαρμογή που στήνεται ανάμεσα στο "
-"μηχάνημά σας και το διαδίκτυο και προσφέρει υπηρεσίες λανθάνουσας μνήμης και "
-"φιλτραρίσματος ιστοσελίδων.Οι διαμεσολαβητές λανθάνουσας μνήμης σας δίνουν "
-"γρηγορότερη πρόσβαση σε ιστοσελίδες που έχετε  ήδη επισκεφθεί, αποθηκεύοντας "
-"τοπικά το περιεχόμενό τους. Οι διαμεσολαβητές φιλτραρίσματος, από την άλλη, "
-"προσφέρουν τη δυνατότητα να αποτρέψετε ανεπιθύμητο διαφημιστικό υλικό ή "
-"spam.\n"
-"<p>\n"
-"Αν δεν είστε σίγουροι αν χρειάζεστε ή όχι ένα διαμεσολαβητή για τη σύνδεση "
-"στο διαδίκτυο, ανατρέξτε στον οδηγό εγκατάστασης Internet από την εταιρεία "
-"που σας παρέχει τη σύνδεση ή το διαχειριστή του συστήματός σας.\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>Προσπάθεια αυτόματης ανίχνευσης των μεταβλητών περιβάλλοντος που "
-"χρησιμοποιούνται για τον ορισμό των διαμεσολαβητών του συστήματος. <p> Αυτό "
-"το χαρακτηριστικό λειτουργεί αναζητώντας για κοινά χρησιμοποιούμενα ονόματα "
-"μεταβλητών όπως τα HTTP_PROXY, FTP_PROXY και NO_PROXY. </qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "Αυτόματη ανίχν&ευση"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "Σύνδεση με το διαδίκτυο απευθείας."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "Χωρίς διαμεσολαβ&ητή"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "HTTP διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή HTTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "Θύρα:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή HTTP."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "Χρήση αυτού του διαμεσολαβητή για ό&λα τα πρωτόκολλα"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "SSL διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή HTTPS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή HTTPS."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "FTP διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή FTP."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή FTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "SOCKS διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>NO_PROXY</b>, που "
-"χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή που δεν "
-"πρέπει να χρησιμοποιηθεί.<p>\n"
-"Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> για "
-"την αυτόματη εύρεση της μεταβλητής αυτής. \n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "Εξαιρέσεις:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Δώστε μια λίστα με το κόμμα για διαχωριστικό από ονόματα υπολογιστών ή IP "
-"διευθύνσεις που πρέπει να εξαιρεθούν από τη χρήση των παραπάνω ρυθμίσεων "
-"διαμεσολαβητή.</p>\n"
-"<p>Αν θέλετε να εξαιρεθούν όλοι οι υπολογιστές για ένα δοσμένο τομέα, τότε "
-"απλά δώστε το όνομα του τομέα με μια τελεία μπροστά. Για παράδειγμα, για να "
-"αποκλείσετε όλους τους υπολογιστές για το <i>kde.org</i>, δώστε <i>.kde.org</"
-"i>. Χαρακτήρες υποκατάστασης όπως '*' ή '?' δεν υποστηρίζονται και δεν θα "
-"έχουν επίδραση.</p>\n"
-"<p>Επιπλέον, μπορείτε να εισάγετε IP διευθύνσεις, π.χ. 127.0.0.1 και IP "
-"διευθύνσεις με υποδίκτυο, π.χ. 192.168.0.1/24.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"Επιλέξτε το πλαίσιο αυτό αν θέλετε οι παραπάνω ρυθμίσεις διαμεσολαβητή να "
-"εφαρμόζονται μόνο στις διευθύνσεις που βρίσκονται στη λίστα με τις "
-"<i>Εξαιρέσεις</i>.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
-"Χρήση ρυθμίσεις διαμεσολαβητή μόνο για διευθύνσεις στη λίστα εξαιρέσεων"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr ""
-"Χρήση του ορισμένου σεναρίου διαμεσολαβητή για τη διαμόρφωση των ρυθμίσεων "
-"διαμεσολαβητή."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "Χρήση του URL αυτόματης διαμόρ&φωσης διαμεσολαβητή:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Χειροκίνητη εισαγωγή πληροφοριών διαμόρφωσης διαμεσολαβητή."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "Χρήση χειροκίνητα ορισμένης διαμόρφωσης διαμεσολαβητή:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>HTTP_PROXY</b>, που "
-"χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή HTTP."
-"<p>\n"
-"Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> για "
-"την αυτόματη εύρεση της μεταβλητής αυτής.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "H&TTP διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>HTTPS_PROXY</b>, που "
-"χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή HTTPS."
-"<p>\n"
-"Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> για "
-"την αυτόματη εύρεση της μεταβλητής αυτής.</p> \n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "SS&L διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>FTP_PROXY</b>, που "
-"χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή FTP.<p>\n"
-"Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> για "
-"την αυτόματη εύρεση της μεταβλητής αυτής.</p> \n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>SOCKS_PROXY</b>, που "
-"χρησιμεύει για την αποθήκευση της διεύθυνσης του διαμεσολαβητή SOCKS.<p>\n"
-"Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> για "
-"την αυτόματη εύρεση της μεταβλητής αυτής.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "SOCKS διαμεσολαβητής:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-#| "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-#| "can click on the <b>\"Auto Detect\"</b> button to attempt an automatic "
-#| "discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>SOCKS_PROXY</b>, που "
-"χρησιμεύει για την αποθήκευση της διεύθυνσης του διαμεσολαβητή SOCKS.<p>\n"
-"Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> για "
-"την αυτόματη εύρεση της μεταβλητής αυτής.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "Ε&ξαιρέσεις:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
-#| "the addresses of sites for which the above proxy settings should not be "
-#| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> button "
-#| "to attempt an automatic discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>NO_PROXY</b>, που "
-"χρησιμεύει για την αποθήκευση διευθύνσεων ιστοχώρων για τις οποίες οι "
-"παραπάνω ρυθμίσεις διαμεσολαβητή δεν πρέπει να χρησιμοποιηθούν."
-"<p>Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
-"για την αυτόματη εύρεση της μεταβλητής αυτής.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "Εμφάνιση της &τιμής των μεταβλητών περιβάλλοντος"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically detect and configure the proxy settings.<p>\n"
-#| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-#| "Protocol (WPAD)</b>.<p>\n"
-#| "<b>NOTE:</b> This option might not work properly or not work at all in "
-#| "some UNIX/Linux distributions. If you encounter a problem when using this "
-#| "option, please check the FAQ section at http://konqueror.kde.org.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Αυτόματη ανίχνευση και διαμόρφωση του διαμεσολαβητή σας.<p>\n"
-"Η αυτόματη ανίχνευση γίνεται χρησιμοποιώντας το πρωτόκολλο <b>Web Proxy Auto-"
-"Discovery Protocol (WPAD)</b>.<p>\n"
-"<b>ΣΗΜΕΙΩΣΗ:</b> Αυτή η επιλογή μπορεί να μη λειτουργήσει σωστά ή να μη "
-"λειτουργήσει καθόλου σε κάποιες UNIX/Linux διανομές. Αν αντιμετωπίσετε "
-"κάποιο πρόβλημα χρησιμοποιώντας αυτή την επιλογή, παρακαλώ ελέγξτε της "
-"Ερωτήσεις/Απαντήσεις στο http://konqueror.kde.org.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "Ανίχνευση της διαμόρφωσης διαμεσ&ολαβητή αυτόματα"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "Δώστε τη διεύθυνση για το σενάριο διαμόρφωσης διαμεσολαβητή."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Χρήση ρυθμίσεων διαμεσολαβητή που ορίζονται στο σύστημα.</p>\n"
-"<p>Μερικές πλατφόρμες προσφέρουν πληροφορίες διαμόρφωσης διαμεσολαβητή σε "
-"επίπεδο συστήματος και με την επιλογή αυτή μπορείτε να χρησιμοποιήσετε αυτές "
-"τις ρυθμίσεις.</p>\n"
-"<p>Σε Mac πλατφόρμες</p>\n"
-"<p>Σε Windows πλατφόρμες</p>\n"
-"<p>Σε Unix και Linux πλατφόρμες, τέτοιες ρυθμίσεις διαμεσολαβητή συστήματος "
-"συνήθως ορίζονται μέσα από μεταβλητές περιβάλλοντος. Οι ακόλουθες μεταβλητές "
-"περιβάλλοντος ανιχνεύονται και χρησιμοποιούνται όταν υπάρχουν: "
-"<b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "Χρήση διαμόρ&φωσης διαμεσολαβητή συστήματος:"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1305,6 +814,352 @@ msgstr "&Σύνολο χαρακτήρων:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Εισαγωγή αντικαταστάτη αναζήτησης"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Διαμόρφωση διαμεσολαβητή.\n"
+#~ "<p>\n"
+#~ "Ένας διαμεσολαβητής είναι μια ενδιάμεση εφαρμογή που στήνεται ανάμεσα στο "
+#~ "μηχάνημά σας και το διαδίκτυο και προσφέρει υπηρεσίες λανθάνουσας μνήμης "
+#~ "και φιλτραρίσματος ιστοσελίδων.Οι διαμεσολαβητές λανθάνουσας μνήμης σας "
+#~ "δίνουν γρηγορότερη πρόσβαση σε ιστοσελίδες που έχετε  ήδη επισκεφθεί, "
+#~ "αποθηκεύοντας τοπικά το περιεχόμενό τους. Οι διαμεσολαβητές "
+#~ "φιλτραρίσματος, από την άλλη, προσφέρουν τη δυνατότητα να αποτρέψετε "
+#~ "ανεπιθύμητο διαφημιστικό υλικό ή spam.\n"
+#~ "<p>\n"
+#~ "Αν δεν είστε σίγουροι αν χρειάζεστε ή όχι ένα διαμεσολαβητή για τη "
+#~ "σύνδεση στο διαδίκτυο, ανατρέξτε στον οδηγό εγκατάστασης Internet από την "
+#~ "εταιρεία που σας παρέχει τη σύνδεση ή το διαχειριστή του συστήματός σας.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>Προσπάθεια αυτόματης ανίχνευσης των μεταβλητών περιβάλλοντος που "
+#~ "χρησιμοποιούνται για τον ορισμό των διαμεσολαβητών του συστήματος. <p> "
+#~ "Αυτό το χαρακτηριστικό λειτουργεί αναζητώντας για κοινά χρησιμοποιούμενα "
+#~ "ονόματα μεταβλητών όπως τα HTTP_PROXY, FTP_PROXY και NO_PROXY. </qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "Αυτόματη ανίχν&ευση"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "Σύνδεση με το διαδίκτυο απευθείας."
+
+#~ msgid "&No proxy"
+#~ msgstr "Χωρίς διαμεσολαβ&ητή"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP διαμεσολαβητής:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή HTTP."
+
+#~ msgid "Port:"
+#~ msgstr "Θύρα:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή HTTP."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "Χρήση αυτού του διαμεσολαβητή για ό&λα τα πρωτόκολλα"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL διαμεσολαβητής:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή HTTPS."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή HTTPS."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP διαμεσολαβητής:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή FTP."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή FTP."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS διαμεσολαβητής:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "Δώστε τη διεύθυνση του διαμεσολαβητή SOCKS."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "Δώστε τον αριθμό θύρας του διαμεσολαβητή SOCKS."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>NO_PROXY</b>, που "
+#~ "χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή που "
+#~ "δεν πρέπει να χρησιμοποιηθεί.<p>\n"
+#~ "Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής. \n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "Εξαιρέσεις:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Δώστε μια λίστα με το κόμμα για διαχωριστικό από ονόματα υπολογιστών ή "
+#~ "IP διευθύνσεις που πρέπει να εξαιρεθούν από τη χρήση των παραπάνω "
+#~ "ρυθμίσεων διαμεσολαβητή.</p>\n"
+#~ "<p>Αν θέλετε να εξαιρεθούν όλοι οι υπολογιστές για ένα δοσμένο τομέα, "
+#~ "τότε απλά δώστε το όνομα του τομέα με μια τελεία μπροστά. Για παράδειγμα, "
+#~ "για να αποκλείσετε όλους τους υπολογιστές για το <i>kde.org</i>, δώστε "
+#~ "<i>.kde.org</i>. Χαρακτήρες υποκατάστασης όπως '*' ή '?' δεν "
+#~ "υποστηρίζονται και δεν θα έχουν επίδραση.</p>\n"
+#~ "<p>Επιπλέον, μπορείτε να εισάγετε IP διευθύνσεις, π.χ. 127.0.0.1 και IP "
+#~ "διευθύνσεις με υποδίκτυο, π.χ. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Επιλέξτε το πλαίσιο αυτό αν θέλετε οι παραπάνω ρυθμίσεις διαμεσολαβητή να "
+#~ "εφαρμόζονται μόνο στις διευθύνσεις που βρίσκονται στη λίστα με τις "
+#~ "<i>Εξαιρέσεις</i>.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr ""
+#~ "Χρήση ρυθμίσεις διαμεσολαβητή μόνο για διευθύνσεις στη λίστα εξαιρέσεων"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr ""
+#~ "Χρήση του ορισμένου σεναρίου διαμεσολαβητή για τη διαμόρφωση των "
+#~ "ρυθμίσεων διαμεσολαβητή."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "Χρήση του URL αυτόματης διαμόρ&φωσης διαμεσολαβητή:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "Χειροκίνητη εισαγωγή πληροφοριών διαμόρφωσης διαμεσολαβητή."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "Χρήση χειροκίνητα ορισμένης διαμόρφωσης διαμεσολαβητή:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>HTTP_PROXY</b>, "
+#~ "που χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή "
+#~ "HTTP.<p>\n"
+#~ "Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "H&TTP διαμεσολαβητής:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>HTTPS_PROXY</b>, "
+#~ "που χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή "
+#~ "HTTPS.<p>\n"
+#~ "Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής.</p> \n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "SS&L διαμεσολαβητής:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>FTP_PROXY</b>, "
+#~ "που χρησιμοποιείται για την αποθήκευση της διεύθυνσης του διαμεσολαβητή "
+#~ "FTP.<p>\n"
+#~ "Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής.</p> \n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>SOCKS_PROXY</b>, "
+#~ "που χρησιμεύει για την αποθήκευση της διεύθυνσης του διαμεσολαβητή SOCKS."
+#~ "<p>\n"
+#~ "Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOCKS διαμεσολαβητής:"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~| "used to store the address of the SOCKS proxy server.<p>Alternatively, "
+#~| "you can click on the <b>\"Auto Detect\"</b> button to attempt an "
+#~| "automatic discovery of this variable.</p></qt>"
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>SOCKS_PROXY</b>, "
+#~ "που χρησιμεύει για την αποθήκευση της διεύθυνσης του διαμεσολαβητή SOCKS."
+#~ "<p>\n"
+#~ "Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής.</p></qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "Ε&ξαιρέσεις:"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~| "the addresses of sites for which the above proxy settings should not be "
+#~| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> "
+#~| "button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Εισάγετε το όνομα της μεταβλητής περιβάλλοντος, π.χ. <b>NO_PROXY</b>, που "
+#~ "χρησιμεύει για την αποθήκευση διευθύνσεων ιστοχώρων για τις οποίες οι "
+#~ "παραπάνω ρυθμίσεις διαμεσολαβητή δεν πρέπει να χρησιμοποιηθούν."
+#~ "<p>Εναλλακτικά, μπορείτε να κάνετε κλικ στο <b>\"Αυτόματη ανίχνευση\"</b> "
+#~ "για την αυτόματη εύρεση της μεταβλητής αυτής.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "Εμφάνιση της &τιμής των μεταβλητών περιβάλλοντος"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Automatically detect and configure the proxy settings.<p>\n"
+#~| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~| "Protocol (WPAD)</b>.<p>\n"
+#~| "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~| "some UNIX/Linux distributions. If you encounter a problem when using "
+#~| "this option, please check the FAQ section at http://konqueror.kde.org.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Αυτόματη ανίχνευση και διαμόρφωση του διαμεσολαβητή σας.<p>\n"
+#~ "Η αυτόματη ανίχνευση γίνεται χρησιμοποιώντας το πρωτόκολλο <b>Web Proxy "
+#~ "Auto-Discovery Protocol (WPAD)</b>.<p>\n"
+#~ "<b>ΣΗΜΕΙΩΣΗ:</b> Αυτή η επιλογή μπορεί να μη λειτουργήσει σωστά ή να μη "
+#~ "λειτουργήσει καθόλου σε κάποιες UNIX/Linux διανομές. Αν αντιμετωπίσετε "
+#~ "κάποιο πρόβλημα χρησιμοποιώντας αυτή την επιλογή, παρακαλώ ελέγξτε της "
+#~ "Ερωτήσεις/Απαντήσεις στο http://konqueror.kde.org.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "Ανίχνευση της διαμόρφωσης διαμεσ&ολαβητή αυτόματα"
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "Δώστε τη διεύθυνση για το σενάριο διαμόρφωσης διαμεσολαβητή."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>Χρήση ρυθμίσεων διαμεσολαβητή που ορίζονται στο σύστημα.</p>\n"
+#~ "<p>Μερικές πλατφόρμες προσφέρουν πληροφορίες διαμόρφωσης διαμεσολαβητή σε "
+#~ "επίπεδο συστήματος και με την επιλογή αυτή μπορείτε να χρησιμοποιήσετε "
+#~ "αυτές τις ρυθμίσεις.</p>\n"
+#~ "<p>Σε Mac πλατφόρμες</p>\n"
+#~ "<p>Σε Windows πλατφόρμες</p>\n"
+#~ "<p>Σε Unix και Linux πλατφόρμες, τέτοιες ρυθμίσεις διαμεσολαβητή "
+#~ "συστήματος συνήθως ορίζονται μέσα από μεταβλητές περιβάλλοντος. Οι "
+#~ "ακόλουθες μεταβλητές περιβάλλοντος ανιχνεύονται και χρησιμοποιούνται όταν "
+#~ "υπάρχουν: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, "
+#~ "<b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "Χρήση διαμόρ&φωσης διαμεσολαβητή συστήματος:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

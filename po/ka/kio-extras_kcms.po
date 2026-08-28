@@ -7,8 +7,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
-"PO-Revision-Date: 2026-05-30 05:01+0200\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
+"PO-Revision-Date: 2026-08-27 04:38+0200\n"
 "Last-Translator: Temuri Doghonadze <temuri.doghonadze@gmail.com>\n"
 "Language-Team: Georgian <kde-i18n-doc@kde.org>\n"
 "Language: ka\n"
@@ -34,475 +34,8 @@ msgstr ""
 "ფაილის ატვირთვისას ფაილის გაფართოებაა \".part\". ატვირთვის დასრულებისას "
 "ფაილს ნამდვილი სახელი ერქმევა."
 
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"პროქსის კონფიგურაციის მორგება.\n"
-"<p>\n"
-"პროქსი სერვერი შუალედური მანქანაა თქვენსა და ინტერნეტს შორის, რომელიც "
-"ვებგვერდების გაფილტვრითა და კეშირებითაა დაკავებული. კეშირების პროქსი "
-"ვებსაიტებთან სწრაფად წვდომის საშუალებას გაძლევთ წინა ვიზიტის შემდეგ საიტის "
-"შემცველობის ლოკალურად შენახვის ხარჯზე. მფილტრავი პროქსი კი ბლოკავს ისეთ "
-"მოთხოვნებს, როგორიცაა რეკლამა, სპამი და დანარჩენი ყველაფერი, რისი დაბლოკვაც "
-"გსურთ.\n"
-"<p>\n"
-"თუ იმაში, უნდა გამოიყენოთ პროქსი, თუ არა, დარწმუნებული არ ბრძანდებით, იხილეთ "
-"პროვაიდერის დოკუმენტაცია ან დაუკავშირდით თქვენს სისტემურ ადმინისტრატორს.\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt> პროქსის პარამეტრების ავტომატური აღმოჩენის მცდელობა გარემოს ცვლადების "
-"დახმარებით. <p>ეს თვისება გავრცელებული გარემოს ცვლადების, როგორიცაა "
-"HTTP_PROXY, FTP_PROXY და NO_PROXY, გამოყენებით მუშაობს.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "ავტომტურად გამოცნობა"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "ინტერენტთან პირდაპირ მიერთება."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "პროქ&სის გარეშე"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "HTTP პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "შეიყვანეთ HTTP პროქსი სერვერის მისამართი."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "პორტი:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "შეიყვანეთ HTTP პროქსი სერვერის პორტი."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "ამ პროქსი სერვერის ყველა პროტოკოლისთვის გამოყენება"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "SSL პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "შეიყვანეთ HTTPS პროქსი სერვერის მისამართი."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "შეიყვანეთ HTTPS პროქსი სერვერის პორტი."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "FTP პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "შეიყვანეთ FTP პროქსი სერვერის მისამართი."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "შეიყვანეთ FTP პროქსი სერვერის პორტი."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "SOCKS პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "შეიყვანეთ SOCKS პროქსი სერვერის მისამართი."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "შეიყვანეთ SOCKS პროქსი სერვერის პორტი."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"შეიყვანეთ გარემოს ცვლადი, მაგალითად <b>, NO_PROXY</b>, რომელიც იმ საიტების "
-"მისამართების შესანახად გამოიყენება, როლებისთვისაც პროქსი სერვერი არ "
-"გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
-"b> , რომ ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "გამონაკლისები:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>შეიყვანეთ მძიმით გამოყოფილი ჰოსტის სახელების ან IP მისამართების სია, "
-"რომლებიც ზემოთ მითითებული პროქსის პარამეტრებიდან გამოირიცხება.<p>\n"
-"<p>თუ გნებავთ, მითითებული დომენის ყველა ჰოსტი გამორიცხოთ, შეიყვანეთ დომენი, "
-"რომელიც წერტილით იწყება. მაგალითად, თუ <i>kde.org</i> დომენიდან ყველა ჰოსტის "
-"გამორიცხვა გნებავთ, შეიყვანეთ <i>.kde.org</i>. ვაილდკარდის სიმბოლოები, "
-"როგორებიცაა '*' და '?' მხარდაჭერილი არაა და არ იმუშავებს.</p>\n"
-"<p>დამატებით, შეგიძლიათ, IP მისამართებიც (მაგ: 127.0.0.1) და მთელი ქსელებიც "
-"(მაგ: 192.168.0.1/24) მიუთითოთ.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"ჩართეთ, თუ გნებავთ ზედა პროქსის პარამეტრები მხოლოდ <i>გამონაკლისის</i> სიაში "
-"მყოფ მისამართებზე გავრცელდეს.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
-"პროქსის პარამეტრების, მხოლოდ, გამონაკლისების სიაში ჩამოთვლილი "
-"მისამართებისთვის გამოყენება"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "პროქსის მორგების მითითებული სკრიპტის გამოყენება."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "პრო&ქსის ავტომატური მორგებს სკრიპტის URL:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "პროქსი სერვერის კონფიგურაციის პარამეტრების ხელით შეყვანა."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "პროქსის ხელით მითითებული კონფიგურაციის გამოყენება:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>HTTP_PROXY</b>, რომელიც HTTP "
-"პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
-"b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "H&TTP პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>HTTPS_PROXY</b>, რომელიც "
-"HTTPS პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
-"b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "SS&L პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>FTP_PROXY</b>, რომელიც FTP "
-"პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
-"b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>SOCKS_PROXY</b>, რომელიც "
-"SOCKS პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
-"b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "SOC&KS პროქსი:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>SOCKS_PROXY</b>, რომელიც "
-"SOCKS პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
-"b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "გამონა&კლისები:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>შეიყვანეთ გარემოს ცვლადი, მაგალითად <b>, NO_PROXY</b>, რომელიც იმ "
-"საიტების მისამართების შესანახად გამოიყენება, როლებისთვისაც პროქსი სერვერი არ "
-"გამოიყენება.<p>\n"
-"გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>&quot;ავტომატური "
-"აღმოჩენა&quot;</b> , რომ ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "გარემოს ცვლადების მნიშვნელობების ჩვენება"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"პროქსის პარამეტრებს ავტომატური აღმოჩენა და მორგება.<p>\n"
-"ავტომატური აღმოჩენა <b>Web Proxy Auto-Discover Protocol (WPAD)</b>-ით ხდება."
-"<p>\n"
-"<b>შენიშვნა:</b> ამ ოპერაციამ შეიძლება, ყველა Unix/Linux დისტრიბუტივში "
-"სწორად არ იმუშაოს.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "პროქსის პარამეტრების ავ&ტომატური მორგება"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"ავტომატური კონფიგურაცია, რომელიც ასევე ცნობილია, როგორც ვებპროქსის "
-"ავტომატური აღმოჩენა (WPAD), თითქმის არასდროსაა სწორი. მისმა ჩართვამ მაშინ, "
-"როცა ის საჭირო არაა, შეიძლება ქსელთან წვდომა შეანელოს და თქვენი ქსელი "
-"ნაკლებად დაცული გახადოს. ჰკითხეთ ქსელის ადმინისტრატორს, საჭიროა თუ არა, რომ "
-"ჩართოთ ის."
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "შეიყვანეთ პროქსის კონფიგურაცის სკრიპტის მისამართი."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>სისტემაში აღწერილი პროქსის პარამეტრების გამოყენება.</p>\n"
-"<p>ზოგიერთ პლატფორმას პროქსის პარამეტრები მთელი სისტემისთვის ეწერება და ამ "
-"პარამეტრით ზუსტად მას გამოიყენებთ.</p>\n"
-"<p>Mac პლატფორმებზე</p>\n"
-"<p>Windows პლატფორმებზე</p>\n"
-"<p>Unix/Linux პლატფორმებზე ასეთი პარამეტრები, როგორც წესი, გარემოს ცვლადით "
-"აღიწერება. თუ აღწერილია, გამოიყენება შემდეგი გარემოს ცვლადები: "
-"<b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "პროქსის ს&ისტემური კონფიგურაციის გამოყენება:"
-
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
@@ -511,26 +44,19 @@ msgstr ""
 "გადატვირთვა."
 
 #: proxy/ui/main.qml:49
-#, fuzzy, kde-format
-#| msgid "&No proxy"
+#, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr "პროქ&სის გარეშე"
+msgstr "პროქსის გარეშე"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "პროქსის პარამეტრების ავ&ტომატური მორგება"
+msgstr "პროქსის პარამეტრების ავტომატური მორგება"
 
 #: proxy/ui/main.qml:75
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
-#| "is almost never the correct configuration. Enabling it when it is not "
-#| "required may slow down network access and make your network less secure. "
-#| "Your network administrator will know whether enabling it is required."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
@@ -545,64 +71,55 @@ msgstr ""
 "ჩართოთ ის."
 
 #: proxy/ui/main.qml:83
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy auto-configuration URL"
-msgstr "პრო&ქსის ავტომატური მორგებს სკრიპტის URL:"
+msgstr "პროქსის ავტომატური მორგების URL-ის გამოყენება"
 
 #: proxy/ui/main.qml:104
-#, fuzzy, kde-format
-#| msgid "Cannot open file"
+#, kde-format
 msgctxt "@label:button"
 msgid "Choose file…"
-msgstr "ფაილის გახსნის შეცდომა"
+msgstr "ფაილის არჩევა…"
 
 #: proxy/ui/main.qml:119
-#, fuzzy, kde-format
-#| msgid "Use s&ystem proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use system proxy configuration"
-msgstr "პროქსის ს&ისტემური კონფიგურაციის გამოყენება:"
+msgstr "პროქსის სისტემური კონფიგურაციის გამოყენება"
 
 #: proxy/ui/main.qml:129
-#, fuzzy, kde-format
-#| msgid "Auto D&etect"
+#, kde-format
 msgctxt "@action:button"
 msgid "Auto-Detect"
 msgstr "ავტომტურად გამოცნობა"
 
 #: proxy/ui/main.qml:137
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "HTTP proxy:"
 msgstr "HTTP პროქსი:"
 
 #: proxy/ui/main.qml:143
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SSL proxy:"
 msgstr "SSL პროქსი:"
 
 #: proxy/ui/main.qml:149
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "FTP proxy:"
 msgstr "FTP პროქსი:"
 
 #: proxy/ui/main.qml:155
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SOCKS proxy:"
 msgstr "SOCKS პროქსი:"
 
 #: proxy/ui/main.qml:161 proxy/ui/main.qml:304
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgctxt "@label"
 msgid "Exceptions:"
 msgstr "გამონაკლისები:"
@@ -611,60 +128,52 @@ msgstr "გამონაკლისები:"
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "IP მისამართების მძიმით გამოყოფილი სია"
 
 #: proxy/ui/main.qml:171
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr "გარემოს ცვლადების მნიშვნელობების ჩვენება"
+msgstr "გარემოს ცვლადების მნიშვნელობის ჩვენება"
 
 #: proxy/ui/main.qml:178
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr "პროქსის ხელით მითითებული კონფიგურაციის გამოყენება:"
+msgstr "პროქსის ხელით მითითებული კონფიგურაციის გამოყენება"
 
 #: proxy/ui/main.qml:196
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "HTTP Proxy"
-msgstr "HTTP პროქსი:"
+msgstr "HTTP პროქსი"
 
 #: proxy/ui/main.qml:219
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
-msgstr "ამ პროქსი სერვერის ყველა პროტოკოლისთვის გამოყენება"
+msgstr "ამ პროქსი სერვერის გამოყენება ყველა პროტოკოლისთვის"
 
 #: proxy/ui/main.qml:233
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SSL Proxy"
-msgstr "SSL პროქსი:"
+msgstr "SSL პროქსი"
 
 #: proxy/ui/main.qml:256
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "FTP Proxy"
-msgstr "FTP პროქსი:"
+msgstr "FTP პროქსი"
 
 #: proxy/ui/main.qml:279
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SOCKS Proxy"
-msgstr "SOCKS პროქსი:"
+msgstr "SOCKS პროქსი"
 
 #: proxy/ui/main.qml:320
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the exceptions list"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
@@ -675,28 +184,25 @@ msgstr ""
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "Url:"
 
 #: proxy/ui/main.qml:387
-#, fuzzy, kde-format
-#| msgid "Port:"
+#, kde-format
 msgctxt "@label"
 msgid "Port:"
 msgstr "პორტი:"
 
 #: proxy/ui/main.qml:410
-#, fuzzy, kde-format
-#| msgid "Proxy Authentication Failed."
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr "პროქსის ავთენტიკაციის შეცდომა."
+msgstr "პროქსის ავტოკონფიგურაციის ფაილის გახსნა"
 
 #: proxy/ui/main.qml:411
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr "პრო&ქსის ავტომატური მორგებს სკრიპტის URL:"
+msgstr "პროქსის ავტომატური მორგების ფაილები (*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1240,6 +746,328 @@ msgstr "სიმბოლოთა ნა&კრები:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "შეიყვანეთ მოთხოვნის ადგილმჭერი"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "პროქსის კონფიგურაციის მორგება.\n"
+#~ "<p>\n"
+#~ "პროქსი სერვერი შუალედური მანქანაა თქვენსა და ინტერნეტს შორის, რომელიც "
+#~ "ვებგვერდების გაფილტვრითა და კეშირებითაა დაკავებული. კეშირების პროქსი "
+#~ "ვებსაიტებთან სწრაფად წვდომის საშუალებას გაძლევთ წინა ვიზიტის შემდეგ "
+#~ "საიტის შემცველობის ლოკალურად შენახვის ხარჯზე. მფილტრავი პროქსი კი ბლოკავს "
+#~ "ისეთ მოთხოვნებს, როგორიცაა რეკლამა, სპამი და დანარჩენი ყველაფერი, რისი "
+#~ "დაბლოკვაც გსურთ.\n"
+#~ "<p>\n"
+#~ "თუ იმაში, უნდა გამოიყენოთ პროქსი, თუ არა, დარწმუნებული არ ბრძანდებით, "
+#~ "იხილეთ პროვაიდერის დოკუმენტაცია ან დაუკავშირდით თქვენს სისტემურ "
+#~ "ადმინისტრატორს.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt> პროქსის პარამეტრების ავტომატური აღმოჩენის მცდელობა გარემოს ცვლადების "
+#~ "დახმარებით. <p>ეს თვისება გავრცელებული გარემოს ცვლადების, როგორიცაა "
+#~ "HTTP_PROXY, FTP_PROXY და NO_PROXY, გამოყენებით მუშაობს.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "ავტომტურად გამოცნობა"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "ინტერენტთან პირდაპირ მიერთება."
+
+#~ msgid "&No proxy"
+#~ msgstr "პროქ&სის გარეშე"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP პროქსი:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "შეიყვანეთ HTTP პროქსი სერვერის მისამართი."
+
+#~ msgid "Port:"
+#~ msgstr "პორტი:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "შეიყვანეთ HTTP პროქსი სერვერის პორტი."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "ამ პროქსი სერვერის ყველა პროტოკოლისთვის გამოყენება"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL პროქსი:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "შეიყვანეთ HTTPS პროქსი სერვერის მისამართი."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "შეიყვანეთ HTTPS პროქსი სერვერის პორტი."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP პროქსი:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "შეიყვანეთ FTP პროქსი სერვერის მისამართი."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "შეიყვანეთ FTP პროქსი სერვერის პორტი."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS პროქსი:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "შეიყვანეთ SOCKS პროქსი სერვერის მისამართი."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "შეიყვანეთ SOCKS პროქსი სერვერის პორტი."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "შეიყვანეთ გარემოს ცვლადი, მაგალითად <b>, NO_PROXY</b>, რომელიც იმ "
+#~ "საიტების მისამართების შესანახად გამოიყენება, როლებისთვისაც პროქსი სერვერი "
+#~ "არ გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
+#~ "b> , რომ ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "გამონაკლისები:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>შეიყვანეთ მძიმით გამოყოფილი ჰოსტის სახელების ან IP მისამართების სია, "
+#~ "რომლებიც ზემოთ მითითებული პროქსის პარამეტრებიდან გამოირიცხება.<p>\n"
+#~ "<p>თუ გნებავთ, მითითებული დომენის ყველა ჰოსტი გამორიცხოთ, შეიყვანეთ "
+#~ "დომენი, რომელიც წერტილით იწყება. მაგალითად, თუ <i>kde.org</i> დომენიდან "
+#~ "ყველა ჰოსტის გამორიცხვა გნებავთ, შეიყვანეთ <i>.kde.org</i>. ვაილდკარდის "
+#~ "სიმბოლოები, როგორებიცაა '*' და '?' მხარდაჭერილი არაა და არ იმუშავებს.</"
+#~ "p>\n"
+#~ "<p>დამატებით, შეგიძლიათ, IP მისამართებიც (მაგ: 127.0.0.1) და მთელი "
+#~ "ქსელებიც (მაგ: 192.168.0.1/24) მიუთითოთ.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ჩართეთ, თუ გნებავთ ზედა პროქსის პარამეტრები მხოლოდ <i>გამონაკლისის</i> "
+#~ "სიაში მყოფ მისამართებზე გავრცელდეს.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr ""
+#~ "პროქსის პარამეტრების, მხოლოდ, გამონაკლისების სიაში ჩამოთვლილი "
+#~ "მისამართებისთვის გამოყენება"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "პროქსის მორგების მითითებული სკრიპტის გამოყენება."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "პრო&ქსის ავტომატური მორგებს სკრიპტის URL:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "პროქსი სერვერის კონფიგურაციის პარამეტრების ხელით შეყვანა."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "პროქსის ხელით მითითებული კონფიგურაციის გამოყენება:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>HTTP_PROXY</b>, რომელიც "
+#~ "HTTP პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
+#~ "b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "H&TTP პროქსი:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>HTTPS_PROXY</b>, რომელიც "
+#~ "HTTPS პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
+#~ "b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "SS&L პროქსი:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>FTP_PROXY</b>, რომელიც "
+#~ "FTP პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
+#~ "b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>SOCKS_PROXY</b>, რომელიც "
+#~ "SOCKS პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
+#~ "b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOC&KS პროქსი:"
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "შეიყვანეთ გარემოს ცვლადის სახელი, მაგალითად, <b>SOCKS_PROXY</b>, რომელიც "
+#~ "SOCKS პროქსის სერვერის მისამართის შესანახად გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>\"ავტომატური აღმოჩენა\"</"
+#~ "b> , რათა ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</p>\n"
+#~ "</qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "გამონა&კლისები:"
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>შეიყვანეთ გარემოს ცვლადი, მაგალითად <b>, NO_PROXY</b>, რომელიც იმ "
+#~ "საიტების მისამართების შესანახად გამოიყენება, როლებისთვისაც პროქსი სერვერი "
+#~ "არ გამოიყენება.<p>\n"
+#~ "გარდა ამისა, თქვენ შეგიძლიათ დააჭიროთ ღილაკს <b>&quot;ავტომატური "
+#~ "აღმოჩენა&quot;</b> , რომ ამ ცვლადის ავტომატური აღმოჩენა სცადოთ.</qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "გარემოს ცვლადების მნიშვნელობების ჩვენება"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "პროქსის პარამეტრებს ავტომატური აღმოჩენა და მორგება.<p>\n"
+#~ "ავტომატური აღმოჩენა <b>Web Proxy Auto-Discover Protocol (WPAD)</b>-ით "
+#~ "ხდება.<p>\n"
+#~ "<b>შენიშვნა:</b> ამ ოპერაციამ შეიძლება, ყველა Unix/Linux დისტრიბუტივში "
+#~ "სწორად არ იმუშაოს.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "პროქსის პარამეტრების ავ&ტომატური მორგება"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "ავტომატური კონფიგურაცია, რომელიც ასევე ცნობილია, როგორც ვებპროქსის "
+#~ "ავტომატური აღმოჩენა (WPAD), თითქმის არასდროსაა სწორი. მისმა ჩართვამ "
+#~ "მაშინ, როცა ის საჭირო არაა, შეიძლება ქსელთან წვდომა შეანელოს და თქვენი "
+#~ "ქსელი ნაკლებად დაცული გახადოს. ჰკითხეთ ქსელის ადმინისტრატორს, საჭიროა თუ "
+#~ "არა, რომ ჩართოთ ის."
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "შეიყვანეთ პროქსის კონფიგურაცის სკრიპტის მისამართი."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>სისტემაში აღწერილი პროქსის პარამეტრების გამოყენება.</p>\n"
+#~ "<p>ზოგიერთ პლატფორმას პროქსის პარამეტრები მთელი სისტემისთვის ეწერება და "
+#~ "ამ პარამეტრით ზუსტად მას გამოიყენებთ.</p>\n"
+#~ "<p>Mac პლატფორმებზე</p>\n"
+#~ "<p>Windows პლატფორმებზე</p>\n"
+#~ "<p>Unix/Linux პლატფორმებზე ასეთი პარამეტრები, როგორც წესი, გარემოს "
+#~ "ცვლადით აღიწერება. თუ აღწერილია, გამოიყენება შემდეგი გარემოს ცვლადები: "
+#~ "<b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>."
+#~ "</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "პროქსის ს&ისტემური კონფიგურაციის გამოყენება:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

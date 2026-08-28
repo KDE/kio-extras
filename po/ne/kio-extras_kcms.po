@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2007-11-04 18:29+0545\n"
 "Last-Translator: Shyam Krishna Bal <shyamkrishna_bal@yahoo.com>\n"
 "Language-Team: Nepali <info@mpp.org.np>\n"
@@ -34,516 +34,6 @@ msgid ""
 msgstr ""
 "फाइल अपलोड भइराखेको बेलामा यसको विस्तार \".part\" हो । पुरै अपलोड भएपछि यसको "
 "वास्तविक नाममा पुन: नामकरण हुन्छ ।"
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"प्रोक्सी कन्फिरेसन सेटअप गर्नुहोस् ।\n"
-"<p>\n"
-"प्रोक्सी सर्भर तपाईँको कम्प्युटर र इन्टरनेट बिचमा बस्ने मेशिन हो र वेब पृष्ठ क्यासिङ र "
-"फिल्टरिङ जस्ता कार्य उपलब्ध गराउछ । क्यासिङ प्रोक्सी सर्भरले ति पृष्ठहरूको स्थानीय भण्डारण "
-"वा क्यासिङद्वारा पहिलेनै अबलोकन गरेका वेब साइटहरूमा छिटो पहुँच दिन्छ; फिल्टरिङ प्रोक्सी "
-"सर्भरले सधैँ ads, spam का लागि बाह्य अनुरोध रोक्न वा तपाईँले रोक्न चाहेका कुनै पनि वस्तु "
-"रोक्न क्षमता प्रदान गर्छ ।\n"
-"<p>\n"
-"यदि तपाईँ इन्टरनेट जडान गर्न प्रोक्सी सर्भर प्रयोग गर्न आवश्यक छ वा छैन निश्चिन्त हुनुहुन्न "
-"भने, तपाईँको इन्टरनेट सेवा उपलब्धकर्ताको सेटअप मार्गदर्शक वा प्रणाली प्रशासकसँग परामर्श "
-"लिनुहोस् ।\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>हरेक प्रणालीमा प्रोक्सी सूचना सेटिङ गर्नाका लागि परिवेश चलको प्रयोग गर्न स्वत: पत्ता "
-"लगाउने प्रयास गर्नुहोस् ।<p> यो आकृतिले समान्यत: प्रयोग भएका चल नाम जस्तै: HTTP_PROXY, "
-"FTP_PROXY र NO_PROXY खोजेर कार्य गर्छ ।</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, fuzzy, kde-format
-#| msgid "Auto &Detect"
-msgid "Auto D&etect"
-msgstr "स्वत: पत्ता लगाउने"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "सिधै इन्टरनेटमा जडान गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "&No proxy"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "HTTP proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "HTTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTP proxy server."
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "HTTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, fuzzy, kde-format
-#| msgid "&Use the same proxy server for all protocols"
-msgid "Use this proxy server for a&ll protocols"
-msgstr "सबै प्रोटोकलका लागि समान प्रोक्सी सर्भर प्रयोग गर्नुहोस्"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "SSL proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "FTP proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "FTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, fuzzy, kde-format
-#| msgid "Enter the address of the FTP proxy server."
-msgid "Enter the port number of the FTP proxy server."
-msgstr "FTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "SOCKS proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, fuzzy, kde-format
-#| msgid "Enter the address of the HTTPS proxy server."
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चल प्रविष्ट गर्नुहोस्, जस्तै: <b>NO_PROXY</b>, प्रयोग गर्न नहुने प्रोक्सी सर्भरका "
-"लागि साइटको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलक स्वत: पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता लगाउने\"</"
-"b> बटन क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, fuzzy, kde-format
-#| msgid "E&xceptions"
-msgid "Exceptions:"
-msgstr "अपवाद"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, fuzzy, kde-format
-#| msgid "Use proxy only for entries in this list"
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr "यो सूचीमा प्रविष्टिका लागि मात्र प्रोक्सी प्रयोग गर्नुहोस्"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy only for entries in this list"
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "यो सूचीमा प्रविष्टिका लागि मात्र प्रोक्सी प्रयोग गर्नुहोस्"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, fuzzy, kde-format
-#| msgid "Use the specified proxy script URL to configure the proxy settings."
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "प्रोक्सी सेटिङ कन्फिगर गर्न निर्दिष्ट गरिएको प्रोक्सी स्क्रिप्ट प्रयोग गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "U&se the following proxy configuration URL"
-msgid "&Use proxy auto configuration URL:"
-msgstr "निम्न प्रोक्सी कन्फिगरेसन यूआरएल प्रयोग गर्नुहोस्"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "प्रोक्सी सर्भर कन्फिगरेसन सूचना म्यानुअल तरिकाले प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, fuzzy, kde-format
-#| msgid "A&utomatically detect proxy configuration"
-msgid "Use manually specified proxy configuration:"
-msgstr "प्रोक्सी कन्फिगरेसन स्वचालित रुपमा पत्ता लगाउनुहोस्"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
-#| "to store the address of the HTTP proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt automatic discovery of this variable.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTP_PROXY</b>, HTTP प्रोक्सी सर्भरको "
-"ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न <b>\"स्वत: पत्ता "
-"लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "H&TTP proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
-#| "to store the address of the HTTPS proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTPS_PROXY</b>, HTTPS प्रोक्सी सर्भरको "
-"ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता "
-"लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "SS&L proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
-#| "to store the address of the FTP proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>FTP_PROXY</b>, FTP प्रोक्सी सर्भरको ठेगाना "
-"भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलको स्वत: पत्तालगाउने प्रयास गर्न<b>\"स्वत: पत्ता लगाउने\"</"
-"b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
-#| "to store the address of the HTTPS proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTPS_PROXY</b>, HTTPS प्रोक्सी सर्भरको "
-"ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता "
-"लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "&Proxy"
-msgid "SOC&KS proxy:"
-msgstr "प्रोक्सी"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
-#| "to store the address of the HTTPS proxy server.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTPS_PROXY</b>, HTTPS प्रोक्सी सर्भरको "
-"ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता "
-"लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "E&xceptions"
-msgid "E&xceptions:"
-msgstr "अपवाद"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-#| "addresses of sites for which the proxy server should not be used.<p>\n"
-#| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
-#| "attempt an automatic discovery of this variable.\n"
-#| "</qt>"
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>\n"
-"परिवेश चल प्रविष्ट गर्नुहोस्, जस्तै: <b>NO_PROXY</b>, प्रयोग गर्न नहुने प्रोक्सी सर्भरका "
-"लागि साइटको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
-"वैकल्पिक रुपमा, तपाईँले यो चलक स्वत: पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता लगाउने\"</"
-"b> बटन क्लिक गर्न सक्नुहुन्छ ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "परिवेश चलको मान देखाउनुहोस्"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically detect and configure the proxy settings.<p>\n"
-#| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-#| "Protocol (WPAD)</b>.<p>\n"
-#| "<b>NOTE:</b> This option might not work properly or not work at all in "
-#| "some UNIX/Linux distributions. If you encounter a problem when using this "
-#| "option, please check the FAQ section at http://konqueror.kde.org.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"प्रोक्सी सेटिङ स्वचालित रुपमा पत्ता लगाउँछ र कन्फिगर गर्छ<p>\n"
-"स्वचालित पत्ता लगाउने <b>स्वत: प्रकाशन वेब प्रोक्सी (WPAD)</b> प्रयोग गरेर सम्पादन गर्छ ।"
-"<p>\n"
-"<b>द्रष्टव्य:</b> यो विकल्पले उचित तरिकाले कार्य गर्दैन वा केही UNIX/Linux वितरणमा सबै "
-"कार्य गर्दैन । यदि तपाईँले यो विकल्प प्रयोग गर्ने बेलामा समस्या सामना गर्न परेमा, कृपया "
-"http://konqueror.kde.org. मा FAQ सेक्सन जाँच गर्नुहोस् ।\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, fuzzy, kde-format
-#| msgid "U&se the following proxy configuration URL"
-msgid "&Detect proxy configuration automatically"
-msgstr "निम्न प्रोक्सी कन्फिगरेसन यूआरएल प्रयोग गर्नुहोस्"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "प्रोक्सी कन्फिगरेसन स्क्रिप्टका लागि ठेगाना प्रविष्ट गर्नुहोस् ।"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, fuzzy, kde-format
-#| msgid "U&se the following proxy configuration URL"
-msgid "Use s&ystem proxy configuration:"
-msgstr "निम्न प्रोक्सी कन्फिगरेसन यूआरएल प्रयोग गर्नुहोस्"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1220,6 +710,367 @@ msgstr ""
 #, kde-format
 msgid "Insert query placeholder"
 msgstr ""
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "प्रोक्सी कन्फिरेसन सेटअप गर्नुहोस् ।\n"
+#~ "<p>\n"
+#~ "प्रोक्सी सर्भर तपाईँको कम्प्युटर र इन्टरनेट बिचमा बस्ने मेशिन हो र वेब पृष्ठ क्यासिङ र "
+#~ "फिल्टरिङ जस्ता कार्य उपलब्ध गराउछ । क्यासिङ प्रोक्सी सर्भरले ति पृष्ठहरूको स्थानीय "
+#~ "भण्डारण वा क्यासिङद्वारा पहिलेनै अबलोकन गरेका वेब साइटहरूमा छिटो पहुँच दिन्छ; "
+#~ "फिल्टरिङ प्रोक्सी सर्भरले सधैँ ads, spam का लागि बाह्य अनुरोध रोक्न वा तपाईँले रोक्न "
+#~ "चाहेका कुनै पनि वस्तु रोक्न क्षमता प्रदान गर्छ ।\n"
+#~ "<p>\n"
+#~ "यदि तपाईँ इन्टरनेट जडान गर्न प्रोक्सी सर्भर प्रयोग गर्न आवश्यक छ वा छैन निश्चिन्त "
+#~ "हुनुहुन्न भने, तपाईँको इन्टरनेट सेवा उपलब्धकर्ताको सेटअप मार्गदर्शक वा प्रणाली प्रशासकसँग "
+#~ "परामर्श लिनुहोस् ।\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>हरेक प्रणालीमा प्रोक्सी सूचना सेटिङ गर्नाका लागि परिवेश चलको प्रयोग गर्न स्वत: "
+#~ "पत्ता लगाउने प्रयास गर्नुहोस् ।<p> यो आकृतिले समान्यत: प्रयोग भएका चल नाम जस्तै: "
+#~ "HTTP_PROXY, FTP_PROXY र NO_PROXY खोजेर कार्य गर्छ ।</qt>"
+
+#, fuzzy
+#~| msgid "Auto &Detect"
+#~ msgid "Auto D&etect"
+#~ msgstr "स्वत: पत्ता लगाउने"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "सिधै इन्टरनेटमा जडान गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "&No proxy"
+#~ msgstr "प्रोक्सी"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "HTTP proxy:"
+#~ msgstr "प्रोक्सी"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "HTTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "Enter the address of the HTTP proxy server."
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "HTTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "&Use the same proxy server for all protocols"
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "सबै प्रोटोकलका लागि समान प्रोक्सी सर्भर प्रयोग गर्नुहोस्"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "SSL proxy:"
+#~ msgstr "प्रोक्सी"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "Enter the address of the HTTPS proxy server."
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "FTP proxy:"
+#~ msgstr "प्रोक्सी"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "FTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "Enter the address of the FTP proxy server."
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "FTP प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "SOCKS proxy:"
+#~ msgstr "प्रोक्सी"
+
+#, fuzzy
+#~| msgid "Enter the address of the HTTPS proxy server."
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "Enter the address of the HTTPS proxy server."
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "HTTPS प्रोक्सी सर्भरको ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चल प्रविष्ट गर्नुहोस्, जस्तै: <b>NO_PROXY</b>, प्रयोग गर्न नहुने प्रोक्सी सर्भरका "
+#~ "लागि साइटको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलक स्वत: पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता लगाउने"
+#~ "\"</b> बटन क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "E&xceptions"
+#~ msgid "Exceptions:"
+#~ msgstr "अपवाद"
+
+#, fuzzy
+#~| msgid "Use proxy only for entries in this list"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr "यो सूचीमा प्रविष्टिका लागि मात्र प्रोक्सी प्रयोग गर्नुहोस्"
+
+#, fuzzy
+#~| msgid "Use proxy only for entries in this list"
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "यो सूचीमा प्रविष्टिका लागि मात्र प्रोक्सी प्रयोग गर्नुहोस्"
+
+#, fuzzy
+#~| msgid "Use the specified proxy script URL to configure the proxy settings."
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "प्रोक्सी सेटिङ कन्फिगर गर्न निर्दिष्ट गरिएको प्रोक्सी स्क्रिप्ट प्रयोग गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "U&se the following proxy configuration URL"
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "निम्न प्रोक्सी कन्फिगरेसन यूआरएल प्रयोग गर्नुहोस्"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "प्रोक्सी सर्भर कन्फिगरेसन सूचना म्यानुअल तरिकाले प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "A&utomatically detect proxy configuration"
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "प्रोक्सी कन्फिगरेसन स्वचालित रुपमा पत्ता लगाउनुहोस्"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~| "to store the address of the HTTP proxy server.<p>\n"
+#~| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~| "attempt automatic discovery of this variable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTP_PROXY</b>, HTTP प्रोक्सी सर्भरको "
+#~ "ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न <b>\"स्वत: "
+#~ "पत्ता लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "H&TTP proxy:"
+#~ msgstr "प्रोक्सी"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, "
+#~| "used to store the address of the HTTPS proxy server.<p>\n"
+#~| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~| "attempt an automatic discovery of this variable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTPS_PROXY</b>, HTTPS प्रोक्सी "
+#~ "सर्भरको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न<b>\"स्वत: "
+#~ "पत्ता लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "SS&L proxy:"
+#~ msgstr "प्रोक्सी"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~| "to store the address of the FTP proxy server.<p>\n"
+#~| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~| "attempt an automatic discovery of this variable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>FTP_PROXY</b>, FTP प्रोक्सी सर्भरको "
+#~ "ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलको स्वत: पत्तालगाउने प्रयास गर्न<b>\"स्वत: पत्ता लगाउने"
+#~ "\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, "
+#~| "used to store the address of the HTTPS proxy server.<p>\n"
+#~| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~| "attempt an automatic discovery of this variable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTPS_PROXY</b>, HTTPS प्रोक्सी "
+#~ "सर्भरको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न<b>\"स्वत: "
+#~ "पत्ता लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "&Proxy"
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "प्रोक्सी"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, "
+#~| "used to store the address of the HTTPS proxy server.<p>\n"
+#~| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~| "attempt an automatic discovery of this variable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चलको नाम प्रविष्ट गर्नुहोस्, जस्तै: <b>HTTPS_PROXY</b>, HTTPS प्रोक्सी "
+#~ "सर्भरको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलको स्वचालित रुपमा पत्ता लगाउने प्रयास गर्न<b>\"स्वत: "
+#~ "पत्ता लगाउने\"</b> बटनमा क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "E&xceptions"
+#~ msgid "E&xceptions:"
+#~ msgstr "अपवाद"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~| "addresses of sites for which the proxy server should not be used.<p>\n"
+#~| "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~| "attempt an automatic discovery of this variable.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "परिवेश चल प्रविष्ट गर्नुहोस्, जस्तै: <b>NO_PROXY</b>, प्रयोग गर्न नहुने प्रोक्सी सर्भरका "
+#~ "लागि साइटको ठेगाना भण्डारण गर्न प्रयोग गरिन्छ ।<p>\n"
+#~ "वैकल्पिक रुपमा, तपाईँले यो चलक स्वत: पत्ता लगाउने प्रयास गर्न<b>\"स्वत: पत्ता लगाउने"
+#~ "\"</b> बटन क्लिक गर्न सक्नुहुन्छ ।\n"
+#~ "</qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "परिवेश चलको मान देखाउनुहोस्"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Automatically detect and configure the proxy settings.<p>\n"
+#~| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~| "Protocol (WPAD)</b>.<p>\n"
+#~| "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~| "some UNIX/Linux distributions. If you encounter a problem when using "
+#~| "this option, please check the FAQ section at http://konqueror.kde.org.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "प्रोक्सी सेटिङ स्वचालित रुपमा पत्ता लगाउँछ र कन्फिगर गर्छ<p>\n"
+#~ "स्वचालित पत्ता लगाउने <b>स्वत: प्रकाशन वेब प्रोक्सी (WPAD)</b> प्रयोग गरेर सम्पादन "
+#~ "गर्छ ।<p>\n"
+#~ "<b>द्रष्टव्य:</b> यो विकल्पले उचित तरिकाले कार्य गर्दैन वा केही UNIX/Linux वितरणमा "
+#~ "सबै कार्य गर्दैन । यदि तपाईँले यो विकल्प प्रयोग गर्ने बेलामा समस्या सामना गर्न परेमा, "
+#~ "कृपया http://konqueror.kde.org. मा FAQ सेक्सन जाँच गर्नुहोस् ।\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "U&se the following proxy configuration URL"
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "निम्न प्रोक्सी कन्फिगरेसन यूआरएल प्रयोग गर्नुहोस्"
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "प्रोक्सी कन्फिगरेसन स्क्रिप्टका लागि ठेगाना प्रविष्ट गर्नुहोस् ।"
+
+#, fuzzy
+#~| msgid "U&se the following proxy configuration URL"
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "निम्न प्रोक्सी कन्फिगरेसन यूआरएल प्रयोग गर्नुहोस्"
 
 #, fuzzy
 #~| msgid "Update Failed"

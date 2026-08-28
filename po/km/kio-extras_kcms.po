@@ -4,7 +4,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2012-07-09 10:34+0700\n"
 "Last-Translator: Khoem Sokhem <khoemsokhem@khmeros.info>\n"
 "Language-Team: Khmer <support@khmeros.info>\n"
@@ -33,507 +33,6 @@ msgid ""
 msgstr ""
 "ខណៈ​ពេល​ឯកសារ​មួយ​កំពុង​ត្រូវ​បាន​ផ្ទុកឡើង កន្ទុយ​របស់​វា​គឺ \".part\" ។ នៅ​ពេល​ផ្ទុក​ឡើង​រួច វា​ត្រូវ​បាន​ប្ដូរ​"
 "ឈ្មោះ​ទៅ​ជា​ឈ្មោះ​ពិត​របស់​វា​វិញ ។"
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"ដំឡើង​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី ។\n"
-"<p>\n"
-"ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី គឺ​ជា​ម៉ាស៊ីន​កណ្ដាល​មួយ ដែល​ស្ថិត​នៅ​ចន្លោះ​កុំព្យូទ័រ​របស់​អ្នក និង​អ៊ីនធឺណិត ហើយ​ផ្ដល់​នូវ​សេវា​"
-"ដូចជា ឃ្លាំង​សម្ងាត់​ទំព័រ​បណ្តាញ និង​តម្រង ។ ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ឃ្លាំង​សម្ងាត់ ផ្ដល់​ឲ្យ​អ្នក​នូវ​ការ​ចូល​ដំណើរការ​"
-"លឿន​ជាង​ទៅ​កាន់​តំបន់​បណ្ដាញ ដែល​អ្នក​បាន​ទស្សនា​រួច ដោយ​រក្សាទុកទំព័រ​ទាំងនោះ​ក្នុង​មូលដ្ឋាន ឬ​ឃ្លាំង​"
-"សម្ងាត់ការ​ត្រង ។ ម៉ាស៊ីន​បម្រើ​តម្រង ជា​ធម្មតា​ផ្ដល់​នូវ​សមត្ថភាព​ក្នុង​ការ​ទប់ស្កាត់​ការ​ស្នើសុំ​ផ្សាយ​"
-"ពាណិជ្ជកម្ម សារ​ឥត​បាន​ការ ឬ​អ្វី​ផ្សេង​ទៀត​ដែល​អ្នក​ចង់​ទប់ស្កាត់ ។\n"
-"<p>\n"
-"បើ​អ្នក​មិន​ច្បាស់ ថា​តើ​អ្នក​ត្រូវការ​ប្រើ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ឬ​ក៏​អត់ ដើម្បី​តភ្ជាប់​ទៅ​អ៊ិនធឺណិត សូម​មើល​មគ្គុទ្ទេសក៍​"
-"ដំឡើង​របស់​អ្នក​ផ្ដល់​សវា​អ៊ីនធឺណិត​របស់​អ្នក ឬ​ពិគ្រោះ​ជាមួយ​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក ។\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>ប៉ុនប៉ង​រក​អថេរ​បរិស្ថាន​ស្វ័យ​ប្រវត្តិ ដែល​ប្រើ​សម្រាប់​កំណត់​ព័ត៌មាន​ប្រូកស៊ី​របស់​ប្រព័ន្ធ​ទាំងមូល ។<p> លក្ខណៈ​"
-"ពិសេស​នេះ​ធ្វើការ ដោយ​ស្វែងរក​ឈ្មោះ​អថេរ​ដែល​បាន​ប្រើ​ដូចជា HTTP_PROXY FTP_PROXY និង "
-"NO_PROXY ។</qt>"
-
-#  i18n: file envvarproxy_ui.ui line 102
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "រក​ឃើញ​ស្វ័យ​ប្រវត្តិ"
-
-#  i18n: file kproxydlg_ui.ui line 65
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "តភ្ជាប់​ទៅ​អ៊ីនធឺណិត​ដោយ​ផ្ទាល់ ។"
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No Proxy"
-msgid "&No proxy"
-msgstr "គ្មាន​ប្រូកស៊ី"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
-msgid "HTTP proxy:"
-msgstr "ប្រូកស៊ី HTTP ៖"
-
-#  i18n: file manualproxy_ui.ui line 95
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "បញ្ចូល​អាសយដ្ឋាន​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTP ។"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "ច្រក ៖"
-
-#  i18n: file manualproxy_ui.ui line 95
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTP ។"
-
-#  i18n: file manualproxy_ui.ui line 175
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "ប្រើ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​នេះ​សម្រាប់​ពិធីការ​ទាំងអស់"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
-msgid "SSL proxy:"
-msgstr "ប្រូកស៊ី SSL ៖"
-
-#  i18n: file manualproxy_ui.ui line 103
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "បញ្ចូល​អាសយដ្ឋាន​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTPS ។"
-
-#  i18n: file manualproxy_ui.ui line 103
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTPS ។"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
-msgid "FTP proxy:"
-msgstr "ប្រូកស៊ី FTP ៖"
-
-#  i18n: file manualproxy_ui.ui line 111
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "បញ្ចូល​អាសយដ្ឋាន​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី FTP ។"
-
-#  i18n: file manualproxy_ui.ui line 111
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី FTP ។"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
-msgid "SOCKS proxy:"
-msgstr "ប្រូកស៊ី SOCKS ៖"
-
-#  i18n: file manualproxy_ui.ui line 103
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "បញ្ចូល​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។"
-
-#  i18n: file manualproxy_ui.ui line 103
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"បញ្ចូល​អថេរ​បរិស្ថាន ឧ. <b>NO_PROXY</b> ដែល​ប្រើ​ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​តំបន់ ដែល​មិន​គួរ​ប្រើ​"
-"ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី ។<p>\n"
-"ឬ​អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យប្រវត្តិ\"</b> ដើម្បី​ប៉ុនប៉ង​រក​ឃើញ​អថេរ​នេះ​ស្វ័យប្រវត្តិ ។\n"
-"</qt>"
-
-#  i18n: file manualproxy_ui.ui line 193
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "ករណី​លើកលែង ៖"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>បញ្ចូល​បញ្ជី​បំបែក​ដោយ​សញ្ញា​ក្បៀស​របស់​ឈ្មោះ​ម៉ាស៊ីន ឬ​អាសយដ្ឋាន ip ដែល​គួរតែ​ត្រូវ​បាន​មិន​រាប់បញ្ចូល​ពី​ការ​"
-"ប្រើការ​កំណត់​ប្រូកស៊ី​ខាងលើ ។</p>\n"
-"<p>ប្រសិនបើ​អ្នក​មិន​ចង់​រាប់​បញ្ចូល​ម៉ាស៊ីន​ទាំងអស់​សម្រាប់​ដែន​ដែល​បាន​ផ្ដល់ឲ្យ​ទេ អ្នក​គ្រាន់តែ​បញ្ចូល​ឈ្មោះ​ដែន​ដែល​"
-"នាំមុខ​ដោយ​សញ្ញា​ចុច (.) ជា​ការ​ស្រេច ។ ឧទាហរណ៍ ដើម្បី​មិន​រាប់​បញ្ចូល​ឈ្មោះ​ម៉ាស៊ីន​ទាំងអស់​សម្រាប់ <i>kde."
-"org</i>សូម​បញ្ចូល <i>.kde.org</i> ។ តួអក្សរ​ជំនួស​មួយ​ចំនួន​ដូចជា '*' ឬ '?' មិន​ត្រូវ​បាន​គាំទ្រ​ទេ "
-"ហើយ​វា​ក៏​នឹង​មិន​មាន​ប្រសិទ្ធភាព​អ្វី​ដែរ ។</p>\n"
-"<p>លើសពីនេះទៀត អ្នក​ក៏​អាច​បញ្ចូល​អាសយដ្ឋាន IP បាន​ផង​ដែរ ឧទាហរណ៍ 127.0.0.1 និង​អាសយដ្ឋាន IP "
-"ដែល​មាន​បណ្ដាញ​រង ដូចជា 192.168.0.1/24.</p>\n"
-"</qt>"
-
-#  i18n: file manualproxy_ui.ui line 204
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"ធីក​ប្រអប់​នេះ​ប្រសិនបើ​អ្នក​ចង់​ឲ្យ​ការ​កំណត់​ប្រូកស៊ី​ខាងលើ អនុវត្ត​ទៅ​លើ​អាសយដ្ឋាន​ដែល​បាន​រាយ​នៅ​ក្នុង​បញ្ជី "
-"<i>ការ​លើកលែង</i> តែ​ប៉ុណ្ណោះ ។</qt>"
-
-#  i18n: file manualproxy_ui.ui line 204
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "ប្រើ​ការ​កំណត់​ប្រូកស៊ី​សម្រាប់​អាសយដ្ឋាន​នៅ​ក្នុង​បញ្ជី​លើកលែង​តែប៉ុណ្ណោះ"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "ប្រើ​ស្គ្រីប​ប្រូកស៊ី​ដែល​បាន​បញ្ជាក់​ដើម្បី​កំណត់​រចនាសម្ព័ន្ធ​ការ​កំណត់​ប្រូកស៊ី ។"
-
-#  i18n: file kproxydlg_ui.ui line 94
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
-msgid "&Use proxy auto configuration URL:"
-msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី URL ដោយ​ស្វ័យប្រវត្តិ ៖"
-
-#  i18n: file kproxydlg_ui.ui line 222
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "បញ្ចូល​ព័ត៌មាន​កំណត់​រចនាសម្ព័ន្ធ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ដោយ​ដៃ ។"
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ដែល​បាន​បញ្ជាក់​ដោយ​ដៃ ៖"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>HTTP_PROXY</b> ដែល​ប្រើ ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​បម្រើ​"
-"ប្រូកស៊ី HTTP ។<p>\n"
-"ជា​ជម្រើស អ្នក​អាច​ចុច​លើ​ប៊ូតុង <b>\"រកឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​រកឃើញ​អ្នក​អថេរ​នេះ​ដោយ​ស្វ័យ​"
-"ប្រវត្តិ ។</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
-msgid "H&TTP proxy:"
-msgstr "ប្រូកស៊ី HTTP ៖"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>HTTPS_PROXY</b> ដែល​ប្រើ​ដើម្បី​រក្សាទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​បម្រើ​"
-"ប្រូកស៊ី HTTPS ។<p>\n"
-"ជា​ជម្រើស អ្នក​អាច​ចុច​លើ​ប៊ូតុង <b>\"រកឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​រកឃើញ​អ្នក​អថេរ​នេះ​ដោយ​ស្វ័យ​"
-"ប្រវត្តិ ។</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
-msgid "SS&L proxy:"
-msgstr "ប្រូកស៊ី SSL ៖"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"សូម​បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>FTP_PROXY</b> ដែល​ប្រើ​ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​បម្រើ​"
-"ប្រូកស៊ី FTP ។<p>\n"
-"ជា​ជម្រើស អ្នក​អាច​ចុច​លើ​ប៊ូតុង <b>\"រកឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​រកឃើញ​អ្នក​អថេរ​នេះ​ដោយ​ស្វ័យ​"
-"ប្រវត្តិ ។</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>SOCKS_PROXY</b> ដែល​បាន​ប្រើ​ដើម្បី​រក្សាទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​"
-"បម្រើ​ប្រូកស៊ី SOCKS ។<p>\n"
-"ជា​ជម្រើស អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​ឲ្យ​វា​រក​ឃើញ​អថេរ​នេះ​ដោយ​ស្វ័យ​ប្រវត្តិ "
-"។</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
-msgid "SOC&KS proxy:"
-msgstr "ប្រូកស៊ី SOCKS ៖"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-#| "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-#| "can click on the <b>\"Auto Detect\"</b> button to attempt an automatic "
-#| "discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>SOCKS_PROXY</b> ដែល​បាន​ប្រើ​ដើម្បី​រក្សាទុក​អាសយដ្ឋាន​របស់​"
-"ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។<p>ជា​ជម្រើស អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​ឲ្យ​វា​"
-"រក​ឃើញ​អថេរ​នេះ​ដោយ​ស្វ័យ​ប្រវត្តិ ។</p></qt>"
-
-#  i18n: file manualproxy_ui.ui line 193
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
-msgid "E&xceptions:"
-msgstr "ករណី​លើកលែង ៖"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
-#| "the addresses of sites for which the above proxy settings should not be "
-#| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> button "
-#| "to attempt an automatic discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>បញ្ចូល​អថេរ​បរិស្ថាន ឧ. <b>NO_PROXY</b> ដែល​បាន​ប្រើ​ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​តំបន់បណ្ដាញ "
-"ដែល​ការ​កំណត់​ប្រូកស៊ី​ខាងលើ​មិន​គួរ​ត្រូវ​បាន​ប្រើ ។<p>ជា​ជម្រើស អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យប្រវត្តិ"
-"\"</b> ដើម្បី​ឲ្យ​វា​រក​ឃើញ​អថេរ​នេះ​ដោយ​ស្វ័យប្រវត្តិ ។</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "បង្ហាញ​តម្លៃ​អថេរ​បរិស្ថាន"
-
-#  i18n: file kproxydlg_ui.ui line 83
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically detect and configure the proxy settings.<p>\n"
-#| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-#| "Protocol (WPAD)</b>.<p>\n"
-#| "<b>NOTE:</b> This option might not work properly or not work at all in "
-#| "some UNIX/Linux distributions. If you encounter a problem when using this "
-#| "option, please check the FAQ section at http://konqueror.kde.org.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"រកឃើញ និង​កំណត់​រចនាសម្ព័ន្ធ​ការ​កំណត់​ប្រូកស៊ី​ដោយ​ស្វ័យប្រវត្តិ ។<p>\n"
-"ការ​រកឃើញ​ស្វ័យប្រវត្តិ​ត្រូវ​បាន​ប្រតិបត្តិ​ដោយ <b>Web Proxy Auto-Discovery Protocol (WPAD)</"
-"b> ។<p>\n"
-"<b>ចំណាំ ៖</b> ជម្រើស​នេះ​អាច​នឹង​មិន​ដំណើរការ​ត្រឹមត្រូវ ឬ​មិន​ដំណើរការ​តែ​ម្ដង​ក្នុង​ប្រព័ន្ធ​ប្រតិបត្តិការ "
-"UNIX/Linux ខ្លះ ។ បើ​អ្នក​ជួប​ប្រទះ​បញ្ហា ពេល​ប្រើ​ជម្រើស​នេះ សូម​ពិនិត្យ​មើល​ត្រង់​ផ្នែក សំណួរ​ដែល​សួរ​"
-"ញឹកញាប់ (FAQ) នៅ http://konqueror.kde.org ។\n"
-"</qt>"
-
-#  i18n: file kproxydlg_ui.ui line 94
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
-msgid "&Detect proxy configuration automatically"
-msgstr "រក​ឃើញ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ដោយ​ស្វ័យប្រវត្តិ ៖"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "បញ្ចូល​អាសយដ្ឋាន សម្រាប់​ស្គ្រីប​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី ។"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>ប្រើ​ការ​កំណត់​ប្រូកស៊ី​ដែល​បាន​កំណត់​នៅ​លើ​ប្រព័ន្ធ ។</p>\n"
-"<p>វេទិកា​ខ្លះ​ផ្ដល់​ប្រព័ន្ធ​ព័ត៌មាន​អំពី​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​យ៉ាង​ទូលំទូលាយ ហើយ​ការ​ជ្រើស​ជម្រើស​នេះ​នឹង​"
-"អនុញ្ញាត​ឲ្យ​អ្នក​ប្រើ​ការ​កំណត់​ទាំងនោះ​បាន ។</p>\n"
-"<p>នៅ​លើ​វេទិកាមេក</p>\n"
-"<p>នៅ​លើ​វេទិកា​វីនដូ</p>\n"
-"<p>នៅ​លើ​វេទិកា​យូនីក និង​លីនុច មាន​ការ​កំណត់​ប្រូកស៊ី​ប្រព័ន្ធ​ជាច្រើន​ដែល ជាទូទៅ​បាន​កំណត់​តាម​អថេរ​បរិស្ថាន ។ "
-"អថេរ​បរិស្ថាន​ខាងក្រោម​គឺ​ត្រូវ​បាន​រក​ឃើញ និង​ប្រើ​នៅ​ពេល​បង្ហាញ ៖ <b>HTTP_PROXY</b>, "
-"<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-
-#  i18n: file kproxydlg_ui.ui line 94
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
-msgid "Use s&ystem proxy configuration:"
-msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ប្រព័ន្ធ ៖"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1233,6 +732,372 @@ msgstr ""
 #| msgid "Interlace Mode"
 msgid "Insert query placeholder"
 msgstr "របៀបត្របាញ់"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ដំឡើង​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី ។\n"
+#~ "<p>\n"
+#~ "ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី គឺ​ជា​ម៉ាស៊ីន​កណ្ដាល​មួយ ដែល​ស្ថិត​នៅ​ចន្លោះ​កុំព្យូទ័រ​របស់​អ្នក និង​អ៊ីនធឺណិត ហើយ​ផ្ដល់​នូវ​សេវា​"
+#~ "ដូចជា ឃ្លាំង​សម្ងាត់​ទំព័រ​បណ្តាញ និង​តម្រង ។ ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ឃ្លាំង​សម្ងាត់ ផ្ដល់​ឲ្យ​អ្នក​នូវ​ការ​ចូល​"
+#~ "ដំណើរការ​លឿន​ជាង​ទៅ​កាន់​តំបន់​បណ្ដាញ ដែល​អ្នក​បាន​ទស្សនា​រួច ដោយ​រក្សាទុកទំព័រ​ទាំងនោះ​ក្នុង​មូលដ្ឋាន ឬ​"
+#~ "ឃ្លាំង​សម្ងាត់ការ​ត្រង ។ ម៉ាស៊ីន​បម្រើ​តម្រង ជា​ធម្មតា​ផ្ដល់​នូវ​សមត្ថភាព​ក្នុង​ការ​ទប់ស្កាត់​ការ​ស្នើសុំ​ផ្សាយ​"
+#~ "ពាណិជ្ជកម្ម សារ​ឥត​បាន​ការ ឬ​អ្វី​ផ្សេង​ទៀត​ដែល​អ្នក​ចង់​ទប់ស្កាត់ ។\n"
+#~ "<p>\n"
+#~ "បើ​អ្នក​មិន​ច្បាស់ ថា​តើ​អ្នក​ត្រូវការ​ប្រើ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ឬ​ក៏​អត់ ដើម្បី​តភ្ជាប់​ទៅ​អ៊ិនធឺណិត សូម​មើល​"
+#~ "មគ្គុទ្ទេសក៍​ដំឡើង​របស់​អ្នក​ផ្ដល់​សវា​អ៊ីនធឺណិត​របស់​អ្នក ឬ​ពិគ្រោះ​ជាមួយ​អ្នក​គ្រប់គ្រង​ប្រព័ន្ធ​របស់​អ្នក ។\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>ប៉ុនប៉ង​រក​អថេរ​បរិស្ថាន​ស្វ័យ​ប្រវត្តិ ដែល​ប្រើ​សម្រាប់​កំណត់​ព័ត៌មាន​ប្រូកស៊ី​របស់​ប្រព័ន្ធ​ទាំងមូល ។<p> "
+#~ "លក្ខណៈ​ពិសេស​នេះ​ធ្វើការ ដោយ​ស្វែងរក​ឈ្មោះ​អថេរ​ដែល​បាន​ប្រើ​ដូចជា HTTP_PROXY FTP_PROXY និង "
+#~ "NO_PROXY ។</qt>"
+
+#  i18n: file envvarproxy_ui.ui line 102
+#~ msgid "Auto D&etect"
+#~ msgstr "រក​ឃើញ​ស្វ័យ​ប្រវត្តិ"
+
+#  i18n: file kproxydlg_ui.ui line 65
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "តភ្ជាប់​ទៅ​អ៊ីនធឺណិត​ដោយ​ផ្ទាល់ ។"
+
+#, fuzzy
+#~| msgid "No Proxy"
+#~ msgid "&No proxy"
+#~ msgstr "គ្មាន​ប្រូកស៊ី"
+
+#, fuzzy
+#~| msgid "HTTP Proxy:"
+#~ msgid "HTTP proxy:"
+#~ msgstr "ប្រូកស៊ី HTTP ៖"
+
+#  i18n: file manualproxy_ui.ui line 95
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "បញ្ចូល​អាសយដ្ឋាន​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTP ។"
+
+#~ msgid "Port:"
+#~ msgstr "ច្រក ៖"
+
+#  i18n: file manualproxy_ui.ui line 95
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTP ។"
+
+#  i18n: file manualproxy_ui.ui line 175
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "ប្រើ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​នេះ​សម្រាប់​ពិធីការ​ទាំងអស់"
+
+#, fuzzy
+#~| msgid "SSL Proxy:"
+#~ msgid "SSL proxy:"
+#~ msgstr "ប្រូកស៊ី SSL ៖"
+
+#  i18n: file manualproxy_ui.ui line 103
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "បញ្ចូល​អាសយដ្ឋាន​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTPS ។"
+
+#  i18n: file manualproxy_ui.ui line 103
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី HTTPS ។"
+
+#, fuzzy
+#~| msgid "FTP Proxy:"
+#~ msgid "FTP proxy:"
+#~ msgstr "ប្រូកស៊ី FTP ៖"
+
+#  i18n: file manualproxy_ui.ui line 111
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "បញ្ចូល​អាសយដ្ឋាន​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី FTP ។"
+
+#  i18n: file manualproxy_ui.ui line 111
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី FTP ។"
+
+#, fuzzy
+#~| msgid "SOCKS Proxy:"
+#~ msgid "SOCKS proxy:"
+#~ msgstr "ប្រូកស៊ី SOCKS ៖"
+
+#  i18n: file manualproxy_ui.ui line 103
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "បញ្ចូល​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។"
+
+#  i18n: file manualproxy_ui.ui line 103
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "បញ្ចូល​លេខ​ច្រក​របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "បញ្ចូល​អថេរ​បរិស្ថាន ឧ. <b>NO_PROXY</b> ដែល​ប្រើ​ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​តំបន់ ដែល​មិន​គួរ​"
+#~ "ប្រើ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី ។<p>\n"
+#~ "ឬ​អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យប្រវត្តិ\"</b> ដើម្បី​ប៉ុនប៉ង​រក​ឃើញ​អថេរ​នេះ​ស្វ័យប្រវត្តិ ។\n"
+#~ "</qt>"
+
+#  i18n: file manualproxy_ui.ui line 193
+#~ msgid "Exceptions:"
+#~ msgstr "ករណី​លើកលែង ៖"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>បញ្ចូល​បញ្ជី​បំបែក​ដោយ​សញ្ញា​ក្បៀស​របស់​ឈ្មោះ​ម៉ាស៊ីន ឬ​អាសយដ្ឋាន ip ដែល​គួរតែ​ត្រូវ​បាន​មិន​រាប់បញ្ចូល​ពី​"
+#~ "ការ​ប្រើការ​កំណត់​ប្រូកស៊ី​ខាងលើ ។</p>\n"
+#~ "<p>ប្រសិនបើ​អ្នក​មិន​ចង់​រាប់​បញ្ចូល​ម៉ាស៊ីន​ទាំងអស់​សម្រាប់​ដែន​ដែល​បាន​ផ្ដល់ឲ្យ​ទេ អ្នក​គ្រាន់តែ​បញ្ចូល​ឈ្មោះ​ដែន​"
+#~ "ដែល​នាំមុខ​ដោយ​សញ្ញា​ចុច (.) ជា​ការ​ស្រេច ។ ឧទាហរណ៍ ដើម្បី​មិន​រាប់​បញ្ចូល​ឈ្មោះ​ម៉ាស៊ីន​ទាំងអស់​សម្រាប់ "
+#~ "<i>kde.org</i>សូម​បញ្ចូល <i>.kde.org</i> ។ តួអក្សរ​ជំនួស​មួយ​ចំនួន​ដូចជា '*' ឬ '?' មិន​ត្រូវ​"
+#~ "បាន​គាំទ្រ​ទេ ហើយ​វា​ក៏​នឹង​មិន​មាន​ប្រសិទ្ធភាព​អ្វី​ដែរ ។</p>\n"
+#~ "<p>លើសពីនេះទៀត អ្នក​ក៏​អាច​បញ្ចូល​អាសយដ្ឋាន IP បាន​ផង​ដែរ ឧទាហរណ៍ 127.0.0.1 និង​អាសយដ្ឋាន "
+#~ "IP ដែល​មាន​បណ្ដាញ​រង ដូចជា 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+
+#  i18n: file manualproxy_ui.ui line 204
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "ធីក​ប្រអប់​នេះ​ប្រសិនបើ​អ្នក​ចង់​ឲ្យ​ការ​កំណត់​ប្រូកស៊ី​ខាងលើ អនុវត្ត​ទៅ​លើ​អាសយដ្ឋាន​ដែល​បាន​រាយ​នៅ​ក្នុង​បញ្ជី "
+#~ "<i>ការ​លើកលែង</i> តែ​ប៉ុណ្ណោះ ។</qt>"
+
+#  i18n: file manualproxy_ui.ui line 204
+#, fuzzy
+#~| msgid "Use proxy settings only for addresses in the Exceptions list"
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "ប្រើ​ការ​កំណត់​ប្រូកស៊ី​សម្រាប់​អាសយដ្ឋាន​នៅ​ក្នុង​បញ្ជី​លើកលែង​តែប៉ុណ្ណោះ"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "ប្រើ​ស្គ្រីប​ប្រូកស៊ី​ដែល​បាន​បញ្ជាក់​ដើម្បី​កំណត់​រចនាសម្ព័ន្ធ​ការ​កំណត់​ប្រូកស៊ី ។"
+
+#  i18n: file kproxydlg_ui.ui line 94
+#, fuzzy
+#~| msgid "Use proxy auto configuration URL:"
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី URL ដោយ​ស្វ័យប្រវត្តិ ៖"
+
+#  i18n: file kproxydlg_ui.ui line 222
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "បញ្ចូល​ព័ត៌មាន​កំណត់​រចនាសម្ព័ន្ធ​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី​ដោយ​ដៃ ។"
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ដែល​បាន​បញ្ជាក់​ដោយ​ដៃ ៖"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>HTTP_PROXY</b> ដែល​ប្រើ ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​"
+#~ "បម្រើ​ប្រូកស៊ី HTTP ។<p>\n"
+#~ "ជា​ជម្រើស អ្នក​អាច​ចុច​លើ​ប៊ូតុង <b>\"រកឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​រកឃើញ​អ្នក​អថេរ​នេះ​ដោយ​"
+#~ "ស្វ័យ​ប្រវត្តិ ។</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "HTTP Proxy:"
+#~ msgid "H&TTP proxy:"
+#~ msgstr "ប្រូកស៊ី HTTP ៖"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>HTTPS_PROXY</b> ដែល​ប្រើ​ដើម្បី​រក្សាទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​"
+#~ "បម្រើ​ប្រូកស៊ី HTTPS ។<p>\n"
+#~ "ជា​ជម្រើស អ្នក​អាច​ចុច​លើ​ប៊ូតុង <b>\"រកឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​រកឃើញ​អ្នក​អថេរ​នេះ​ដោយ​"
+#~ "ស្វ័យ​ប្រវត្តិ ។</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "SSL Proxy:"
+#~ msgid "SS&L proxy:"
+#~ msgstr "ប្រូកស៊ី SSL ៖"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "សូម​បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>FTP_PROXY</b> ដែល​ប្រើ​ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​ម៉ាស៊ីន​"
+#~ "បម្រើ​ប្រូកស៊ី FTP ។<p>\n"
+#~ "ជា​ជម្រើស អ្នក​អាច​ចុច​លើ​ប៊ូតុង <b>\"រកឃើញ​ដោយ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​រកឃើញ​អ្នក​អថេរ​នេះ​ដោយ​"
+#~ "ស្វ័យ​ប្រវត្តិ ។</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>SOCKS_PROXY</b> ដែល​បាន​ប្រើ​ដើម្បី​រក្សាទុក​អាសយដ្ឋាន​របស់​"
+#~ "ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។<p>\n"
+#~ "ជា​ជម្រើស អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យ​ប្រវត្តិ\"</b> ដើម្បី​ឲ្យ​វា​រក​ឃើញ​អថេរ​នេះ​ដោយ​ស្វ័យ​"
+#~ "ប្រវត្តិ ។</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "SOCKS Proxy:"
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "ប្រូកស៊ី SOCKS ៖"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~| "used to store the address of the SOCKS proxy server.<p>Alternatively, "
+#~| "you can click on the <b>\"Auto Detect\"</b> button to attempt an "
+#~| "automatic discovery of this variable.</p></qt>"
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>បញ្ចូល​ឈ្មោះ​អថេរ​បរិស្ថាន ឧ. <b>SOCKS_PROXY</b> ដែល​បាន​ប្រើ​ដើម្បី​រក្សាទុក​អាសយដ្ឋាន​"
+#~ "របស់​ម៉ាស៊ីន​បម្រើ​ប្រូកស៊ី SOCKS ។<p>ជា​ជម្រើស អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​ឃើញ​ស្វ័យ​ប្រវត្តិ\"</b> "
+#~ "ដើម្បី​ឲ្យ​វា​រក​ឃើញ​អថេរ​នេះ​ដោយ​ស្វ័យ​ប្រវត្តិ ។</p></qt>"
+
+#  i18n: file manualproxy_ui.ui line 193
+#, fuzzy
+#~| msgid "Exceptions:"
+#~ msgid "E&xceptions:"
+#~ msgstr "ករណី​លើកលែង ៖"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~| "the addresses of sites for which the above proxy settings should not be "
+#~| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> "
+#~| "button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>បញ្ចូល​អថេរ​បរិស្ថាន ឧ. <b>NO_PROXY</b> ដែល​បាន​ប្រើ​ដើម្បី​រក្សា​ទុក​អាសយដ្ឋាន​របស់​"
+#~ "តំបន់បណ្ដាញ ដែល​ការ​កំណត់​ប្រូកស៊ី​ខាងលើ​មិន​គួរ​ត្រូវ​បាន​ប្រើ ។<p>ជា​ជម្រើស អ្នក​អាច​ចុច​ប៊ូតុង <b>\"រក​"
+#~ "ឃើញ​ស្វ័យប្រវត្តិ\"</b> ដើម្បី​ឲ្យ​វា​រក​ឃើញ​អថេរ​នេះ​ដោយ​ស្វ័យប្រវត្តិ ។</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "បង្ហាញ​តម្លៃ​អថេរ​បរិស្ថាន"
+
+#  i18n: file kproxydlg_ui.ui line 83
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Automatically detect and configure the proxy settings.<p>\n"
+#~| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~| "Protocol (WPAD)</b>.<p>\n"
+#~| "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~| "some UNIX/Linux distributions. If you encounter a problem when using "
+#~| "this option, please check the FAQ section at http://konqueror.kde.org.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "រកឃើញ និង​កំណត់​រចនាសម្ព័ន្ធ​ការ​កំណត់​ប្រូកស៊ី​ដោយ​ស្វ័យប្រវត្តិ ។<p>\n"
+#~ "ការ​រកឃើញ​ស្វ័យប្រវត្តិ​ត្រូវ​បាន​ប្រតិបត្តិ​ដោយ <b>Web Proxy Auto-Discovery Protocol "
+#~ "(WPAD)</b> ។<p>\n"
+#~ "<b>ចំណាំ ៖</b> ជម្រើស​នេះ​អាច​នឹង​មិន​ដំណើរការ​ត្រឹមត្រូវ ឬ​មិន​ដំណើរការ​តែ​ម្ដង​ក្នុង​ប្រព័ន្ធ​"
+#~ "ប្រតិបត្តិការ UNIX/Linux ខ្លះ ។ បើ​អ្នក​ជួប​ប្រទះ​បញ្ហា ពេល​ប្រើ​ជម្រើស​នេះ សូម​ពិនិត្យ​មើល​ត្រង់​"
+#~ "ផ្នែក សំណួរ​ដែល​សួរ​ញឹកញាប់ (FAQ) នៅ http://konqueror.kde.org ។\n"
+#~ "</qt>"
+
+#  i18n: file kproxydlg_ui.ui line 94
+#, fuzzy
+#~| msgid "Detect proxy configuration automatically"
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "រក​ឃើញ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ដោយ​ស្វ័យប្រវត្តិ ៖"
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "បញ្ចូល​អាសយដ្ឋាន សម្រាប់​ស្គ្រីប​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី ។"
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>ប្រើ​ការ​កំណត់​ប្រូកស៊ី​ដែល​បាន​កំណត់​នៅ​លើ​ប្រព័ន្ធ ។</p>\n"
+#~ "<p>វេទិកា​ខ្លះ​ផ្ដល់​ប្រព័ន្ធ​ព័ត៌មាន​អំពី​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​យ៉ាង​ទូលំទូលាយ ហើយ​ការ​ជ្រើស​ជម្រើស​នេះ​"
+#~ "នឹង​អនុញ្ញាត​ឲ្យ​អ្នក​ប្រើ​ការ​កំណត់​ទាំងនោះ​បាន ។</p>\n"
+#~ "<p>នៅ​លើ​វេទិកាមេក</p>\n"
+#~ "<p>នៅ​លើ​វេទិកា​វីនដូ</p>\n"
+#~ "<p>នៅ​លើ​វេទិកា​យូនីក និង​លីនុច មាន​ការ​កំណត់​ប្រូកស៊ី​ប្រព័ន្ធ​ជាច្រើន​ដែល ជាទូទៅ​បាន​កំណត់​តាម​អថេរ​"
+#~ "បរិស្ថាន ។ អថេរ​បរិស្ថាន​ខាងក្រោម​គឺ​ត្រូវ​បាន​រក​ឃើញ និង​ប្រើ​នៅ​ពេល​បង្ហាញ ៖ <b>HTTP_PROXY</"
+#~ "b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#  i18n: file kproxydlg_ui.ui line 94
+#, fuzzy
+#~| msgid "Use system proxy configuration:"
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "ប្រើ​ការ​កំណត់​រចនាសម្ព័ន្ធ​ប្រូកស៊ី​ប្រព័ន្ធ ៖"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

@@ -18,16 +18,16 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
-"PO-Revision-Date: 2026-05-30 06:37-0300\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
+"PO-Revision-Date: 2026-08-27 06:55-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -45,506 +45,29 @@ msgstr ""
 "Quando um arquivo está sendo enviado sua extensão é \".part\". Quando ele "
 "for completamente enviado ele é renomeado para seu nome real."
 
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Faz a configuração do proxy.\n"
-"<p>\n"
-"Um servidor proxy é uma máquina intermediária que situa-se entre sua máquina "
-"e Internet, e fornece serviços como cache dos sites que você visita e "
-"filtragem. A cache fornece a você um acesso mais rápido a sites que você já "
-"tenha visitado, pois eles estarão localmente armazenados, em seu servidor "
-"proxy. A filtragem fornece, geralmente, a capacidade para bloquear "
-"requisições, como spams, ou qualquer outra coisa que queira bloquear.\n"
-"<p>\n"
-"Se você está incerto quando ou não usar um servidor proxy, por favor "
-"consulte o manual do seu provedor Internet ou o administrador do seu "
-"sistema.\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>Tenta descobrir automaticamente as variáveis de ambiente usadas para "
-"configurar o amplo sistema de informações do proxy.<p> Este recurso funciona "
-"através da pesquisa pelos nomes comuns de variáveis mais usadas, tais como "
-"HTTP_PROXY, FTP_PROXY e NO_PROXY.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "D&etectar automaticamente"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "Conecta diretamente à Internet."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "&Sem proxy"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "Proxy HTTP:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Digite o endereço do servidor proxy HTTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "Porta:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Digite o número da porta do servidor proxy HTTP."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "Usar este servidor proxy para todos os protoco&los"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "Proxy SSL:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Digite o endereço do servidor proxy HTTPS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Digite o número da porta do servidor proxy HTTPS."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "Proxy FTP:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Digite o endereço do servidor proxy FTP."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Digite o número da porta do servidor proxy FTP."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "Proxy SOCKS:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Digite o endereço do servidor proxy SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Digite o número da porta do servidor proxy SOCKS."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Digite a variável de ambiente, como por exemplo <b>NO_PROXY</b>, usada para "
-"armazenar os endereços de sites para os quais o servidor proxy não será "
-"usado.<p>\n"
-"Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</b> "
-"para tentar descobrir automaticamente esta variável.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "Exceções:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Indique uma lista separada por vírgulas, de nomes ou endereços IP das "
-"máquinas que deverão ser excluídas do uso das configurações de proxy acima.</"
-"p>\n"
-"<p>Se quiser excluir todas as máquinas para um determinado domínio, basta "
-"indicar o nome do domínio com um ponto no início. Por exemplo, para excluir "
-"todas as máquinas em <i>kde.org</i>, indique <i>.kde.org</i>. Os caracteres "
-"especiais, como o '*' ou o '?', não são suportados e não terão qualquer "
-"efeito.</p>\n"
-"<p>Adicionalmente, você poderá indicar também endereços IP, p.ex. 127.0.0.1, "
-"e endereços IP com máscaras de sub-rede, p.ex. 192.168.0.1/24.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"Assinale esta opção se quiser que as configurações acima sejam aplicadas "
-"somente nos endereços da lista de <i>Exceções</i>.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
-"Usar configurações de proxy apenas para os endereços da lista de exceções"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "Usa o script especificado para ajustar as configurações do proxy."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "&Usar a URL de configuração automática do proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Digite manualmente as informações sobre a configuração do proxy."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "Usar a configuração de proxy especificada manualmente:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Digite o nome da variável de ambiente, por exemplo <b>HTTP_PROXY</b>, usada "
-"para armazenar os endereços do servidor proxy HTTP.<p>\n"
-"Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</b> "
-"para tentar descobrir automaticamente esta variável.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "Proxy H&TTP:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Digite o nome da variável de ambiente, por exemplo <b>HTTPS_PROXY</b>, usada "
-"para armazenar os endereços do servidor proxy HTTPS.<p>\n"
-"Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</b> "
-"para tentar descobrir automaticamente esta variável.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "Proxy SS&L:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Digite o nome da variável de ambiente, por exemplo <b>FTP_PROXY</b>, usada "
-"para armazenar os endereços do servidor proxy FTP.<p>\n"
-"Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</b> "
-"para tentar descobrir automaticamente esta variável.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Digite o nome da variável de ambiente, por exemplo <b>SOCKS_PROXY</b>, usada "
-"para armazenar os endereços do servidor proxy SOCKS.<p>\n"
-"Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</b> "
-"para tentar descobrir automaticamente esta variável.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "Proxy SOC&KS:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Digite o nome da variável de ambiente, por exemplo <b>SOCKS_PROXY</b>, "
-"usada para armazenar os endereços do servidor proxy SOCKS."
-"<p>Alternativamente, você pode clicar no botão <b>&quot;Detecção "
-"automática&quot;</b> para tentar descobrir automaticamente esta variável.</"
-"p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "E&xceções:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Digite a variável de ambiente, como por exemplo <b>NO_PROXY</b>, usada "
-"para armazenar os endereços de sites para os quais as configurações de proxy "
-"acima não serão usadas.<p>Alternativamente, você pode clicar no botão "
-"<b>&quot;Detecção automática&quot;</b> para tentar descobrir automaticamente "
-"esta variável.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "M&ostrar o valor das variáveis de ambiente"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Detecta e configura automaticamente as opções de proxy.<p>\n"
-"A detecção automática é executada usando o <b>Protocolo de Proxy Web para "
-"Configuração Automática (WPAD)</b>.<p>\n"
-"<b>Observação:</b> Esta opção pode não funcionar corretamente ou até mesmo "
-"não funcionar em algumas distribuições Unix/Linux.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "&Detectar automaticamente a configuração do proxy"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"Configuração Automática, também conhecida como Descoberta Automática de "
-"Proxy na Web (WPAD), quase nunca é a configuração correta. Habilitá-la "
-"quando não é necessária pode diminuir a velocidade do acesso à rede e tornar "
-"sua rede menos segura. Seu administrador de rede saberá se habilitá-la é "
-"necessário."
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "Digite o endereço para o script de configuração do proxy."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Usar as configurações do proxy definidas no sistema.</p>\n"
-"<p>Algumas plataformas oferecem informações de configuração do proxy a nível "
-"do sistema e, caso selecione esta opção, você poderá usar estas "
-"configurações.</p>\n"
-"<p>Nas plataformas Mac</p>\n"
-"<p>Nas plataformas Windows</p>\n"
-"<p>Nas plataformas Unix e Linux, estas configurações do sistema são "
-"definidas através de variáveis do ambiente. São detectadas as seguintes "
-"variáveis de ambiente e usadas quando existentes: <b>HTTP_PROXY</b>, "
-"<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "Usar configuração de proxy do &sistema:"
-
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
 msgstr ""
-"Você deve reiniciar os aplicativos que estão em execução para que as "
-"mudanças tenham efeito."
+"Reinicie os aplicativos em execução para que essas alterações entrem em "
+"vigor neles."
 
 #: proxy/ui/main.qml:49
-#, fuzzy, kde-format
-#| msgid "&No proxy"
+#, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr "&Sem proxy"
+msgstr "Sem proxy"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "&Detectar automaticamente a configuração do proxy"
+msgstr "Detectar automaticamente a configuração do proxy"
 
 #: proxy/ui/main.qml:75
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
-#| "is almost never the correct configuration. Enabling it when it is not "
-#| "required may slow down network access and make your network less secure. "
-#| "Your network administrator will know whether enabling it is required."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
@@ -559,64 +82,55 @@ msgstr ""
 "necessário."
 
 #: proxy/ui/main.qml:83
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy auto-configuration URL"
-msgstr "&Usar a URL de configuração automática do proxy:"
+msgstr "Usar a URL de configuração automática do proxy"
 
 #: proxy/ui/main.qml:104
-#, fuzzy, kde-format
-#| msgid "Cannot open file"
+#, kde-format
 msgctxt "@label:button"
 msgid "Choose file…"
-msgstr "Não foi possível abrir o arquivo"
+msgstr "Escolher arquivo…"
 
 #: proxy/ui/main.qml:119
-#, fuzzy, kde-format
-#| msgid "Use s&ystem proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use system proxy configuration"
-msgstr "Usar configuração de proxy do &sistema:"
+msgstr "Usar configuração de proxy do sistema"
 
 #: proxy/ui/main.qml:129
-#, fuzzy, kde-format
-#| msgid "Auto D&etect"
+#, kde-format
 msgctxt "@action:button"
 msgid "Auto-Detect"
-msgstr "D&etectar automaticamente"
+msgstr "Detectar automaticamente"
 
 #: proxy/ui/main.qml:137
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "HTTP proxy:"
 msgstr "Proxy HTTP:"
 
 #: proxy/ui/main.qml:143
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SSL proxy:"
 msgstr "Proxy SSL:"
 
 #: proxy/ui/main.qml:149
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "FTP proxy:"
 msgstr "Proxy FTP:"
 
 #: proxy/ui/main.qml:155
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SOCKS proxy:"
 msgstr "Proxy SOCKS:"
 
 #: proxy/ui/main.qml:161 proxy/ui/main.qml:304
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgctxt "@label"
 msgid "Exceptions:"
 msgstr "Exceções:"
@@ -625,60 +139,52 @@ msgstr "Exceções:"
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "Lista de endereços IP separados por vírgulas"
 
 #: proxy/ui/main.qml:171
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr "M&ostrar o valor das variáveis de ambiente"
+msgstr "Mostrar o valor das variáveis de ambiente"
 
 #: proxy/ui/main.qml:178
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr "Usar a configuração de proxy especificada manualmente:"
+msgstr "Usar a configuração de proxy especificada manualmente"
 
 #: proxy/ui/main.qml:196
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "HTTP Proxy"
-msgstr "Proxy HTTP:"
+msgstr "Proxy HTTP"
 
 #: proxy/ui/main.qml:219
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
-msgstr "Usar este servidor proxy para todos os protoco&los"
+msgstr "Usar este servidor proxy para todos os protocolos"
 
 #: proxy/ui/main.qml:233
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SSL Proxy"
-msgstr "Proxy SSL:"
+msgstr "Proxy SSL"
 
 #: proxy/ui/main.qml:256
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "FTP Proxy"
-msgstr "Proxy FTP:"
+msgstr "Proxy FTP"
 
 #: proxy/ui/main.qml:279
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SOCKS Proxy"
-msgstr "Proxy SOCKS:"
+msgstr "Proxy SOCKS"
 
 #: proxy/ui/main.qml:320
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the exceptions list"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
@@ -688,28 +194,25 @@ msgstr ""
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "URL:"
 
 #: proxy/ui/main.qml:387
-#, fuzzy, kde-format
-#| msgid "Port:"
+#, kde-format
 msgctxt "@label"
 msgid "Port:"
 msgstr "Porta:"
 
 #: proxy/ui/main.qml:410
-#, fuzzy, kde-format
-#| msgid "Proxy Authentication Failed."
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr "A autenticação do proxy falhou."
+msgstr "Abrir arquivo de configuração automática de proxy"
 
 #: proxy/ui/main.qml:411
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr "&Usar a URL de configuração automática do proxy:"
+msgstr "Arquivos de configuração automática de proxy (*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
@@ -1262,6 +765,331 @@ msgstr "&Conjunto de caracteres:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Insere o item de substituição da pesquisa"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Faz a configuração do proxy.\n"
+#~ "<p>\n"
+#~ "Um servidor proxy é uma máquina intermediária que situa-se entre sua "
+#~ "máquina e Internet, e fornece serviços como cache dos sites que você "
+#~ "visita e filtragem. A cache fornece a você um acesso mais rápido a sites "
+#~ "que você já tenha visitado, pois eles estarão localmente armazenados, em "
+#~ "seu servidor proxy. A filtragem fornece, geralmente, a capacidade para "
+#~ "bloquear requisições, como spams, ou qualquer outra coisa que queira "
+#~ "bloquear.\n"
+#~ "<p>\n"
+#~ "Se você está incerto quando ou não usar um servidor proxy, por favor "
+#~ "consulte o manual do seu provedor Internet ou o administrador do seu "
+#~ "sistema.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>Tenta descobrir automaticamente as variáveis de ambiente usadas para "
+#~ "configurar o amplo sistema de informações do proxy.<p> Este recurso "
+#~ "funciona através da pesquisa pelos nomes comuns de variáveis mais usadas, "
+#~ "tais como HTTP_PROXY, FTP_PROXY e NO_PROXY.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "D&etectar automaticamente"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "Conecta diretamente à Internet."
+
+#~ msgid "&No proxy"
+#~ msgstr "&Sem proxy"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "Proxy HTTP:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "Digite o endereço do servidor proxy HTTP."
+
+#~ msgid "Port:"
+#~ msgstr "Porta:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "Digite o número da porta do servidor proxy HTTP."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "Usar este servidor proxy para todos os protoco&los"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "Proxy SSL:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "Digite o endereço do servidor proxy HTTPS."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "Digite o número da porta do servidor proxy HTTPS."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "Proxy FTP:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "Digite o endereço do servidor proxy FTP."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "Digite o número da porta do servidor proxy FTP."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "Proxy SOCKS:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "Digite o endereço do servidor proxy SOCKS."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "Digite o número da porta do servidor proxy SOCKS."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Digite a variável de ambiente, como por exemplo <b>NO_PROXY</b>, usada "
+#~ "para armazenar os endereços de sites para os quais o servidor proxy não "
+#~ "será usado.<p>\n"
+#~ "Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</"
+#~ "b> para tentar descobrir automaticamente esta variável.\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "Exceções:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Indique uma lista separada por vírgulas, de nomes ou endereços IP das "
+#~ "máquinas que deverão ser excluídas do uso das configurações de proxy "
+#~ "acima.</p>\n"
+#~ "<p>Se quiser excluir todas as máquinas para um determinado domínio, basta "
+#~ "indicar o nome do domínio com um ponto no início. Por exemplo, para "
+#~ "excluir todas as máquinas em <i>kde.org</i>, indique <i>.kde.org</i>. Os "
+#~ "caracteres especiais, como o '*' ou o '?', não são suportados e não terão "
+#~ "qualquer efeito.</p>\n"
+#~ "<p>Adicionalmente, você poderá indicar também endereços IP, p.ex. "
+#~ "127.0.0.1, e endereços IP com máscaras de sub-rede, p.ex. 192.168.0.1/24."
+#~ "</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Assinale esta opção se quiser que as configurações acima sejam aplicadas "
+#~ "somente nos endereços da lista de <i>Exceções</i>.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr ""
+#~ "Usar configurações de proxy apenas para os endereços da lista de exceções"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "Usa o script especificado para ajustar as configurações do proxy."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "&Usar a URL de configuração automática do proxy:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "Digite manualmente as informações sobre a configuração do proxy."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "Usar a configuração de proxy especificada manualmente:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Digite o nome da variável de ambiente, por exemplo <b>HTTP_PROXY</b>, "
+#~ "usada para armazenar os endereços do servidor proxy HTTP.<p>\n"
+#~ "Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</"
+#~ "b> para tentar descobrir automaticamente esta variável.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "Proxy H&TTP:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Digite o nome da variável de ambiente, por exemplo <b>HTTPS_PROXY</b>, "
+#~ "usada para armazenar os endereços do servidor proxy HTTPS.<p>\n"
+#~ "Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</"
+#~ "b> para tentar descobrir automaticamente esta variável.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "Proxy SS&L:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Digite o nome da variável de ambiente, por exemplo <b>FTP_PROXY</b>, "
+#~ "usada para armazenar os endereços do servidor proxy FTP.<p>\n"
+#~ "Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</"
+#~ "b> para tentar descobrir automaticamente esta variável.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Digite o nome da variável de ambiente, por exemplo <b>SOCKS_PROXY</b>, "
+#~ "usada para armazenar os endereços do servidor proxy SOCKS.<p>\n"
+#~ "Alternativamente, você pode clicar no botão <b>\"Detecção automática\"</"
+#~ "b> para tentar descobrir automaticamente esta variável.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "Proxy SOC&KS:"
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>Digite o nome da variável de ambiente, por exemplo <b>SOCKS_PROXY</"
+#~ "b>, usada para armazenar os endereços do servidor proxy SOCKS."
+#~ "<p>Alternativamente, você pode clicar no botão <b>&quot;Detecção "
+#~ "automática&quot;</b> para tentar descobrir automaticamente esta variável."
+#~ "</p></qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "E&xceções:"
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>Digite a variável de ambiente, como por exemplo <b>NO_PROXY</b>, "
+#~ "usada para armazenar os endereços de sites para os quais as configurações "
+#~ "de proxy acima não serão usadas.<p>Alternativamente, você pode clicar no "
+#~ "botão <b>&quot;Detecção automática&quot;</b> para tentar descobrir "
+#~ "automaticamente esta variável.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "M&ostrar o valor das variáveis de ambiente"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Detecta e configura automaticamente as opções de proxy.<p>\n"
+#~ "A detecção automática é executada usando o <b>Protocolo de Proxy Web para "
+#~ "Configuração Automática (WPAD)</b>.<p>\n"
+#~ "<b>Observação:</b> Esta opção pode não funcionar corretamente ou até "
+#~ "mesmo não funcionar em algumas distribuições Unix/Linux.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "&Detectar automaticamente a configuração do proxy"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "Configuração Automática, também conhecida como Descoberta Automática de "
+#~ "Proxy na Web (WPAD), quase nunca é a configuração correta. Habilitá-la "
+#~ "quando não é necessária pode diminuir a velocidade do acesso à rede e "
+#~ "tornar sua rede menos segura. Seu administrador de rede saberá se "
+#~ "habilitá-la é necessário."
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "Digite o endereço para o script de configuração do proxy."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>Usar as configurações do proxy definidas no sistema.</p>\n"
+#~ "<p>Algumas plataformas oferecem informações de configuração do proxy a "
+#~ "nível do sistema e, caso selecione esta opção, você poderá usar estas "
+#~ "configurações.</p>\n"
+#~ "<p>Nas plataformas Mac</p>\n"
+#~ "<p>Nas plataformas Windows</p>\n"
+#~ "<p>Nas plataformas Unix e Linux, estas configurações do sistema são "
+#~ "definidas através de variáveis do ambiente. São detectadas as seguintes "
+#~ "variáveis de ambiente e usadas quando existentes: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "Usar configuração de proxy do &sistema:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

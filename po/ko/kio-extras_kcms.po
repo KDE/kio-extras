@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2026-06-06 13:07+0200\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
@@ -34,457 +34,6 @@ msgid ""
 msgstr ""
 "업로드 중인 파일의 확장자를 \".part\"로 바꿉니다. 업로드가 완료되면 다시 원"
 "래 이름으로 바꿉니다."
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"프록시를 설정합니다.\n"
-"<p>\n"
-"프록시 서버는 컴퓨터와 인터넷 사이에 위치하며 웹 페이지 캐싱 및 필터링과 같"
-"은 서비스를 제공하는 중간 시스템입니다. 캐싱 프록시 서버를 사용하면 해당 페이"
-"지를 프록시 서버의 로컬 공간이나 캐시에 저장하여 이미 방문한 웹사이트에 더 빠"
-"르게 접근할 수 있습니다. 필터링 프록시 서버를 사용하면 광고, 스팸 또는 차단"
-"할 다른 모든 웹사이트에 대한 요청을 차단할 수 있습니다. \n"
-"<p>\n"
-"프록시 서버를 사용하여 인터넷에 연결해야 하는지 여부가 불확실한 경우 인터넷 "
-"서비스 공급자의 설정 가이드 또는 시스템 관리자에게 문의하십시오.\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>시스템 전역 프록시 설정 시 사용된 환경 변수를 자동으로 검색합니다.<p>이 "
-"동작은 HTTP_PROXY, FTP_PROXY, NO_PROXY와 같이 주로 사용되는 변수를 검색합니"
-"다.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "자동 검색(&E)"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "인터넷에 직접 연결합니다."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "프록시 없음(&N)"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "HTTP 프록시:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "HTTP 프록시 서버의 주소를 입력하십시오."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "포트:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "HTTP 프록시 서버의 포트를 입력하십시오."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "모든 프로토콜에 같은 프록시 서버 사용(&L)"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "SSL 프록시:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "HTTPS 프록시 서버의 주소를 입력하십시오."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "HTTPS 프록시 서버의 포트를 입력하십시오."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "FTP 프록시:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "FTP 프록시 서버의 주소를 입력하십시오."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "FTP 프록시 서버의 포트를 입력하십시오."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "SOCKS 프록시:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "SOCKS 프록시 서버의 주소를 입력하십시오."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "SOCKS 프록시 서버의 포트를 입력하십시오."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<b>NO_PROXY</b> 같은 프록시 서버를 사용하지 않을 사이트를 저장하는 환경 변수"
-"를 입력하십시오.<p>\n"
-"<b>자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니다.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "예외:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>위의 프록시 설정을 사용할 때 제외할 호스트 이름 또는 IP 주소의 쉼표로 구분"
-"된 목록을 입력하십시오.</p>\n"
-"<p>지정한 도메인의 모든 호스트를 제외하려면 점 앞에 도메인 이름을 입력하기만 "
-"하면 됩니다. 예를 들어 <i>kde.org</i>의 모든 호스트를 제외하려면 <i>.kde."
-"org</i>를 입력하십시오. '*' 또는 '?' 같은 와일드카드 문자는 효과가 없습니다."
-"</p>\n"
-"<p>또한 IP 주소를 입력할 수도 있습니다. 예: 127.0.0.1 및 서브넷이 있는 IP 주"
-"소(예: 192.168.0.1/24)</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"이 상자를 선택하면 <i>예외</i> 목록에 있는 호스트에 접속할 때에만 위의 프록"
-"시 설정을 사용합니다.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "예외 목록에 있는 항목만 프록시 사용"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "프록시 설정 시 지정한 프록시 스크립트를 사용합니다."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "프록시 자동 설정 URL 사용(&U):"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "프록시 서버 설정 정보를 수동으로 입력합니다."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "수동 프록시 설정 사용:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<b>HTTP_PROXY</b> 같은 HTTP 프록시 서버 주소를 저장하는 환경 변수를 입력합니"
-"다.<p>\n"
-"<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니다.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "HTTP 프록시(&T):"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<b>HTTPS_PROXY</b> 같은 HTTPS 프록시 서버 주소를 저장하는 환경 변수를 입력합"
-"니다.<p>\n"
-"<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니다.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "SSL 프록시(&L):"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<b>FTP_PROXY</b> 같은 FTP 프록시 서버 주소를 저장하는 환경 변수를 입력합니다."
-"<p>\n"
-"<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니다.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<b>SOCKS_PROXY</b> 같은 SOCKS 프록시 서버 주소를 저장하는 환경 변수를 입력합"
-"니다.<p>\n"
-"<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니다.</"
-"p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "SOCKS 프록시(&K):"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt><b>SOCKS_PROXY</b> 같은 SOCKS 프록시 서버 주소를 저장하는 환경 변수를 입"
-"력하십시오.<p><b>&quot;자동 검색&quot;</b> 단추를 클릭하면 이 변수를 자동으"
-"로 검색할 수 있습니다.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "예외(&X):"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt><b>NO_PROXY</b> 같은 프록시 서버를 사용하지 않을 사이트를 저장하는 환경 "
-"변수를 입력하십시오.<p><b>&quot;자동 검색&quot;</b> 단추를 클릭하면 이 변수"
-"를 자동으로 검색할 수 있습니다.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "환경 변수 값 보기(&V)"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"자동으로 프록시를 찾고 설정합니다.<p>\n"
-"자동 검색은 <b>웹 프록시 자동 검색 프로토콜(WPAD)</b>을 사용합니다.<p>\n"
-"<b>참고:</b> 일부 UNIX/리눅스 배포판에서 이 옵션이 제대로 작동하지 않거나 전"
-"혀 작동하지 않을 수 있습니다.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "프록시 설정 자동 감지(&D)"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"WPAD(웹 프록시 자동 발견)로도 알려진 자동 설정은 대부분 경우 사용할 필요가 없"
-"습니다. 필요하지 않은 경우에 이 설정을 활성화하면 네트워크를 느리게 할 수도 "
-"있으며 네트워크의 보안을 악화시킵니다. 설정 활성화 필요 여부는 네트워크 관리"
-"자에게 문의하십시오."
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "프록시 설정 스크립트의 주소를 입력합니다."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>시스템의 프록시 설정을 사용합니다.</p>\n"
-"<p>일부 플랫폼은 시스템 전역 프록시 설정을 지원하며, 이 옵션을 사용하면 시스"
-"템 전역 프록시 설정을 가져옵니다.</p>\n"
-"<p>Mac 플랫폼:</p>\n"
-"<p>Windows 플랫폼:</p>\n"
-"<p>Unix/Linux 플랫폼: 프록시 설정은 환경 변수로 정의됩니다. 다음 환경 변수가 "
-"존재하면 사용합니다: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</"
-"b>, <b>NO_PROXY</b></p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "시스템 프록시 설정 사용(&Y):"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1204,6 +753,314 @@ msgstr "문자 인코딩(&C):"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "쿼리 자리 비움자 삽입"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "프록시를 설정합니다.\n"
+#~ "<p>\n"
+#~ "프록시 서버는 컴퓨터와 인터넷 사이에 위치하며 웹 페이지 캐싱 및 필터링과 "
+#~ "같은 서비스를 제공하는 중간 시스템입니다. 캐싱 프록시 서버를 사용하면 해"
+#~ "당 페이지를 프록시 서버의 로컬 공간이나 캐시에 저장하여 이미 방문한 웹사이"
+#~ "트에 더 빠르게 접근할 수 있습니다. 필터링 프록시 서버를 사용하면 광고, 스"
+#~ "팸 또는 차단할 다른 모든 웹사이트에 대한 요청을 차단할 수 있습니다. \n"
+#~ "<p>\n"
+#~ "프록시 서버를 사용하여 인터넷에 연결해야 하는지 여부가 불확실한 경우 인터"
+#~ "넷 서비스 공급자의 설정 가이드 또는 시스템 관리자에게 문의하십시오.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>시스템 전역 프록시 설정 시 사용된 환경 변수를 자동으로 검색합니다.<p>"
+#~ "이 동작은 HTTP_PROXY, FTP_PROXY, NO_PROXY와 같이 주로 사용되는 변수를 검색"
+#~ "합니다.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "자동 검색(&E)"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "인터넷에 직접 연결합니다."
+
+#~ msgid "&No proxy"
+#~ msgstr "프록시 없음(&N)"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP 프록시:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "HTTP 프록시 서버의 주소를 입력하십시오."
+
+#~ msgid "Port:"
+#~ msgstr "포트:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "HTTP 프록시 서버의 포트를 입력하십시오."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "모든 프로토콜에 같은 프록시 서버 사용(&L)"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL 프록시:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "HTTPS 프록시 서버의 주소를 입력하십시오."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "HTTPS 프록시 서버의 포트를 입력하십시오."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP 프록시:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "FTP 프록시 서버의 주소를 입력하십시오."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "FTP 프록시 서버의 포트를 입력하십시오."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS 프록시:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "SOCKS 프록시 서버의 주소를 입력하십시오."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "SOCKS 프록시 서버의 포트를 입력하십시오."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<b>NO_PROXY</b> 같은 프록시 서버를 사용하지 않을 사이트를 저장하는 환경 변"
+#~ "수를 입력하십시오.<p>\n"
+#~ "<b>자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니"
+#~ "다.\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "예외:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>위의 프록시 설정을 사용할 때 제외할 호스트 이름 또는 IP 주소의 쉼표로 "
+#~ "구분된 목록을 입력하십시오.</p>\n"
+#~ "<p>지정한 도메인의 모든 호스트를 제외하려면 점 앞에 도메인 이름을 입력하기"
+#~ "만 하면 됩니다. 예를 들어 <i>kde.org</i>의 모든 호스트를 제외하려면 <i>."
+#~ "kde.org</i>를 입력하십시오. '*' 또는 '?' 같은 와일드카드 문자는 효과가 없"
+#~ "습니다.</p>\n"
+#~ "<p>또한 IP 주소를 입력할 수도 있습니다. 예: 127.0.0.1 및 서브넷이 있는 IP "
+#~ "주소(예: 192.168.0.1/24)</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "이 상자를 선택하면 <i>예외</i> 목록에 있는 호스트에 접속할 때에만 위의 프"
+#~ "록시 설정을 사용합니다.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "예외 목록에 있는 항목만 프록시 사용"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "프록시 설정 시 지정한 프록시 스크립트를 사용합니다."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "프록시 자동 설정 URL 사용(&U):"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "프록시 서버 설정 정보를 수동으로 입력합니다."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "수동 프록시 설정 사용:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<b>HTTP_PROXY</b> 같은 HTTP 프록시 서버 주소를 저장하는 환경 변수를 입력합"
+#~ "니다.<p>\n"
+#~ "<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니"
+#~ "다.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "HTTP 프록시(&T):"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<b>HTTPS_PROXY</b> 같은 HTTPS 프록시 서버 주소를 저장하는 환경 변수를 입력"
+#~ "합니다.<p>\n"
+#~ "<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니"
+#~ "다.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "SSL 프록시(&L):"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<b>FTP_PROXY</b> 같은 FTP 프록시 서버 주소를 저장하는 환경 변수를 입력합니"
+#~ "다.<p>\n"
+#~ "<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니"
+#~ "다.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<b>SOCKS_PROXY</b> 같은 SOCKS 프록시 서버 주소를 저장하는 환경 변수를 입력"
+#~ "합니다.<p>\n"
+#~ "<b>\"자동 검색\"</b> 단추를 클릭하면 이 변수를 자동으로 검색할 수 있습니"
+#~ "다.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOCKS 프록시(&K):"
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt><b>SOCKS_PROXY</b> 같은 SOCKS 프록시 서버 주소를 저장하는 환경 변수를 "
+#~ "입력하십시오.<p><b>&quot;자동 검색&quot;</b> 단추를 클릭하면 이 변수를 자"
+#~ "동으로 검색할 수 있습니다.</p></qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "예외(&X):"
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt><b>NO_PROXY</b> 같은 프록시 서버를 사용하지 않을 사이트를 저장하는 환"
+#~ "경 변수를 입력하십시오.<p><b>&quot;자동 검색&quot;</b> 단추를 클릭하면 이 "
+#~ "변수를 자동으로 검색할 수 있습니다.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "환경 변수 값 보기(&V)"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "자동으로 프록시를 찾고 설정합니다.<p>\n"
+#~ "자동 검색은 <b>웹 프록시 자동 검색 프로토콜(WPAD)</b>을 사용합니다.<p>\n"
+#~ "<b>참고:</b> 일부 UNIX/리눅스 배포판에서 이 옵션이 제대로 작동하지 않거나 "
+#~ "전혀 작동하지 않을 수 있습니다.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "프록시 설정 자동 감지(&D)"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "WPAD(웹 프록시 자동 발견)로도 알려진 자동 설정은 대부분 경우 사용할 필요"
+#~ "가 없습니다. 필요하지 않은 경우에 이 설정을 활성화하면 네트워크를 느리게 "
+#~ "할 수도 있으며 네트워크의 보안을 악화시킵니다. 설정 활성화 필요 여부는 네"
+#~ "트워크 관리자에게 문의하십시오."
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "프록시 설정 스크립트의 주소를 입력합니다."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>시스템의 프록시 설정을 사용합니다.</p>\n"
+#~ "<p>일부 플랫폼은 시스템 전역 프록시 설정을 지원하며, 이 옵션을 사용하면 시"
+#~ "스템 전역 프록시 설정을 가져옵니다.</p>\n"
+#~ "<p>Mac 플랫폼:</p>\n"
+#~ "<p>Windows 플랫폼:</p>\n"
+#~ "<p>Unix/Linux 플랫폼: 프록시 설정은 환경 변수로 정의됩니다. 다음 환경 변수"
+#~ "가 존재하면 사용합니다: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+#~ "<b>FTP_PROXY</b>, <b>NO_PROXY</b></p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "시스템 프록시 설정 사용(&Y):"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

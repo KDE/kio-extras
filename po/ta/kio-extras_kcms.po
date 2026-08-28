@@ -14,7 +14,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2026-06-09 21:55+0530\n"
 "Last-Translator: Kishore G <kishore96@gmail.com>\n"
 "Language-Team: Tamil <kde-l10n-ta@kde.org>\n"
@@ -40,461 +40,6 @@ msgid ""
 msgstr ""
 "ஒரு கோப்பு பதிவேற்றப்படும்போது அதன் வகைப்பெயர் \"*.part\"-ஆக இருக்கும். முழுதாக "
 "பதிவேற்றிய பின் அதற்கு சரியான பெயர் இடப்படும்."
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"பதிலியை அமையுங்கள்.\n"
-"<p>\n"
-"பதிலி சேவையகம் என்பது, உங்கள் கணினிக்கும் இணையத்துக்கும் இடையே இருந்து, வடிகட்டுதல் "
-"மற்றும் வலைபக்கங்களை தேக்கி வைத்தல் போன்ற சேவைகளை வழங்கும்.</p><p> தேக்கக பதிலி "
-"சேவையகங்கள், நீங்கள் ஏற்கனவே பார்த்த இணையதளங்களை மீண்டும் விரைவாக அணுகும் வகையில் அவற்றை "
-"உள்ளமைவாக சேமித்து வைக்கும்;  மாறாக, விளம்பரங்கள் போன்ற நீங்கள் தடுக்க விரும்பக்கூடியவற்றை "
-"வடிகட்டும் பதிலி சேவையகங்கள் தடுக்கும்.</p>\n"
-"<p>\n"
-"நீங்கள் பதிலி சேவையகத்தை பயன்படுத்த வேண்டுமா என்பது தெரியவில்லையெனில், உங்கள் கணினியின் "
-"நிர்வாகியிடம் கேளுங்கள், அல்லது உங்கள் இணைய சேவை நிறுவனத்தின் கையேடை பாருங்கள்.\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>கணினி முழுவதுக்குமான பதிலி விவரங்களை அமைக்க பயன்படும் சூழல் மாறிகளை தானாக "
-"கண்டுபிடிக்க முயற்சி.<p> பரவலாக பயன்படுத்தப்படும் HTTP_PROXY, FTP_PROXY மற்றும் "
-"NO_PROXY போன்ற மாறிகளை இது தேடும்.</qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "தானாக கண்டுபிடி"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "நேரடியாக இணையத்துடன் இணை"
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, kde-format
-msgid "&No proxy"
-msgstr "பதிலி இல்லை"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, kde-format
-msgid "HTTP proxy:"
-msgstr "HTTP பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "HTTPS  பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "புறை:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "HTTPS பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடவும்."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "&அனைத்து நெறிமுறைகளுக்கும் இந்த பதிலி சேவையகத்தை பயன்படுத்து"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, kde-format
-msgid "SSL proxy:"
-msgstr "SSL பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "HTTPS பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "HTTPS பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, kde-format
-msgid "FTP proxy:"
-msgstr "FTP பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "FTP பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "FTP பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, kde-format
-msgid "SOCKS proxy:"
-msgstr "SOCKS பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "SOCKS பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "SOCKS பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடுங்கள்."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"சூலல் மாறிக்கு பெயரினை உள்ளீடு செய், எ.கா. <b>FTP_பதிமாற்றம்</b>,  FTP பதிமாற்றம் "
-"வழங்கன் சேமிப்பதற்கு பயன்படுகிறது.<p>\n"
-"மாற்றாக, நீங்கள் சொடுக்க இயலும் <b>\"தானியக்க நீக்கம்t\"</b>இந்த மாறிகளை தானியக்க கண்டரிய "
-"இந்த பொத்தான் முயல்கிறது.\n"
-".</qt>."
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "விதிவிலக்குகள்:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>மேலுள்ள பதிலி அமைப்புகளை பயன்படுத்தக் கூடாத புரவன் பெயர்கள் அல்லது IP முகவரிகளை "
-"காற்புள்ளிகளால் பிரித்த பட்டியலாக உள்ளிடுங்கள்.</p>\n"
-"<p>குறிப்பிட்ட ஆள்களத்தில் உள்ள எல்லா புரவன்களையும் விலக்க வேண்டுமென்றால், ஆள்கள பெயருக்கு "
-"முன்னாள் ஒரு புள்ளியை இடுங்கள். உதாரணத்துக்கு, <i>kde.org</i>-இல் உள்ள எல்லா "
-"புரவன்களையும் விலக்க வேண்டுமென்றால், <i>.kde.org</i> என்பதை உள்ளிடுங்கள். '*' அல்லது "
-"'?' போன்ற குழுக்குறிகள் இங்கு வேலை செய்யாது.</p>\n"
-"<p>மேலும், நீங்கள் IP முகவரிகளையும் (எ.கா. 127.0.0.1), சப்நெட் கொண்ட IP முகவரிகளையும் "
-"(எ.கா. 192.168.0.1/24) உள்ளிடலாம்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"<i>விதிவிலக்குகள்</i> பட்டியலில் உள்ள இணையதளங்களுக்கு மட்டும் மேலுள்ள பதிலி அமைப்புகள் "
-"பயன்படுத்தப்பட வேண்டுமென்றால், இந்த தேர்வுப்பெட்டியை குறியுங்கள்.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, kde-format
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "விதிவிலக்குகளின் பட்டியலில் உள்ள முகவரிகளுக்கு மட்டும் பதிலி அமைப்பை பயன்படுத்து"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "பதிலியை அமைக்க குறிப்பிட்ட சிறுநிரலை பயன்படுத்து."
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, kde-format
-msgid "&Use proxy auto configuration URL:"
-msgstr "இந்த பதிலி தானியக்க முகவரியை பயன்படுத்து:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "பதிலி சேவையக அமைப்பு விவரங்களை கைமுறையாக உள்ளிடவும்."
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "கைமுறையாக குறிப்பிடும் பதிலி அமைப்பை பயன்படுத்து:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"HTTP பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
-"<b>HTTP_PROXY</b>.<p>\n"
-"மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
-"கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, kde-format
-msgid "H&TTP proxy:"
-msgstr "HTTP பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"HTTPS பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
-"<b>HTTPS_PROXY</b>.<p>\n"
-"மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
-"கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, kde-format
-msgid "SS&L proxy:"
-msgstr "SSL பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"FTP பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
-"<b>FTP_PROXY</b>.<p>\n"
-"மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
-"கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"SOCKS பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
-"<b>SOCKS_PROXY</b>.<p>\n"
-"மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
-"கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, kde-format
-msgid "SOC&KS proxy:"
-msgstr "SOCKS பதிலி:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, kde-format
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>SOCKS பதிலி சேவையகத்தின் முகவரியை கொண்ட சூழ் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
-"<b>SOCKS_PROXY</b>.<p>மாறாக, நீங்கள் <b>&quot;தானாக கண்டுபிடி&quot;</b> என்ற "
-"பட்டனை அழுத்தி உரிய மாறியை தானாக கண்டுபிடிக்க முயற்சிக்கலாம்.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, kde-format
-msgid "E&xceptions:"
-msgstr "விதிவிலக்குகள்:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, kde-format
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>மேலுள்ள பதிலி அமைப்புகளை பயன்படுத்தக் கூடாத இணயதளங்களின் முகவரிகளைக் கொண்ட சூழல் "
-"மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. <b>NO_PROXY</b>.<p>மாறாக, நீங்கள் <b>&quot;தானாக "
-"கண்டுபிடி&quot;</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக கண்டுபிடிக்க முயற்சிக்கலாம்."
-"</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "&சூழல் மாறிகளின் மதிப்புகளை காட்டு"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, kde-format
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"பதிலியை தானாக கண்டுபிடித்து அமை.<p>\n"
-"<b>Web Proxy Auto-Discovery Protocol (WPAD)</b> கொண்டு பதிலி தானாக "
-"கண்டுபிடிக்கப்படும்.<p>\n"
-"<b>குறிப்பு:</b> சில யூனிக்ஸ்/லினக்ஸ் இயக்குதளங்களில் இது சரியாக வேலை செய்யாமல் "
-"இருக்கலாம்.\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, kde-format
-msgid "&Detect proxy configuration automatically"
-msgstr "&பதிலியை தானாக அமை"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-"தானியக்க பதிலி அமைப்பு (WPAD, அதாவது Web Proxy Auto-Discovery எனப்படுவது) "
-"பெரும்பாலும் சிக்கல்களையே விளைவிக்கும். தேவையில்லாமல் இதை இயக்குவது, பிணையத்தை மெதுவாக "
-"செயல்பட வைக்கலாம், மேலும் அதன் பாதுகாப்பை பாதிக்கலாம். இது தேவையா என்பது உங்கள் பிணைய "
-"நிர்வாகிக்கு தெரிந்திருக்கும்."
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "பதிலி அமைப்பு சிறுநிரலுக்கான முகவரியை உள்ளிடவும்."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>கணினியின் பதிலி அமைப்புகளை பயன்படுத்து.</p>\n"
-"<p>சில இயக்குதளங்கள், கணினி முழுவதற்குமான பதிலி விவரங்களை வழங்கும். இந்த விருப்பத்தை "
-"குறிப்பதால், நீங்கள் அந்த அமைப்புகளையே பயன்படுத்தலாம்.</p>\n"
-"<p>மெக் இயக்குதளத்தில்</p>\n"
-"<p>விண்டோஸ் இயக்குதளத்தில்</p>\n"
-"<p>லினக்ஸ் மற்றும் யூனிக்ஸ் இயக்குதளங்களில், இதைப்போன்ற கணினி பதிலி அமைப்புகள் பெரும்பாலும் "
-"சூழ்மாறிகளை (environment variables) கொண்டு வரையறுக்கப்படும். பின்வரும் சூழ்மாறிகள் "
-"இருக்கும்போது பயன்படுத்தப்படும்: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, kde-format
-msgid "Use s&ystem proxy configuration:"
-msgstr "இயக்குதள பதிலி அமைப்பை பயன்படுத்து:"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1220,6 +765,319 @@ msgstr "&உருத்தொகுதி:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "கேள்விக்கான கொள்ளிடத்தை உள்ளிடு"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "பதிலியை அமையுங்கள்.\n"
+#~ "<p>\n"
+#~ "பதிலி சேவையகம் என்பது, உங்கள் கணினிக்கும் இணையத்துக்கும் இடையே இருந்து, வடிகட்டுதல் "
+#~ "மற்றும் வலைபக்கங்களை தேக்கி வைத்தல் போன்ற சேவைகளை வழங்கும்.</p><p> தேக்கக பதிலி "
+#~ "சேவையகங்கள், நீங்கள் ஏற்கனவே பார்த்த இணையதளங்களை மீண்டும் விரைவாக அணுகும் வகையில் அவற்றை "
+#~ "உள்ளமைவாக சேமித்து வைக்கும்;  மாறாக, விளம்பரங்கள் போன்ற நீங்கள் தடுக்க "
+#~ "விரும்பக்கூடியவற்றை வடிகட்டும் பதிலி சேவையகங்கள் தடுக்கும்.</p>\n"
+#~ "<p>\n"
+#~ "நீங்கள் பதிலி சேவையகத்தை பயன்படுத்த வேண்டுமா என்பது தெரியவில்லையெனில், உங்கள் "
+#~ "கணினியின் நிர்வாகியிடம் கேளுங்கள், அல்லது உங்கள் இணைய சேவை நிறுவனத்தின் கையேடை "
+#~ "பாருங்கள்.\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>கணினி முழுவதுக்குமான பதிலி விவரங்களை அமைக்க பயன்படும் சூழல் மாறிகளை தானாக "
+#~ "கண்டுபிடிக்க முயற்சி.<p> பரவலாக பயன்படுத்தப்படும் HTTP_PROXY, FTP_PROXY மற்றும் "
+#~ "NO_PROXY போன்ற மாறிகளை இது தேடும்.</qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "தானாக கண்டுபிடி"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "நேரடியாக இணையத்துடன் இணை"
+
+#~ msgid "&No proxy"
+#~ msgstr "பதிலி இல்லை"
+
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP பதிலி:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "HTTPS  பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
+
+#~ msgid "Port:"
+#~ msgstr "புறை:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "HTTPS பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடவும்."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "&அனைத்து நெறிமுறைகளுக்கும் இந்த பதிலி சேவையகத்தை பயன்படுத்து"
+
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL பதிலி:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "HTTPS பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "HTTPS பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடுங்கள்."
+
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP பதிலி:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "FTP பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "FTP பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடுங்கள்."
+
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS பதிலி:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "SOCKS பதிலி சேவையகத்தின் முகவரியை உள்ளிடுங்கள்."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "SOCKS பதிலி சேவையகத்தின் புறை எண்ணை உள்ளிடுங்கள்."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "சூலல் மாறிக்கு பெயரினை உள்ளீடு செய், எ.கா. <b>FTP_பதிமாற்றம்</b>,  FTP பதிமாற்றம் "
+#~ "வழங்கன் சேமிப்பதற்கு பயன்படுகிறது.<p>\n"
+#~ "மாற்றாக, நீங்கள் சொடுக்க இயலும் <b>\"தானியக்க நீக்கம்t\"</b>இந்த மாறிகளை தானியக்க "
+#~ "கண்டரிய இந்த பொத்தான் முயல்கிறது.\n"
+#~ ".</qt>."
+
+#~ msgid "Exceptions:"
+#~ msgstr "விதிவிலக்குகள்:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>மேலுள்ள பதிலி அமைப்புகளை பயன்படுத்தக் கூடாத புரவன் பெயர்கள் அல்லது IP முகவரிகளை "
+#~ "காற்புள்ளிகளால் பிரித்த பட்டியலாக உள்ளிடுங்கள்.</p>\n"
+#~ "<p>குறிப்பிட்ட ஆள்களத்தில் உள்ள எல்லா புரவன்களையும் விலக்க வேண்டுமென்றால், ஆள்கள "
+#~ "பெயருக்கு முன்னாள் ஒரு புள்ளியை இடுங்கள். உதாரணத்துக்கு, <i>kde.org</i>-இல் உள்ள "
+#~ "எல்லா புரவன்களையும் விலக்க வேண்டுமென்றால், <i>.kde.org</i> என்பதை உள்ளிடுங்கள். '*' "
+#~ "அல்லது '?' போன்ற குழுக்குறிகள் இங்கு வேலை செய்யாது.</p>\n"
+#~ "<p>மேலும், நீங்கள் IP முகவரிகளையும் (எ.கா. 127.0.0.1), சப்நெட் கொண்ட IP "
+#~ "முகவரிகளையும் (எ.கா. 192.168.0.1/24) உள்ளிடலாம்.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<i>விதிவிலக்குகள்</i> பட்டியலில் உள்ள இணையதளங்களுக்கு மட்டும் மேலுள்ள பதிலி "
+#~ "அமைப்புகள் பயன்படுத்தப்பட வேண்டுமென்றால், இந்த தேர்வுப்பெட்டியை குறியுங்கள்.</qt>"
+
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr ""
+#~ "விதிவிலக்குகளின் பட்டியலில் உள்ள முகவரிகளுக்கு மட்டும் பதிலி அமைப்பை பயன்படுத்து"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "பதிலியை அமைக்க குறிப்பிட்ட சிறுநிரலை பயன்படுத்து."
+
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "இந்த பதிலி தானியக்க முகவரியை பயன்படுத்து:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "பதிலி சேவையக அமைப்பு விவரங்களை கைமுறையாக உள்ளிடவும்."
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "கைமுறையாக குறிப்பிடும் பதிலி அமைப்பை பயன்படுத்து:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "HTTP பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
+#~ "<b>HTTP_PROXY</b>.<p>\n"
+#~ "மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
+#~ "கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
+#~ "</qt>"
+
+#~ msgid "H&TTP proxy:"
+#~ msgstr "HTTP பதிலி:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "HTTPS பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
+#~ "<b>HTTPS_PROXY</b>.<p>\n"
+#~ "மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
+#~ "கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SS&L proxy:"
+#~ msgstr "SSL பதிலி:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "FTP பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
+#~ "<b>FTP_PROXY</b>.<p>\n"
+#~ "மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
+#~ "கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "SOCKS பதிலி சேவையகத்தின் முகவரியைக் கொண்ட சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. "
+#~ "<b>SOCKS_PROXY</b>.<p>\n"
+#~ "மாறாக, நீங்கள் <b>\"தானாக கண்டுபிடி\"</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
+#~ "கண்டுபிடிக்க முயற்சிக்கலாம்.</p>\n"
+#~ "</qt>"
+
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOCKS பதிலி:"
+
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>SOCKS பதிலி சேவையகத்தின் முகவரியை கொண்ட சூழ் மாறியின் பெயரை உள்ளிடுங்கள், எ."
+#~ "கா. <b>SOCKS_PROXY</b>.<p>மாறாக, நீங்கள் <b>&quot;தானாக கண்டுபிடி&quot;</b> "
+#~ "என்ற பட்டனை அழுத்தி உரிய மாறியை தானாக கண்டுபிடிக்க முயற்சிக்கலாம்.</p></qt>"
+
+#~ msgid "E&xceptions:"
+#~ msgstr "விதிவிலக்குகள்:"
+
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>மேலுள்ள பதிலி அமைப்புகளை பயன்படுத்தக் கூடாத இணயதளங்களின் முகவரிகளைக் கொண்ட "
+#~ "சூழல் மாறியின் பெயரை உள்ளிடுங்கள், எ.கா. <b>NO_PROXY</b>.<p>மாறாக, நீங்கள் "
+#~ "<b>&quot;தானாக கண்டுபிடி&quot;</b> என்ற பட்டனை அழுத்தி இந்த மாறியை தானாக "
+#~ "கண்டுபிடிக்க முயற்சிக்கலாம்.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "&சூழல் மாறிகளின் மதிப்புகளை காட்டு"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "பதிலியை தானாக கண்டுபிடித்து அமை.<p>\n"
+#~ "<b>Web Proxy Auto-Discovery Protocol (WPAD)</b> கொண்டு பதிலி தானாக "
+#~ "கண்டுபிடிக்கப்படும்.<p>\n"
+#~ "<b>குறிப்பு:</b> சில யூனிக்ஸ்/லினக்ஸ் இயக்குதளங்களில் இது சரியாக வேலை செய்யாமல் "
+#~ "இருக்கலாம்.\n"
+#~ "</qt>"
+
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "&பதிலியை தானாக அமை"
+
+#~ msgid ""
+#~ "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
+#~ "is almost never the correct configuration. Enabling it when it is not "
+#~ "required may slow down network access and make your network less secure. "
+#~ "Your network administrator will know whether enabling it is required."
+#~ msgstr ""
+#~ "தானியக்க பதிலி அமைப்பு (WPAD, அதாவது Web Proxy Auto-Discovery எனப்படுவது) "
+#~ "பெரும்பாலும் சிக்கல்களையே விளைவிக்கும். தேவையில்லாமல் இதை இயக்குவது, பிணையத்தை "
+#~ "மெதுவாக செயல்பட வைக்கலாம், மேலும் அதன் பாதுகாப்பை பாதிக்கலாம். இது தேவையா என்பது "
+#~ "உங்கள் பிணைய நிர்வாகிக்கு தெரிந்திருக்கும்."
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "பதிலி அமைப்பு சிறுநிரலுக்கான முகவரியை உள்ளிடவும்."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>கணினியின் பதிலி அமைப்புகளை பயன்படுத்து.</p>\n"
+#~ "<p>சில இயக்குதளங்கள், கணினி முழுவதற்குமான பதிலி விவரங்களை வழங்கும். இந்த "
+#~ "விருப்பத்தை குறிப்பதால், நீங்கள் அந்த அமைப்புகளையே பயன்படுத்தலாம்.</p>\n"
+#~ "<p>மெக் இயக்குதளத்தில்</p>\n"
+#~ "<p>விண்டோஸ் இயக்குதளத்தில்</p>\n"
+#~ "<p>லினக்ஸ் மற்றும் யூனிக்ஸ் இயக்குதளங்களில், இதைப்போன்ற கணினி பதிலி அமைப்புகள் "
+#~ "பெரும்பாலும் சூழ்மாறிகளை (environment variables) கொண்டு வரையறுக்கப்படும். "
+#~ "பின்வரும் சூழ்மாறிகள் இருக்கும்போது பயன்படுத்தப்படும்: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "இயக்குதள பதிலி அமைப்பை பயன்படுத்து:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"

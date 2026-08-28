@@ -8,7 +8,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-27 00:44+0000\n"
+"POT-Creation-Date: 2026-08-28 00:45+0000\n"
 "PO-Revision-Date: 2014-02-25 01:34+0100\n"
 "Last-Translator: Sönke Dibbern <s_dibbern@web.de>\n"
 "Language-Team: Low Saxon <kde-i18n-nds@kde.org>\n"
@@ -34,492 +34,6 @@ msgid ""
 msgstr ""
 "Wenn en Datei hoochlaadt warrt, is ehr Ennen toeerst maal \".part\". Wenn de "
 "Överdregen fardig is, warrt se na ehren richtigen Naam ümnöömt."
-
-#. i18n: ectx: property (whatsThis), widget (QWidget, ProxyDialogUI)
-#: proxy/kproxydlg.ui:20
-#, kde-format
-msgid ""
-"<qt>\n"
-"Setup proxy configuration.\n"
-"<p>\n"
-"A proxy server is an intermediate machine that sits between your computer "
-"and the Internet and provides services such as web page caching and "
-"filtering. Caching proxy servers give you faster access to web sites you "
-"have already visited by locally storing or caching those pages; filtering "
-"proxy servers usually provide the ability to block out requests for ads, "
-"spam, or anything else you want to block.\n"
-"<p>\n"
-"If you are uncertain whether or not you need to use a proxy server to "
-"connect to the Internet, consult your Internet service provider's setup "
-"guide or your system administrator.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Proxy inrichten\n"
-"<p>\n"
-"En Proxyserver is en Programm oder helen Reekner, de twischen Di un dat "
-"Internet sitt. He spiekert Nettsieden twischen un / oder filter se.</p> "
-"<p>Wenn de Proxy Nettsieden twischenspiekert, geiht dat Opropen vun Sieden "
-"gauer, de al maal opropen wöörn; wenn he filtert, kann he dat Laden vun "
-"Warven un Spam blockeren, oder wat Du ok sünst noch utfiltern wullt.</p>\n"
-"<p>Wenn Du nich seker weetst, wat Du en Proxyserver bruken muttst, wenn Du "
-"Di an't Internet tokoppeln wullt, kiek binnen de Inricht-Anwiesen vun Dien "
-"Internet-Anbeder oder fraag Dien Systeempleger.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:42
-#, kde-format
-msgid ""
-"<qt>Attempt automatic discovery of the environment variables used for "
-"setting system wide proxy information.<p> This feature works by searching "
-"for commonly used variable names such as HTTP_PROXY, FTP_PROXY and NO_PROXY."
-"</qt>"
-msgstr ""
-"<qt>Versöcht, de Variabeln för Systeem-Proxyinformatschonen automaatsch to "
-"finnen.<p> Disse Funkschoon söcht na faken bruukte Variabelnnaams as "
-"HTTP_PROXY, FTP_PROXY un NO_PROXY.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QPushButton, autoDetectButton)
-#: proxy/kproxydlg.ui:45
-#, kde-format
-msgid "Auto D&etect"
-msgstr "Autom. &opdecken"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:52
-#, kde-format
-msgid "Connect to the Internet directly."
-msgstr "Direktemang an't Internet tokoppeln."
-
-#. i18n: ectx: property (text), widget (QRadioButton, noProxyRadioButton)
-#: proxy/kproxydlg.ui:55
-#, fuzzy, kde-format
-#| msgid "No Proxy"
-msgid "&No proxy"
-msgstr "Keen Proxy"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpEditLabel)
-#: proxy/kproxydlg.ui:95
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
-msgid "HTTP proxy:"
-msgstr "HTTP-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
-#: proxy/kproxydlg.ui:110
-#, kde-format
-msgid "Enter the address of the HTTP proxy server."
-msgstr "Giff de Adress vun den HTTP-Proxyserver in."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpSpinBoxLabel)
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksSpinBoxLabel)
-#: proxy/kproxydlg.ui:117 proxy/kproxydlg.ui:183 proxy/kproxydlg.ui:236
-#: proxy/kproxydlg.ui:286
-#, kde-format
-msgid "Port:"
-msgstr "Port:"
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
-#: proxy/kproxydlg.ui:133
-#, kde-format
-msgid "Enter the port number of the HTTP proxy server."
-msgstr "Giff de Portnummer vun den HTTP-Proxyserver in."
-
-#. i18n: ectx: property (text), widget (QCheckBox, useSameProxyCheckBox)
-#: proxy/kproxydlg.ui:148
-#, kde-format
-msgid "Use this proxy server for a&ll protocols"
-msgstr "Dissen Proxyserver för a&ll Protokollen bruken"
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyHttpsEditLabel)
-#: proxy/kproxydlg.ui:161
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
-msgid "SSL proxy:"
-msgstr "SSL-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
-#: proxy/kproxydlg.ui:176
-#, kde-format
-msgid "Enter the address of the HTTPS proxy server."
-msgstr "Giff de Adress vun den HTTPS-Proxyserver in."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpsSpinBox)
-#: proxy/kproxydlg.ui:193
-#, kde-format
-msgid "Enter the port number of the HTTPS proxy server."
-msgstr "Giff de Portnummer vun den HTTPS-Proxyserver in."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxyFtpEditLabel)
-#. i18n: ectx: property (text), widget (QLabel, systemProxyFtpLabel)
-#: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
-#, fuzzy, kde-format
-#| msgid "FTP Proxy:"
-msgid "FTP proxy:"
-msgstr "FTP-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
-#: proxy/kproxydlg.ui:229
-#, kde-format
-msgid "Enter the address of the FTP proxy server."
-msgstr "Giff de Adress vun den FTP-Proxyserver in."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyFtpSpinBox)
-#: proxy/kproxydlg.ui:246
-#, kde-format
-msgid "Enter the port number of the FTP proxy server."
-msgstr "Giff de Portnummer vun den FTP-Proxyserver in."
-
-#. i18n: ectx: property (text), widget (QLabel, manualProxySocksEditLabel)
-#: proxy/kproxydlg.ui:264
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
-msgid "SOCKS proxy:"
-msgstr "SOCKS-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
-#: proxy/kproxydlg.ui:279
-#, kde-format
-msgid "Enter the address of the SOCKS proxy server."
-msgstr "Giff de Adress vun den SOCKS-Proxyserver in."
-
-#. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxySocksSpinBox)
-#: proxy/kproxydlg.ui:296
-#, kde-format
-msgid "Enter the port number of the SOCKS proxy server."
-msgstr "Giff de Portnummer vun den SOCKS-Proxyserver in."
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, manNoProxyLabel)
-#. i18n: ectx: property (whatsThis), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:311 proxy/kproxydlg.ui:554
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the proxy server should not be used.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Giff den Naam vun de Ümgevenvariable in, de de Adressen bargt, för de keen "
-"Proxyserver bruukt warrn schall, a.B. <b>NO_PROXY</b>.<p>\n"
-"Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
-"Variable automaatsch söken laten wullt.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, manNoProxyLabel)
-#: proxy/kproxydlg.ui:314
-#, kde-format
-msgid "Exceptions:"
-msgstr "Utnahmen:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
-#: proxy/kproxydlg.ui:340
-#, kde-format
-msgid ""
-"<qt>\n"
-"<p>Enter a comma separated list of hostnames or ip addresses that should be "
-"excluded from using the above proxy settings.</p>\n"
-"<p>If you want to exclude all hosts for a given domain, then simply enter "
-"the domain name preceded by a dot. For example, to exclude all hostnames for "
-"<i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as '*' or "
-"'?' are not supported and will have no effect.</p>\n"
-"<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
-"addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"<p>Giff en mit Kommas scheedt List mit Reeknernaams oder IP-Adressen in, för "
-"de Du de baven fastleggt Instellen nich bruken wullt.</p>\n"
-"<p>Wullt Du all Reekners binnen en angeven Domään utsluten, giff eenfach den "
-"Domäännaam mit en vöranstellt Punkt in. Wullt Du a.B. all Reeknernaams för "
-"<i>kde.org</i> utsluten, giff <i>.kde.org</i> in. Platzhollers, as a.B. '*' "
-"oder '?' warrt nich ünnerstütt un hebbt keen Utwarken.</p>\n"
-"<p>Bito laat sik ok noch IP-Adressen ingeven, a.B.. 127.0.0.1 un IP-Adressen "
-"mit Deelnett, a.B. 192.168.0.1/24.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:351
-#, kde-format
-msgid ""
-"<qt>\n"
-"Check this box if you want the above proxy settings to apply only to the "
-"addresses listed in the <i>Exceptions</i> list.</qt>"
-msgstr ""
-"<qt>\n"
-"Maak dit an, wenn Du de Instellen bloots för de Adressen in de <i>Utnahmen</"
-"i>-List bruken wullt.</qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, useReverseProxyCheckBox)
-#: proxy/kproxydlg.ui:354
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the Exceptions list"
-msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "Proxy-Instellen bloots för de Adressen in de Utnahmen-List bruken"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:367
-#, kde-format
-msgid "Use the specified proxy script to configure the proxy settings."
-msgstr "Dat angeven Proxy-Skript för de Proxy-Instellen bruken"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoScriptProxyRadioButton)
-#: proxy/kproxydlg.ui:370
-#, fuzzy, kde-format
-#| msgid "Use proxy auto configuration URL:"
-msgid "&Use proxy auto configuration URL:"
-msgstr "URL för automaatsche Proxy-Instellen:"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:386
-#, kde-format
-msgid "Manually enter proxy server configuration information."
-msgstr "Den Proxyserver vun Hand instellen"
-
-#. i18n: ectx: property (text), widget (QRadioButton, manualProxyRadioButton)
-#: proxy/kproxydlg.ui:389
-#, kde-format
-msgid "Use manually specified proxy configuration:"
-msgstr "De vun Hand angeven Proxy-Instellen bruken:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
-#: proxy/kproxydlg.ui:417 proxy/kproxydlg.ui:442
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used to "
-"store the address of the HTTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Giff den Naam vun de Ümgevenvariable in, de de Adress vun den HTTP-"
-"Proxyserver bargt, a.B. <b>HTTP_PROXY</b>.<p>\n"
-"Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
-"Variable automaatsch söken laten wullt.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpLabel)
-#: proxy/kproxydlg.ui:420
-#, fuzzy, kde-format
-#| msgid "HTTP Proxy:"
-msgid "H&TTP proxy:"
-msgstr "HTTP-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpsLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpsEdit)
-#: proxy/kproxydlg.ui:452 proxy/kproxydlg.ui:477
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used to "
-"store the address of the HTTPS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Giff den Naam vun de Ümgevenvariable in, de de Adress vun den HTTPS-"
-"Proxyserver bargt, a.B. <b>HTTPS_PROXY</b>.<p>\n"
-"Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
-"Variable automaatsch söken laten wullt.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxyHttpsLabel)
-#: proxy/kproxydlg.ui:455
-#, fuzzy, kde-format
-#| msgid "SSL Proxy:"
-msgid "SS&L proxy:"
-msgstr "SSL-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyFtpLabel)
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyFtpEdit)
-#: proxy/kproxydlg.ui:487 proxy/kproxydlg.ui:512
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used to "
-"store the address of the FTP proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Giff den Naam vun de Ümgevenvariable in, de de Adress vun den FTP-"
-"Proxyserver bargt, a.B. <b>FTP_PROXY</b>.<p>\n"
-"Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
-"Variable automaatsch söken laten wullt.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (whatsThis), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:522
-#, kde-format
-msgid ""
-"<qt>\n"
-"Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used to "
-"store the address of the SOCKS proxy server.<p>\n"
-"Alternatively, you can click on the <b>\"Auto Detect\"</b> button to attempt "
-"an automatic discovery of this variable.</p>\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Giff den Naam vun de Ümgevenvariable in, de de Adress vun den SOCKS-"
-"Proxyserver bargt, a.B. <b>SOCKS_PROXY</b>.<p>\n"
-"Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
-"Variable automaatsch söken laten wullt.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, systemProxySocksLabel)
-#: proxy/kproxydlg.ui:525
-#, fuzzy, kde-format
-#| msgid "SOCKS Proxy:"
-msgid "SOC&KS proxy:"
-msgstr "SOCKS-Proxy:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxySocksEdit)
-#: proxy/kproxydlg.ui:544
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-#| "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-#| "can click on the <b>\"Auto Detect\"</b> button to attempt an automatic "
-#| "discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
-"used to store the address of the SOCKS proxy server.<p>Alternatively, you "
-"can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
-"automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Giff den Naam vun de Ümgevenvariable in, de de Adress vun den SOCKS-"
-"Proxyserver bargt, a.B. <b>SOCKS_PROXY</b>.<p>Du kannst ok op den Knoop <b>"
-"\"Autom. opdecken\"</b> klicken, wenn Du de Variable automaatsch söken laten "
-"wullt.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QLabel, sysNoProxyLabel)
-#: proxy/kproxydlg.ui:557
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
-msgid "E&xceptions:"
-msgstr "Utnahmen:"
-
-#. i18n: ectx: property (whatsThis), widget (QLineEdit, systemNoProxyEdit)
-#: proxy/kproxydlg.ui:576
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
-#| "the addresses of sites for which the above proxy settings should not be "
-#| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> button "
-#| "to attempt an automatic discovery of this variable.</p></qt>"
-msgid ""
-"<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
-"addresses of sites for which the above proxy settings should not be used."
-"<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</b> button "
-"to attempt an automatic discovery of this variable.</p></qt>"
-msgstr ""
-"<qt>Giff den Naam vun de Ümgevenvariable in, de de Adressen bargt, för de Du "
-"de Proxiinstellen baven nich bruken wullt, a.B. <b>NO_PROXY</b>.<p>Du kannst "
-"ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de Variable "
-"automaatsch söken laten wullt.</p></qt>"
-
-#. i18n: ectx: property (text), widget (QCheckBox, showEnvValueCheckBox)
-#: proxy/kproxydlg.ui:583
-#, kde-format
-msgid "Show the &value of the environment variables"
-msgstr "Wiest de Weerten vun de Ümgeven-&Variabeln"
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:602
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "Automatically detect and configure the proxy settings.<p>\n"
-#| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-#| "Protocol (WPAD)</b>.<p>\n"
-#| "<b>NOTE:</b> This option might not work properly or not work at all in "
-#| "some UNIX/Linux distributions. If you encounter a problem when using this "
-#| "option, please check the FAQ section at http://konqueror.kde.org.\n"
-#| "</qt>"
-msgid ""
-"<qt>\n"
-"Automatically detect and configure the proxy settings.<p>\n"
-"Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.<p>\n"
-"<b>NOTE:</b> This option might not work properly or not work at all in some "
-"UNIX/Linux distributions.\n"
-"</qt>"
-msgstr ""
-"<qt>\n"
-"Proxy-Instellen automaatsch opdecken un anwennen\n"
-"<p>\n"
-"Dat automaatsche Opdecken löppt över dat <b>Web Proxy Auto-Discovery "
-"Protocol (WPAD)</b>.</p><p>\n"
-"<b>Beacht:</b> Disse Optschoon kunn op en poor UNIX/Linux-Distributschonen "
-"nich richtig oder ok gor nich funkscheneren. Wenn Du Problemen hest, kiek "
-"bitte in den FAQ-Afsnitt op http://konqueror.kde.org.\n"
-"</p></qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, autoDiscoverProxyRadioButton)
-#: proxy/kproxydlg.ui:605
-#, fuzzy, kde-format
-#| msgid "Detect proxy configuration automatically"
-msgid "&Detect proxy configuration automatically"
-msgstr "Proxy-Instellen automaatsch opdecken"
-
-#. i18n: ectx: property (contextualHelpText), widget (KContextualHelpButton, wpadHelpButton)
-#: proxy/kproxydlg.ui:615
-#, kde-format
-msgid ""
-"Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
-"almost never the correct configuration. Enabling it when it is not required "
-"may slow down network access and make your network less secure. Your network "
-"administrator will know whether enabling it is required."
-msgstr ""
-
-#. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
-#: proxy/kproxydlg.ui:661
-#, kde-format
-msgid "Enter the address for the proxy configuration script."
-msgstr "Giff de Adress vun dat Instellenskript för den Proxy in."
-
-#. i18n: ectx: property (whatsThis), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:685
-#, kde-format
-msgid ""
-"<qt><p>Use proxy settings defined on the system.</p>\n"
-"<p>Some platforms offer system wide proxy configuration information and "
-"selecting this option allows you to use those settings.</p>\n"
-"<p>On Mac platforms</p>\n"
-"<p>On Windows platforms</p>\n"
-"<p>On Unix and Linux platforms, such system proxy settings are usually "
-"defined through environment variables. The following environment variables "
-"are detected and used when present: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
-"<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
-"</qt>"
-msgstr ""
-"<qt><p>Op't Systeem fastleggt Proxy-Instellen bruken.</p>\n"
-"<p>Op en Reeg vun Reekners laat sik de Systeeminstellen för Proxies bruken.</"
-"p>\n"
-"<p>Op Mac-Reekners</p>\n"
-"<p>Op Windows-Reekners</p>\n"
-"<p>Op Unix- un Linux-Reekners warrt de Proxy-Instellen tomehrst as "
-"Ümgevenvariabeln fastleggt. Sünd disse Ümgevenvariabeln vörhannen, warrt se "
-"opdeckt un bruukt: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, "
-"<b>NO_PROXY</b>.</p>\n"
-"</qt>"
-
-#. i18n: ectx: property (text), widget (QRadioButton, systemProxyRadioButton)
-#: proxy/kproxydlg.ui:688
-#, fuzzy, kde-format
-#| msgid "Use system proxy configuration:"
-msgid "Use s&ystem proxy configuration:"
-msgstr "Systeemproxy-Instellen bruken:"
 
 #: proxy/ui/main.qml:33
 #, fuzzy, kde-format
@@ -1264,6 +778,360 @@ msgstr "&Tekensett:"
 #, kde-format
 msgid "Insert query placeholder"
 msgstr "Anfraag-Platzholler infögen"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Setup proxy configuration.\n"
+#~ "<p>\n"
+#~ "A proxy server is an intermediate machine that sits between your computer "
+#~ "and the Internet and provides services such as web page caching and "
+#~ "filtering. Caching proxy servers give you faster access to web sites you "
+#~ "have already visited by locally storing or caching those pages; filtering "
+#~ "proxy servers usually provide the ability to block out requests for ads, "
+#~ "spam, or anything else you want to block.\n"
+#~ "<p>\n"
+#~ "If you are uncertain whether or not you need to use a proxy server to "
+#~ "connect to the Internet, consult your Internet service provider's setup "
+#~ "guide or your system administrator.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Proxy inrichten\n"
+#~ "<p>\n"
+#~ "En Proxyserver is en Programm oder helen Reekner, de twischen Di un dat "
+#~ "Internet sitt. He spiekert Nettsieden twischen un / oder filter se.</p> "
+#~ "<p>Wenn de Proxy Nettsieden twischenspiekert, geiht dat Opropen vun "
+#~ "Sieden gauer, de al maal opropen wöörn; wenn he filtert, kann he dat "
+#~ "Laden vun Warven un Spam blockeren, oder wat Du ok sünst noch utfiltern "
+#~ "wullt.</p>\n"
+#~ "<p>Wenn Du nich seker weetst, wat Du en Proxyserver bruken muttst, wenn "
+#~ "Du Di an't Internet tokoppeln wullt, kiek binnen de Inricht-Anwiesen vun "
+#~ "Dien Internet-Anbeder oder fraag Dien Systeempleger.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>Attempt automatic discovery of the environment variables used for "
+#~ "setting system wide proxy information.<p> This feature works by searching "
+#~ "for commonly used variable names such as HTTP_PROXY, FTP_PROXY and "
+#~ "NO_PROXY.</qt>"
+#~ msgstr ""
+#~ "<qt>Versöcht, de Variabeln för Systeem-Proxyinformatschonen automaatsch "
+#~ "to finnen.<p> Disse Funkschoon söcht na faken bruukte Variabelnnaams as "
+#~ "HTTP_PROXY, FTP_PROXY un NO_PROXY.</p></qt>"
+
+#~ msgid "Auto D&etect"
+#~ msgstr "Autom. &opdecken"
+
+#~ msgid "Connect to the Internet directly."
+#~ msgstr "Direktemang an't Internet tokoppeln."
+
+#, fuzzy
+#~| msgid "No Proxy"
+#~ msgid "&No proxy"
+#~ msgstr "Keen Proxy"
+
+#, fuzzy
+#~| msgid "HTTP Proxy:"
+#~ msgid "HTTP proxy:"
+#~ msgstr "HTTP-Proxy:"
+
+#~ msgid "Enter the address of the HTTP proxy server."
+#~ msgstr "Giff de Adress vun den HTTP-Proxyserver in."
+
+#~ msgid "Port:"
+#~ msgstr "Port:"
+
+#~ msgid "Enter the port number of the HTTP proxy server."
+#~ msgstr "Giff de Portnummer vun den HTTP-Proxyserver in."
+
+#~ msgid "Use this proxy server for a&ll protocols"
+#~ msgstr "Dissen Proxyserver för a&ll Protokollen bruken"
+
+#, fuzzy
+#~| msgid "SSL Proxy:"
+#~ msgid "SSL proxy:"
+#~ msgstr "SSL-Proxy:"
+
+#~ msgid "Enter the address of the HTTPS proxy server."
+#~ msgstr "Giff de Adress vun den HTTPS-Proxyserver in."
+
+#~ msgid "Enter the port number of the HTTPS proxy server."
+#~ msgstr "Giff de Portnummer vun den HTTPS-Proxyserver in."
+
+#, fuzzy
+#~| msgid "FTP Proxy:"
+#~ msgid "FTP proxy:"
+#~ msgstr "FTP-Proxy:"
+
+#~ msgid "Enter the address of the FTP proxy server."
+#~ msgstr "Giff de Adress vun den FTP-Proxyserver in."
+
+#~ msgid "Enter the port number of the FTP proxy server."
+#~ msgstr "Giff de Portnummer vun den FTP-Proxyserver in."
+
+#, fuzzy
+#~| msgid "SOCKS Proxy:"
+#~ msgid "SOCKS proxy:"
+#~ msgstr "SOCKS-Proxy:"
+
+#~ msgid "Enter the address of the SOCKS proxy server."
+#~ msgstr "Giff de Adress vun den SOCKS-Proxyserver in."
+
+#~ msgid "Enter the port number of the SOCKS proxy server."
+#~ msgstr "Giff de Portnummer vun den SOCKS-Proxyserver in."
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store the "
+#~ "addresses of sites for which the proxy server should not be used.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Giff den Naam vun de Ümgevenvariable in, de de Adressen bargt, för de "
+#~ "keen Proxyserver bruukt warrn schall, a.B. <b>NO_PROXY</b>.<p>\n"
+#~ "Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
+#~ "Variable automaatsch söken laten wullt.</p>\n"
+#~ "</qt>"
+
+#~ msgid "Exceptions:"
+#~ msgstr "Utnahmen:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "<p>Enter a comma separated list of hostnames or ip addresses that should "
+#~ "be excluded from using the above proxy settings.</p>\n"
+#~ "<p>If you want to exclude all hosts for a given domain, then simply enter "
+#~ "the domain name preceded by a dot. For example, to exclude all hostnames "
+#~ "for <i>kde.org</i>, enter <i>.kde.org</i>. Wildcard characters such as "
+#~ "'*' or '?' are not supported and will have no effect.</p>\n"
+#~ "<p>Additionally, you can also enter IP addresses, e.g. 127.0.0.1 and IP "
+#~ "addresses with a subnet, e.g. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "<p>Giff en mit Kommas scheedt List mit Reeknernaams oder IP-Adressen in, "
+#~ "för de Du de baven fastleggt Instellen nich bruken wullt.</p>\n"
+#~ "<p>Wullt Du all Reekners binnen en angeven Domään utsluten, giff eenfach "
+#~ "den Domäännaam mit en vöranstellt Punkt in. Wullt Du a.B. all "
+#~ "Reeknernaams för <i>kde.org</i> utsluten, giff <i>.kde.org</i> in. "
+#~ "Platzhollers, as a.B. '*' oder '?' warrt nich ünnerstütt un hebbt keen "
+#~ "Utwarken.</p>\n"
+#~ "<p>Bito laat sik ok noch IP-Adressen ingeven, a.B.. 127.0.0.1 un IP-"
+#~ "Adressen mit Deelnett, a.B. 192.168.0.1/24.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Check this box if you want the above proxy settings to apply only to the "
+#~ "addresses listed in the <i>Exceptions</i> list.</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Maak dit an, wenn Du de Instellen bloots för de Adressen in de "
+#~ "<i>Utnahmen</i>-List bruken wullt.</qt>"
+
+#, fuzzy
+#~| msgid "Use proxy settings only for addresses in the Exceptions list"
+#~ msgid "Use proxy settings only for addresses in the exceptions list"
+#~ msgstr "Proxy-Instellen bloots för de Adressen in de Utnahmen-List bruken"
+
+#~ msgid "Use the specified proxy script to configure the proxy settings."
+#~ msgstr "Dat angeven Proxy-Skript för de Proxy-Instellen bruken"
+
+#, fuzzy
+#~| msgid "Use proxy auto configuration URL:"
+#~ msgid "&Use proxy auto configuration URL:"
+#~ msgstr "URL för automaatsche Proxy-Instellen:"
+
+#~ msgid "Manually enter proxy server configuration information."
+#~ msgstr "Den Proxyserver vun Hand instellen"
+
+#~ msgid "Use manually specified proxy configuration:"
+#~ msgstr "De vun Hand angeven Proxy-Instellen bruken:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTP_PROXY</b>, used "
+#~ "to store the address of the HTTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Giff den Naam vun de Ümgevenvariable in, de de Adress vun den HTTP-"
+#~ "Proxyserver bargt, a.B. <b>HTTP_PROXY</b>.<p>\n"
+#~ "Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
+#~ "Variable automaatsch söken laten wullt.</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "HTTP Proxy:"
+#~ msgid "H&TTP proxy:"
+#~ msgstr "HTTP-Proxy:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>HTTPS_PROXY</b>, used "
+#~ "to store the address of the HTTPS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Giff den Naam vun de Ümgevenvariable in, de de Adress vun den HTTPS-"
+#~ "Proxyserver bargt, a.B. <b>HTTPS_PROXY</b>.<p>\n"
+#~ "Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
+#~ "Variable automaatsch söken laten wullt.</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "SSL Proxy:"
+#~ msgid "SS&L proxy:"
+#~ msgstr "SSL-Proxy:"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>FTP_PROXY</b>, used "
+#~ "to store the address of the FTP proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Giff den Naam vun de Ümgevenvariable in, de de Adress vun den FTP-"
+#~ "Proxyserver bargt, a.B. <b>FTP_PROXY</b>.<p>\n"
+#~ "Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
+#~ "Variable automaatsch söken laten wullt.</p>\n"
+#~ "</qt>"
+
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, used "
+#~ "to store the address of the SOCKS proxy server.<p>\n"
+#~ "Alternatively, you can click on the <b>\"Auto Detect\"</b> button to "
+#~ "attempt an automatic discovery of this variable.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Giff den Naam vun de Ümgevenvariable in, de de Adress vun den SOCKS-"
+#~ "Proxyserver bargt, a.B. <b>SOCKS_PROXY</b>.<p>\n"
+#~ "Du kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
+#~ "Variable automaatsch söken laten wullt.</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "SOCKS Proxy:"
+#~ msgid "SOC&KS proxy:"
+#~ msgstr "SOCKS-Proxy:"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~| "used to store the address of the SOCKS proxy server.<p>Alternatively, "
+#~| "you can click on the <b>\"Auto Detect\"</b> button to attempt an "
+#~| "automatic discovery of this variable.</p></qt>"
+#~ msgid ""
+#~ "<qt>Enter the name of the environment variable, e.g. <b>SOCKS_PROXY</b>, "
+#~ "used to store the address of the SOCKS proxy server.<p>Alternatively, you "
+#~ "can click on the <b>&quot;Auto Detect&quot;</b> button to attempt an "
+#~ "automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>Giff den Naam vun de Ümgevenvariable in, de de Adress vun den SOCKS-"
+#~ "Proxyserver bargt, a.B. <b>SOCKS_PROXY</b>.<p>Du kannst ok op den Knoop "
+#~ "<b>\"Autom. opdecken\"</b> klicken, wenn Du de Variable automaatsch söken "
+#~ "laten wullt.</p></qt>"
+
+#, fuzzy
+#~| msgid "Exceptions:"
+#~ msgid "E&xceptions:"
+#~ msgstr "Utnahmen:"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~| "the addresses of sites for which the above proxy settings should not be "
+#~| "used.<p>Alternatively, you can click on the <b>\"Auto Detect\"</b> "
+#~| "button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgid ""
+#~ "<qt>Enter the environment variable, e.g. <b>NO_PROXY</b>, used to store "
+#~ "the addresses of sites for which the above proxy settings should not be "
+#~ "used.<p>Alternatively, you can click on the <b>&quot;Auto Detect&quot;</"
+#~ "b> button to attempt an automatic discovery of this variable.</p></qt>"
+#~ msgstr ""
+#~ "<qt>Giff den Naam vun de Ümgevenvariable in, de de Adressen bargt, för de "
+#~ "Du de Proxiinstellen baven nich bruken wullt, a.B. <b>NO_PROXY</b>.<p>Du "
+#~ "kannst ok op den Knoop <b>\"Autom. opdecken\"</b> klicken, wenn Du de "
+#~ "Variable automaatsch söken laten wullt.</p></qt>"
+
+#~ msgid "Show the &value of the environment variables"
+#~ msgstr "Wiest de Weerten vun de Ümgeven-&Variabeln"
+
+#, fuzzy
+#~| msgid ""
+#~| "<qt>\n"
+#~| "Automatically detect and configure the proxy settings.<p>\n"
+#~| "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~| "Protocol (WPAD)</b>.<p>\n"
+#~| "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~| "some UNIX/Linux distributions. If you encounter a problem when using "
+#~| "this option, please check the FAQ section at http://konqueror.kde.org.\n"
+#~| "</qt>"
+#~ msgid ""
+#~ "<qt>\n"
+#~ "Automatically detect and configure the proxy settings.<p>\n"
+#~ "Automatic detection is performed using the <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.<p>\n"
+#~ "<b>NOTE:</b> This option might not work properly or not work at all in "
+#~ "some UNIX/Linux distributions.\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt>\n"
+#~ "Proxy-Instellen automaatsch opdecken un anwennen\n"
+#~ "<p>\n"
+#~ "Dat automaatsche Opdecken löppt över dat <b>Web Proxy Auto-Discovery "
+#~ "Protocol (WPAD)</b>.</p><p>\n"
+#~ "<b>Beacht:</b> Disse Optschoon kunn op en poor UNIX/Linux-"
+#~ "Distributschonen nich richtig oder ok gor nich funkscheneren. Wenn Du "
+#~ "Problemen hest, kiek bitte in den FAQ-Afsnitt op http://konqueror.kde."
+#~ "org.\n"
+#~ "</p></qt>"
+
+#, fuzzy
+#~| msgid "Detect proxy configuration automatically"
+#~ msgid "&Detect proxy configuration automatically"
+#~ msgstr "Proxy-Instellen automaatsch opdecken"
+
+#~ msgid "Enter the address for the proxy configuration script."
+#~ msgstr "Giff de Adress vun dat Instellenskript för den Proxy in."
+
+#~ msgid ""
+#~ "<qt><p>Use proxy settings defined on the system.</p>\n"
+#~ "<p>Some platforms offer system wide proxy configuration information and "
+#~ "selecting this option allows you to use those settings.</p>\n"
+#~ "<p>On Mac platforms</p>\n"
+#~ "<p>On Windows platforms</p>\n"
+#~ "<p>On Unix and Linux platforms, such system proxy settings are usually "
+#~ "defined through environment variables. The following environment "
+#~ "variables are detected and used when present: <b>HTTP_PROXY</b>, "
+#~ "<b>HTTPS_PROXY</b>, <b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+#~ msgstr ""
+#~ "<qt><p>Op't Systeem fastleggt Proxy-Instellen bruken.</p>\n"
+#~ "<p>Op en Reeg vun Reekners laat sik de Systeeminstellen för Proxies "
+#~ "bruken.</p>\n"
+#~ "<p>Op Mac-Reekners</p>\n"
+#~ "<p>Op Windows-Reekners</p>\n"
+#~ "<p>Op Unix- un Linux-Reekners warrt de Proxy-Instellen tomehrst as "
+#~ "Ümgevenvariabeln fastleggt. Sünd disse Ümgevenvariabeln vörhannen, warrt "
+#~ "se opdeckt un bruukt: <b>HTTP_PROXY</b>, <b>HTTPS_PROXY</b>, "
+#~ "<b>FTP_PROXY</b>, <b>NO_PROXY</b>.</p>\n"
+#~ "</qt>"
+
+#, fuzzy
+#~| msgid "Use system proxy configuration:"
+#~ msgid "Use s&ystem proxy configuration:"
+#~ msgstr "Systeemproxy-Instellen bruken:"
 
 #~ msgctxt "@title:window"
 #~ msgid "Update Failed"
