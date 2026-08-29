@@ -176,7 +176,7 @@ msgstr "不使用代理服务器(&N)"
 #: proxy/kproxydlg.ui:95
 #, kde-format
 msgid "HTTP proxy:"
-msgstr "HTTP 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpEdit)
 #: proxy/kproxydlg.ui:110
@@ -192,7 +192,7 @@ msgstr "请输入 HTTP 代理服务器的地址。"
 #: proxy/kproxydlg.ui:286
 #, kde-format
 msgid "Port:"
-msgstr "端口："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QSpinBox, manualProxyHttpSpinBox)
 #: proxy/kproxydlg.ui:133
@@ -210,7 +210,7 @@ msgstr "所有协议使用同一个代理服务器(&L)"
 #: proxy/kproxydlg.ui:161
 #, kde-format
 msgid "SSL proxy:"
-msgstr "SSL 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyHttpsEdit)
 #: proxy/kproxydlg.ui:176
@@ -229,7 +229,7 @@ msgstr "请输入 HTTPS 代理服务器的端口。"
 #: proxy/kproxydlg.ui:211 proxy/kproxydlg.ui:490
 #, kde-format
 msgid "FTP proxy:"
-msgstr "FTP 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxyFtpEdit)
 #: proxy/kproxydlg.ui:229
@@ -247,7 +247,7 @@ msgstr "请输入 FTP 代理服务器的端口。"
 #: proxy/kproxydlg.ui:264
 #, kde-format
 msgid "SOCKS proxy:"
-msgstr "SOCKS 代理："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualProxySocksEdit)
 #: proxy/kproxydlg.ui:279
@@ -283,7 +283,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:314
 #, kde-format
 msgid "Exceptions:"
-msgstr "例外："
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, manualNoProxyEdit)
 #: proxy/kproxydlg.ui:340
@@ -326,7 +326,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:354
 #, kde-format
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr "只为排除列表中的地址使用代理服务器"
+msgstr ""
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, autoScriptProxyRadioButton)
 #: proxy/kproxydlg.ui:367
@@ -513,9 +513,6 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
-"自动配置，也叫网络代理服务器自动发现机制 (WPAD)，一般来说不应使用。在不需要此"
-"功能时启用它可能会对网络访问速度和网络安全性造成负面影响。请询问您的网络管理"
-"员是否需要启用它。"
 
 #. i18n: ectx: property (whatsThis), widget (KUrlRequester, proxyScriptUrlRequester)
 #: proxy/kproxydlg.ui:661
