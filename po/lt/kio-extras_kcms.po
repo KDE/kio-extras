@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-28 00:45+0000\n"
-"PO-Revision-Date: 2026-08-21 17:11+0300\n"
+"PO-Revision-Date: 2026-08-28 12:42+0300\n"
 "Last-Translator: Moo\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
 "Language: lt\n"
@@ -38,38 +38,28 @@ msgstr ""
 "išsiųstas, jis pervadinamas į savo tikrąjį pavadinimą."
 
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
 msgstr ""
-"Tam, kad įsigaliotų šie pakeitimai, turite paleisti veikiančias programas iš "
-"naujo."
+"Tam, kad veikiančiose programose įsigaliotų šie pakeitimai, turite paleisti "
+"jas iš naujo."
 
 #: proxy/ui/main.qml:49
-#, fuzzy, kde-format
-#| msgid "&No proxy"
+#, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr "&Nėra įgaliotojo serverio"
+msgstr "Nėra įgaliotojo serverio"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "A&utomatiškai aptikti įgaliotojo serverio konfigūraciją"
+msgstr "Automatiškai aptikti įgaliotojo serverio konfigūraciją"
 
 #: proxy/ui/main.qml:75
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
-#| "is almost never the correct configuration. Enabling it when it is not "
-#| "required may slow down network access and make your network less secure. "
-#| "Your network administrator will know whether enabling it is required."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
@@ -78,70 +68,61 @@ msgid ""
 "administrator will know whether enabling it is required."
 msgstr ""
 "Automatinė konfigūracija, dar žinoma kaip saityno įgaliotųjų serverių "
-"automatinis aptikimas, beveik niekada nebūna teisinga konfigūracija. Jos "
-"įjungimas, kai ji nėra reikalinga, gali sulėtinti prieigą prie tinklo ir "
-"sumažinti jūsų tinklo saugumą. Jūsų tinklo administratorius žinos, ar ją "
-"reikia įjungti."
+"automatinis aptikimas (WPAD), beveik niekada nebūna teisinga konfigūracija. "
+"Jos įjungimas, kai ji nėra reikalinga, gali sulėtinti prieigą prie tinklo ir "
+"sumažinti tinklo saugumą. Jūsų tinklo administratorius žinos, ar ją reikia "
+"įjungti."
 
 #: proxy/ui/main.qml:83
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy auto-configuration URL"
-msgstr "Na&udoti įgaliotojo serverio automatinio konfigūravimo URL:"
+msgstr "Naudoti įgaliotojo serverio automatinio konfigūravimo URL"
 
 #: proxy/ui/main.qml:104
-#, fuzzy, kde-format
-#| msgid "Cannot open file"
+#, kde-format
 msgctxt "@label:button"
 msgid "Choose file…"
-msgstr "Nepavyksta atverti failo"
+msgstr "Pasirinkti failą…"
 
 #: proxy/ui/main.qml:119
-#, fuzzy, kde-format
-#| msgid "Use s&ystem proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use system proxy configuration"
-msgstr "Naudoti s&istemos įgaliotojo serverio konfigūraciją:"
+msgstr "Naudoti sistemos įgaliotojo serverio konfigūraciją"
 
 #: proxy/ui/main.qml:129
-#, fuzzy, kde-format
-#| msgid "Auto D&etect"
+#, kde-format
 msgctxt "@action:button"
 msgid "Auto-Detect"
-msgstr "Aptikti &automatiškai"
+msgstr "Aptikti automatiškai"
 
 #: proxy/ui/main.qml:137
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "HTTP proxy:"
 msgstr "HTTP įgaliotasis serveris:"
 
 #: proxy/ui/main.qml:143
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SSL proxy:"
 msgstr "SSL įgaliotasis serveris:"
 
 #: proxy/ui/main.qml:149
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "FTP proxy:"
 msgstr "FTP įgaliotasis serveris:"
 
 #: proxy/ui/main.qml:155
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SOCKS proxy:"
 msgstr "SOCKS įgaliotasis serveris:"
 
 #: proxy/ui/main.qml:161 proxy/ui/main.qml:304
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgctxt "@label"
 msgid "Exceptions:"
 msgstr "Išimtys:"
@@ -150,60 +131,52 @@ msgstr "Išimtys:"
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "Kableliais atskirtų IP adresų sąrašas"
 
 #: proxy/ui/main.qml:171
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr "Rodyti aplinkos &kintamųjų reikšmes"
+msgstr "Rodyti aplinkos kintamųjų reikšmes"
 
 #: proxy/ui/main.qml:178
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr "Naudoti rankiniu būdu nurodytą įgaliotojo serverio konfigūraciją:"
+msgstr "Naudoti rankiniu būdu nurodytą įgaliotojo serverio konfigūraciją"
 
 #: proxy/ui/main.qml:196
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "HTTP Proxy"
-msgstr "HTTP įgaliotasis serveris:"
+msgstr "HTTP įgaliotasis serveris"
 
 #: proxy/ui/main.qml:219
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
-msgstr "Naudoti šį įgaliotąjį serverį &visiems protokolams"
+msgstr "Naudoti šį įgaliotąjį serverį visiems protokolams"
 
 #: proxy/ui/main.qml:233
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SSL Proxy"
-msgstr "SSL įgaliotasis serveris:"
+msgstr "SSL įgaliotasis serveris"
 
 #: proxy/ui/main.qml:256
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "FTP Proxy"
-msgstr "FTP įgaliotasis serveris:"
+msgstr "FTP įgaliotasis serveris"
 
 #: proxy/ui/main.qml:279
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SOCKS Proxy"
-msgstr "SOCKS įgaliotasis serveris:"
+msgstr "SOCKS įgaliotasis serveris"
 
 #: proxy/ui/main.qml:320
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the exceptions list"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr ""
@@ -213,28 +186,25 @@ msgstr ""
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "URL:"
 
 #: proxy/ui/main.qml:387
-#, fuzzy, kde-format
-#| msgid "Port:"
+#, kde-format
 msgctxt "@label"
 msgid "Port:"
 msgstr "Prievadas:"
 
 #: proxy/ui/main.qml:410
-#, fuzzy, kde-format
-#| msgid "Proxy Authentication Failed."
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr "Įgaliotojo serverio autentikacija nepavyko."
+msgstr "Atverti įgaliotojo serverio automatinio konfigūravimo failą"
 
 #: proxy/ui/main.qml:411
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr "Na&udoti įgaliotojo serverio automatinio konfigūravimo URL:"
+msgstr "Įgaliotojo serverio automatinio konfigūravimo failai (*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
