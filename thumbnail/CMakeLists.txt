@@ -52,14 +52,6 @@ endif()
 
 include_directories(${CMAKE_BINARY_DIR})
 
-include(ECMSetupQtPluginMacroNames)
-ecm_setup_qtplugin_macro_names(
-    JSON_ARG2
-        "EXPORT_THUMBNAILER_WITH_JSON"
-    CONFIG_CODE_VARIABLE
-        PACKAGE_SETUP_AUTOMOC_VARIABLES
-)
-
 configure_file(config-thumbnail.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-thumbnail.h)
 
 ########### next target ###############
