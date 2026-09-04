@@ -38,19 +38,19 @@ msgstr ""
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
-msgstr ""
+msgstr "重启正在运行的应用程序，使这些更改对其生效。"
 
 #: proxy/ui/main.qml:49
 #, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr ""
+msgstr "无代理服务器"
 
 #: proxy/ui/main.qml:65
 #, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr ""
+msgstr "自动检测代理服务器配置"
 
 #: proxy/ui/main.qml:75
 #, kde-format
@@ -61,138 +61,141 @@ msgid ""
 "may slow down network access and make your network less secure. Your network "
 "administrator will know whether enabling it is required."
 msgstr ""
+"自动配置，也叫网络代理服务器自动发现机制 (WPAD)，一般来说不应使用。在不需要此"
+"功能时启用它可能会对网络访问速度和网络安全性造成负面影响。请询问您的网络管理"
+"员是否需要启用它。"
 
 #: proxy/ui/main.qml:83
 #, kde-format
 msgctxt "@label"
 msgid "Use proxy auto-configuration URL"
-msgstr ""
+msgstr "使用代理服务器自动配置 URL"
 
 #: proxy/ui/main.qml:104
 #, kde-format
 msgctxt "@label:button"
 msgid "Choose file…"
-msgstr ""
+msgstr "选择文件…"
 
 #: proxy/ui/main.qml:119
 #, kde-format
 msgctxt "@label"
 msgid "Use system proxy configuration"
-msgstr ""
+msgstr "使用系统代理服务器配置"
 
 #: proxy/ui/main.qml:129
 #, kde-format
 msgctxt "@action:button"
 msgid "Auto-Detect"
-msgstr ""
+msgstr "自动检测"
 
 #: proxy/ui/main.qml:137
 #, kde-format
 msgctxt "@label"
 msgid "HTTP proxy:"
-msgstr ""
+msgstr "HTTP 代理："
 
 #: proxy/ui/main.qml:143
 #, kde-format
 msgctxt "@label"
 msgid "SSL proxy:"
-msgstr ""
+msgstr "SSL 代理："
 
 #: proxy/ui/main.qml:149
 #, kde-format
 msgctxt "@label"
 msgid "FTP proxy:"
-msgstr ""
+msgstr "FTP 代理："
 
 #: proxy/ui/main.qml:155
 #, kde-format
 msgctxt "@label"
 msgid "SOCKS proxy:"
-msgstr ""
+msgstr "SOCKS 代理："
 
 #: proxy/ui/main.qml:161 proxy/ui/main.qml:304
 #, kde-format
 msgctxt "@label"
 msgid "Exceptions:"
-msgstr ""
+msgstr "例外："
 
 #: proxy/ui/main.qml:162 proxy/ui/main.qml:301
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "IP 地址列表 (以逗号分隔)"
 
 #: proxy/ui/main.qml:171
 #, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr ""
+msgstr "显示环境变量的值"
 
 #: proxy/ui/main.qml:178
 #, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr ""
+msgstr "使用手动指定的代理服务器配置"
 
 #: proxy/ui/main.qml:196
 #, kde-format
 msgctxt "@title"
 msgid "HTTP Proxy"
-msgstr ""
+msgstr "HTTP 代理"
 
 #: proxy/ui/main.qml:219
 #, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
-msgstr ""
+msgstr "所有协议使用同一个代理服务器"
 
 #: proxy/ui/main.qml:233
 #, kde-format
 msgctxt "@title"
 msgid "SSL Proxy"
-msgstr ""
+msgstr "SSL 代理"
 
 #: proxy/ui/main.qml:256
 #, kde-format
 msgctxt "@title"
 msgid "FTP Proxy"
-msgstr ""
+msgstr "FTP 代理"
 
 #: proxy/ui/main.qml:279
 #, kde-format
 msgctxt "@title"
 msgid "SOCKS Proxy"
-msgstr ""
+msgstr "SOCKS 代理"
 
 #: proxy/ui/main.qml:320
 #, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
-msgstr ""
+msgstr "仅对排除列表中的地址使用代理服务器设置"
 
 #: proxy/ui/main.qml:363
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "URL："
 
 #: proxy/ui/main.qml:387
 #, kde-format
 msgctxt "@label"
 msgid "Port:"
-msgstr ""
+msgstr "端口："
 
 #: proxy/ui/main.qml:410
 #, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr ""
+msgstr "打开代理服务器自动配置文件"
 
 #: proxy/ui/main.qml:411
 #, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr ""
+msgstr "代理服务器自动配置文件(*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
