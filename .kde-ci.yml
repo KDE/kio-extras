@@ -24,9 +24,9 @@ Dependencies:
 
 - 'on': ['Linux', 'FreeBSD']
   'require':
-    'libraries/kdsoap-ws-discovery-client': '@latest-kf6'
-    'plasma/plasma-activities': '@latest-kf6'
-    'plasma/plasma-activities-stats': '@latest-kf6'
+    'libraries/kdsoap-ws-discovery-client': 'stable/0.4'
+    'plasma/plasma-activities': 'Plasma/6.24'
+    'plasma/plasma-activities-stats': 'Plasma/6.24'
 
 Options:
   require-passing-tests-on: [ 'Linux', 'FreeBSD' ]
