@@ -13,6 +13,7 @@ kcmutils_add_qml_kcm(kcm_proxy
 kconfig_add_kcfg_files(kcm_proxy kioslave.kcfgc GENERATE_MOC)
 
 target_link_libraries(kcm_proxy PRIVATE
+    Qt::Qml
     KF6::CoreAddons
     KF6::ConfigCore
     KF6::I18n
