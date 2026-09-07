@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kcmkio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-06-27 12:27+0200\n"
+"PO-Revision-Date: 2026-09-06 10:00+0200\n"
 "Last-Translator: Łukasz Wojniłowicz <lukasz.wojnilowicz@gmail.com>\n"
 "Language-Team: pl\n"
 "Language: pl\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -78,7 +78,7 @@ msgstr "Ustawienia globalne"
 #: netpref/netpref.cpp:31 netpref/netpref.cpp:65
 #, kde-format
 msgid "Mark &partially uploaded files"
-msgstr "Zaznacz &częściowo przesłane pliki"
+msgstr "Zaznacz częściowo &przesłane pliki"
 
 #: netpref/netpref.cpp:33
 #, kde-format
@@ -171,7 +171,7 @@ msgstr ""
 #: proxy/kproxydlg.ui:45
 #, kde-format
 msgid "Auto D&etect"
-msgstr "Auto-wykrywanie"
+msgstr "&Sam wykryj"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, noProxyRadioButton)
 #: proxy/kproxydlg.ui:52
