@@ -12,6 +12,13 @@ kcmutils_add_qml_kcm(kcm_proxy
 
 kconfig_add_kcfg_files(kcm_proxy kioslave.kcfgc GENERATE_MOC)
 
+kcmutils_generate_module_data(kcm_proxy
+    MODULE_DATA_HEADER proxydata.h
+    MODULE_DATA_CLASS_NAME ProxyData
+    SETTINGS_HEADERS kioslave.h
+    SETTINGS_CLASSES ProxySettings
+)
+
 target_link_libraries(kcm_proxy PRIVATE
     Qt::Qml
     KF6::CoreAddons

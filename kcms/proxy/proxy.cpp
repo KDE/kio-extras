@@ -4,6 +4,7 @@
 #include "proxy.h"
 
 #include "ksaveioconfig.h"
+#include "proxydata.h"
 
 #include <KLocalizedQmlContext>
 #include <KPluginFactory>
@@ -13,7 +14,7 @@
 
 using namespace Qt::StringLiterals;
 
-K_PLUGIN_CLASS_WITH_JSON(Proxy, "kcm_proxy.json")
+K_PLUGIN_FACTORY_WITH_JSON(ProxyFactory, "kcm_proxy.json", registerPlugin<Proxy>(); registerPlugin<ProxyData>();)
 
 Proxy::Proxy(QObject *parent, const KPluginMetaData &data)
     : KQuickManagedConfigModule(parent, data)
