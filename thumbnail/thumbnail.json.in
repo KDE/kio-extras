@@ -8,7 +8,8 @@
             "output": "stream",
             "protocol": "thumbnail",
             "reading": true,
-            "source": false
+            "source": false,
+            "Capabilities": [ @THUMBNAIL_WORKER_CAPABILITY@ ]
         }
     }
 }

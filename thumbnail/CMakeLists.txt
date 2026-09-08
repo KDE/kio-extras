@@ -52,7 +52,19 @@ endif()
 
 include_directories(${CMAKE_BINARY_DIR})
 
+if(KF6_VERSION VERSION_GREATER_EQUAL 6.32)
+    set(THUMBNAIL_DRAW_FOLDER_BACKGROUND FALSE)
+else()
+    set(THUMBNAIL_DRAW_FOLDER_BACKGROUND TRUE)
+endif()
+if(THUMBNAIL_DRAW_FOLDER_BACKGROUND)
+    set(THUMBNAIL_WORKER_CAPABILITY)
+else()
+    set(THUMBNAIL_WORKER_CAPABILITY "\"RawFolder\"")
+endif()
+
 configure_file(config-thumbnail.h.cmake ${CMAKE_CURRENT_BINARY_DIR}/config-thumbnail.h)
+configure_file(thumbnail.json.in ${CMAKE_CURRENT_BINARY_DIR}/thumbnail.json @ONLY)
 
 ########### next target ###############
 
