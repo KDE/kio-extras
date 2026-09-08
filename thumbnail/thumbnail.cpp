@@ -6,6 +6,7 @@
 */
 
 #include "thumbnail.h"
+#include "config-thumbnail.h"
 #include "thumbnail-logsettings.h"
 
 #include <stdlib.h>
@@ -549,6 +550,7 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
+#if THUMBNAIL_DRAW_FOLDER_BACKGROUND
     const int extent = qMin(m_width, m_height);
     QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(QSize(extent, extent), m_devicePixelRatio);
 
@@ -562,6 +564,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     // physical pixels
     const int folderWidth = folder.width();
     const int folderHeight = folder.height();
+#else
+    // physical pixels
+    const int folderWidth = metaData("rawFolderPhysicalWidth").toInt();
+    const int folderHeight = metaData("rawFolderPhysicalHeight").toInt();
+#endif
 
     const int topMargin = folderHeight * 30 / 100;
     const int bottomMargin = folderHeight / 6;
@@ -588,9 +595,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     QPainter p;
     p.begin(&img);
 
+#if THUMBNAIL_DRAW_FOLDER_BACKGROUND
     p.setCompositionMode(QPainter::CompositionMode_Source);
     p.drawPixmap(0, 0, folder);
     p.setCompositionMode(QPainter::CompositionMode_SourceOver);
+#endif
 
     int xPos = leftMargin;
     int yPos = topMargin;
@@ -718,14 +727,16 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
 
     // If only for one file a thumbnail could be generated then paint an image with only one tile
     if (validThumbnails == 1) {
-        QImage oneTileImg(folder.size(), QImage::Format_ARGB32);
+        QImage oneTileImg(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
         oneTileImg.setDevicePixelRatio(m_devicePixelRatio);
         oneTileImg.fill(0);
 
         QPainter oneTilePainter(&oneTileImg);
+#if THUMBNAIL_DRAW_FOLDER_BACKGROUND
         oneTilePainter.setCompositionMode(QPainter::CompositionMode_Source);
         oneTilePainter.drawPixmap(0, 0, folder);
         oneTilePainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+#endif
 
         const int oneTileWidth = folderWidth - leftMargin - rightMargin;
         const int oneTileHeight = folderHeight - topMargin - bottomMargin;
