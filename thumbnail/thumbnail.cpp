@@ -541,6 +541,9 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
         m_propagationDirectories = QSet<QString>(propagationDirectoriesList.begin(), propagationDirectoriesList.end());
     }
 
+    // "classic" refers to the historic layout for rendering of the sub thumb overlays
+    // Currently the only supported style, might be extended in the future
+    const bool isRawThumRequest = metaData("rawFolder") == QLatin1String("classic");
     const int tiles = 2; // Count of items shown on each dimension
     const int spacing = 1 * m_devicePixelRatio;
     const int visibleCount = tiles * tiles;
@@ -549,19 +552,30 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    const int extent = qMin(m_width, m_height);
-    QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(QSize(extent, extent), m_devicePixelRatio);
-
-    // Scale up base icon to ensure overlays are rendered with
-    // the best quality possible even for low-res custom folder icons
-    const int physicalExtent = qRound(extent * m_devicePixelRatio);
-    if (qMax(folder.width(), folder.height()) < physicalExtent) {
-        folder = folder.scaled(physicalExtent, physicalExtent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
-    }
-
     // physical pixels
-    const int folderWidth = folder.width();
-    const int folderHeight = folder.height();
+    int folderWidth;
+    int folderHeight;
+
+    QPixmap folder;
+    if (isRawThumRequest) {
+        setMetaData("isRawFolder", QStringLiteral("1"));
+
+        folderWidth = metaData("rawFolderPhysicalWidth").toInt();
+        folderHeight = metaData("rawFolderPhysicalHeight").toInt();
+    } else {
+        const int extent = qMin(m_width, m_height);
+        folder = QIcon::fromTheme(item.iconName()).pixmap(QSize(extent, extent), m_devicePixelRatio);
+
+        // Scale up base icon to ensure overlays are rendered with
+        // the best quality possible even for low-res custom folder icons
+        const int physicalExtent = qRound(extent * m_devicePixelRatio);
+        if (qMax(folder.width(), folder.height()) < physicalExtent) {
+            folder = folder.scaled(physicalExtent, physicalExtent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        }
+
+        folderWidth = folder.width();
+        folderHeight = folder.height();
+    }
 
     const int topMargin = folderHeight * 30 / 100;
     const int bottomMargin = folderHeight / 6;
@@ -588,9 +602,11 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     QPainter p;
     p.begin(&img);
 
-    p.setCompositionMode(QPainter::CompositionMode_Source);
-    p.drawPixmap(0, 0, folder);
-    p.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    if (!isRawThumRequest) {
+        p.setCompositionMode(QPainter::CompositionMode_Source);
+        p.drawPixmap(0, 0, folder);
+        p.setCompositionMode(QPainter::CompositionMode_SourceOver);
+    }
 
     int xPos = leftMargin;
     int yPos = topMargin;
@@ -718,14 +734,16 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
 
     // If only for one file a thumbnail could be generated then paint an image with only one tile
     if (validThumbnails == 1) {
-        QImage oneTileImg(folder.size(), QImage::Format_ARGB32);
+        QImage oneTileImg(QSize(folderWidth, folderHeight), QImage::Format_ARGB32);
         oneTileImg.setDevicePixelRatio(m_devicePixelRatio);
         oneTileImg.fill(0);
 
         QPainter oneTilePainter(&oneTileImg);
-        oneTilePainter.setCompositionMode(QPainter::CompositionMode_Source);
-        oneTilePainter.drawPixmap(0, 0, folder);
-        oneTilePainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+        if (!isRawThumRequest) {
+            oneTilePainter.setCompositionMode(QPainter::CompositionMode_Source);
+            oneTilePainter.drawPixmap(0, 0, folder);
+            oneTilePainter.setCompositionMode(QPainter::CompositionMode_SourceOver);
+        }
 
         const int oneTileWidth = folderWidth - leftMargin - rightMargin;
         const int oneTileHeight = folderHeight - topMargin - bottomMargin;
