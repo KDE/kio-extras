@@ -8,6 +8,8 @@ kcmutils_add_qml_kcm(kcm_proxy
         proxy.h
         ksaveioconfig.cpp
         ksaveioconfig.h
+        proxydata.cpp
+        proxydata.h
 )
 
 kconfig_add_kcfg_files(kcm_proxy kioslave.kcfgc GENERATE_MOC)
