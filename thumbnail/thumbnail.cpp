@@ -486,7 +486,11 @@ void ThumbnailProtocol::drawPictureFrame(QPainter *painter,
 
     QRect r = m.mapRect(QRectF(frameRect)).toAlignedRect();
 
-    QImage transformed(r.size(), QImage::Format_ARGB32);
+    // render to image with devicePixelRatio,
+    // to keep subthumb resolution, also consistently scaled frame width,
+    // and avoid any scaling when being drawn in the end onto the folder icon pixmap
+    QImage transformed(r.size() * m_devicePixelRatio, QImage::Format_ARGB32);
+    transformed.setDevicePixelRatio(m_devicePixelRatio);
     transformed.fill(0);
     QPainter p(&transformed);
     p.setRenderHint(QPainter::SmoothPixmapTransform);
@@ -545,14 +549,14 @@ QImage ThumbnailProtocol::thumbForDirectory(const QString &directory)
     // Provide a fallback solution for other iconsets (e. g. draw folder
     // only as small overlay, use no margins)
 
-    const int extent = qMin(m_width, m_height) * m_devicePixelRatio;
-    QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(extent);
-    folder.setDevicePixelRatio(m_devicePixelRatio);
+    const int extent = qMin(m_width, m_height);
+    QPixmap folder = QIcon::fromTheme(item.iconName()).pixmap(QSize(extent, extent), m_devicePixelRatio);
 
     // Scale up base icon to ensure overlays are rendered with
     // the best quality possible even for low-res custom folder icons
-    if (qMax(folder.width(), folder.height()) < extent) {
-        folder = folder.scaled(extent, extent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+    const int physicalExtent = qRound(extent * m_devicePixelRatio);
+    if (qMax(folder.width(), folder.height()) < physicalExtent) {
+        folder = folder.scaled(physicalExtent, physicalExtent, Qt::KeepAspectRatio, Qt::SmoothTransformation);
     }
 
     // physical pixels
