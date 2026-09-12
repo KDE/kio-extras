@@ -1,0 +1,9 @@
+[Icon Theme]
+Name=kio-extras-test
+Comment=Icons for the thumbnail autotest, so that a folder thumbnail does not depend on the icon theme the machine has
+Directories=256x256/places
+
+[256x256/places]
+Size=256
+Context=Places
+Type=Fixed
