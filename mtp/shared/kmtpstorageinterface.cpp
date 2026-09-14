@@ -86,7 +86,7 @@ int KMTPStorageInterface::setFileName(const QString &path, const QString &newNam
     return m_dbusInterface->setFileName(path, newName);
 }
 
-quint32 KMTPStorageInterface::createFolder(const QString &path) const
+qint64 KMTPStorageInterface::createFolder(const QString &path) const
 {
     return m_dbusInterface->createFolder(path);
 }

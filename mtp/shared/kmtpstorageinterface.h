@@ -50,7 +50,7 @@ public Q_SLOTS:
     int setFileName(const QString &path, const QString &newName) const;
 
     // folder management
-    quint32 createFolder(const QString &path) const;
+    qint64 createFolder(const QString &path) const;
 
     // object management
     int deleteObject(const QString &path) const;

@@ -705,10 +705,15 @@ WorkerResult MTPWorker::mkdir(const QUrl &url, int)
         if (mtpDevice) {
             const KMTPStorageInterface *storage = mtpDevice->storageFromDescription(pathItems.at(1));
             if (storage) {
-                // TODO: folder already exists
-                const quint32 itemId = storage->createFolder(convertPath(url.path()));
-                if (itemId) {
+                const qint64 itemId = storage->createFolder(convertPath(url.path()));
+                if (itemId > 0) {
                     return WorkerResult::pass();
+                } else if (itemId == -1) {
+                    // Folder already exists
+                    return WorkerResult::fail(ERR_DIR_ALREADY_EXIST, url.path());
+                } else if (itemId == -2) {
+                    // file is blocking folder creation
+                    return WorkerResult::fail(ERR_IS_FILE, url.path());
                 }
             }
         }

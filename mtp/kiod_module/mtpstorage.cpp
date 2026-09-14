@@ -517,11 +517,11 @@ int MTPStorage::setFileName(const QString &path, const QString &newName)
     return result;
 }
 
-quint32 MTPStorage::createFolder(const QString &path)
+qint64 MTPStorage::createFolder(const QString &path)
 {
     qCDebug(LOG_KIOD_KMTPD) << "createFolder:" << path;
 
-    quint32 folderId = 0;
+    qint64 folderId = 0;
     const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
     const auto destinationId = queryPath(path);
 
@@ -544,6 +544,15 @@ quint32 MTPStorage::createFolder(const QString &path)
             LIBMTP_Clear_Errorstack(getDevice());
         } else {
             addPath(path, folderId);
+        }
+    } else if (!pathItems.isEmpty() && destinationId.has_value()) {
+        const KMTPFile file = getFileFromPath(path);
+        if (file.isValid() && file.isFolder()) {
+            folderId = -1;
+            qCDebug(LOG_KIOD_KMTPD) << "Folder already exists";
+        } else if (file.isValid() && !file.isFolder()) {
+            folderId = -2;
+            qCDebug(LOG_KIOD_KMTPD) << "File blocking folder creation";
         }
     }
     return folderId;

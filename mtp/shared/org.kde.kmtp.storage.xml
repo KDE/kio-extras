@@ -99,11 +99,11 @@
         <!--
         createFolder
         @path:	             The path of the new folder
-        @result:             The result of the operation. 0 if successful, else not.
+        @result:             The result of the operation. 0 if unsuccessful, -1 if directory already exists, -2 if file with same name exists, > 0 successful.
         -->
         <method name="createFolder">
             <arg direction="in" type="s" name="path"/>
-            <arg direction="out" type="u"/>
+            <arg direction="out" type="i"/>
         </method>
 
         <!--
