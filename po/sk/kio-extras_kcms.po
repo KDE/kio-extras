@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: kio5\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-28 00:45+0000\n"
-"PO-Revision-Date: 2023-06-03 21:00+0200\n"
-"Last-Translator: Ferdinand Galko <galko.ferdinand@gmail.com>\n"
+"PO-Revision-Date: 2026-09-14 20:10+0200\n"
+"Last-Translator: Roman Paholík <wizzardsk@gmail.com>\n"
 "Language-Team: Slovak <opensuse-translation@opensuse.org>\n"
 "Language: sk\n"
 "MIME-Version: 1.0\n"
@@ -36,36 +36,26 @@ msgstr ""
 "premenuje na skutočné meno."
 
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
-msgstr "Aby zmeny boli aktívne musíte spustené aplikácie reštartovať."
+msgstr "Aby sa zmeny prejavili, reštartujte spustené aplikácie."
 
 #: proxy/ui/main.qml:49
-#, fuzzy, kde-format
-#| msgid "&No proxy"
+#, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr "Bez &proxy"
+msgstr "Bez proxy"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "Automaticky zistiť nastavenia proxy"
+msgstr "Automaticky zistiť nastavenie proxy"
 
 #: proxy/ui/main.qml:75
-#, fuzzy, kde-format
-#| msgid ""
-#| "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), "
-#| "is almost never the correct configuration. Enabling it when it is not "
-#| "required may slow down network access and make your network less secure. "
-#| "Your network administrator will know whether enabling it is required."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Automatic Configuration, also known as Web Proxy Auto-Discovery (WPAD), is "
@@ -79,64 +69,55 @@ msgstr ""
 "siete bude vedieť, či je jej zapnutie potrebné."
 
 #: proxy/ui/main.qml:83
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy auto-configuration URL"
-msgstr "Použiť URL automatickej konfigurácie proxy:"
+msgstr "Použiť URL automatickej konfigurácie proxy"
 
 #: proxy/ui/main.qml:104
-#, fuzzy, kde-format
-#| msgid "Cannot open file"
+#, kde-format
 msgctxt "@label:button"
 msgid "Choose file…"
-msgstr "Nie je možné otvoriť súbor"
+msgstr "Vybrať súbor…"
 
 #: proxy/ui/main.qml:119
-#, fuzzy, kde-format
-#| msgid "Use s&ystem proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use system proxy configuration"
-msgstr "Použiť systémové nastavenie proxy:"
+msgstr "Použiť systémové nastavenie proxy"
 
 #: proxy/ui/main.qml:129
-#, fuzzy, kde-format
-#| msgid "Auto D&etect"
+#, kde-format
 msgctxt "@action:button"
 msgid "Auto-Detect"
-msgstr "&Automatické zistenie"
+msgstr "Automatická detekcia"
 
 #: proxy/ui/main.qml:137
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "HTTP proxy:"
 msgstr "HTTP Proxy:"
 
 #: proxy/ui/main.qml:143
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SSL proxy:"
 msgstr "SSL Proxy:"
 
 #: proxy/ui/main.qml:149
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "FTP proxy:"
 msgstr "FTP Proxy:"
 
 #: proxy/ui/main.qml:155
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@label"
 msgid "SOCKS proxy:"
 msgstr "SOCKS Proxy:"
 
 #: proxy/ui/main.qml:161 proxy/ui/main.qml:304
-#, fuzzy, kde-format
-#| msgid "Exceptions:"
+#, kde-format
 msgctxt "@label"
 msgid "Exceptions:"
 msgstr "Výnimky:"
@@ -145,60 +126,52 @@ msgstr "Výnimky:"
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "Zoznam IP adries oddelených čiarkami"
 
 #: proxy/ui/main.qml:171
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr "Zobraziť prednastavené premenné &prostredia"
+msgstr "Zobraziť hodnotu premenných prostredia"
 
 #: proxy/ui/main.qml:178
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr "Použiť ručne zadanú konfiguráciu proxy:"
+msgstr "Použiť ručne zadanú konfiguráciu proxy"
 
 #: proxy/ui/main.qml:196
-#, fuzzy, kde-format
-#| msgid "HTTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "HTTP Proxy"
-msgstr "HTTP Proxy:"
+msgstr "HTTP Proxy"
 
 #: proxy/ui/main.qml:219
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
 msgstr "Použiť tento proxy server pre všetky protokoly"
 
 #: proxy/ui/main.qml:233
-#, fuzzy, kde-format
-#| msgid "SSL proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SSL Proxy"
-msgstr "SSL Proxy:"
+msgstr "SSL proxy"
 
 #: proxy/ui/main.qml:256
-#, fuzzy, kde-format
-#| msgid "FTP proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "FTP Proxy"
-msgstr "FTP Proxy:"
+msgstr "FTP proxy"
 
 #: proxy/ui/main.qml:279
-#, fuzzy, kde-format
-#| msgid "SOCKS proxy:"
+#, kde-format
 msgctxt "@title"
 msgid "SOCKS Proxy"
-msgstr "SOCKS Proxy:"
+msgstr "SOCKS proxy"
 
 #: proxy/ui/main.qml:320
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the exceptions list"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Použiť nastavenie proxy iba pre adresy v zozname Výnimiek"
@@ -207,28 +180,25 @@ msgstr "Použiť nastavenie proxy iba pre adresy v zozname Výnimiek"
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "URL:"
 
 #: proxy/ui/main.qml:387
-#, fuzzy, kde-format
-#| msgid "Port:"
+#, kde-format
 msgctxt "@label"
 msgid "Port:"
 msgstr "Port:"
 
 #: proxy/ui/main.qml:410
-#, fuzzy, kde-format
-#| msgid "Proxy Authentication Failed."
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr "Overenie proxy zlyhalo."
+msgstr "Otvoriť súbor automatickej konfigurácie proxy"
 
 #: proxy/ui/main.qml:411
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr "Použiť URL automatickej konfigurácie proxy:"
+msgstr "Súbory automatickej konfigurácie proxy (*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
