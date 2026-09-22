@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-30 00:44+0000\n"
-"PO-Revision-Date: 2026-05-31 18:46-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -80,15 +80,11 @@ msgid ""
 "mistakes or be obsolete. In case of doubt, you should have a look at the "
 "English version."
 msgstr ""
-"ئەسكەرتىش: ئەگەر سىز ئوقۇۋاتقىنى ئىنگلىزچە بولمىغان قوللانما بېتى بولسا، "
-"ئۇنىڭدا ۋاقتى ئۆتكەن ياكى خاتا ئۇچۇر بولۇشى مۇمكىن. ئەگەر ئۇنىڭ مەزمۇنىغا "
-"قارىتا گۇمان بىلەن قارىسىڭىز، ئىنگلىزچە نەشرىنى كۆرۈڭ."
 
 #: kio_man.cpp:736
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "كۆپ قوللانما بەت"
+msgstr ""
 
 #: kio_man.cpp:737
 #, kde-format
@@ -216,9 +212,6 @@ msgid ""
 "install it if necessary, and ensure that it can be found using the "
 "environment variable <envar>PATH</envar>."
 msgstr ""
-"سىستېمىدىكى  <command>%1</command> پىروگراممىنى تاپالمىدى. بۇ ئىقتىدارنى "
-"ئىشلىتىش ئۈچۈن شۇ پىروگراممىنى ئورنىتىڭ ۋە <envar>PATH</envar> مۇھىت "
-"ئۆزگەرگۈچىسى ئارقىلىق ئورۇن بەلگىلەشكە كاپالەتلىك قىلىڭ."
 
 #~ msgid "Open of %1 failed."
 #~ msgstr "%1 نى ئېچىش مەغلۇپ بولدى."

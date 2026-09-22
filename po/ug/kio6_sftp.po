@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-19 00:45+0000\n"
-"PO-Revision-Date: 2026-05-31 18:47-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -140,11 +140,11 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
-"بۇ مۇلازىمېتىرنىڭ %1 مۇلازىمېتىر ئاچقۇچىنى تاپالمىدى ئەمما باشقا تۈردىكى "
-"ئاچقۇچ مەۋجۇت.\n"
-"بەلكىم ھۇجۇمچى مۇلازىمېتىرنىڭ كۆڭۈلدىكى مۇلازىمېتىر ئاچقۇچىنى ئۆزگەرتىۋېتىپ "
-"خېرىدارنى ئاچقۇچ يوق دەپ قارىشىغا قىزىقتۇرماقچى بولۇشى مۇمكىن.\n"
-"سىستېما باشقۇرغۇچى بىلەن ئالاقىلىشىڭ.\n"
+"An %1 host key for this server was not found, but another type of key "
+"exists.\n"
+"An attacker might change the default server key to confuse your client into "
+"thinking the key does not exist.\n"
+"سىستېما باشقۇرغۇچىسى بىلەن ئالاقىلىشىڭ.\n"
 "%2"
 
 #: kio_sftp.cpp:863
@@ -203,7 +203,7 @@ msgstr "دەلىللىيەلمىدى."
 #, kde-format
 msgid ""
 "Authentication failed. The server didn't send any authentication methods"
-msgstr "دەلىللىيەلمىدى. مۇلازىمېتىر ھېچقانداق دەلىللەش ئۇسۇلىنى يوللىمىدى"
+msgstr "دەلىللىيەلمىدى. The server didn't send any authentication methods"
 
 #: kio_sftp.cpp:971
 #, kde-format
@@ -221,8 +221,6 @@ msgid ""
 "Unable to request the SFTP subsystem. Make sure SFTP is enabled on the "
 "server."
 msgstr ""
-"SFTP تارماق سىستېمىنى ئىلتىماس قىلالمىدى. مۇلازىمېتىردا SFTP نىڭ "
-"قوزغىتىلغانلىقىنى جەزملەڭ."
 
 #: kio_sftp.cpp:1036
 #, kde-format

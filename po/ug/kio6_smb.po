@@ -8,9 +8,9 @@ msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-05 00:45+0000\n"
-"PO-Revision-Date: 2026-05-31 18:47-0400\n"
+"PO-Revision-Date: 2026-09-22 18:03+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
-"Language-Team: Uyghur Computer Science Association <UKIJ@yahoogroups.com>\n"
+"Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
 "Language: ug\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -33,17 +33,6 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
-"<para>كۆپ خىل ئۇسۇلدا SMB ھەمبەھىرگە نىسبەتەن كىملىك دەلىللىگىلى بولىدۇ.</"
-"para><para><placeholder>ئىشلەتكۈچى ئاتى</placeholder>: ئائىلە تورىدا كىملىك "
-"دەلىللىگەندە، مۇلازىمېتىردىكى ئىشلەتكۈچى ئىسمى ئىشلىتىلسىلا بولىدۇ</"
-"para><para><placeholder>username@domain.com</placeholder>: زامانىۋى كارخانا "
-"ئادەتتە ئېلخەت ئادرېسى شەكلىدىكى تىزىمغا كىرىش ئۇسۇلىنى قوللىنىدۇ</"
-"para><para><placeholder>DOMAIN\\username</placeholder>: كونا كارخانا تورى "
-"ياكى خىزمەت گۇرۇپپىسىدا ئالدىغا NetBIOS دائىرە ئىسمىنى ئالدى قوشۇلغۇچى "
-"(Windows 2000 دىن ئىلگىرى مەشغۇلات سىستېمىسى) قىلىش زۆرۈر بولۇشى مۇمكىن</"
-"para><para><placeholder>ئاتسىز</placeholder>: ئىشلەتكۈچى ئاتى ۋە ئىم بوش "
-"ھالەتتە تىزىمغا كىرىشنى سىنايدۇ. مۇلازىمېتىرنىڭ سەپلىمىسىگە ئاساسەن يەنىلا "
-"ئىشلەتكۈچى ئاتىنى كىرگۈزۈش زۆرۈر بولۇشى مۇمكىن.</para>"
 
 #: kio_smb_auth.cpp:51
 #, kde-format
@@ -65,7 +54,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item the top of the shares that can be browsed"
 msgid "Shared Folders (SMB)"
-msgstr ""
+msgstr "ھەمبەھىرلەنگەن قىسقۇچ (SMB)"
 
 #: kio_smb_browse.cpp:76
 #, kde-format
@@ -82,8 +71,6 @@ msgid ""
 "Unable to find any workgroups in your local network. This might be caused by "
 "an enabled firewall."
 msgstr ""
-"يەرلىك توردا ھېچقانداق بىر گۇرۇپپا يوق. بۇ تور توسۇقنىڭ سەۋەبىدىن كېلىپ "
-"چىقىدۇ."
 
 #: kio_smb_browse.cpp:303
 #, kde-format
@@ -117,9 +104,6 @@ msgid ""
 "network is setup without any name conflicts between names used by Windows "
 "and by UNIX name resolution."
 msgstr ""
-"بەلگىلەنگەن ئىسىمنى بىردىنبىر مۇلازىمېتىر دەپ يېشەلمىدى. توردا Windows ۋە "
-"UNIX ئىسمىنى ئارىلاش يەشكەن ئەھۋالدا ئىسىم توقۇنۇشى بولماسلىققا كاپالەتلىك "
-"قىلىڭ."
 
 #: kio_smb_browse.cpp:346
 #, kde-format
@@ -140,13 +124,6 @@ msgid ""
 "not post it if you are unsure about that - you can send it privately to the "
 "developers if they ask for it)"
 msgstr ""
-"libsmbclien خاتالىق مەلۇم قىلدى ئەمما نېمە مەسىلە ئىكەنلىكى ئېنىق ئەمەس. "
-"توردا ئېغىر مەسىلە بولۇشى مۇمكىن ئەمما libsmbclient نىڭ مەسىلىسى بولۇشىمۇ "
-"مۇمكىن.\n"
-"ئەگەر بىزگە ياردەم بەرمەكچى بولسىڭىز، تور ئېغىزىنىڭ تور بەت زىيارىتىدىكى "
-"tcpdump (دىققەت، ئىچىدە شەخسىيەت ئۇچۇرى بولۇشى مۇمكىن، ئەگەر "
-"جەزملىيەلمىسىڭىز، بۇ ئۇچۇرنى ئاشكارا تاپشۇرماڭ - ئەگەر ئىجادكار بۇ ئۇچۇرنى "
-"تەمىنلەشنى سورىسا، شەخسىي يول بىلەن تەمىنلەڭ) نى تەمىنلەڭ."
 
 #: kio_smb_browse.cpp:362
 #, kde-format
@@ -179,8 +156,6 @@ msgid ""
 "Mounting of share \"%1\" from host \"%2\" by user \"%3\" failed.\n"
 "%4"
 msgstr ""
-"«%3» ئىشلەتكۈچى «%2» مۇلازىمېتىردىن «%1» ھەمبەھىرنى ئېگەرلىيەلمىدى.\n"
-"%4"
 
 #: kio_smb_mount.cpp:198
 #, kde-format
@@ -188,8 +163,6 @@ msgid ""
 "Unmounting of mountpoint \"%1\" failed.\n"
 "%2"
 msgstr ""
-"ئېگەرلەش نۇقتىسى «%1» نى ئېگەرسىزلەش مەغلۇپ بولدى.\n"
-"%2"
 
 #: wsdiscoverer.cpp:164
 #, kde-kuit-format
