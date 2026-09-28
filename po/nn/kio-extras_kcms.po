@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-28 00:45+0000\n"
-"PO-Revision-Date: 2026-09-25 17:41+0200\n"
+"PO-Revision-Date: 2026-09-27 21:49+0200\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
@@ -40,14 +40,13 @@ msgstr ""
 "ferdig, får ho sitt eigentlege namn."
 
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
-msgstr "Du må starta programma på nytt for at endringane skal tre i kraft."
+msgstr ""
+"Start program som køyrer, på nytt for at endringane skal tre i krafta for "
+"dei."
 
 #: proxy/ui/main.qml:49
 #, kde-format
@@ -56,11 +55,10 @@ msgid "No proxy"
 msgstr "Ingen mellomtenar"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "&Finn automatisk mellomtenaroppsett"
+msgstr "Finn automatisk mellomtenaroppsett"
 
 #: proxy/ui/main.qml:75
 #, kde-format
@@ -137,18 +135,16 @@ msgid "Comma-separated list of IP addresses"
 msgstr "Kommaskild liste med IP-adresser"
 
 #: proxy/ui/main.qml:171
-#, fuzzy, kde-format
-#| msgid "Show the &value of the environment variables"
+#, kde-format
 msgctxt "@label"
 msgid "Show the value of the environment variables"
-msgstr "Vis verdiane til tilhøyrande &miljøvariablar"
+msgstr "Vis verdiane til tilhøyrande miljøvariablar"
 
 #: proxy/ui/main.qml:178
-#, fuzzy, kde-format
-#| msgid "Use manually specified proxy configuration:"
+#, kde-format
 msgctxt "@label"
 msgid "Use manually-specified proxy configuration"
-msgstr "Bruk sjølvvalt mellomtenaroppsett:"
+msgstr "Bruk sjølvvalt mellomtenaroppsett"
 
 #: proxy/ui/main.qml:196
 #, kde-format
