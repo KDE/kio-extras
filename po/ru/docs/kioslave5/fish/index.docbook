@@ -49,15 +49,15 @@
 >). </para>
 
 <para
->Модуль fish запускается так: <userinput
+>Модуль KIO fish используется так: <userinput
 >fish://<replaceable
->имя-хоста</replaceable
+>имя-узла</replaceable
 ></userinput
 > или <userinput
 >fish://<replaceable
 >имя-пользователя</replaceable
 >@<replaceable
->имя-хоста</replaceable
+>имя-узла</replaceable
 ></userinput
 >.</para>
 

@@ -1,0 +1,65 @@
+<?xml version="1.0" ?>
+<!DOCTYPE article PUBLIC "-//KDE//DTD DocBook XML V4.5-Based Variant V1.1//EN"
+"dtd/kdedbx45.dtd" [
+<!ENTITY % addindex "IGNORE">
+<!ENTITY % Russian "INCLUDE"
+> <!-- change language only here -->
+]>
+	
+<article lang="&language;" id="zstd">
+<title
+>Модуль Zstd</title>
+<articleinfo>
+<authorgroup>
+<author
+><firstname
+>Friedrich</firstname
+><othername
+>W. H.</othername
+><surname
+>Kossebau</surname
+></author>
+<othercredit role="translator"
+><firstname
+>Александр</firstname
+><surname
+>Яворский</surname
+><affiliation
+><address
+><email
+>kekcuha@gmail.com</email
+></address
+></affiliation
+><contrib
+>Перевод на русский язык</contrib
+></othercredit
+> 
+</authorgroup>
+</articleinfo>
+
+<para
+><command
+>zstd</command
+> — это программа сжатия данных.</para>
+
+<para
+>Модуль KIO zstd не используется напрямую — он предназначен для работы в качестве фильтра. Например, модуль KIO tar может пропустить файл через модуль KIO zstd, чтобы показать содержимое файла <literal role="extension"
+>tar.zst</literal
+> прямо в окне &konqueror;.</para>
+
+<para
+>При щелчке в &konqueror; по сжатому файлу с расширением <literal role="extension"
+>zst</literal
+> этот модуль KIO распаковывает файл и показывает его как обычный, несжатый.</para>
+
+<para
+>Документация по использованию модулей KIO, в том числе фильтра zstd, для разработчиков размещена на сайте <ulink url="http://techbase.kde.org"
+>http://techbase.kde.org</ulink
+></para>
+
+<para
+>Смотрите также руководство пользователя программы: <ulink url="man:/zstd"
+>zstd</ulink
+>. </para>
+
+</article>
