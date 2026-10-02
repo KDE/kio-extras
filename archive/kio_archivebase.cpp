@@ -337,7 +337,7 @@ KIO::WorkerResult ArchiveProtocolBase::stat(const QUrl &url)
             // We have any other error
             return KIO::WorkerResult::fail(errorNum, url.toDisplayString());
         }
-        KIOExtras::reserveEntry(entry, 1, 1);
+        KIOExtras::reserveEntry(entry, 2, 1);
         // Real directory. Return just enough information for KRun to work
         entry.fastInsert(KIO::UDSEntry::UDS_NAME, url.fileName());
         qCDebug(KIO_ARCHIVE_LOG) << "returning name" << url.fileName();
@@ -348,7 +348,7 @@ KIO::WorkerResult ArchiveProtocolBase::stat(const QUrl &url)
 #else
         QString fullPath = url.path();
 #endif
-
+        entry.fastInsert(KIO::UDSEntry::UDS_TARGET_URL, QUrl::fromLocalFile(fullPath).toString()); // Setting the actual file url
         if (QT_STAT(QFile::encodeName(fullPath).constData(), &buff) == -1) {
             // Should not happen, as the file was already stated by checkNewFile
             return KIO::WorkerResult::fail(KIO::ERR_CANNOT_STAT, url.toDisplayString());
