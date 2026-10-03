@@ -3,7 +3,7 @@
 # Author: Artnay
 # Author: Lliehu
 # Author: Niklas Laxström
-# SPDX-FileCopyrightText: 2009, 2010, 2011, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025 Tommi Nieminen <translator@legisign.org>
+# SPDX-FileCopyrightText: 2009, 2010, 2011, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026 Tommi Nieminen <translator@legisign.org>
 # Kim Enkovaara <kim.enkovaara@iki.fi>, 2002, 2003, 2004, 2005, 2006.
 # Mikko Ikola <ikola@iki.fi>, 2003, 2005.
 # Teemu Rytilahti <teemu.rytilahti@kde-fi.org>, 2003, 2004, 2008.
@@ -15,20 +15,21 @@
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2010, 2011, 2012, 2013, 2014, 2015, 2016, 2017, 2019.
 # Tommi Nieminen <translator@legisign.org>, 2024.
+# SPDX-FileCopyrightText: 2026 Lasse Liehu-Inui <lasse.liehu@iki.fi>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2025-10-15 19:39+0300\n"
-"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
-"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
+"PO-Revision-Date: 2026-10-02 23:01+0300\n"
+"Last-Translator: Lasse Liehu-Inui <lasse.liehu@iki.fi>\n"
+"Language-Team: Finnish <kde-l10n-fi@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.04.0\n"
+"X-Generator: Lokalize 25.12.3\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -760,7 +761,7 @@ msgstr ""
 #: trash/kcmtrash.cpp:295
 #, kde-format
 msgid "Full trash:"
-msgstr "Koko roskakori:"
+msgstr "Täysi roskakori:"
 
 #: webshortcuts/ikwsopts.cpp:42
 #, kde-format
@@ -781,11 +782,10 @@ msgid "Preferred"
 msgstr "Ensisijainen"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Choose a delimiter to mark the Web search keyword."
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "Valitse erotin, joka osoittaa verkkohaun hakusanan."
+msgstr "Valitse asettaaksesi tämän verkkohakuavainsanan ensisijaiseksi."
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -809,6 +809,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>Verkkohakusanoilla voi internetistä nopeasti etsiä sanoja. Ne toimivat "
+"Plasman <application>KRunner</application>-haussa, <application>Konqueror</"
+"application>in osoiterivillä ja muissa sitä tukevissa sovelluksissa. "
+"Etsiäksesi esimerkiksi tietoa KDE-projektista Google-hakumoottorilla, voi "
+"kirjoittaa yksinkertaisesti <icode>gg:KDE</icode> tai <icode>google:KDE</"
+"icode>.</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -817,6 +823,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Valitse tämä verkkohakusanojen tunnistamiseksi ja käyttämiseksi niitä "
+"käyttävissä sovelluksissa."
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
@@ -828,7 +836,7 @@ msgstr "&Käytä verkkohaun hakusanoja"
 #: webshortcuts/ikwsopts_ui.ui:36
 #, kde-format
 msgid "<a href=\"whatsthis\">How do these work?</a>"
-msgstr ""
+msgstr "<a href=\"whatsthis\">Kuinka nämä toimivat?</a>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:52
@@ -840,6 +848,10 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>Valitse tämä, niin haussa käytetään vain alla valittuja ensisijaisia "
+"verkkohakusanoja.</p><p>Jos tämä on valittu, sovellukset, jotka voivat "
+"näyttää vain rajallisen määrän hakusanoja (esim. Konqueror, kun sivulta on "
+"valittu tekstiä), näyttävät vain ensisijaiset hakusanat.</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -849,8 +861,7 @@ msgstr "Käytä vain &ensisijaisia hakusanoja"
 
 #. i18n: ectx: property (placeholderText), widget (QLineEdit, searchLineEdit)
 #: webshortcuts/ikwsopts_ui.ui:62
-#, fuzzy, kde-format
-#| msgid "Search..."
+#, kde-format
 msgid "Search..."
 msgstr "Etsi…"
 
@@ -905,6 +916,10 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>Valitse verkkohaun oletushakusana.</p><p>Automaattisesti etsivät "
+"sovellukset, esim. Konquerorin osoiterivi, voivat käyttää tätä, ellei "
+"syötettä tunnisteta. Haussa käytetään tätä hakusanaa. Ominaisuuden voi "
+"poistaa käytöstä valitsemalla luettelosta <tt>(Ei mitään)</tt>.</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -914,16 +929,12 @@ msgstr "Hakusanan &erotin:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
 msgstr ""
-"Valitse erotin, joka erottaa hakukoneen lyhenteen haettavasta sanasta tai "
-"ilmaisusta."
+"Valitse erotin, joka erottaa hakusanan etsittävästä lausekkeesta tai sanasta."
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
