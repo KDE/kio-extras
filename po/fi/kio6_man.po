@@ -6,13 +6,13 @@
 # Ilpo Kantonen <ilpo@iki.fi>, 2005.
 # Teemu Rytilahti <teemu.rytilahti@d5k.net>, 2008.
 # Lasse Liehu <lasse.liehu@gmail.com>, 2011, 2012, 2013.
-# Tommi Nieminen <translator@legisign.org>, 2019, 2020, 2021.
+# SPDX-FileCopyrightText: 2019, 2020, 2021, 2026 Tommi Nieminen <translator@legisign.org>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-30 00:44+0000\n"
-"PO-Revision-Date: 2021-10-11 14:53+0300\n"
+"PO-Revision-Date: 2026-08-26 14:05+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
@@ -20,6 +20,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #: kio_man.cpp:496
 #, kde-kuit-format
@@ -88,15 +89,14 @@ msgstr ""
 "sivua."
 
 #: kio_man.cpp:736
-#, fuzzy, kde-format
-#| msgid "Multiple Manual Pages"
+#, kde-format
 msgid "Possible Alternative Manual Pages"
-msgstr "Useita man-sivuja"
+msgstr "Mahdollisia vaihtoehtoisia man-sivuja"
 
 #: kio_man.cpp:737
 #, kde-format
 msgid "There were possible close matches:"
-msgstr ""
+msgstr "Mahdollisia vastaavuuksia:"
 
 #: kio_man.cpp:739
 #, kde-kuit-format
@@ -105,6 +105,8 @@ msgid ""
 "No man page matching <resource>%1</resource> could be found, but there were "
 "close or case insensitive matches as above."
 msgstr ""
+"Hakua <resource>%1</resource> vastaavia man-sivuja ei löytynyt, mutta "
+"kylläkin mahdollisia vastaavuuksia."
 
 #: kio_man.cpp:804
 #, kde-format
