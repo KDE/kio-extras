@@ -512,7 +512,11 @@ int MTPStorage::setFileName(const QString &path, const QString &newName)
 
     const int result = LIBMTP_Set_File_Name(getDevice(), source.get(), newName.toUtf8().constData());
     if (result == 0) {
+        const QString parentPath = path.section(QLatin1Char('/'), 0, -2);
+        const QString newPath = parentPath + QLatin1Char('/') + newName;
+
         removePath(path);
+        addPath(newPath, file.itemId());
     }
     return result;
 }
