@@ -526,35 +526,44 @@ qint64 MTPStorage::createFolder(const QString &path)
     qCDebug(LOG_KIOD_KMTPD) << "createFolder:" << path;
 
     qint64 folderId = 0;
-    const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
-    const auto destinationId = queryPath(path);
 
-    if (!pathItems.isEmpty() && !destinationId.has_value()) {
+    const QStringList pathItems = path.split(QLatin1Char('/'), Qt::SkipEmptyParts);
+    if (pathItems.isEmpty()) {
+        return folderId;
+    }
+
+    const KMTPFile destinationFolder = getFileFromPath(path);
+    if (!destinationFolder.isValid()) {
         QByteArray dirName = pathItems.last().toUtf8();
+        quint32 parentId = 0;
 
         if (pathItems.size() == 1) {
             // create folder in device root
-            folderId = LIBMTP_Create_Folder(getDevice(), dirName.data(), LIBMTP_FILES_AND_FOLDERS_ROOT, m_id);
-
+            parentId = LIBMTP_FILES_AND_FOLDERS_ROOT;
         } else {
             const KMTPFile parentFolder = getFileMetadata(path.section(QLatin1Char('/'), 0, -2, QString::SectionIncludeLeadingSep));
-            if (parentFolder.isFolder()) {
-                folderId = LIBMTP_Create_Folder(getDevice(), dirName.data(), parentFolder.itemId(), m_id);
+            if (parentFolder.isValid() && parentFolder.isFolder()) {
+                parentId = parentFolder.itemId();
             }
         }
 
-        if (folderId) {
-            LIBMTP_Dump_Errorstack(getDevice());
-            LIBMTP_Clear_Errorstack(getDevice());
-        } else {
-            addPath(path, folderId);
+        if (parentId > 0) {
+            folderId = LIBMTP_Create_Folder(getDevice(), dirName.data(), parentId, m_id);
+
+            if (folderId == 0) {
+                // folder creation failed
+                LIBMTP_Dump_Errorstack(getDevice());
+                LIBMTP_Clear_Errorstack(getDevice());
+            } else {
+                // folder creation was successful, cache the newly created folder
+                addPath(path, folderId);
+            }
         }
-    } else if (!pathItems.isEmpty() && destinationId.has_value()) {
-        const KMTPFile file = getFileFromPath(path);
-        if (file.isValid() && file.isFolder()) {
+    } else {
+        if (destinationFolder.isFolder()) {
             folderId = -1;
             qCDebug(LOG_KIOD_KMTPD) << "Folder already exists";
-        } else if (file.isValid() && !file.isFolder()) {
+        } else {
             folderId = -2;
             qCDebug(LOG_KIOD_KMTPD) << "File blocking folder creation";
         }
