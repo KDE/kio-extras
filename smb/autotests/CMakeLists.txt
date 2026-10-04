@@ -10,6 +10,7 @@ find_package(Qt6Test ${QT_MIN_VERSION} CONFIG REQUIRED)
 include(ECMAddTests)
 
 ecm_add_tests(
+    smbauthenticatortest.cpp
     smburltest.cpp
     transfertest.cpp
     shouldresumetest.cpp

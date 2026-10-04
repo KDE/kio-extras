@@ -72,6 +72,7 @@ void SMBAuthenticator::auth(SMBCCTX *context,
     //   anonymous/guest logins as it's not safe to do in many environments:
     //   https://bugzilla.samba.org/show_bug.cgi?id=14326
 
+    // An empty username means the url names no user, so whichever login was saved for this share will do.
     if (m_frontend.checkCachedAuthentication(info)) {
         qCDebug(KIO_SMB_LOG) << "got password through cache" << info.username;
         // Split "DOMAIN/user" or "DOMAIN\user" so the domain goes into the
@@ -90,6 +91,9 @@ void SMBAuthenticator::auth(SMBCCTX *context,
         info.username = m_defaultUser;
         info.password = m_defaultPassword;
         qCDebug(KIO_SMB_LOG) << "trying defaults for user" << info.username;
+    } else if (info.username.isEmpty()) {
+        // What libsmbclient would have used without the empty default user of SMBContext.
+        info.username = qEnvironmentVariable("USER", QStringLiteral("guest"));
     }
 
     // Make sure it'll be safe to cast to size_t (unsigned)
