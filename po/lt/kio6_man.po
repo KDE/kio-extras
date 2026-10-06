@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"POT-Creation-Date: 2026-10-06 00:46+0000\n"
 "PO-Revision-Date: 2026-08-21 12:54+0300\n"
 "Last-Translator: Liudas Ališauskas <liudas@akmc.lt>\n"
 "Language-Team: Lithuanian <kde-i18n-lt@kde.org>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "(n%100<10 || n%100>=20) ? 1: 2);\n"
 "X-Generator: Poedit 3.9\n"
 
-#: kio_man.cpp:496
+#: kio_man.cpp:517
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -38,7 +38,7 @@ msgstr ""
 "aplinkos kintamąjį<envar>MANPATH</envar>, arba konfigūracijos failą, esantį "
 "<filename>/etc</filename> kataloge."
 
-#: kio_man.cpp:611
+#: kio_man.cpp:632
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -48,34 +48,34 @@ msgstr ""
 "Nurodytas „man“ puslapis nukreipia į kitą puslapį <filename>%1</filename>,"
 "<nl/>bet to puslapio <filename>%2</filename> nepavyko rasti."
 
-#: kio_man.cpp:628
+#: kio_man.cpp:649
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be read."
 msgstr "Nepavyko perskaityti „man“ puslapio <filename>%1</filename>."
 
-#: kio_man.cpp:637
+#: kio_man.cpp:658
 #, kde-kuit-format
 msgctxt "@info"
 msgid "The man page <filename>%1</filename> could not be converted."
 msgstr "Nepavyko konvertuoti „man“ puslapio <filename>%1</filename>."
 
-#: kio_man.cpp:692
+#: kio_man.cpp:713
 #, kde-format
 msgid "Manual Page Viewer Error"
 msgstr "Žinyno puslapio žiūryklės klaida"
 
-#: kio_man.cpp:726
+#: kio_man.cpp:747
 #, kde-format
 msgid "Multiple Manual Pages"
 msgstr "Keli žinyno puslapiai"
 
-#: kio_man.cpp:727
+#: kio_man.cpp:748
 #, kde-format
 msgid "There is more than one matching man page:"
 msgstr "Yra daugiau kaip vienas atitinkantis „man“ puslapis:"
 
-#: kio_man.cpp:728
+#: kio_man.cpp:749
 #, kde-format
 msgid ""
 "Note: if you read a man page in your language, be aware it can contain some "
@@ -86,17 +86,17 @@ msgstr ""
 "kad jame gali būti klaidų arba jis gali būti pasenęs. Jei abejojate, "
 "turėtumėte peržiūrėti versiją anglų kalba."
 
-#: kio_man.cpp:736
+#: kio_man.cpp:757
 #, kde-format
 msgid "Possible Alternative Manual Pages"
 msgstr "Galimi alternatyvūs žinyno puslapiai"
 
-#: kio_man.cpp:737
+#: kio_man.cpp:758
 #, kde-format
 msgid "There were possible close matches:"
 msgstr "Buvo galimų artimų atitikčių:"
 
-#: kio_man.cpp:739
+#: kio_man.cpp:760
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
@@ -107,112 +107,119 @@ msgstr ""
 "buvo artimų ar kitų atitikčių neskiriant raidžių dydžio, kaip nurodyta "
 "aukščiau."
 
-#: kio_man.cpp:804
+#: kio_man.cpp:788 kio_man.cpp:1382
+#, fuzzy, kde-format
+#| msgid "Manual Page Index"
+msgctxt "@item the folder that holds every manual page"
+msgid "Manual Pages"
+msgstr "Žinyno puslapių rodyklė"
+
+#: kio_man.cpp:842
 #, kde-format
 msgid "Header Files"
 msgstr "Antraštės failai"
 
-#: kio_man.cpp:806
+#: kio_man.cpp:844
 #, kde-format
 msgid "Header Files (POSIX)"
 msgstr "Antraštės failai (POSIX)"
 
-#: kio_man.cpp:808
+#: kio_man.cpp:846
 #, kde-format
 msgid "User Commands"
 msgstr "Naudotojo komandos"
 
-#: kio_man.cpp:810
+#: kio_man.cpp:848
 #, kde-format
 msgid "User Commands (POSIX)"
 msgstr "Naudotojo komandos (POSIX)"
 
-#: kio_man.cpp:812
+#: kio_man.cpp:850
 #, kde-format
 msgid "System Calls"
 msgstr "Sistemos iškvietimai"
 
-#: kio_man.cpp:814
+#: kio_man.cpp:852
 #, kde-format
 msgid "Subroutines"
 msgstr "Paprogramės"
 
-#: kio_man.cpp:817
+#: kio_man.cpp:855
 #, kde-format
 msgid "Perl Modules"
 msgstr "Perlo moduliai"
 
-#: kio_man.cpp:819
+#: kio_man.cpp:857
 #, kde-format
 msgid "Network Functions"
 msgstr "Tinklo funkcijos"
 
-#: kio_man.cpp:821
+#: kio_man.cpp:859
 #, kde-format
 msgid "Devices"
 msgstr "Įrenginiai"
 
-#: kio_man.cpp:823
+#: kio_man.cpp:861
 #, kde-format
 msgid "File Formats"
 msgstr "Failo formatai"
 
-#: kio_man.cpp:825
+#: kio_man.cpp:863
 #, kde-format
 msgid "Games"
 msgstr "Žaidimai"
 
-#: kio_man.cpp:827
+#: kio_man.cpp:865
 #, kde-format
 msgid "Miscellaneous"
 msgstr "Įvairūs"
 
-#: kio_man.cpp:829
+#: kio_man.cpp:867
 #, kde-format
 msgid "System Administration"
 msgstr "Sistemos administravimas"
 
-#: kio_man.cpp:831
+#: kio_man.cpp:869
 #, kde-format
 msgid "Kernel"
 msgstr "Branduolys"
 
-#: kio_man.cpp:833
+#: kio_man.cpp:871
 #, kde-format
 msgid "Local Documentation"
 msgstr "Vietinė dokumentacija"
 
-#: kio_man.cpp:836
+#: kio_man.cpp:874
 #, kde-format
 msgid "New"
 msgstr "Nauja"
 
-#: kio_man.cpp:863
+#: kio_man.cpp:901
 #, kde-format
 msgid "Main Manual Page Index"
 msgstr "Pagrindinė žinyno puslapių rodyklė"
 
-#: kio_man.cpp:888
+#: kio_man.cpp:926
 #, kde-format
 msgid "Section %1"
 msgstr "Skyrius %1"
 
-#: kio_man.cpp:1139
+#: kio_man.cpp:1177
 #, kde-format
 msgid "Index for section %1: %2"
 msgstr "Skyriaus „%1“ rodyklė: %2"
 
-#: kio_man.cpp:1139
+#: kio_man.cpp:1177
 #, kde-format
 msgid "Manual Page Index"
 msgstr "Žinyno puslapių rodyklė"
 
-#: kio_man.cpp:1148
+#: kio_man.cpp:1186
 #, kde-format
 msgid "Generating Index"
 msgstr "Generuojama rodyklę"
 
-#: kio_man.cpp:1409
+#: kio_man.cpp:1444
 #, kde-kuit-format
 msgctxt "@info"
 msgid ""
