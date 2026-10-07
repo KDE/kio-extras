@@ -8,3 +8,8 @@ include:
       - /gitlab-templates/linux-qt6-next.yml
       - /gitlab-templates/freebsd-qt6.yml
       - /gitlab-templates/windows-qt6.yml
+      - /gitlab-templates/oss-fuzz.yml
+
+test_ossfuzz_fuzzers_build:
+  variables:
+    OSSFUZZ_DIR: "/src/kio-extras/thumbnail/autotests/ossfuzz"
