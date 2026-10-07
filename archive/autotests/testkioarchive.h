@@ -32,6 +32,8 @@ private Q_SLOTS:
     void testListRecursive();
     void testExtractFileFromTar();
     void testExtractSymlinkFromTar();
+    void testArchiveMimetypeIsListed_data();
+    void testArchiveMimetypeIsListed();
     void cleanupTestCase();
 
 protected Q_SLOTS: // real slots, not tests

@@ -14,7 +14,12 @@
 
 #include <QDebug>
 #include <QDir>
+#include <QFile>
 #include <QFileInfo>
+#include <QJsonArray>
+#include <QJsonDocument>
+#include <QJsonObject>
+#include <QMimeDatabase>
 #include <QStandardPaths>
 #include <QTest>
 
@@ -116,6 +121,37 @@ void TestKioArchive::slotEntries(KIO::Job *, const KIO::UDSEntryList &lst)
 QString TestKioArchive::tmpDir() const
 {
     return QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/test_kio_archive/";
+}
+
+void TestKioArchive::testArchiveMimetypeIsListed_data()
+{
+    QTest::addColumn<QString>("fileName");
+    QTest::addColumn<QString>("protocol");
+
+    QTest::newRow("tar") << QStringLiteral("a.tar") << QStringLiteral("tar");
+    QTest::newRow("tar.gz") << QStringLiteral("a.tar.gz") << QStringLiteral("tar");
+    QTest::newRow("tar.bz2") << QStringLiteral("a.tar.bz2") << QStringLiteral("tar");
+    QTest::newRow("tar.xz") << QStringLiteral("a.tar.xz") << QStringLiteral("tar");
+    QTest::newRow("tar.zst") << QStringLiteral("a.tar.zst") << QStringLiteral("tar");
+    QTest::newRow("zip") << QStringLiteral("a.zip") << QStringLiteral("zip");
+    QTest::newRow("7z") << QStringLiteral("a.7z") << QStringLiteral("sevenz");
+    QTest::newRow("ar") << QStringLiteral("a.a") << QStringLiteral("ar");
+}
+
+void TestKioArchive::testArchiveMimetypeIsListed()
+{
+    // KProtocolManager::protocolForArchiveMimetype() compares the name of the file's mimetype
+    // with archive.json exactly, so an alias there finds no worker.
+    QFETCH(QString, fileName);
+    QFETCH(QString, protocol);
+
+    QFile file(QStringLiteral(ARCHIVE_JSON));
+    QVERIFY(file.open(QIODevice::ReadOnly));
+    const QJsonObject protocols = QJsonDocument::fromJson(file.readAll()).object().value(QStringLiteral("KDE-KIO-Protocols")).toObject();
+    const QJsonArray mimetypes = protocols.value(protocol).toObject().value(QStringLiteral("archiveMimetype")).toArray();
+
+    const QString mimetype = QMimeDatabase().mimeTypeForFile(fileName, QMimeDatabase::MatchExtension).name();
+    QVERIFY2(mimetypes.contains(mimetype), qPrintable(mimetype));
 }
 
 void TestKioArchive::cleanupTestCase()
