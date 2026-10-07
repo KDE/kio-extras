@@ -11,7 +11,7 @@ msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-06 00:46+0000\n"
-"PO-Revision-Date: 2026-05-24 06:34+0200\n"
+"PO-Revision-Date: 2026-10-06 10:48+0200\n"
 "Last-Translator: Matjaž Jeran <matjaz.jeran@amis.net>\n"
 "Language-Team: Slovenian <lugos-slo@lugos.si>\n"
 "Language: sl\n"
@@ -111,11 +111,10 @@ msgstr ""
 "razlikujejo med velikimi in malimi črkami kot zgoraj."
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "Kazalo strani priročnika"
+msgstr "Strani priročnika"
 
 #: kio_man.cpp:842
 #, kde-format

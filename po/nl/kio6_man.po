@@ -7,7 +7,7 @@ msgstr ""
 "Project-Id-Version: \n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-06 00:46+0000\n"
-"PO-Revision-Date: 2026-05-24 14:13+0200\n"
+"PO-Revision-Date: 2026-10-06 11:04+0200\n"
 "Last-Translator: Freek de Kruijf <freekdekruijf@kde.nl>\n"
 "Language-Team: \n"
 "Language: nl\n"
@@ -15,7 +15,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #: kio_man.cpp:517
 #, kde-kuit-format
@@ -106,11 +106,10 @@ msgstr ""
 "overeenkomsten zoals boven."
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "Index van man-pagina"
+msgstr "Man-pagina's"
 
 #: kio_man.cpp:842
 #, kde-format
