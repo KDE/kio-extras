@@ -25,6 +25,7 @@
 
 QTEST_MAIN(TestKioArchive)
 static const char s_tarFileName[] = "karchivetest.tar";
+static const char s_tarBz2FileName[] = "karchivetest.tar.bz2";
 
 static void writeTestFilesToArchive(KArchive *archive)
 {
@@ -63,12 +64,18 @@ void TestKioArchive::initTestCase()
     QVERIFY(ok);
     QFileInfo fileInfo(QFile::encodeName(s_tarFileName));
     QVERIFY(fileInfo.exists());
+
+    // KTar compresses with bzip2 for that file name.
+    KTar tarBz2(s_tarBz2FileName);
+    QVERIFY(tarBz2.open(QIODevice::WriteOnly));
+    writeTestFilesToArchive(&tarBz2);
+    QVERIFY(tarBz2.close());
 }
 
 void TestKioArchive::testListTar()
 {
     m_listResult.clear();
-    KIO::ListJob *job = KIO::listDir(tarUrl(), KIO::HideProgressInfo);
+    KIO::ListJob *job = KIO::listDir(tarUrl(s_tarFileName), KIO::HideProgressInfo);
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = job->exec();
     QVERIFY(ok);
@@ -85,7 +92,7 @@ void TestKioArchive::testListTar()
 void TestKioArchive::testListRecursive()
 {
     m_listResult.clear();
-    KIO::ListJob *job = KIO::listRecursive(tarUrl(), KIO::HideProgressInfo);
+    KIO::ListJob *job = KIO::listRecursive(tarUrl(s_tarFileName), KIO::HideProgressInfo);
     connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
     bool ok = job->exec();
     QVERIFY(ok);
@@ -99,13 +106,26 @@ void TestKioArchive::testListRecursive()
     QCOMPARE(m_listResult.count("mydir/symlink"), 1);
 }
 
-QUrl TestKioArchive::tarUrl() const
+void TestKioArchive::testListTarBz2()
+{
+    m_listResult.clear();
+    KIO::ListJob *job = KIO::listDir(tarUrl(s_tarBz2FileName), KIO::HideProgressInfo);
+    connect(job, &KIO::ListJob::entries, this, &TestKioArchive::slotEntries);
+    QVERIFY2(job->exec(), qPrintable(job->errorString()));
+
+    QCOMPARE(m_listResult.count("."), 1);
+    QCOMPARE(m_listResult.count("empty"), 1);
+    QCOMPARE(m_listResult.count("test1"), 1);
+    QCOMPARE(m_listResult.count("mydir"), 1);
+}
+
+QUrl TestKioArchive::tarUrl(const char *fileName) const
 {
     QUrl url;
     url.setScheme("tar");
     url.setPath(QDir::currentPath());
     url = url.adjusted(QUrl::StripTrailingSlash);
-    url.setPath(url.path() + '/' + s_tarFileName);
+    url.setPath(url.path() + '/' + fileName);
     return url;
 }
 
@@ -179,7 +199,7 @@ void TestKioArchive::copyFromTar(const QUrl &src, const QString &destPath)
 void TestKioArchive::testExtractFileFromTar()
 {
     const QString destPath = tmpDir() + "fileFromTar_copied";
-    QUrl u = tarUrl();
+    QUrl u = tarUrl(s_tarFileName);
     u = u.adjusted(QUrl::StripTrailingSlash);
     u.setPath(u.path() + '/' + "mydir/subfile");
     copyFromTar(u, destPath);
@@ -190,7 +210,7 @@ void TestKioArchive::testExtractFileFromTar()
 void TestKioArchive::testExtractSymlinkFromTar()
 {
     const QString destPath = tmpDir() + "symlinkFromTar_copied";
-    QUrl u = tarUrl();
+    QUrl u = tarUrl(s_tarFileName);
     u = u.adjusted(QUrl::StripTrailingSlash);
     u.setPath(u.path() + '/' + "mydir/symlink");
     copyFromTar(u, destPath);

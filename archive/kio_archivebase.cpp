@@ -55,8 +55,9 @@ bool ArchiveProtocolBase::checkNewFile(const QUrl &url, QString &path, KIO::Erro
 #endif
     qCDebug(KIO_ARCHIVE_LOG) << fullPath;
 
-    // Are we already looking at that file ?
-    if (m_archiveFile && m_archiveName == fullPath.left(m_archiveName.length())) {
+    // Are we already looking at that file ? Not a longer file name that starts with it, like a.tar.bz2 for a.tar.
+    if (m_archiveFile && fullPath.startsWith(m_archiveName)
+        && (fullPath.length() == m_archiveName.length() || fullPath.at(m_archiveName.length()) == QLatin1Char('/'))) {
         // Has it changed ?
         QT_STATBUF statbuf;
         if (QT_STAT(QFile::encodeName(m_archiveName).constData(), &statbuf) == 0) {

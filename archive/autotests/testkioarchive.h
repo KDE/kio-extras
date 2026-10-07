@@ -30,6 +30,7 @@ private Q_SLOTS:
     void initTestCase();
     void testListTar();
     void testListRecursive();
+    void testListTarBz2();
     void testExtractFileFromTar();
     void testExtractSymlinkFromTar();
     void testArchiveMimetypeIsListed_data();
@@ -41,7 +42,7 @@ protected Q_SLOTS: // real slots, not tests
 
 private:
     QString tmpDir() const;
-    QUrl tarUrl() const;
+    QUrl tarUrl(const char *fileName) const;
     void copyFromTar(const QUrl &url, const QString &destPath);
 
     QStringList m_listResult;
