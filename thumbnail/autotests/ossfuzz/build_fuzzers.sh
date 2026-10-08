@@ -395,7 +395,7 @@ ninja install -j$(nproc)
 
 # This is later required for building jpegcreator_fuzzer and libkexiv2
 # Ideally we should be passing CMAKE_MODULE_PATH but for some reason that doesn't work
-cp cmake/FindBrotli.cmake $WORK/share/ECM/find-modules/
+cp cmake/Findbrotli.cmake $WORK/share/ECM/find-modules/
 
 cd $SRC/libkexiv2
 cmake . -G Ninja \

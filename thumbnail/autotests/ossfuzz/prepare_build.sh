@@ -11,12 +11,12 @@
 # we do not need to instrument them.
 # The same goes for libmount and libacl.
 apt-get update && \
-    apt-get install -y cmake make automake autopoint libtool \
-    wget po4a pkg-config perl python3 gperf texinfo \
+    apt-get install -y make automake autopoint libtool \
+    wget po4a pkg-config perl python3 python3-pip gperf texinfo \
     flex bison libmount-dev libacl1-dev
     # libglib2.0-dev libcairo-dev librsvg2-dev
 
-pip3 install meson ninja
+pip3 install meson ninja cmake
 
 # libX11 requires autoconf >= 2.70 and the base builder image has autoconf 2.69
 wget https://ftp.gnu.org/gnu/autoconf/autoconf-2.70.tar.gz
