@@ -103,8 +103,7 @@ static QString getMimetype(LIBMTP_filetype_t filetype)
     return {};
 }
 
-static inline KMTPFile createKMTPFile(const std::unique_ptr<LIBMTP_file_t> &file)
+static inline KMTPFile createKMTPFile(const LIBMTP_file_t &file)
 {
-    Q_ASSERT(file);
-    return KMTPFile(file->item_id, file->parent_id, file->storage_id, file->filename, file->filesize, file->modificationdate, getMimetype(file->filetype));
+    return KMTPFile(file.item_id, file.parent_id, file.storage_id, file.filename, file.filesize, file.modificationdate, getMimetype(file.filetype));
 }

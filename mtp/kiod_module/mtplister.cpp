@@ -28,7 +28,7 @@ void MTPLister::run()
 
     std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(m_device, *m_it));
     if (file) { // file may have disappeared in the time between the id listing and metadata retrieval
-        Q_EMIT entry(createKMTPFile(file));
+        Q_EMIT entry(createKMTPFile(*file));
     }
 
     ++m_it;

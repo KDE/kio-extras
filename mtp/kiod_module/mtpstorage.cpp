@@ -237,7 +237,7 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
             std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(getDevice(), itemId.value()));
             if (file) {
                 qCDebug(LOG_KIOD_KMTPD) << "Found file in cache";
-                return createKMTPFile(file);
+                return createKMTPFile(*file);
             }
         }
 
@@ -286,7 +286,7 @@ KMTPFile MTPStorage::getFileFromPath(const QString &path)
     if (file) {
         qCDebug(LOG_KIOD_KMTPD) << "Found file using tree walk";
 
-        return createKMTPFile(file);
+        return createKMTPFile(*file);
     }
     return {};
 }
@@ -297,7 +297,7 @@ KMTPFileList MTPStorage::getFilesAndFoldersCached(const QString &path, quint32 p
 
     std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Files_And_Folders(getDevice(), m_id, parentId));
     while (file != nullptr) {
-        const KMTPFile mtpFile = createKMTPFile(file);
+        const KMTPFile mtpFile = createKMTPFile(*file);
         addPath(path + QLatin1Char('/') + mtpFile.filename(), mtpFile.itemId());
         mtpFiles.append(mtpFile);
 
@@ -323,7 +323,7 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
         if (!file) {
             continue;
         }
-        const KMTPFile mtpFile = createKMTPFile(file);
+        const KMTPFile mtpFile = createKMTPFile(*file);
         addPath(parentPath + QLatin1Char('/') + mtpFile.filename(), mtpFile.itemId());
         if (mtpFile.filename() == fileNeedle) {
             return mtpFile;
