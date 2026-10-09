@@ -319,7 +319,11 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
     const std::unique_ptr<uint32_t, decltype(&LIBMTP_FreeMemory)> childrenOwner(children, &LIBMTP_FreeMemory);
 
     for (const auto &child : std::span<uint32_t>(children, childrenSize)) {
-        const KMTPFile mtpFile = createKMTPFile(std::unique_ptr<LIBMTP_file_t>(LIBMTP_Get_Filemetadata(getDevice(), child)));
+        const std::unique_ptr<LIBMTP_file_t> file(LIBMTP_Get_Filemetadata(getDevice(), child));
+        if (!file) {
+            continue;
+        }
+        const KMTPFile mtpFile = createKMTPFile(file);
         addPath(parentPath + QLatin1Char('/') + mtpFile.filename(), mtpFile.itemId());
         if (mtpFile.filename() == fileNeedle) {
             return mtpFile;
