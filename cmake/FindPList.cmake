@@ -39,7 +39,6 @@ set(PList_VERSION ${PC_libplist_VERSION})
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(PList
-    FOUND_VAR PList_FOUND
     REQUIRED_VARS PList_INCLUDE_DIRS PList_LIBRARIES
     VERSION_VAR PList_VERSION
 )

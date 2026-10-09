@@ -39,7 +39,6 @@ set(IMobileDevice_VERSION ${PC_libimobiledevice_VERSION})
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(IMobileDevice
-    FOUND_VAR IMobileDevice_FOUND
     REQUIRED_VARS IMobileDevice_INCLUDE_DIRS IMobileDevice_LIBRARIES
     VERSION_VAR IMobileDevice_VERSION
 )

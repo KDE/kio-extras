@@ -47,8 +47,6 @@ set(Libmtp_DEFINITIONS ${PC_Libmtp_CFLAGS})
 
 include(FindPackageHandleStandardArgs)
 find_package_handle_standard_args(Libmtp
-    FOUND_VAR
-        Libmtp_FOUND
     REQUIRED_VARS
         Libmtp_LIBRARIES
         Libmtp_INCLUDE_DIRS
