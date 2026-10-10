@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-06 00:46+0000\n"
-"PO-Revision-Date: 2026-05-29 23:31+0200\n"
+"PO-Revision-Date: 2026-10-07 15:51+0200\n"
 "Last-Translator: Luigi Toscano <luigi.toscano@tiscali.it>\n"
 "Language-Team: Italian <kde-i18n-it@kde.org>\n"
 "Language: it\n"
@@ -111,11 +111,10 @@ msgstr ""
 "considerare le maiuscole, come riportato sopra."
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "Indice delle pagine di manuale"
+msgstr "Pagine di manuale"
 
 #: kio_man.cpp:842
 #, kde-format
