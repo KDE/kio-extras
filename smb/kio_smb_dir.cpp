@@ -339,19 +339,44 @@ WorkerResult SMBWorker::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permi
     totalSize(static_cast<filesize_t>(srcInfo.size()));
 
     const SMBUrl dstOrigUrl(kdst);
+    const mode_t mode = permissions == -1 ? (S_IRUSR | S_IWUSR) : (permissions | S_IRUSR | S_IWUSR);
+    const auto openFailure = [](int errNum, const SMBUrl &url) {
+        if (errNum == EACCES) {
+            qCDebug(KIO_SMB_LOG) << "access denied";
+            return WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, url.toDisplayString());
+        }
+        qCDebug(KIO_SMB_LOG) << "can not open for writing";
+        return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_WRITING, url.toDisplayString());
+    };
 
-    auto resumeVariant = Transfer::shouldResume<SMBResumeIO>(dstOrigUrl, flags, this);
-    if (std::holds_alternative<WorkerResult>(resumeVariant)) { // had an error
-        return std::get<WorkerResult>(resumeVariant);
+    // A new file that one write request carries is written under its own name: resuming it gains
+    // nothing, and the ".part" file and its rename cost four requests to the server. O_EXCL refuses
+    // a name that is taken, and the resume logic below then reports the conflict.
+    int dstfd = -1;
+    if (!(flags & (KIO::Overwrite | KIO::Resume)) && srcInfo.size() <= c_minSegmentSize) {
+        dstfd = smbc_open(dstOrigUrl.toSmbcUrl(), O_CREAT | O_EXCL | O_WRONLY, mode);
+        if (dstfd < 0 && errno != EEXIST) {
+            return openFailure(errno, dstOrigUrl);
+        }
     }
-    const TransferContext &resume = std::get<TransferContext>(resumeVariant);
+    const bool writesFinalName = dstfd >= 0;
+
+    std::optional<TransferContext> resume;
+    if (!writesFinalName) {
+        auto resumeVariant = Transfer::shouldResume<SMBResumeIO>(dstOrigUrl, flags, this);
+        if (std::holds_alternative<WorkerResult>(resumeVariant)) { // had an error
+            return std::get<WorkerResult>(resumeVariant);
+        }
+        resume.emplace(std::get<TransferContext>(resumeVariant));
+    }
 
     KIO::filesize_t processed_size = 0;
-    const SMBUrl dstUrl(resume.destination);
+    const SMBUrl dstUrl = writesFinalName ? dstOrigUrl : SMBUrl(resume->destination);
 
-    int dstfd = -1;
     int errNum = 0;
-    if (resume.resuming) {
+    if (writesFinalName) {
+        qCDebug(KIO_SMB_LOG) << "new file" << dstUrl;
+    } else if (resume->resuming) {
         // append if resuming
         qCDebug(KIO_SMB_LOG) << "resume" << dstUrl;
         dstfd = smbc_open(dstUrl.toSmbcUrl(), O_RDWR, 0);
@@ -366,13 +391,6 @@ WorkerResult SMBWorker::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permi
             processed_size = offset;
         }
     } else {
-        mode_t mode = 0;
-        if (permissions == -1) {
-            mode = S_IRUSR | S_IWUSR;
-        } else {
-            mode = permissions | S_IRUSR | S_IWUSR;
-        }
-
         qCDebug(KIO_SMB_LOG) << "NO resume" << dstUrl;
         dstfd = smbc_open(dstUrl.toSmbcUrl(), O_CREAT | O_TRUNC | O_WRONLY, mode);
         if (dstfd < 0) {
@@ -381,12 +399,7 @@ WorkerResult SMBWorker::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permi
     }
 
     if (dstfd < 0) {
-        if (errNum == EACCES) {
-            qCDebug(KIO_SMB_LOG) << "access denied";
-            return WorkerResult::fail(KIO::ERR_WRITE_ACCESS_DENIED, dstUrl.toDisplayString());
-        }
-        qCDebug(KIO_SMB_LOG) << "can not open for writing";
-        return WorkerResult::fail(KIO::ERR_CANNOT_OPEN_FOR_WRITING, dstUrl.toDisplayString());
+        return openFailure(errNum, dstUrl);
     }
 
     WorkerResult result = WorkerResult::pass();
@@ -419,12 +432,21 @@ WorkerResult SMBWorker::smbCopyPut(const QUrl &ksrc, const QUrl &kdst, int permi
     }
 
     // FINISHED
+    // No ".part" marks a file written under its own name as incomplete, so an incomplete one is removed.
     if (smbc_close(dstfd) < 0) {
         qCDebug(KIO_SMB_LOG) << dstUrl << "could not write";
+        if (writesFinalName) {
+            smbc_unlink(dstUrl.toSmbcUrl());
+        }
         return WorkerResult::fail(KIO::ERR_CANNOT_WRITE, dstUrl.toDisplayString());
     }
 
-    if (auto conclusionResult = Transfer::concludeResumeHasError<SMBResumeIO>(result, resume, this); !conclusionResult.success()) {
+    if (writesFinalName) {
+        if (!result.success() || wasKilled()) {
+            smbc_unlink(dstUrl.toSmbcUrl());
+            return result;
+        }
+    } else if (auto conclusionResult = Transfer::concludeResumeHasError<SMBResumeIO>(result, *resume, this); !conclusionResult.success()) {
         return conclusionResult;
     }
 
