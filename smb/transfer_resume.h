@@ -36,23 +36,23 @@ class SMBResumeIO
 public:
     explicit SMBResumeIO(const SMBUrl &url)
         : m_url(url)
-        // m_stat implicitly init'd by the stat for m_exists
-        , m_exists(SMBWorker::cache_stat(m_url, &m_stat) == 0)
     {
     }
 
     bool exists() const
     {
-        return m_exists;
+        return statResult() == 0;
     }
 
     off_t size() const
     {
+        statResult();
         return m_stat.st_size;
     }
 
     bool isDir() const
     {
+        statResult();
         return S_ISDIR(m_stat.st_mode);
     }
 
@@ -61,9 +61,9 @@ public:
         return smbc_unlink(m_url.toSmbcUrl());
     }
 
+    // smbc_rename() replaces a file that already has the new name.
     bool renameTo(const SMBUrl &newUrl)
     {
-        smbc_unlink(newUrl.toSmbcUrl());
         if (smbc_rename(m_url.toSmbcUrl(), newUrl.toSmbcUrl()) < 0) {
             qCDebug(KIO_SMB_LOG) << "SMB failed to rename" << m_url << "to" << newUrl << "->" << strerror(errno);
             return false;
@@ -72,10 +72,18 @@ public:
     }
 
 private:
+    // The stat is a request to the server, so it is made on first use: renameTo() and remove() do not need it.
+    int statResult() const
+    {
+        if (!m_statResult) {
+            m_statResult = SMBWorker::cache_stat(m_url, &m_stat);
+        }
+        return *m_statResult;
+    }
+
     const SMBUrl m_url;
-    struct stat m_stat {
-    };
-    bool m_exists;
+    mutable struct stat m_stat = {};
+    mutable std::optional<int> m_statResult;
 };
 
 // Simple encapsulation for local resume IO for use with shouldResume.

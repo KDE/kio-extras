@@ -264,12 +264,10 @@ private:
     {
 #ifdef HAVE_UTIME_H // smbc_utime is conditional inside the libsmb headers
         applyMTime([url](struct utimbuf utbuf) {
-            struct stat st {
-            };
-            if (cache_stat(url, &st) == 0) {
-                utbuf.actime = st.st_atime; // access time, unchanged
-                smbc_utime(url.toSmbcUrl(), &utbuf);
-            }
+            // smbc_utime() sets the access time as well, and has no value that leaves it unchanged.
+            // The file has just been written, so it gets the current time as its access time.
+            utbuf.actime = QDateTime::currentSecsSinceEpoch();
+            smbc_utime(url.toSmbcUrl(), &utbuf);
         });
 #endif
     }
