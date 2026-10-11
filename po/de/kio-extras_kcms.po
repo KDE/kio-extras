@@ -9,22 +9,22 @@
 # SPDX-FileCopyrightText: 2021 Frank Steinmetzger <dev@felsenfleischer.de>
 # SPDX-FileCopyrightText: 2021 Kai Uwe Broulik <kde@privat.broulik.de>
 # SPDX-FileCopyrightText: 2025 Alexander Becker <alex-at-kde-l10n-de@freenet.de>
-# SPDX-FileCopyrightText: 2025 Alois Spitzbart <spitz234@hotmail.com>
+# SPDX-FileCopyrightText: 2025-2026 Alois Spitzbart <spitz234@hotmail.com>
 # SPDX-FileCopyrightText: 2026 Philipp Kiemle <l10n.daphipz@fastmail.de>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras_kcms\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-08-14 18:44+0200\n"
-"Last-Translator: Philipp Kiemle <l10n.daphipz@fastmail.de>\n"
+"PO-Revision-Date: 2026-10-07 23:18+0200\n"
+"Last-Translator: Alois Spitzbart <spitz234@hotmail.com>\n"
 "Language-Team: German <kde-i18n-de@kde.org>\n"
 "Language: de\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 26.04.3\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -827,6 +827,8 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"Auswählen, um die Web-Kürzel in unterstützten Anwendungen zu erkennen und zu "
+"verwenden."
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
