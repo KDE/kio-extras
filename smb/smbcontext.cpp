@@ -36,6 +36,10 @@ SMBContext::SMBContext(SMBAuthenticator *authenticator)
     smbc_setOptionUseKerberos(m_context.get(), 1);
     smbc_setOptionFallbackAfterKerberos(m_context.get(), 1);
 
+    // libsmbclient puts $USER in place of a user missing from the url. An empty default user leaves
+    // it empty, so that the authenticator sees which urls name no user.
+    smbc_setUser(m_context.get(), "");
+
     if (!smbc_init_context(m_context.get())) {
         m_context.reset();
         return;
