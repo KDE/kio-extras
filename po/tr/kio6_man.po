@@ -13,7 +13,7 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-31 03:00+0000\n"
-"PO-Revision-Date: 2026-05-24 13:53+0300\n"
+"PO-Revision-Date: 2026-10-12 11:43+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -21,7 +21,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.0\n"
+"X-Generator: Lokalize 26.08.0\n"
 
 #: kio_man.cpp:496
 #, kde-kuit-format
@@ -112,12 +112,12 @@ msgstr ""
 #: kio_man.cpp:804
 #, kde-format
 msgid "Header Files"
-msgstr "Üstbilgi Dosyaları"
+msgstr "Üst Bilgi Dosyaları"
 
 #: kio_man.cpp:806
 #, kde-format
 msgid "Header Files (POSIX)"
-msgstr "Üstbilgi Dosyaları (POSIX)"
+msgstr "Üst Bilgi Dosyaları (POSIX)"
 
 #: kio_man.cpp:808
 #, kde-format
