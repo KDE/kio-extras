@@ -18,3 +18,17 @@ ecm_add_tests(
         Qt::Test
         kio_smb_static
 )
+
+# Copies through a Samba server that the test starts as the current user.
+if(CMAKE_SYSTEM_NAME STREQUAL "Linux")
+    find_program(SMBD_EXECUTABLE smbd PATHS /usr/sbin /usr/local/sbin)
+    find_program(PDBEDIT_EXECUTABLE pdbedit PATHS /usr/bin /usr/sbin /usr/local/bin /usr/local/sbin)
+    if(SMBD_EXECUTABLE AND PDBEDIT_EXECUTABLE)
+        ecm_add_test(smbcopytest.cpp run_smbserver.cpp
+            TEST_NAME smbcopytest
+            LINK_LIBRARIES Qt::Test Qt::Network KF6::KIOCore
+        )
+    else()
+        message(STATUS "smbd or pdbedit not found. smbcopytest skipped.")
+    endif()
+endif()
