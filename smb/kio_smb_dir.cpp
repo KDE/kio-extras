@@ -215,6 +215,7 @@ WorkerResult SMBWorker::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permi
         return WorkerResult::fail(KIO::ERR_IS_DIRECTORY, src.toDisplayString());
     }
     totalSize(st.st_size);
+    const struct timespec sourceMTime = st.st_mtim;
 
     // Open the source file
     KIO::filesize_t processed_size = 0;
@@ -296,17 +297,22 @@ WorkerResult SMBWorker::smbCopyGet(const QUrl &ksrc, const QUrl &kdst, int permi
     // FINISHED
     smbc_close(srcfd);
 
+    // set modification time
+    if (result.success()) {
+        if (!file.flush()) {
+            result = WorkerResult::fail(KIO::ERR_CANNOT_WRITE, kdst.toDisplayString());
+        } else {
+            const struct timespec times[2] = {{0, UTIME_OMIT}, sourceMTime};
+            futimens(file.handle(), times);
+        }
+    }
+    file.close();
+
     // Handle error condition.
 
     if (auto conclusionResult = Transfer::concludeResumeHasError<QFileResumeIO>(result, resume, this); !conclusionResult.success()) {
         return conclusionResult; // NB: error() called inside if applicable
     }
-
-    // set modification time (if applicable)
-    applyMTime([dstFile](struct utimbuf utbuf) {
-        utbuf.actime = QFileInfo(dstFile).lastRead().toSecsSinceEpoch(); // access time, unchanged
-        utime(QFile::encodeName(dstFile).constData(), &utbuf);
-    });
 
     return WorkerResult::pass();
 }
