@@ -42,7 +42,7 @@ WorkerResult SMBWorker::getACE(QDataStream &stream)
                     value.resize(value.size() + pageSize);
                     continue;
                 }
-                qWarning() << xattr << strerror(error);
+                qCWarning(KIO_SMB_LOG) << "could not read" << xattr << "of" << url << strerror(error);
                 return WorkerResult::fail(ERR_INTERNAL, strerror(error));
             }
             qCDebug(KIO_SMB_LOG) << "XATTR" << xattr << value.data();
@@ -72,7 +72,7 @@ KIO::WorkerResult SMBWorker::setACE(QDataStream &stream)
     stream >> sid >> aceString;
 
     const QString attr = QLatin1String("system.nt_sec_desc.acl+:") + sid;
-    qCDebug(KIO_SMB_LOG) << attr << aceString;
+    qCDebug(KIO_SMB_LOG) << "setting" << attr << "of" << url << "to" << aceString;
 
     // https://bugzilla.samba.org/show_bug.cgi?id=15089
     auto flags = SMBC_XATTR_FLAG_REPLACE | SMBC_XATTR_FLAG_CREATE;
