@@ -94,7 +94,6 @@ public:
     explicit QFileResumeIO(const SMBUrl &url)
         : QFileInfo(url.path())
     {
-        qDebug() << url.path();
     }
 
     bool remove()
@@ -168,7 +167,8 @@ Q_REQUIRED_RESULT std::variant<TransferContext, WorkerResult> shouldResume(const
 template<typename ResumeIO, typename WorkerInterface>
 Q_REQUIRED_RESULT WorkerResult concludeResumeHasError(const WorkerResult &result, const TransferContext &resume, WorkerInterface *worker)
 {
-    qDebug() << "concluding" << resume.destination << resume.partDestination << resume.completeDestination;
+    qCDebug(KIO_SMB_LOG) << "concluding transfer to" << resume.destination << "part file" << resume.partDestination << "final destination"
+                         << resume.completeDestination;
 
     if (resume.destination == resume.completeDestination) {
         return result;
