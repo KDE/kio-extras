@@ -66,7 +66,7 @@ public:
         // Instead put our timer into a different thread and fully lock this object. This way we get neatly efficient event looping for the timer.
         m_timer.moveToThread(&m_timerThread);
         // The timing is probably tight given networking is involved but we needn't wait too long as this directly impacts delay in GUI updates.
-        m_timer.setInterval(1000);
+        m_timer.setInterval(1000ms);
         QObject::connect(&m_timer, &QTimer::timeout, [this] {
             const std::lock_guard<std::mutex> lock(m_mutex);
             sendWithLock();
@@ -148,7 +148,7 @@ public:
     void notify(const QUrl &url)
     {
         QElapsedTimer *timer = m_limiter.value(url, nullptr);
-        if (timer && timer->isValid() && !timer->hasExpired(m_timelimit)) {
+        if (timer && timer->isValid() && !timer->hasExpired(m_timelimit.count())) {
             qCDebug(KIO_SMB_LOG) << "  withholding modification signal; timer hasn't expired";
             return;
         }
