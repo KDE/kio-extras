@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-// SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
+// SPDX-FileCopyrightText: 2020-2026 Harald Sitter <sitter@kde.org>
 
 #include <KDirNotify>
 #include <KPasswdServerClient>
@@ -21,9 +21,12 @@
 
 #include <errno.h>
 
+using namespace std::chrono_literals;
+
 // Frontend implementation in place of workerbase
 class Frontend : public SMBAbstractFrontend
 {
+    // Beware that this internally registers dbus watches; we must spin the event loop.
     KPasswdServerClient m_passwd;
 
 public:
@@ -278,6 +281,9 @@ int main(int argc, char **argv)
             qCWarning(KIO_SMB_LOG) << "Unhandled action" << actions->action << "on URL" << url;
         }
 
+        // Drain QEvents while we are awake already.
+        QCoreApplication::processEvents();
+
         return 0;
     };
 
@@ -296,19 +302,25 @@ int main(int argc, char **argv)
     //   https://docs.microsoft.com/en-us/openspecs/windows_protocols/ms-smb2/598f395a-e7a2-4cc8-afb3-ccb30dd2df7c
     // Not subscribing to stream changes see the callback handler for details.
 
-    const int nh = smbc_notify(dh,
-                               0 /* not recursive */,
-                               SMBC_NOTIFY_CHANGE_FILE_NAME | SMBC_NOTIFY_CHANGE_DIR_NAME | SMBC_NOTIFY_CHANGE_ATTRIBUTES | SMBC_NOTIFY_CHANGE_SIZE
-                                   | SMBC_NOTIFY_CHANGE_LAST_WRITE | SMBC_NOTIFY_CHANGE_LAST_ACCESS | SMBC_NOTIFY_CHANGE_CREATION | SMBC_NOTIFY_CHANGE_EA
-                                   | SMBC_NOTIFY_CHANGE_SECURITY,
-                               0 /* no eventlooping necessary */,
-                               notify,
-                               &context);
-    if (nh == -1) {
-        qCWarning(KIO_SMB_LOG) << "-- Failed to smbc_notify:" << strerror(errno);
-        return 2;
-    }
-    Q_ASSERT(nh == 0);
+    while (true) {
+        const int nh = smbc_notify(dh,
+                                   0 /* not recursive */,
+                                   SMBC_NOTIFY_CHANGE_FILE_NAME | SMBC_NOTIFY_CHANGE_DIR_NAME | SMBC_NOTIFY_CHANGE_ATTRIBUTES | SMBC_NOTIFY_CHANGE_SIZE
+                                       | SMBC_NOTIFY_CHANGE_LAST_WRITE | SMBC_NOTIFY_CHANGE_LAST_ACCESS | SMBC_NOTIFY_CHANGE_CREATION | SMBC_NOTIFY_CHANGE_EA
+                                       | SMBC_NOTIFY_CHANGE_SECURITY,
+                                   std::chrono::milliseconds(5min).count(),
+                                   notify,
+                                   &context);
+        if (nh == -1) {
+            qCWarning(KIO_SMB_LOG) << "-- Failed to smbc_notify:" << strerror(errno);
+            return 2;
+        }
+        Q_ASSERT(nh == 0);
 
-    return app.exec();
+        // Make sure we spin our event loop to drain pending QEvents even when there are no SMB Events.
+        // https://bugs.kde.org/show_bug.cgi?id=527119
+        QCoreApplication::processEvents();
+    }
+
+    return 0;
 }
