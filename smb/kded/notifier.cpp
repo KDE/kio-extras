@@ -1,5 +1,5 @@
 // SPDX-License-Identifier: GPL-2.0-only OR GPL-3.0-only OR LicenseRef-KDE-Accepted-GPL
-// SPDX-FileCopyrightText: 2020-2021 Harald Sitter <sitter@kde.org>
+// SPDX-FileCopyrightText: 2020-2026 Harald Sitter <sitter@kde.org>
 
 #include <KDirNotify>
 #include <KPasswdServerClient>
@@ -21,9 +21,12 @@
 
 #include <errno.h>
 
+using namespace std::chrono_literals;
+
 // Frontend implementation in place of workerbase
 class Frontend : public SMBAbstractFrontend
 {
+    // Beware that this internally registers dbus watches; we must spin the event loop.
     KPasswdServerClient m_passwd;
 
 public:
@@ -189,10 +192,10 @@ public:
     }
 
 private:
-    static const int m_timelimit = 8000 /* ms */; // time between modification signals
+    constexpr static auto m_timelimit = 8000ms; // time between modification signals
     // How many urls we'll track concurrently. These may not get cleaned up until the cap is exhausted, so in the
     // interested of minimal memory footprint we'll want to keep the cap low.
-    static const int m_cap = 4;
+    constexpr static int m_cap = 4;
     QHash<const QUrl, QElapsedTimer *> m_limiter;
 };
 
@@ -278,6 +281,9 @@ int main(int argc, char **argv)
             qCWarning(KIO_SMB_LOG) << "Unhandled action" << actions->action << "on URL" << url;
         }
 
+        // Make sure to spin our event loop as well so we drain pending QEvents (e.g. from DBus).
+        QCoreApplication::processEvents();
+
         return 0;
     };
 
@@ -301,7 +307,7 @@ int main(int argc, char **argv)
                                SMBC_NOTIFY_CHANGE_FILE_NAME | SMBC_NOTIFY_CHANGE_DIR_NAME | SMBC_NOTIFY_CHANGE_ATTRIBUTES | SMBC_NOTIFY_CHANGE_SIZE
                                    | SMBC_NOTIFY_CHANGE_LAST_WRITE | SMBC_NOTIFY_CHANGE_LAST_ACCESS | SMBC_NOTIFY_CHANGE_CREATION | SMBC_NOTIFY_CHANGE_EA
                                    | SMBC_NOTIFY_CHANGE_SECURITY,
-                               0 /* no eventlooping necessary */,
+                               std::chrono::milliseconds(5min).count(),
                                notify,
                                &context);
     if (nh == -1) {
@@ -310,5 +316,10 @@ int main(int argc, char **argv)
     }
     Q_ASSERT(nh == 0);
 
-    return app.exec();
+    // Spin event loop to completion. Not technically necessary but since we are in the business of manually running
+    // the loop let's do it properly.
+    QCoreApplication::quit();
+    QCoreApplication::processEvents();
+
+    return 0;
 }
