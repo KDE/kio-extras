@@ -406,7 +406,7 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
         for (int iInt = 0; iInt < n; ++iInt) {
             const auto i = static_cast<unsigned int>(iInt); // can only be >0
             char echo = 0;
-            const char *answer = "";
+            QByteArray answer;
 
             const QString prompt = QString::fromUtf8(ssh_userauth_kbdint_getprompt(mSession, i, &echo));
             qCDebug(KIO_SFTP_LOG) << "prompt=" << prompt << " echo=" << QString::number(echo);
@@ -440,10 +440,10 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 
                 if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question.")) == KJob::NoError) {
                     qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
-                    answer = info.username.toUtf8().constData();
+                    answer = info.username.toUtf8();
                 }
 
-                if (ssh_userauth_kbdint_setanswer(mSession, i, answer) < 0) {
+                if (ssh_userauth_kbdint_setanswer(mSession, i, answer.constData()) < 0) {
                     qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
                     return SSH_AUTH_ERROR;
                 }
@@ -461,10 +461,10 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 
             if (openPasswordDialog(info) == KJob::NoError) {
                 qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
-                answer = info.password.toUtf8().constData();
+                answer = info.password.toUtf8();
             }
 
-            if (ssh_userauth_kbdint_setanswer(mSession, i, answer) < 0) {
+            if (ssh_userauth_kbdint_setanswer(mSession, i, answer.constData()) < 0) {
                 qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
                 return SSH_AUTH_ERROR;
             }
