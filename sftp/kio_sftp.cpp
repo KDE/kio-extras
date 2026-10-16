@@ -440,14 +440,14 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 
                 if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question.")) == KJob::NoError) {
                     qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
-                    answer = info.username.toUtf8();
+                    answer = infoKbdInt.username.toUtf8();
                 }
 
                 if (ssh_userauth_kbdint_setanswer(mSession, i, answer.constData()) < 0) {
                     qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
                     return SSH_AUTH_ERROR;
                 }
-                break;
+                continue;
             }
 
             if (prompt.startsWith(QLatin1String("password:"), Qt::CaseInsensitive)) {
