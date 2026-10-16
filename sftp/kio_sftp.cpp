@@ -392,7 +392,7 @@ Result SFTPWorker::init()
     return Result::pass();
 }
 
-int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
+SFTPWorker::KeyboardInteractiveResult SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
 {
     int err = ssh_userauth_kbdint(mSession, nullptr, nullptr);
 
@@ -438,14 +438,16 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
                 infoKbdInt.readOnly = false;
                 infoKbdInt.keepPassword = false;
 
-                if (openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question.")) == KJob::NoError) {
-                    qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
-                    answer = infoKbdInt.username.toUtf8();
+                const int dialogError = openPasswordDialog(infoKbdInt, i18n("Use the username input field to answer this question."));
+                if (dialogError != KJob::NoError) {
+                    return {SSH_AUTH_DENIED, dialogError};
                 }
+                qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
+                answer = infoKbdInt.username.toUtf8();
 
                 if (ssh_userauth_kbdint_setanswer(mSession, i, answer.constData()) < 0) {
                     qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
-                    return SSH_AUTH_ERROR;
+                    return {SSH_AUTH_ERROR};
                 }
                 continue;
             }
@@ -459,20 +461,22 @@ int SFTPWorker::authenticateKeyboardInteractive(AuthInfo &info)
             info.commentLabel = i18n("Site:");
             info.setExtraField(QLatin1String("hide-username-line"), true);
 
-            if (openPasswordDialog(info) == KJob::NoError) {
-                qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
-                answer = info.password.toUtf8();
+            const int dialogError = openPasswordDialog(info);
+            if (dialogError != KJob::NoError) {
+                return {SSH_AUTH_DENIED, dialogError};
             }
+            qCDebug(KIO_SFTP_LOG) << "Got the answer from the password dialog";
+            answer = info.password.toUtf8();
 
             if (ssh_userauth_kbdint_setanswer(mSession, i, answer.constData()) < 0) {
                 qCDebug(KIO_SFTP_LOG) << "An error occurred setting the answer: " << ssh_get_error(mSession);
-                return SSH_AUTH_ERROR;
+                return {SSH_AUTH_ERROR};
             }
         }
         err = ssh_userauth_kbdint(mSession, nullptr, nullptr);
     }
 
-    return err;
+    return {err};
 }
 
 Result SFTPWorker::reportError(const QUrl &url, int err)
@@ -954,7 +958,12 @@ Result SFTPWorker::openConnectionWithoutCloseOnError()
     if (rc != SSH_AUTH_SUCCESS && (method & SSH_AUTH_METHOD_INTERACTIVE)) {
         qCDebug(KIO_SFTP_LOG) << "Trying to authenticate with keyboard interactive";
         AuthInfo info2(info);
-        rc = authenticateKeyboardInteractive(info2);
+        const KeyboardInteractiveResult result = authenticateKeyboardInteractive(info2);
+        if (result.dialogError != KJob::NoError) {
+            qCDebug(KIO_SFTP_LOG) << "User canceled keyboard interactive dialog";
+            return Result::fail(result.dialogError, QString());
+        }
+        rc = result.sshResult;
         if (rc == SSH_AUTH_SUCCESS) {
             info = info2;
         } else if (rc == SSH_AUTH_ERROR) {

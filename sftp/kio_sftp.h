@@ -216,7 +216,12 @@ private: // Private variables
     QCoro::Generator<WriteResponse> asyncWrite(sftp_file file, QCoro::Generator<ReadResponse> reader);
 
 private: // private methods
-    int authenticateKeyboardInteractive(KIO::AuthInfo &info);
+    struct KeyboardInteractiveResult {
+        int sshResult = SSH_AUTH_ERROR;
+        // Set when a dialog was canceled or could not be shown, and authentication should stop
+        int dialogError = KJob::NoError;
+    };
+    KeyboardInteractiveResult authenticateKeyboardInteractive(KIO::AuthInfo &info);
 
     Q_REQUIRED_RESULT Result reportError(const QUrl &url, int err);
 
