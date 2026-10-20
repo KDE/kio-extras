@@ -10,6 +10,7 @@
 
 #include <QCoreApplication>
 #include <QCryptographicHash>
+#include <QDBusInterface>
 #include <QDataStream>
 #include <QUrl>
 #include <QUrlQuery>
@@ -61,6 +62,9 @@ static bool isRootUrl(const QUrl &url)
 RecentlyUsed::RecentlyUsed(const QByteArray &pool, const QByteArray &app)
     : WorkerBase("recentlyused", pool, app)
 {
+    // The module tells the views to list again when a use is recorded
+    QDBusInterface kded(QStringLiteral("org.kde.kded6"), QStringLiteral("/kded"), QStringLiteral("org.kde.kded6"));
+    kded.asyncCall(QStringLiteral("loadModule"), QStringLiteral("recentlyusedmodule"));
 }
 
 RecentlyUsed::~RecentlyUsed()
