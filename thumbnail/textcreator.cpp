@@ -137,6 +137,8 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
 
             QPainter painter(&m_pixmap);
 
+            // Destroyed after the document, so that its destructor does not lay out the document again
+            KSyntaxHighlighting::SyntaxHighlighter syntaxHighlighter;
             QTextDocument textDocument(text);
 
             // QTextDocument only supports one margin value for all borders,
@@ -150,7 +152,6 @@ KIO::ThumbnailResult TextCreator::create(const KIO::ThumbnailRequest &request)
             textOption.setWrapMode(QTextOption::WrapAtWordBoundaryOrAnywhere);
             textDocument.setDefaultTextOption(textOption);
 
-            KSyntaxHighlighting::SyntaxHighlighter syntaxHighlighter;
             syntaxHighlighter.setDefinition(m_highlightingRepository.definitionForFileName(path));
             const auto highlightingTheme = m_highlightingRepository.defaultTheme(KSyntaxHighlighting::Repository::LightTheme);
             syntaxHighlighter.setTheme(highlightingTheme);
