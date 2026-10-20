@@ -200,16 +200,10 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
     if (resourceUrl.isLocalFile()) {
         uds.fastInsert(KIO::UDSEntry::UDS_LOCAL_PATH, resource);
     }
-    if (!uds.contains(KIO::UDSEntry::UDS_ACCESS_TIME)) {
-        uds.fastInsert(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
-    } else if (
-        // noatime case
-        uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) < lastUpdateTime
-        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) <= uds.numberValue(KIO::UDSEntry::UDS_CREATION_TIME, -1)
-        || uds.numberValue(KIO::UDSEntry::UDS_ACCESS_TIME) <= uds.numberValue(KIO::UDSEntry::UDS_MODIFICATION_TIME, -1)) {
-        // override access time
-        uds.replace(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
-    }
+    // The access time is the last use recorded by the activity manager, which also imports the uses
+    // that other applications write to recently-used.xbel. The one of the file system also changes when
+    // a program lists the folder or reads the file for a preview.
+    uds.replace(KIO::UDSEntry::UDS_ACCESS_TIME, lastUpdateTime);
     return uds;
 }
 
