@@ -33,9 +33,12 @@ target_link_libraries(recentlyused
     KF6::KIOCore
     KF6::I18n
     Plasma::Activities
-    Plasma::ActivitiesStats)
+    Plasma::ActivitiesStats
+    Qt6::DBus)
 
 install(TARGETS recentlyused DESTINATION ${KDE_INSTALL_PLUGINDIR}/kf6/kio)
+
+add_subdirectory(kded)
 
 # forgetfileitemaction plugin
 kcoreaddons_add_plugin(forgetfileitemaction
