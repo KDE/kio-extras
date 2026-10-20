@@ -9,6 +9,7 @@
 #include "udsentry_compat.h"
 
 #include <QCoreApplication>
+#include <QCryptographicHash>
 #include <QDataStream>
 #include <QUrl>
 #include <QUrlQuery>
@@ -79,6 +80,13 @@ int queryLimit(QUrl url)
         }
     }
     return 30;
+}
+
+// The part of an entry name that tells its resource apart from the others of the listing. It stays the
+// same when other uses are recorded, so the listing keeps its entries when it is updated.
+QString resourceId(const QString &resource)
+{
+    return QString::fromLatin1(QCryptographicHash::hash(resource.toUtf8(), QCryptographicHash::Sha1).toHex().left(16));
 }
 
 ResultModel *runQuery(const QUrl &url, int limit)
@@ -168,7 +176,7 @@ ResultModel *runQuery(const QUrl &url, int limit)
     return new ResultModel(query);
 }
 
-KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime)
+KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "udsEntryFromResource" << resource;
 
@@ -189,7 +197,7 @@ KIO::UDSEntry RecentlyUsed::udsEntryFromResource(int row, const QString &resourc
     }
     // replace name with a technical unique name
     const auto name = uds.stringValue(KIO::UDSEntry::UDS_NAME);
-    uds.replace(KIO::UDSEntry::UDS_NAME, QStringLiteral("%1-%2").arg(name).arg(row));
+    uds.replace(KIO::UDSEntry::UDS_NAME, QStringLiteral("%1-%2").arg(name, resourceId(resource)));
     KIOExtras::insertStrings(uds,
                              {
                                  {KIO::UDSEntry::UDS_DISPLAY_NAME, name.isEmpty() ? resource : name},
@@ -254,7 +262,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
                 const int lastUpdate = model->data(index, ResultModel::LastUpdateRole).toInt();
                 const QString agent = model->data(index, ResultModel::Agent).toString();
 
-                const auto entry = udsEntryFromResource(row, resource, mimeType, agent, lastUpdate);
+                const auto entry = udsEntryFromResource(resource, mimeType, agent, lastUpdate);
                 if (entry.count() > 0) {
                     udslist << entry;
                 }
@@ -272,29 +280,25 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 
     // subdirs
 
-    // parse the technical id: filename-id, id being an index in the model
-    const auto splitted = QStringView(url.fileName()).split(QLatin1Char('-'));
-    if (splitted.count() < 2) {
+    // parse the technical id: filename-id, id being the resourceId() of the resource
+    const QString fileName = url.fileName();
+    const int separator = fileName.lastIndexOf(QLatin1Char('-'));
+    if (separator < 0) {
         return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
     }
-    bool ok;
-    int id = splitted.last().toInt(&ok);
-    if (!ok) {
-        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
-    }
+    const QStringView id = QStringView(fileName).mid(separator + 1);
 
     // query twice the limit size to be able to pass not existing files
     const auto model = runQuery(url, queryLimit(url) * 2);
-    const auto index = model->index(id, 0);
-
-    if (!index.isValid()) {
-        return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
+    for (int row = 0; row < model->rowCount(); ++row) {
+        const QString resource = model->data(model->index(row, 0), ResultModel::ResourceRole).toString();
+        if (resourceId(resource) == id) {
+            qCDebug(KIO_RECENTLYUSED_LOG) << "redirection to " << resource << url;
+            redirection(QUrl::fromUserInput(resource));
+            return KIO::WorkerResult::pass();
+        }
     }
-
-    const QString resource = model->data(index, ResultModel::ResourceRole).toString();
-    qCDebug(KIO_RECENTLYUSED_LOG) << "redirection to " << resource << url;
-    redirection(QUrl::fromUserInput(resource));
-    return KIO::WorkerResult::pass();
+    return KIO::WorkerResult::fail(KIO::ERR_DOES_NOT_EXIST, url.toDisplayString());
 }
 
 KIO::UDSEntry RecentlyUsed::udsEntryForRoot(const QString &dirName, const QString &iconName)
