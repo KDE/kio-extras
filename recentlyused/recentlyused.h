@@ -8,6 +8,7 @@
 #define RECENTLYUSED_H
 
 #include <KIO/WorkerBase>
+#include <KMountPoint>
 
 /**
  * Implements recentlyused:/ KIO worker
@@ -110,7 +111,9 @@ private:
      *
      * row is the row number in the ResultModel for the recentlyused:/ url being queried
      */
-    KIO::UDSEntry udsEntryFromResource(const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime);
+    /** @p mounts is the mount list that tells which local paths are on a network file system. */
+    KIO::UDSEntry
+    udsEntryFromResource(const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime, const KMountPoint::List &mounts);
     KIO::UDSEntry udsEntryForRoot(const QString &dirName, const QString &iconName);
 };
 

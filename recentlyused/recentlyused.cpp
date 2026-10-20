@@ -11,10 +11,10 @@
 #include <QCoreApplication>
 #include <QCryptographicHash>
 #include <QDataStream>
+#include <QFile>
 #include <QUrl>
 #include <QUrlQuery>
 
-#include <KIO/StatJob>
 #include <KLocalizedString>
 
 #include <PlasmaActivities/Stats/Cleaning>
@@ -87,6 +87,21 @@ int queryLimit(QUrl url)
 QString resourceId(const QString &resource)
 {
     return QString::fromLatin1(QCryptographicHash::hash(resource.toUtf8(), QCryptographicHash::Sha1).toHex().left(16));
+}
+
+// Whether @p path is on a network file system. The path is matched against the mount points, it is not
+// accessed, so a mount whose server does not answer does not hold this up.
+bool isOnNetworkMount(const KMountPoint::List &mounts, const QString &path)
+{
+    KMountPoint::Ptr mount;
+    for (const auto &candidate : mounts) {
+        const QString mountPoint = candidate->mountPoint();
+        const bool contains = path == mountPoint || mountPoint == QLatin1String("/") || path.startsWith(mountPoint + QLatin1Char('/'));
+        if (contains && (!mount || mountPoint.size() > mount->mountPoint().size())) {
+            mount = candidate;
+        }
+    }
+    return mount && mount->isOnNetwork();
 }
 
 ResultModel *runQuery(const QUrl &url, int limit)
@@ -176,24 +191,34 @@ ResultModel *runQuery(const QUrl &url, int limit)
     return new ResultModel(query);
 }
 
-KIO::UDSEntry RecentlyUsed::udsEntryFromResource(const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime)
+KIO::UDSEntry
+RecentlyUsed::udsEntryFromResource(const QString &resource, const QString &mimeType, const QString &agent, int lastUpdateTime, const KMountPoint::List &mounts)
 {
     qCDebug(KIO_RECENTLYUSED_LOG) << "udsEntryFromResource" << resource;
 
     // the query only returns files and folders
     QUrl resourceUrl = QUrl::fromUserInput(resource);
 
+    // The strings that the entry ends up with: the name, the display name, the mime type, the target url,
+    // the application and the local path
+    constexpr int stringFields = 6;
     KIO::UDSEntry uds;
-    KIO::StatJob *job = KIO::stat(resourceUrl, KIO::HideProgressInfo);
-
-    // we do not want to wait for the event loop to delete the job
-    QScopedPointer<KIO::StatJob> sp(job);
-    sp->setAutoDelete(false);
-    if (sp->exec()) {
-        uds = sp->statResult();
+    if (resourceUrl.isLocalFile() && !isOnNetworkMount(mounts, resourceUrl.toLocalFile())) {
+        // A single stat, without a job and the worker it needs
+        QT_STATBUF buff;
+        if (QT_STAT(QFile::encodeName(resourceUrl.toLocalFile()).constData(), &buff) != 0) {
+            // not found / not existing anymore
+            return uds;
+        }
+        uds = KIO::UDSEntry(buff, resourceUrl.fileName());
+        KIOExtras::reserveEntry(uds, stringFields, uds.count() - 1);
     } else {
-        // not found / not existing anymore
-        return uds;
+        // A remote resource, or a file on a network mount, is described from what the activity manager
+        // recorded. Its server is only contacted when the resource is opened, so a server that does not
+        // answer does not hold up the listing.
+        KIOExtras::reserveEntry(uds, stringFields, 2);
+        uds.fastInsert(KIO::UDSEntry::UDS_NAME, resourceUrl.fileName());
+        uds.fastInsert(KIO::UDSEntry::UDS_FILE_TYPE, mimeType == QLatin1String("inode/directory") ? S_IFDIR : S_IFREG);
     }
     // replace name with a technical unique name
     const auto name = uds.stringValue(KIO::UDSEntry::UDS_NAME);
@@ -253,6 +278,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
 
         bool canFetchMore = true;
         int row = 0;
+        const auto mounts = KMountPoint::currentMountPoints();
 
         while (canFetchMore) {
             for (; udslist.count() != limit + 1 && row < model->rowCount(); ++row) {
@@ -262,7 +288,7 @@ KIO::WorkerResult RecentlyUsed::listDir(const QUrl &url)
                 const int lastUpdate = model->data(index, ResultModel::LastUpdateRole).toInt();
                 const QString agent = model->data(index, ResultModel::Agent).toString();
 
-                const auto entry = udsEntryFromResource(resource, mimeType, agent, lastUpdate);
+                const auto entry = udsEntryFromResource(resource, mimeType, agent, lastUpdate, mounts);
                 if (entry.count() > 0) {
                     udslist << entry;
                 }
