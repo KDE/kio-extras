@@ -1,0 +1,9 @@
+{
+    "KPlugin": {
+        "Description": "Updates the views of recently used files and folders when they are used",
+        "Icon": "document-open-recent",
+        "Name": "Recently Used Updater"
+    },
+    "X-KDE-Kded-autoload": false,
+    "X-KDE-Kded-load-on-demand": true
+}
