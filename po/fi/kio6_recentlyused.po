@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-11 00:45+0000\n"
+"POT-Creation-Date: 2026-10-22 00:50+0000\n"
 "PO-Revision-Date: 2024-10-16 18:36+0300\n"
 "Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
 "Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
@@ -44,17 +44,17 @@ msgstr ""
 "luetteloista Dolphinin ja Plasman valikoista. Tämä ei poista tai siirrä itse "
 "tiedostoja."
 
-#: recentlyused.cpp:334
+#: recentlyused.cpp:338
 #, kde-format
 msgid "Recent Documents"
 msgstr "Viimeaikaiset tiedostot"
 
-#: recentlyused.cpp:342
+#: recentlyused.cpp:346
 #, kde-format
 msgid "Recent Files"
 msgstr "Viimeaikaiset tiedostot"
 
-#: recentlyused.cpp:345
+#: recentlyused.cpp:349
 #, kde-format
 msgid "Recent Locations"
 msgstr "Viimeaikaiset sijainnit"

@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-08-11 00:45+0000\n"
+"POT-Creation-Date: 2026-10-22 00:50+0000\n"
 "PO-Revision-Date: 2024-07-28 12:54+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
@@ -52,17 +52,17 @@ msgstr ""
 "تزيل الملفات أو المواقع المحددة من \"القائمة المستخدمة مؤخرًا\" في قوائم "
 "دولفين وبلازما. لن يؤدي هذا إلى إزالة الموارد أو نقلها."
 
-#: recentlyused.cpp:334
+#: recentlyused.cpp:338
 #, kde-format
 msgid "Recent Documents"
 msgstr "المستندات الحديثة"
 
-#: recentlyused.cpp:342
+#: recentlyused.cpp:346
 #, kde-format
 msgid "Recent Files"
 msgstr "الملفات الحديثة"
 
-#: recentlyused.cpp:345
+#: recentlyused.cpp:349
 #, kde-format
 msgid "Recent Locations"
 msgstr "الأماكن الحديثة"
