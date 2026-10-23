@@ -18,8 +18,8 @@ msgstr ""
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 21.12.1\n"
 "Plural-Forms: nplurals=3; plural=(n==1) ? 0 : (n>=2 && n<=4) ? 1 : 2;\n"
+"X-Generator: Lokalize 21.12.1\n"
 
 #: kio_man.cpp:517
 #, kde-kuit-format
@@ -109,11 +109,10 @@ msgstr ""
 "vyššie."
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "Register stránok manuálu"
+msgstr "Manuálové stránky"
 
 #: kio_man.cpp:842
 #, kde-format
