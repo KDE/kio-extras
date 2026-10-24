@@ -1,5 +1,4 @@
 # Translation of kio4 into Japanese.
-# SPDX-FileCopyrightText: 2022, 2024 Ryuichi Yamada <ryuichi_ya220@outlook.jp>
 # This file is distributed under the same license as the kdelibs package.
 # Taiki Komoda <kom@kde.gr.jp>, 2002, 2010.
 # Noriko Mizumoto <noriko@redhat.com>, 2004.
@@ -8,6 +7,7 @@
 # Shinichi Tsunoda <tsuno@ngy.1st.ne.jp>, 2005.
 # Yukiko Bando <ybando@k6.dion.ne.jp>, 2006, 2007, 2008, 2009, 2010.
 # Tomohiro Hyakutake <tomhioo@outlook.jp>, 2019, 2020.
+# SPDX-FileCopyrightText: 2022, 2024 Ryuichi Yamada <ryuichi_ya220@outlook.jp>
 # Fumiaki Okushi <fumiaki.okushi@gmail.com>, 2006, 2010, 2011, 2019, 2022.
 # SPDX-FileCopyrightText: 2026 Mint <5602mint@gmail.com>
 #
@@ -16,9 +16,9 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-06-14 22:00+0900\n"
+"PO-Revision-Date: 2026-10-18 08:14+0900\n"
 "Last-Translator: Mint <5602mint@gmail.com>\n"
-"Language-Team: Japanese <kde-i18n-doc@kde.org>\n"
+"Language-Team: Japanese <kde-jp@kde.org>\n"
 "Language: ja\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
@@ -26,7 +26,7 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Accelerator-Marker: &\n"
 "X-Text-Markup: kde4\n"
-"X-Generator: Lokalize 26.04.2\n"
+"X-Generator: Lokalize 26.04.3\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -819,11 +819,10 @@ msgid "Preferred"
 msgstr "優先"
 
 #: webshortcuts/ikwsopts.cpp:104
-#, fuzzy, kde-kuit-format
-#| msgid "Add a new Web shortcut"
+#, kde-kuit-format
 msgctxt "@info:tooltip"
 msgid "Check to select this web search keyword as preferred."
-msgstr "新しいウェブショートカットを追加する"
+msgstr "チェックを入れるとこのウェブ検索キーワードを優先します。"
 
 #: webshortcuts/ikwsopts.cpp:224
 #, kde-format
@@ -847,6 +846,12 @@ msgid ""
 "the KDE project using the Google search engine, you can simply type "
 "<icode>gg:KDE</icode> or <icode>google:KDE</icode>.</para>"
 msgstr ""
+"<para>ウェブ検索キーワードを使うと、インターネット上ですばやく情報を検索した"
+"り単語を調べたりできます。Plasma の <application>KRunner</application> 検索"
+"や <application>Konqueror</application> のアドレスバーのほか、この機能に対応"
+"するすべてのアプリケーションで利用できます。例えば、Google 検索エンジンを使っ"
+"て KDE プロジェクトに関する情報を検索するときは、<icode>gg:KDE</icode> や "
+"<icode>google:KDE</icode> と入力するだけで検索できます。</para>"
 
 #. i18n: ectx: property (toolTip), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:17
@@ -855,12 +860,14 @@ msgid ""
 "Check to recognise and use the web search keywords in applications that can "
 "use them"
 msgstr ""
+"チェックを入れると、ウェブ検索キーワードに対応するアプリケーションでキーワー"
+"ドを認識して使用できるようになります"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbEnableShortcuts)
 #: webshortcuts/ikwsopts_ui.ui:20
 #, kde-format
 msgid "&Enable Web search keywords"
-msgstr "ウェブ検索キーワードを有効にする(&E)"
+msgstr "ウェブ検索キーワードを有効化(&E)"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuickHelp)
 #: webshortcuts/ikwsopts_ui.ui:36
@@ -878,6 +885,10 @@ msgid ""
 "Konqueror when text on a page is selected) will only show the preferred "
 "keywords.</p>"
 msgstr ""
+"<p>チェックを入れると、必要に応じて下の一覧で選択した優先ウェブ検索キーワード"
+"のみを使用するようになります。</p><p>限られた数の検索キーワードしか表示できな"
+"いアプリケーション (ページ上のテキストを選択したときの Konqueror など) では、"
+"優先キーワードのみが表示されます。</p>"
 
 #. i18n: ectx: property (text), widget (QCheckBox, cbUseSelectedShortcutsOnly)
 #: webshortcuts/ikwsopts_ui.ui:55
@@ -893,10 +904,9 @@ msgstr "検索..."
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:96
-#, fuzzy, kde-format
-#| msgid "Add a new Web shortcut"
+#, kde-format
 msgid "Add a new Web search keyword"
-msgstr "新しいウェブショートカットを追加する"
+msgstr "新しいウェブ検索キーワードを追加"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbNew)
 #: webshortcuts/ikwsopts_ui.ui:99
@@ -906,10 +916,9 @@ msgstr "追加(&N)…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:109
-#, fuzzy, kde-format
-#| msgid "Add a new Web shortcut"
+#, kde-format
 msgid "Modify the highlighted Web search keyword"
-msgstr "新しいウェブショートカットを追加する"
+msgstr "選択中のウェブ検索キーワードを編集"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbChange)
 #: webshortcuts/ikwsopts_ui.ui:112
@@ -919,10 +928,9 @@ msgstr "編集(&I)…"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:122
-#, fuzzy, kde-format
-#| msgid "Default Web &search keyword:"
+#, kde-format
 msgid "Delete the highlighted Web search keyword"
-msgstr "デフォルトのウェブ検索キーワード(&S):"
+msgstr "選択中のウェブ検索キーワードを削除"
 
 #. i18n: ectx: property (text), widget (QPushButton, pbDelete)
 #: webshortcuts/ikwsopts_ui.ui:125
@@ -945,6 +953,10 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
+"<p>デフォルトのウェブ検索キーワードを選択できます。</p><p>Konqueror のアドレ"
+"スバーなど、入力内容を認識できない場合に自動的に検索を行うアプリケーションで"
+"は、ここで選択したキーワードが検索に使用されます。この機能を無効にするには、"
+"一覧から <tt>なし</tt> を選択してください。</p>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:202
@@ -954,14 +966,11 @@ msgstr "キーワード区切り文字(&K):"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:221
-#, fuzzy, kde-format
-#| msgid ""
-#| "Choose the delimiter that separates the keyword from the phrase or word "
-#| "to be searched."
+#, kde-format
 msgid ""
 "Choose the delimiter to separate the keyword from the phrase or word to be "
 "searched."
-msgstr "複数の検索キーワードを分ける区切り文字を選択します。"
+msgstr "キーワードと検索する語句を分ける区切り文字を選択できます。"
 
 #. i18n: ectx: property (text), item, widget (QComboBox, cmbDelimiter)
 #: webshortcuts/ikwsopts_ui.ui:225
@@ -984,63 +993,51 @@ msgid "Default"
 msgstr "デフォルト"
 
 #: webshortcuts/searchproviderdlg.cpp:51
-#, fuzzy, kde-format
-#| msgid "&Enable Web search keywords"
+#, kde-format
 msgid "Edit Web Search Keyword"
-msgstr "ウェブ検索キーワードを有効にする(&E)"
+msgstr "ウェブ検索キーワードの編集"
 
 #: webshortcuts/searchproviderdlg.cpp:59
-#, fuzzy, kde-format
-#| msgid "Add a new Web shortcut"
+#, kde-format
 msgid "New Web Search Keyword"
-msgstr "新しいウェブショートカットを追加する"
+msgstr "新しいウェブ検索キーワード"
 
 #: webshortcuts/searchproviderdlg.cpp:120
-#, fuzzy, kde-format
-#| msgid ""
-#| "The shortcut \"%1\" is already assigned to \"%2\". Please choose a "
-#| "different one."
+#, kde-format
 msgid ""
 "The keyword \"%1\" is already assigned to \"%2\". Please choose a different "
 "one."
 msgstr ""
-"ショートカット「%1」は既に「%2」に割り当てられています。別のものを選んでくだ"
-"さい。"
+"キーワード \"%1\" は既に \"%2\" に割り当てられています。別のキーワードを指定"
+"してください。"
 
 #: webshortcuts/searchproviderdlg.cpp:125
 #, kde-format
 msgctxt "- web short cut (e.g. gg): what it refers to (e.g. Google)"
 msgid "- %1: \"%2\""
-msgstr "- %1: 「%2」"
+msgstr "- %1: \"%2\""
 
 #: webshortcuts/searchproviderdlg.cpp:129
-#, fuzzy, kde-format
-#| msgid ""
-#| "The following shortcuts are already assigned. Please choose different "
-#| "ones.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "The following keywords are already assigned. Please choose different ones.\n"
 "%1"
 msgstr ""
-"以下のショートカットは既に割り当てられています。別のものを選んでください。\n"
+"以下のキーワードは既に割り当てられています。別のキーワードを指定してくださ"
+"い。\n"
 "%1"
 
 # warningContinueCancel
 #: webshortcuts/searchproviderdlg.cpp:142
-#, fuzzy, kde-format
-#| msgid ""
-#| "The Shortcut URL does not contain a \\{...} placeholder for the user "
-#| "query.\n"
-#| "This means that the same page is always going to be visited, regardless "
-#| "of the text typed in with the shortcut."
+#, kde-format
 msgid ""
 "The URL does not contain a %1 placeholder for the user query.\n"
 "This means that the same page is always going to be visited, regardless of "
 "the text typed in with the keyword."
 msgstr ""
-"ショートカット URL は検索のための \\{...} プレースホルダを含んでいません。\n"
-"したがって、常に同じページに行きます。"
+"URL に検索クエリ用のプレースホルダー %1 が含まれていません。\n"
+"そのため、キーワードと一緒に入力したテキストにかかわらず、常に同じページを開"
+"くことになります。"
 
 #: webshortcuts/searchproviderdlg.cpp:147
 #, kde-format
@@ -1051,7 +1048,7 @@ msgstr "保持する"
 #: webshortcuts/searchproviderdlg_ui.ui:17
 #, kde-format
 msgid "Enter the human-readable name of the search provider here."
-msgstr "検索プロバイダの名前を入力します。"
+msgstr "ウェブ検索キーワードの名前を入力してください。"
 
 #. i18n: ectx: property (text), widget (QLabel, lbName)
 #: webshortcuts/searchproviderdlg_ui.ui:23
@@ -1082,23 +1079,24 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"この検索プロバイダの URI を指定します。<br/>検索するテキスト全体は、\\{@} ま"
-"たは \\{0} で指定します。<br/>\\{0} では指定された文字列そのものに置き換わり"
-"ますが、\\{@} の場合には、指定された文字列からクエリ変数 (name=value) を取り"
-"除くので、ほとんどの場合、\\{@} の使用をお勧めします。<br/>また、クエリ内の特"
-"定の語を \\{1} ... \\{n} のようにして指定できる他、\\{name} で name=value の"
-"形で指定されたクエリ変数の参照も指定できます。<br/>さらに、複数参照 (名前、数"
-"字、文字列) も一度にできます ( \\{name1, name2, ....\"文字列\"} のように指定"
-"します)。<br/>結果の URI には、指定されたもののうち左から最初に一致した値に置"
-"き換えられたものが使われます。<br/>引用符で囲まれた文字列は、その左側の参照リ"
-"ストのいずれにもマッチしなかった場合のデフォルト値として使われます。\n"
+"検索エンジンでの検索に使用する URI を入力してください。<br/>検索するテキスト"
+"全体は \\{@} または \\{0} で指定できます。<br/>\n"
+"\\{0} はクエリ文字列にそのまま置き換えられますが、\\{@} は結果の文字列からす"
+"べてのクエリ変数 (name=value) を取り除くため、\\{@} の使用をおすすめします。"
+"<br/>また、\\{1} ... \\{n} を使ってクエリ内の特定の単語を指定できるほ"
+"か、\\{name} を使うことで検索クエリ内で \"name=value\" の形式で指定された値を"
+"参照することもできます。<br/>さらに、複数の参照 (名前、番号、文字列) を一度に"
+"指定することも可能です (\\{name1,name2,...,\"文字列\"})。<br/>結果の URI に"
+"は、左から最初にマッチした値が置き換えられます。<br/>ダブルクォーテーションで"
+"囲まれた文字列は、参照リストの左側のいずれにもマッチしなかった場合のデフォル"
+"ト値として使われます。\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)
 #: webshortcuts/searchproviderdlg_ui.ui:48
 #, kde-format
 msgid "&URL:"
-msgstr ""
+msgstr "&URL:"
 
 #. i18n: ectx: property (whatsThis), widget (QComboBox, cbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:83
@@ -1112,13 +1110,7 @@ msgstr "検索語のエンコードに使用する文字セットを選択して
 #: webshortcuts/searchproviderdlg_ui.ui:92
 #: webshortcuts/searchproviderdlg_ui.ui:97
 #: webshortcuts/searchproviderdlg_ui.ui:116
-#, fuzzy, kde-format
-#| msgid ""
-#| "<qt>\n"
-#| "The shortcuts entered here can be used as a pseudo-URI scheme in KDE. For "
-#| "example, the shortcut <b>av</b> can be used as in <b>av</b>:<b>my search</"
-#| "b>\n"
-#| "</qt>"
+#, kde-format
 msgid ""
 "<qt>\n"
 "The keywords entered here can be used as a pseudo-URI scheme in KDE. For "
@@ -1126,62 +1118,51 @@ msgid ""
 "</qt>"
 msgstr ""
 "<qt>\n"
-"ここで指定したショートカットは KDE で疑似 URI スキームとして使用できます。例"
-"えば、ショートカット “av” は “av:検索語” のように使用します。\n"
+"ここで入力したキーワードは KDE で疑似 URI スキームとして使用できます。例え"
+"ば、キーワード <b>av</b> は <b>av</b>:<b>検索語</b> のように使用できます。\n"
 "</qt>"
 
 #. i18n: ectx: property (toolTip), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:104
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>ウェブショートカットの名前を入力します。</p></body></"
-"html>"
+"<html><head/><body><p>ウェブ検索キーワードの名前を入力してください。</p></"
+"body></html>"
 
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, leName)
 #: webshortcuts/searchproviderdlg_ui.ui:107
-#, fuzzy, kde-format
-#| msgid ""
-#| "<html><head/><body><p>Enter the human-readable name of the web shortcut "
-#| "here.</p></body></html>"
+#, kde-format
 msgid ""
 "<html><head/><body><p>Enter the human-readable name of the Web search "
 "keyword shortcut here.</p></body></html>"
 msgstr ""
-"<html><head/><body><p>ウェブショートカットの名前を入力します。</p></body></"
-"html>"
+"<html><head/><body><p>ウェブ検索キーワードショートカットの名前を入力してくだ"
+"さい。</p></body></html>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbShortcut)
 #: webshortcuts/searchproviderdlg_ui.ui:119
-#, fuzzy, kde-format
-#| msgctxt "@title:column"
-#| msgid "Keywords"
+#, kde-format
 msgid "&Keywords:"
-msgstr "キーワード"
+msgstr "キーワード(&K):"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:132
 #, kde-format
 msgid "Select the character set that will be used to encode your search query"
-msgstr "検索語のエンコードに使用する文字セットを選択します。"
+msgstr "検索語のエンコードに使用する文字セットを選択してください。"
 
 # ACCELERATOR changed by translator
 #. i18n: ectx: property (text), widget (QLabel, lbCharset)
 #: webshortcuts/searchproviderdlg_ui.ui:135
-#, fuzzy, kde-format
-#| msgid "&Charset:"
+#, kde-format
 msgid "&Character set:"
 msgstr "文字セット(&T):"
 
 #. i18n: ectx: property (toolTip), widget (QPushButton, pbPaste)
 #: webshortcuts/searchproviderdlg_ui.ui:158
-#, fuzzy, kde-format
-#| msgctxt "@label"
-#| msgid "Interlace Mode"
+#, kde-format
 msgid "Insert query placeholder"
-msgstr "インターレースモード"
+msgstr "クエリのプレースホルダーを挿入"
