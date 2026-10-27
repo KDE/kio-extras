@@ -10,14 +10,14 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-28 00:45+0000\n"
-"PO-Revision-Date: 2026-09-27 21:49+0200\n"
+"PO-Revision-Date: 2026-10-26 22:04+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
 "Language: nn\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Lokalize 26.08.1\n"
+"X-Generator: Lokalize 26.11.70\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Environment: kde\n"
 "X-Accelerator-Marker: &\n"
@@ -153,11 +153,10 @@ msgid "HTTP Proxy"
 msgstr "HTTP-mellomtenar"
 
 #: proxy/ui/main.qml:219
-#, fuzzy, kde-format
-#| msgid "Use this proxy server for a&ll protocols"
+#, kde-format
 msgctxt "@label"
 msgid "Use this proxy server for all protocols"
-msgstr "Bruk denne mellomtenaren for &alle protokollar"
+msgstr "Bruk denne mellomtenaren for alle protokollar"
 
 #: proxy/ui/main.qml:233
 #, kde-format
@@ -178,8 +177,7 @@ msgid "SOCKS Proxy"
 msgstr "SOCKS-mellomtenar"
 
 #: proxy/ui/main.qml:320
-#, fuzzy, kde-format
-#| msgid "Use proxy settings only for addresses in the exceptions list"
+#, kde-format
 msgctxt "@label"
 msgid "Use proxy settings only for addresses in the exceptions list"
 msgstr "Bruk berre mellomtenar for adresser i unntakslista"
@@ -188,7 +186,7 @@ msgstr "Bruk berre mellomtenar for adresser i unntakslista"
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "Adresse:"
 
 #: proxy/ui/main.qml:387
 #, kde-format
