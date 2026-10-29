@@ -23,6 +23,7 @@ The kio-sftp component uses [libssh](https://www.libssh.org/) to provide the sft
 
 Libssh uses the same config files used by OpenSSH (`/etc/ssh/ssh_config` and `~/.ssh/config`), but unfortunately is not completely compatible with all config options. It may silently ignore unsupported options or implement them slightly different. Most notably:
   - Connection multiplexing is not supported
+  - Include files are not supported
   - The `ProxyJump` handling is buggy in a lot of scenario's. As a workaround, set the environment variable `OPENSSH_PROXYJUMP=1` in your graphical login session to use OpenSSH for ProxyJump instead of libssh.
 
 If you experience problems with kio-sftp, please try another libssh based sftp client like [yafc](https://github.com/sebastinas/yafc) to try to determine if the problem is within kio-sftp or libssh.
