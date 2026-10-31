@@ -60,21 +60,3 @@ msgstr "Error NFS %1, %2"
 #, kde-format
 msgid "Unknown target"
 msgstr "Objectiu desconegut"
-
-#~ msgid "Failed to initialise protocol"
-#~ msgstr "Ha fallat en inicialitzar el protocol"
-
-#~ msgid "%1: Unsupported NFS version"
-#~ msgstr "%1: Versió no admesa de l'NFS"
-
-#~ msgid "No space left on device"
-#~ msgstr "No queda espai al dispositiu"
-
-#~ msgid "Read only file system"
-#~ msgstr "Sistema de només lectura"
-
-#~ msgid "Failed to mount %1"
-#~ msgstr "Ha fallat en muntar %1"
-
-#~ msgid "An RPC error occurred."
-#~ msgstr "S'ha produït un error RPC."

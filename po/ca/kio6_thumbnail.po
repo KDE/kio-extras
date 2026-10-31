@@ -71,7 +71,3 @@ msgstr "No s'ha pogut annexar al segment de la memòria compartida %1"
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "La imatge és massa gran per al segment de la memòria compartida"
-
-#~ msgctxt "@option:check"
-#~ msgid "Rotate the image automatically"
-#~ msgstr "Gira automàticament la imatge"

@@ -40,8 +40,3 @@ msgstr ""
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
 msgstr "No es poden copiar/moure fitxers sobre el mateix dispositiu"
-
-#~ msgid "No Storages found. Maybe you need to unlock your device?"
-#~ msgstr ""
-#~ "No s'ha trobat cap emmagatzemament. Potser cal que desbloquegeu el "
-#~ "dispositiu?"
