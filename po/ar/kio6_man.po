@@ -8,13 +8,13 @@
 # محمد سعد  Mohamed SAAD <metehyi@free.fr>, 2006.
 # AbdulAziz AlSharif <a.a-a.s@hotmail.com>, 2007.
 # Youssef Chahibi <chahibi@gmail.com>, 2007.
-# SPDX-FileCopyrightText: 2008, 2021, 2022, 2026 zayed <zayed.alsaidi@gmail.com>
+# SPDX-FileCopyrightText: 2008, 2021-2022, 2026 zayed <zayed.alsaidi@gmail.com>
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-06 00:46+0000\n"
-"PO-Revision-Date: 2026-06-05 13:41+0400\n"
+"PO-Revision-Date: 2026-10-31 17:06+0400\n"
 "Last-Translator: Zayed Al-Saidi <zayed.alsaidi@gmail.com>\n"
 "Language-Team: ar\n"
 "Language: ar\n"
@@ -23,7 +23,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 "
 "&& n%100<=10 ? 3 : n%100>=11 ? 4 : 5;\n"
-"X-Generator: Lokalize 23.08.5\n"
+"X-Generator: Lokalize 26.08.1\n"
 
 #: kio_man.cpp:517
 #, kde-kuit-format
@@ -111,11 +111,10 @@ msgstr ""
 "قريبة أو غير حساسة لحالة الأحرف كما أعلاه."
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "فهرس صفحات الدليل"
+msgstr "صفحات الدليل"
 
 #: kio_man.cpp:842
 #, kde-format
