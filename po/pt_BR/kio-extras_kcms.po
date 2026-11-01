@@ -19,15 +19,15 @@ msgstr ""
 "Project-Id-Version: kio\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-05-30 00:44+0000\n"
-"PO-Revision-Date: 2026-05-30 06:37-0300\n"
+"PO-Revision-Date: 2026-10-31 12:33-0300\n"
 "Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
-"Language-Team: Brazilian Portuguese <kde-i18n-pt_BR@kde.org>\n"
+"Language-Team: Portuguese <kde-i18n-pt_BR@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.04.1\n"
+"X-Generator: Lokalize 26.08.2\n"
 
 #: ksaveioconfig.cpp:36
 #, kde-format
@@ -369,7 +369,7 @@ msgstr "Usa o script especificado para ajustar as configurações do proxy."
 #: proxy/kproxydlg.ui:370
 #, kde-format
 msgid "&Use proxy auto configuration URL:"
-msgstr "&Usar a URL de configuração automática do proxy:"
+msgstr "&Usar URL de configuração automática do proxy:"
 
 #. i18n: ectx: property (whatsThis), widget (QRadioButton, manualProxyRadioButton)
 #: proxy/kproxydlg.ui:386
@@ -381,7 +381,7 @@ msgstr "Digite manualmente as informações sobre a configuração do proxy."
 #: proxy/kproxydlg.ui:389
 #, kde-format
 msgid "Use manually specified proxy configuration:"
-msgstr "Usar a configuração de proxy especificada manualmente:"
+msgstr "Usar configuração de proxy especificada manualmente:"
 
 #. i18n: ectx: property (whatsThis), widget (QLabel, systemProxyHttpLabel)
 #. i18n: ectx: property (whatsThis), widget (QLineEdit, systemProxyHttpEdit)
