@@ -55,18 +55,16 @@ msgstr ""
 "efecto."
 
 #: proxy/ui/main.qml:49
-#, fuzzy, kde-format
-#| msgid "&No proxy"
+#, kde-format
 msgctxt "@label"
 msgid "No proxy"
-msgstr "Se&n mandatario."
+msgstr "Sen mandatario"
 
 #: proxy/ui/main.qml:65
-#, fuzzy, kde-format
-#| msgid "&Detect proxy configuration automatically"
+#, kde-format
 msgctxt "@label"
 msgid "Detect proxy configuration automatically"
-msgstr "&Detectar automaticamente a configuración do mandatario."
+msgstr "Detectar automaticamente a configuración do mandatario"
 
 #: proxy/ui/main.qml:75
 #, fuzzy, kde-format
