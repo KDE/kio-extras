@@ -21,15 +21,15 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-28 00:45+0000\n"
-"PO-Revision-Date: 2026-10-02 23:01+0300\n"
-"Last-Translator: Lasse Liehu-Inui <lasse.liehu@iki.fi>\n"
-"Language-Team: Finnish <kde-l10n-fi@kde.org>\n"
+"PO-Revision-Date: 2026-10-06 12:52+0300\n"
+"Last-Translator: Tommi Nieminen <translator@legisign.org>\n"
+"Language-Team: Finnish <kde-i18n-doc@kde.org>\n"
 "Language: fi\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
-"X-Generator: Lokalize 25.12.3\n"
+"X-Generator: Lokalize 25.04.0\n"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -48,16 +48,13 @@ msgstr ""
 "lähetetty, sen nimi palautetaan oikeaksi."
 
 #: proxy/ui/main.qml:33
-#, fuzzy, kde-format
-#| msgid ""
-#| "You have to restart the running applications for these changes to take "
-#| "effect."
+#, kde-format
 msgctxt "@info"
 msgid ""
 "Restart running applications to make these changes take effect for them."
 msgstr ""
-"Käynnissä olevat sovellukset täytyy käynnistää uudelleen, jotta tämä asetus "
-"tulee voimaan."
+"Käynnissä olevat sovellukset täytyy käynnistää uudelleen, jotta asetus tulee "
+"voimaan."
 
 #: proxy/ui/main.qml:49
 #, kde-format
@@ -143,7 +140,7 @@ msgstr "Poikkeukset:"
 #, kde-format
 msgctxt "@placeholder"
 msgid "Comma-separated list of IP addresses"
-msgstr ""
+msgstr "Pilkuin erotettu luettelo IP-osoitteita"
 
 #: proxy/ui/main.qml:171
 #, kde-format
@@ -197,7 +194,7 @@ msgstr "Käytä välitysasetuksia vain poikkeusluettelon osoitteisiin"
 #, kde-format
 msgctxt "@label"
 msgid "Url:"
-msgstr ""
+msgstr "Verkko-osoite:"
 
 #: proxy/ui/main.qml:387
 #, kde-format
@@ -206,19 +203,16 @@ msgid "Port:"
 msgstr "Portti:"
 
 #: proxy/ui/main.qml:410
-#, fuzzy, kde-format
-#| msgctxt "@title:window"
-#| msgid "Manual Proxy Configuration"
+#, kde-format
 msgctxt "@title:dialog"
 msgid "Open Proxy Auto-Configuration File"
-msgstr "Omat välityspalvelimen asetukset"
+msgstr "Avaa välityspalvelimen automaattiasetustiedosto"
 
 #: proxy/ui/main.qml:411
-#, fuzzy, kde-format
-#| msgid "&Use proxy auto configuration URL:"
+#, kde-format
 msgctxt "@label"
 msgid "Proxy auto-configuration files (*.pac)"
-msgstr "Käytä välityksen &automaattiasetusosoitetta:"
+msgstr "Välityspalvelimen automaattiasetustiedostot (*.pac)"
 
 #: proxy/wpad-detector/module.cpp:75
 #, kde-format
