@@ -52,6 +52,16 @@ bool hasBeenVisited(const QString &path, std::set<QString> &seenDirs)
     return false;
 }
 
+bool isSameOrInside(const QString &path, const QString &dir)
+{
+    return path == dir || path.startsWith(ensureTrailingSlash(dir));
+}
+
+bool isInside(const QString &path, const QString &dir)
+{
+    return path != dir && path.startsWith(ensureTrailingSlash(dir));
+}
+
 //  Returns a regex with special characters escaped while still allowing flexible
 //  matches of whitespace.
 
@@ -578,12 +588,14 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
             }
         }
 
-        searchDir(dirUrl, regexHash, options, iteratedDirs, pendingDirs);
+        const QString canonicalRoot = dirUrl.isLocalFile() ? QFileInfo(dirUrl.toLocalFile()).canonicalFilePath() : QString();
+        const QString searchRoot = canonicalRoot.isEmpty() ? dirUrl.path() : canonicalRoot;
+        searchDir(dirUrl, searchRoot, regexHash, options, iteratedDirs, pendingDirs);
 
         while (!pendingDirs.empty()) {
             const QUrl pendingUrl = pendingDirs.front();
             pendingDirs.pop();
-            searchDir(pendingUrl, regexHash, options, iteratedDirs, pendingDirs);
+            searchDir(pendingUrl, searchRoot, regexHash, options, iteratedDirs, pendingDirs);
         }
     }
 
@@ -591,6 +603,7 @@ KIO::WorkerResult FileNameSearchProtocol::listDir(const QUrl &url)
 }
 
 void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
+                                       const QString &searchRoot,
                                        const QHash<QRegularExpression, int> &regexHash,
                                        const SearchOptions options,
                                        std::set<QString> &iteratedDirs,
@@ -601,7 +614,7 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
 
     const QString dirPath = ensureTrailingSlash(QUrl(dirUrl).path());
 
-    if (iteratedDirs.contains(dirPath)) {
+    if (hasBeenVisited(dirPath, iteratedDirs)) {
         return;
     }
 
@@ -672,7 +685,20 @@ void FileNameSearchProtocol::searchDir(const QUrl &dirUrl,
                     if (item.isReadable() && (!item.isHidden() || options.testFlag(SearchOption::IncludeHiddenFolders))) {
                         const QString linkDest = entry.stringValue(KIO::UDSEntry::UDS_LINK_DEST);
                         if (!linkDest.isEmpty()) {
-                            pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
+                            if (dirUrl.isLocalFile()) {
+                                // Only follow links to folders inside the search folder or the home
+                                // folder, and never back up to the search folder or a parent of it.
+                                // Other links, such as the drive letters of a Wine prefix (Z: links
+                                // to /), would take the search far outside the folder.
+                                static const QString home = QFileInfo(QDir::homePath()).canonicalFilePath();
+                                const QString target = QFileInfo(leaf).canonicalFilePath();
+                                const bool withinAllowed = isInside(target, searchRoot) || (home != QLatin1String("/") && isInside(target, home));
+                                if (!target.isEmpty() && withinAllowed && !isSameOrInside(searchRoot, target)) {
+                                    pendingDirs.push(QUrl::fromLocalFile(target));
+                                }
+                            } else {
+                                pendingDirs.push(entryUrl.resolved(QUrl(linkDest)));
+                            }
                         }
                     } else {
                         iteratedDirs.insert(leaf);

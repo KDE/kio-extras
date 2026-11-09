@@ -3,13 +3,17 @@
     SPDX-FileCopyrightText: 2025 Archaeopteryx Lithographica
 */
 
+#include <QDir>
+#include <QFileInfo>
 #include <QStandardPaths>
+#include <QTemporaryDir>
 #include <QTest>
 #include <QUrlQuery>
 
 #include <KIO/ListJob>
 
 #include <filesystem>
+#include <fstream>
 
 class FilenameSearchTest : public QObject
 {
@@ -44,6 +48,8 @@ private Q_SLOTS:
 
     void folderTreeSymlinks_data();
     void folderTreeSymlinks();
+
+    void symlinksLeavingSearchFolder();
 
     void hiddenFiles_data();
     void hiddenFiles();
@@ -479,12 +485,12 @@ void FilenameSearchTest::folderTreeSymlinks_data()
     addRow("Filename Match",
            QByteArray(""),
            QByteArrayLiteral("alice"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice1.txt.bak"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
+           {QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 
     addRow("Content Match",
            QByteArray("checkContent=yes"),
            QByteArrayLiteral("wonderland"),
-           {QByteArrayLiteral("alice1.txt"), QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
+           {QByteArrayLiteral("alice2.txt"), QByteArrayLiteral("alice3.txt")});
 }
 
 void FilenameSearchTest::folderTreeSymlinks()
@@ -497,6 +503,54 @@ void FilenameSearchTest::folderTreeSymlinks()
     QByteArrayList results = doSearchQuery(buildSearchQuery(searchString, searchOptions, path), {});
 
     QCOMPARE(results, expectedFiles);
+}
+
+void FilenameSearchTest::symlinksLeavingSearchFolder()
+{
+    QTemporaryDir dir;
+    QVERIFY(dir.isValid());
+    const std::filesystem::path top = QFileInfo(dir.path()).canonicalFilePath().toStdString();
+    const QString home = QFileInfo(QDir::homePath()).canonicalFilePath();
+    if (QString::fromStdString(top.string()).startsWith(home + QLatin1Char('/'))) {
+        QSKIP("The temporary folder is inside the home folder");
+    }
+    QTemporaryDir homeDir(home + QStringLiteral("/filenamesearchtest-XXXXXX"));
+    QVERIFY(homeDir.isValid());
+    const std::filesystem::path inHome = QFileInfo(homeDir.path()).canonicalFilePath().toStdString();
+    const auto touch = [](const std::filesystem::path &file) {
+        std::filesystem::create_directories(file.parent_path());
+        std::ofstream{file};
+    };
+
+    touch(top / "matchparent.txt");
+    touch(top / "outside/matchoutside.txt");
+    touch(top / "base/sub/matchinside.txt");
+    touch(top / "base/prefix/drive_c/matchinwine.txt");
+    touch(inHome / "folder/matchinhome.txt");
+
+    // Links back up to the search folder or its parents are not followed.
+    std::filesystem::create_directory_symlink(top, top / "base/toParent");
+    std::filesystem::create_directory_symlink("..", top / "base/sub/toBase");
+    // Like the drive letters of a Wine prefix: Z: links to the root of the file system.
+    std::filesystem::create_directories(top / "base/prefix/dosdevices");
+    std::filesystem::create_directory_symlink("../drive_c", top / "base/prefix/dosdevices/c:");
+    std::filesystem::create_directory_symlink("/", top / "base/prefix/dosdevices/z:");
+    // Links outside both the search folder and the home folder are not followed.
+    std::filesystem::create_directory_symlink(top / "outside", top / "base/toOutside");
+    // Nor is a link to the home folder itself.
+    std::filesystem::create_directory_symlink(home.toStdString(), top / "base/toHome");
+    // A folder inside the search folder is not searched again through a link.
+    std::filesystem::create_directory_symlink(top / "base/sub", top / "base/toSub");
+    // A folder inside the home folder is followed, and only searched once however it is reached.
+    std::filesystem::create_directory_symlink(inHome / "folder", inHome / "otherNameForFolder");
+    std::filesystem::create_directory_symlink(inHome / "folder", top / "base/toHomeFolder");
+    std::filesystem::create_directory_symlink(inHome / "otherNameForFolder", top / "base/toHomeFolderAgain");
+
+    const QString base = QString::fromStdString((top / "base").string());
+    const QByteArrayList results = doSearchQuery(buildSearchQuery(QByteArrayLiteral("^match"), QByteArrayLiteral("syntax=regex"), base), {});
+
+    const QByteArrayList expected = {QByteArrayLiteral("matchinhome.txt"), QByteArrayLiteral("matchinside.txt"), QByteArrayLiteral("matchinwine.txt")};
+    QCOMPARE(results, expected);
 }
 
 void FilenameSearchTest::hiddenFiles_data()

@@ -117,6 +117,7 @@ private:
 
     void listRootEntry();
     void searchDir(const QUrl &dirUrl,
+                   const QString &searchRoot,
                    const QHash<QRegularExpression, int> &regexHash,
                    const SearchOptions options,
                    std::set<QString> &iteratedDirs,
