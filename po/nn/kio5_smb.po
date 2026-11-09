@@ -6,7 +6,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2025-11-17 09:01+0000\n"
+"POT-Creation-Date: 2023-09-10 12:16+0000\n"
 "PO-Revision-Date: 2020-11-05 19:24+0100\n"
 "Last-Translator: Karl Ove Hufthammer <karl@huftis.org>\n"
 "Language-Team: Norwegian Nynorsk <l10n-no@nuug.no>\n"
@@ -24,27 +24,17 @@ msgstr ""
 #, kde-kuit-format
 msgctxt "@info:whatsthis"
 msgid ""
-"<para>There are various options for authenticating on SMB shares.</"
-"para><para><placeholder>username</placeholder>: When authenticating within a "
-"home network the username on the server is sufficient</"
-"para><para><placeholder>username@domain.com</placeholder>: Modern corporate "
-"logon names are formed like e-mail addresses</"
-"para><para><placeholder>DOMAIN\\username</placeholder>: For ancient "
-"corporate networks or workgroups you may need to prefix the NetBIOS domain "
-"name (pre-Windows 2000)</para><para><placeholder>anonymous</placeholder>: "
-"Anonymous logins can be attempted using empty username and password. "
-"Depending on server configuration non-empty usernames may be required</para>"
+"<para>There are various options for authenticating on SMB shares.</para>"
+"<para><placeholder>username</placeholder>: When authenticating within a home network the username on the server is sufficient</para>"
+"<para><placeholder>username@domain.com</placeholder>: Modern corporate logon names are formed like e-mail addresses</para>"
+"<para><placeholder>DOMAIN\\username</placeholder>: For ancient corporate networks or workgroups you may need to prefix the NetBIOS domain name (pre-Windows 2000)</para>"
+"<para><placeholder>anonymous</placeholder>: Anonymous logins can be attempted using empty username and password. Depending on server configuration non-empty usernames may be required</para>"
 msgstr ""
-"<para>Det finst fleire val for autentisering for SMB-ressursar.</"
-"para><para><placeholder>brukarnamn</placeholder>: Ved autentisering på heime­"
-"nettverket held det med brukarnamnet.</"
-"para><para><placeholder>brukarnnamn@domene.no</placeholder>: Brukarnamn for "
-"moderne firma­nettverk er utforma som e-postadresser.</"
-"para><para><placeholder>DOMENE\\brukarnamn</placeholder>: Eldre firma­"
-"nettverk og arbeids­grupper NetBIOS-domene­namnet som prefiks (pre-Windows "
-"2000)</para><para><placeholder>anonym</placeholder>: Du kan prøva anonym "
-"pålogging ved å bruka eit tomt brukarnamn og passord. Ved nokre tenar­oppsett "
-"er det nødvendig med eit ikkje-tomt brukarnamn.</para>"
+"<para>Det finst fleire val for autentisering for SMB-ressursar.</para>"
+"<para><placeholder>brukarnamn</placeholder>: Ved autentisering på heime­nettverket held det med brukarnamnet.</para>"
+"<para><placeholder>brukarnnamn@domene.no</placeholder>: Brukarnamn for moderne firma­nettverk er utforma som e-postadresser.</para>"
+"<para><placeholder>DOMENE\\brukarnamn</placeholder>: Eldre firma­nettverk og arbeids­grupper NetBIOS-domene­namnet som prefiks (pre-Windows 2000)</para>"
+"<para><placeholder>anonym</placeholder>: Du kan prøva anonym pålogging ved å bruka eit tomt brukarnamn og passord. Ved nokre tenar­oppsett er det nødvendig med eit ikkje-tomt brukarnamn.</para>"
 
 #: kio_smb_auth.cpp:52
 #, kde-format
@@ -73,11 +63,8 @@ msgstr ""
 
 #: kio_smb_browse.cpp:273
 #, kde-format
-msgid ""
-"Unable to find any workgroups in your local network. This might be caused by "
-"an enabled firewall."
-msgstr ""
-"Fann ingen arbeidsgrupper i lokalnettet. Dette kan skuldast ein brannmur."
+msgid "Unable to find any workgroups in your local network. This might be caused by an enabled firewall."
+msgstr "Fann ingen arbeidsgrupper i lokalnettet. Dette kan skuldast ein brannmur."
 
 #: kio_smb_browse.cpp:278
 #, kde-format
@@ -106,41 +93,23 @@ msgstr "Dårleg fildeskriptor"
 
 #: kio_smb_browse.cpp:312
 #, kde-format
-msgid ""
-"The given name could not be resolved to a unique server. Make sure your "
-"network is setup without any name conflicts between names used by Windows "
-"and by UNIX name resolution."
-msgstr ""
-"Det namnet som er oppgjeve svarte ikkje til ein eintydig tenar. Sjå etter at "
-"nettet er sett opp utan konfliktar mellom namn som er brukte i namnesystema "
-"til Windows og UNIX."
+msgid "The given name could not be resolved to a unique server. Make sure your network is setup without any name conflicts between names used by Windows and by UNIX name resolution."
+msgstr "Det namnet som er oppgjeve svarte ikkje til ein eintydig tenar. Sjå etter at nettet er sett opp utan konfliktar mellom namn som er brukte i namnesystema til Windows og UNIX."
 
 #: kio_smb_browse.cpp:321
 #, kde-format
-msgctxt ""
-"@info:status smb failed to reach the server (e.g. server offline or network "
-"failure). %1 is an ip address or hostname"
+msgctxt "@info:status smb failed to reach the server (e.g. server offline or network failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
 msgstr "%1: Fekk ikkje kontakt med verten"
 
 #: kio_smb_browse.cpp:325
 #, kde-format
 msgid ""
-"libsmbclient reported an error, but did not specify what the problem is. "
-"This might indicate a severe problem with your network - but also might "
-"indicate a problem with libsmbclient.\n"
-"If you want to help us, please provide a tcpdump of the network interface "
-"while you try to browse (be aware that it might contain private data, so do "
-"not post it if you are unsure about that - you can send it privately to the "
-"developers if they ask for it)"
+"libsmbclient reported an error, but did not specify what the problem is. This might indicate a severe problem with your network - but also might indicate a problem with libsmbclient.\n"
+"If you want to help us, please provide a tcpdump of the network interface while you try to browse (be aware that it might contain private data, so do not post it if you are unsure about that - you can send it privately to the developers if they ask for it)"
 msgstr ""
-"libsmbclient melde om ein feil, men sa ikkje noko om kva problemet er. Dette "
-"kan tyda på eit alvorleg problem med nettverket, men kan òg skuldast feil i "
-"libsmbclient.\n"
-"Dersom du vil hjelpa til, kan du skaffa ein tcpdump av "
-"nettverksgrensesnittet mens du prøver å kopla til. (Legg merke til at dumpen "
-"kan innehalda privat informasjon. Du kan senda han privat til ein av "
-"utviklarane om dei ber om det.)"
+"libsmbclient melde om ein feil, men sa ikkje noko om kva problemet er. Dette kan tyda på eit alvorleg problem med nettverket, men kan òg skuldast feil i libsmbclient.\n"
+"Dersom du vil hjelpa til, kan du skaffa ein tcpdump av nettverksgrensesnittet mens du prøver å kopla til. (Legg merke til at dumpen kan innehalda privat informasjon. Du kan senda han privat til ein av utviklarane om dei ber om det.)"
 
 #: kio_smb_browse.cpp:337
 #, kde-format
@@ -150,8 +119,12 @@ msgstr "Ukjend feiltilstand: [%1] %2"
 
 #: kio_smb_browse.cpp:354
 #, kde-kuit-format
-msgid "Error occurred while trying to access %1<nl/>%2"
-msgstr "Feil ved forsøk på å få tilgang til %1<nl/>%2"
+msgid ""
+"Error occurred while trying to access %1<nl/>"
+"%2"
+msgstr ""
+"Feil ved forsøk på å få tilgang til %1<nl/>"
+"%2"
 
 #: kio_smb_file.cpp:35
 #, kde-format
@@ -187,7 +160,6 @@ msgstr ""
 
 #: wsdiscoverer.cpp:163
 #, kde-kuit-format
-msgctxt ""
-"host entry when no pretty name is available. %1 likely is an IP address"
+msgctxt "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
 msgstr "Ukjend eining @ <resource>%1</resource>"
