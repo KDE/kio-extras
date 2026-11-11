@@ -11,6 +11,8 @@
 #include <QDir>
 #include <QStandardPaths>
 
+using namespace Qt::StringLiterals;
+
 SearchProviderRegistry::SearchProviderRegistry()
 {
     reload();
@@ -27,7 +29,7 @@ QStringList SearchProviderRegistry::directories() const
     if (!testDir.isEmpty()) {
         return {testDir};
     }
-    return QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, QStringLiteral("kf6/searchproviders/"), QStandardPaths::LocateDirectory);
+    return QStandardPaths::locateAll(QStandardPaths::GenericDataLocation, u"kf6/searchproviders/"_s, QStandardPaths::LocateDirectory);
 }
 
 void SearchProviderRegistry::reload()
@@ -40,10 +42,10 @@ void SearchProviderRegistry::reload()
     const QStringList servicesDirs = directories();
     for (const QString &dirPath : servicesDirs) {
         QDir dir(dirPath);
-        const auto files = dir.entryList({QStringLiteral("*.desktop")}, QDir::Files);
+        const auto files = dir.entryList({u"*.desktop"_s}, QDir::Files);
         for (const QString &file : files) {
             if (!m_searchProvidersByDesktopName.contains(file)) {
-                const QString filePath = dir.path() + QLatin1Char('/') + file;
+                const QString filePath = dir.path() + u'/' + file;
                 auto *provider = new SearchProvider(filePath);
                 m_searchProvidersByDesktopName.insert(file, provider);
                 m_searchProviders.append(provider);
@@ -68,5 +70,5 @@ SearchProvider *SearchProviderRegistry::findByKey(const QString &key) const
 
 SearchProvider *SearchProviderRegistry::findByDesktopName(const QString &name) const
 {
-    return m_searchProvidersByDesktopName.value(name + QLatin1String(".desktop"));
+    return m_searchProvidersByDesktopName.value(name + ".desktop"_L1);
 }

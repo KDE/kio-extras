@@ -14,6 +14,8 @@
 #include <QFileInfo>
 #include <QStandardPaths>
 
+using namespace Qt::StringLiterals;
+
 SearchProvider::SearchProvider(const QString &servicePath)
     : m_dirty(false)
 {
@@ -21,12 +23,12 @@ SearchProvider::SearchProvider(const QString &servicePath)
     KDesktopFile parser(servicePath);
     setName(parser.readName());
     KConfigGroup group(parser.desktopGroup());
-    setKeys(group.readEntry(QStringLiteral("Keys"), QStringList()));
+    setKeys(group.readEntry(u"Keys"_s, QStringList()));
 
-    m_query = group.readEntry(QStringLiteral("Query"));
-    m_charset = group.readEntry(QStringLiteral("Charset"));
-    m_iconName = group.readEntry(QStringLiteral("Icon"));
-    m_isHidden = group.readEntry(QStringLiteral("Hidden"), false);
+    m_query = group.readEntry(u"Query"_s);
+    m_charset = group.readEntry(u"Charset"_s);
+    m_iconName = group.readEntry(u"Icon"_s);
+    m_isHidden = group.readEntry(u"Hidden"_s, false);
 }
 
 SearchProvider::~SearchProvider()
@@ -71,12 +73,11 @@ void SearchProvider::setKeys(const QStringList &keys)
     for (const QString &key : keys) {
         if (key.length() > name.length()) {
             // We should avoid hidden files and directory paths, BUG: 407944
-            name = key.toLower().remove(QLatin1Char('.')).remove(QLatin1Char('/'));
-            ;
+            name = key.toLower().remove(u'.').remove(u'/');
         }
     }
 
-    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + QLatin1String("/kf6/searchproviders/");
+    const QString path = QStandardPaths::writableLocation(QStandardPaths::GenericDataLocation) + "/kf6/searchproviders/"_L1;
     bool firstRun = true;
 
     while (true) {
@@ -86,8 +87,7 @@ void SearchProvider::setKeys(const QStringList &keys)
             check += KRandom::randomString(4);
         }
 
-        const QString located =
-            QStandardPaths::locate(QStandardPaths::GenericDataLocation, QLatin1String("kf6/searchproviders/") + check + QLatin1String(".desktop"));
+        const QString located = QStandardPaths::locate(QStandardPaths::GenericDataLocation, "kf6/searchproviders/"_L1 + check + ".desktop"_L1);
         if (located.isEmpty()) {
             name = check;
             break;
