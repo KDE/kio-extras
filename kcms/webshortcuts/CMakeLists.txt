@@ -1,23 +1,31 @@
-kcoreaddons_add_plugin(kcm_webshortcuts INSTALL_NAMESPACE "plasma/kcms/systemsettings_qwidgets")
+# SPDX-FileCopyrightText: 2026 Tobias Fella <tobias.fella@kde.org>
+# SPDX-License-Identifier: BSD-2-Clause
 
-target_sources(kcm_webshortcuts PRIVATE
-    ikwsopts.cpp
-    searchprovider.cpp
-    searchproviderdlg.cpp
-    searchproviderregistry.cpp
+kcmutils_add_qml_kcm(kcm_webshortcuts
+    SOURCES
+        providersmodel.cpp
+        providersmodel.h
+        searchprovider.cpp
+        searchprovider.h
+        searchproviderregistry.cpp
+        searchproviderregistry.h
+        webshortcuts.cpp
+        webshortcuts.h
 )
 
-kcmutils_generate_desktop_file(kcm_webshortcuts)
-ki18n_wrap_ui(kcm_webshortcuts ikwsopts_ui.ui searchproviderdlg_ui.ui)
-
-target_link_libraries(kcm_webshortcuts
-    KF6::KCMUtils # KCModule
-    KF6::KIOWidgets    # KUriFilter
-    KF6::I18n
+target_link_libraries(kcm_webshortcuts PRIVATE
+    Qt::Gui
+    Qt::Qml
+    KF6::ConfigCore
     KF6::CoreAddons
+    KF6::I18n
+    KF6::KCMUtils
+    KF6::KIOCore
+    KF6::KIOGui
+    KF6::Service
 )
 
 if(USE_DBUS)
-  target_link_libraries(kcm_webshortcuts Qt6::DBus)
+  target_link_libraries(kcm_webshortcuts PRIVATE Qt6::DBus)
   target_compile_definitions(kcm_webshortcuts PUBLIC -DWITH_DBUS)
 endif()
