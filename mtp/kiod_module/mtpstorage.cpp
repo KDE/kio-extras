@@ -350,7 +350,7 @@ std::optional<KMTPFile> MTPStorage::findEntry(const QString &fileNeedle, const Q
 
 std::optional<quint32> MTPStorage::queryPath(const QString &path, int timeToLive)
 {
-    QPair<QDateTime, uint32_t> item = m_cache.value(path);
+    std::pair<QDateTime, uint32_t> item = m_cache.value(path);
 
     if (item.second != 0) {
         QDateTime dateTime = QDateTime::currentDateTimeUtc();
@@ -372,7 +372,7 @@ void MTPStorage::addPath(const QString &path, quint32 id, int timeToLive)
     QDateTime dateTime = QDateTime::currentDateTimeUtc();
     dateTime = dateTime.addSecs(timeToLive);
 
-    QPair<QDateTime, uint32_t> item(dateTime, id);
+    std::pair<QDateTime, uint32_t> item(dateTime, id);
 
     m_cache.insert(path, item);
 }

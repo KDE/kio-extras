@@ -86,7 +86,7 @@ QUrl FilenameSearchTest::buildSearchQuery(QByteArray searchString, QByteArray se
     //  Add a "src=internal" option to all queries
 
     QUrlQuery queryOptions(searchOptions);
-    QList<QPair<QString, QString>> map = {{QStringLiteral("search"), QString(searchString)}};
+    QList<std::pair<QString, QString>> map = {{QStringLiteral("search"), QString(searchString)}};
     map.append({{QStringLiteral("src"), QStringLiteral("internal")}});
     map.append({{QStringLiteral("url"), searchFrom.toString()}});
     map.append(queryOptions.queryItems());

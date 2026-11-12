@@ -80,7 +80,7 @@ QUrl FilenameSearchExternalTest::buildSearchQuery(QByteArray searchString, QByte
     //  Add a "src=external" option to all queries
 
     QUrlQuery queryOptions(searchOptions);
-    QList<QPair<QString, QString>> map = {{QStringLiteral("search"), QString(searchString)}};
+    QList<std::pair<QString, QString>> map = {{QStringLiteral("search"), QString(searchString)}};
     map.append({{QStringLiteral("src"), QStringLiteral("external")}});
     map.append({{QStringLiteral("url"), searchFrom.toString()}});
     map.append(queryOptions.queryItems());

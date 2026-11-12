@@ -237,7 +237,7 @@ bool readNewExecutablePrimaryIcon(QDataStream &ds, const DosHeader &dosHeader, Q
     out << icoHeader;
 
     quint32 dataOffset = IconDirSize + IconDirEntrySize * iconGroup.count;
-    QVector<QPair<qint64, quint32>> resourceOffsetSizePairs;
+    QVector<std::pair<qint64, quint32>> resourceOffsetSizePairs;
 
     for (int i = 0; i < iconGroup.count; i++) {
         RtGroupIconDirectoryEntry entry;
@@ -541,7 +541,7 @@ bool readPortableExecutablePrimaryIcon(QDataStream &ds, const DosHeader &dosHead
     out << icoFileHeader;
 
     quint32 dataOffset = IconDirSize + IconDirEntrySize * primaryIconGroup.count;
-    QVector<QPair<qint64, quint32>> resourceOffsetSizePairs;
+    QVector<std::pair<qint64, quint32>> resourceOffsetSizePairs;
 
     for (int i = 0; i < primaryIconGroup.count; i++) {
         RtGroupIconDirectoryEntry entry;
