@@ -141,7 +141,7 @@
 <para
 >إذا توفرت لغة <application
 >Perl</application
-> على الجهاز البعيد، فستُستخدم بدلاً من ذلك. حينها يلزم فقط <command
+> على الجهاز البعيد، فستُستخدم بدلًا من ذلك. حينها يلزم فقط <command
 >env</command
 > و<command
 >/bin/sh</command

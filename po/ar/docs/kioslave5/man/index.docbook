@@ -123,7 +123,7 @@
 ></note>
 
 <para
->يوجد أيضاً اختصار: <userinput
+>يوجد أيضًا اختصار: <userinput
 ><command
 >#fopen</command
 ></userinput
@@ -132,7 +132,7 @@
 <para
 >إذا لم تجد كافة صفحات الدليل الخاصة بك، فاضبط ملف الإعداد <filename
 >/etc/manpath.config</filename
-> (أو ملفاً باسم مشابه حسب توزيعتك) أو اضبط متغيرات البيئة <envar
+> (أو ملفًا باسم مشابه حسب توزيعتك) أو اضبط متغيرات البيئة <envar
 >MANPATH</envar
 > و <envar
 >MANSECT</envar

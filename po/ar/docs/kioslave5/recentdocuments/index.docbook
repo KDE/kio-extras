@@ -50,7 +50,7 @@
 
 <para
 >يمكنك إضافة مدخل إلى شريط الأماكن الجانبي: انقر بالزر الأيمن على الشريط الجانبي، واختر <guimenuitem
->أضف مدخلاً</guimenuitem
+>أضف مدخلًا</guimenuitem
 >، وأدخل <userinput
 >recentdocuments:/</userinput
 > في حقل <guilabel
