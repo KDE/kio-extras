@@ -7,7 +7,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-01-18 00:42+0000\n"
+"POT-Creation-Date: 2026-11-14 14:05+0000\n"
 "PO-Revision-Date: 2026-09-23 06:56+0900\n"
 "Last-Translator: Abduqadir Abliz <sahranbay@gmail.com>\n"
 "Language-Team: Uyghur <kde-i18n-doc@kde.org>\n"
@@ -18,52 +18,52 @@ msgstr ""
 "Plural-Forms: nplurals=1; plural=0;\n"
 "X-Generator: Poedit 3.9\n"
 
-#: thumbnail.cpp:291
+#: thumbnail.cpp:292
 #, kde-format
 msgid "No MIME Type specified."
 msgstr "MIME تۈرى كۆرسىتىلمىگەن."
 
-#: thumbnail.cpp:298
+#: thumbnail.cpp:299
 #, kde-format
 msgid "No or invalid size specified."
 msgstr "چوڭلۇقى ئىناۋەتسىز ۋە كۆرسىتىلمىگەن."
 
-#: thumbnail.cpp:323
+#: thumbnail.cpp:324
 #, kde-format
 msgid "Cannot create thumbnail for directory"
 msgstr "مۇندەرىجىنىڭ كىچىك سۈرىتىنى قۇرغىلى بولمىدى"
 
-#: thumbnail.cpp:332
+#: thumbnail.cpp:333
 #, kde-format
 msgid "No plugin specified."
 msgstr "قىستۇرما كۆرسىتىلمىگەن."
 
-#: thumbnail.cpp:337
+#: thumbnail.cpp:338
 #, kde-format
 msgid "Cannot load ThumbCreator %1"
 msgstr "ThumbCreator نى ئوقۇغىلى بولمىدى %1"
 
-#: thumbnail.cpp:345
+#: thumbnail.cpp:346
 #, kde-format
 msgid "Cannot create thumbnail for %1"
 msgstr "%1 ئۈچۈن كىچىك سۈرەت قۇرغىلى بولمىدى"
 
-#: thumbnail.cpp:355
+#: thumbnail.cpp:356
 #, kde-format
 msgid "Failed to create a thumbnail."
 msgstr "كىچىك سۈرەت قۇرۇش مەغلۇپ بولدى."
 
-#: thumbnail.cpp:375
+#: thumbnail.cpp:376
 #, kde-format
 msgid "Could not write image."
 msgstr "سۈرەتنى يازغىلى بولمىدى."
 
-#: thumbnail.cpp:403
+#: thumbnail.cpp:404
 #, kde-format
 msgid "Failed to attach to shared memory segment %1"
 msgstr "ھەمبەھىرلەنگەن ئەسلەك بۆلىكى %1 گە قېتىلىش مەغلۇپ بولدى"
 
-#: thumbnail.cpp:407
+#: thumbnail.cpp:408
 #, kde-format
 msgid "Image is too big for the shared memory segment"
 msgstr "ھەمبەھىرلەنگەن ئەسلەك بۆلىكىگە نىسبەتەن سۈرەت بەك چوڭ"
