@@ -1,7 +1,7 @@
 # Translation of kio_nfs.po to Slovenian
 # SLOVENIAN TRANSLATION OF K DESKTOP ENVIRONMENT.
 # Copyright (C) 2001, 2004 Free Software Foundation, Inc.
-# $Id: kio6_nfs.po 1742551 2026-07-30 01:29:03Z scripty $
+# $Id$
 # $Source$
 #
 # Andrej Vernekar <andrej.vernekar@moj.net>, 2001.

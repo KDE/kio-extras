@@ -3,14 +3,14 @@
 # Lisiane Sztoltz Teixeira <lisiane@kdemail.net>, 2005.
 # Diniz Bortolotto <diniz.bortolotto@gmail.com>, 2007.
 # André Marcelo Alvarenga <andrealvarenga@gmx.net>, 2009, 2010, 2011.
-# Marcus Gama <marcus.gama@gmail.com>, 2012.
+# Marcus Gama <marcus.gama@kde.org>, 2012.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_thumbnail\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-11-13 18:17+0000\n"
 "PO-Revision-Date: 2012-05-09 19:48-0300\n"
-"Last-Translator: Marcus Gama <marcus.gama@gmail.com>\n"
+"Last-Translator: Marcus Gama <marcus.gama@kde.org>\n"
 "Language-Team: Brazilian Portuguese <kde-i18n-pt_br@kde.org>\n"
 "Language: pt_BR\n"
 "MIME-Version: 1.0\n"
