@@ -1,0 +1,104 @@
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
+msgid ""
+msgstr ""
+"Project-Id-Version: kio-extras\n"
+"Report-Msgid-Bugs-To: https://bugs.kde.org\n"
+"POT-Creation-Date: 2026-07-30 00:44+0000\n"
+"PO-Revision-Date: 2026-11-16 12:41+0100\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
+"Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
+"Language: sr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=n==1 ? 3 : n%10==1 && n%100!=11 ? 0 : n"
+"%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
+"X-Accelerator-Marker: &\n"
+"X-Text-Markup: kde4\n"
+"X-Environment: kde\n"
+
+#: afcutils.cpp:60
+#, kde-format
+msgid "Unhandled AFC error code '%1'"
+msgstr "Необрађен кôд грешке AFC „%1“"
+
+#: afcutils.cpp:73
+#, kde-format
+msgid "Unhandled housearrest error code '%1'"
+msgstr "Необрађен кôд грешке housearrest „%1“"
+
+#: afcutils.cpp:89
+#, kde-format
+msgid "Unhandled instproxy error code '%1'"
+msgstr "Необрађен кôд грешке instproxy „%1“"
+
+#: afcutils.cpp:105
+#, kde-format
+msgid ""
+"The device is locked. Please enter the passcode on the device and try again."
+msgstr ""
+"Уређај је закључан. Унесите код за откључавање на уређају и покушајте поново."
+
+#: afcutils.cpp:112
+#, kde-format
+msgid "You have denied this computer access to the device."
+msgstr "Одбили сте овом рачунару приступ уређају."
+
+#: afcutils.cpp:119
+#, kde-format
+msgid ""
+"You need to allow this computer to access the device. Please accept the "
+"prompt on the device and try again."
+msgstr ""
+"Морате дозволити овом рачунару да приступи уређају. Прихватите упит на "
+"уређају и покушајте поново."
+
+#: afcutils.cpp:127
+#, kde-format
+msgid ""
+"Cannot access the device. Make sure it is unlocked and allows this computer "
+"to access it."
+msgstr ""
+"Не могу да приступим уређају. Проверите да ли је откључан и да ли дозвољава "
+"овом рачунару приступ."
+
+#: afcutils.cpp:134
+#, kde-format
+msgid "Unhandled lockdownd code '%1'"
+msgstr "Необрађен кôд lockdownd „%1“"
+
+#: afcutils.cpp:147
+#, kde-format
+msgid "Unhandled sbservices code '%1'"
+msgstr "Необрађен кôд sbservices „%1“"
+
+#: kio_afc.cpp:137
+#, kde-format
+msgid "Apple Devices"
+msgstr "Еплови уређаји"
+
+#: kio_afc.cpp:193 kio_afc.cpp:413
+#, kde-format
+msgctxt "Link to folder with files stored inside apps"
+msgid "Apps"
+msgstr "Програми"
+
+#: kio_afc.cpp:617
+#, kde-format
+msgid "Cannot read without opening file first"
+msgstr "Не могу да читам без претходног отварања фајла"
+
+#: kio_afc.cpp:637
+#, kde-format
+msgid "Cannot seek without opening file first"
+msgstr "Не могу да премотавам без претходног отварања фајла"
+
+#: kio_afc.cpp:665
+#, kde-format
+msgid "Cannot write without opening file first"
+msgstr "Не могу да пишем без претходног отварања фајла"
+
+#: kio_afc.cpp:817
+#, kde-format
+msgid "Cannot rename between devices."
+msgstr "Не могу да преименујем између уређаја."

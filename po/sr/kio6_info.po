@@ -1,13 +1,14 @@
 # Translation of kio_info into Serbian.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2009.
 # Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_info\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2025-02-27 13:12+0000\n"
-"PO-Revision-Date: 2009-12-26 23:13+0100\n"
-"Last-Translator: Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>\n"
+"PO-Revision-Date: 2026-11-16 12:41+0100\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr\n"
 "MIME-Version: 1.0\n"
@@ -20,15 +21,10 @@ msgstr ""
 "X-Environment: kde\n"
 
 #: info.cpp:59
-#, fuzzy, kde-format
-#| msgid ""
-#| "\n"
-#| "Unable to locate file %1 which is necessary to run this service. Please "
-#| "check your software installation."
+#, kde-format
 msgid ""
 "Unable to locate files which are necessary to run this service:<br>"
 "%1<br>Please check your software installation."
 msgstr ""
-"\n"
-"Не могу да нађем фајл %1, неопходан за покретање овог сервиса. Проверите "
-"инсталацију софтвера."
+"<html>Не могу да нађем фајлове неопходне за покретање овог сервиса:<br/>"
+"%1<br/>Проверите инсталацију софтвера.</html>"
