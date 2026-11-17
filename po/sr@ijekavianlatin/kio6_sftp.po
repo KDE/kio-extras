@@ -3,13 +3,14 @@
 # Chusslove Illich <caslav.ilic@gmx.net>, 2005, 2007, 2008, 2009, 2010, 2012, 2013, 2014.
 # Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009, 2010.
 # Dalibor Djuric <daliborddjuric@gmail.com>, 2010, 2011.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_sftp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-17 00:49+0000\n"
-"PO-Revision-Date: 2014-12-06 16:12+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-11-16 12:41+0100\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
 "MIME-Version: 1.0\n"
@@ -67,11 +68,10 @@ msgid "Site:"
 msgstr "Sajt:"
 
 #: kio_sftp.cpp:524
-#, fuzzy, kde-format
-#| msgid "Could not read link: %1"
+#, kde-format
 msgctxt "error message. %1 is a path, %2 is a numeric error code"
 msgid "Could not read link: %1 [%2]"
-msgstr "Ne mogu da čitam vezu: %1"
+msgstr "Ne mogu da čitam vezu: %1 [%2]"
 
 #: kio_sftp.cpp:655
 #, kde-format
@@ -84,10 +84,9 @@ msgid "Could not set a timeout."
 msgstr "Ne mogu da postavim prekovrijeme."
 
 #: kio_sftp.cpp:677
-#, fuzzy, kde-format
-#| msgid "Could not set port."
+#, kde-format
 msgid "Could not disable Nagle's Algorithm."
-msgstr "Ne mogu da postavim port."
+msgstr "Ne mogu da isključim Nejglov algoritam."
 
 #: kio_sftp.cpp:683 kio_sftp.cpp:688
 #, kde-format
@@ -120,10 +119,9 @@ msgid "Opening SFTP connection to host %1:%2"
 msgstr "Otvaram SFTP vezu ka domaćinu %1:%2"
 
 #: kio_sftp.cpp:770
-#, fuzzy, kde-format
-#| msgid "Could not create hash from server public key"
+#, kde-format
 msgid "Could not get server public key type name"
-msgstr "Ne mogu da napravim disperziju javnog ključa servera"
+msgstr "Ne mogu da dobavim ime tipa javnog ključa servera"
 
 #: kio_sftp.cpp:782
 #, kde-format
@@ -131,20 +129,12 @@ msgid "Could not create hash from server public key"
 msgstr "Ne mogu da napravim disperziju javnog ključa servera"
 
 #: kio_sftp.cpp:791
-#, fuzzy, kde-format
-#| msgid "Could not create hash from server public key"
+#, kde-format
 msgid "Could not create fingerprint for server public key"
-msgstr "Ne mogu da napravim disperziju javnog ključa servera"
+msgstr "Ne mogu da napravim otisak javnog ključa servera"
 
 #: kio_sftp.cpp:850
-#, fuzzy, kde-format
-#| msgid ""
-#| "The host key for this server was not found, but another type of key "
-#| "exists.\n"
-#| "An attacker might change the default server key to confuse your client "
-#| "into thinking the key does not exist.\n"
-#| "Please contact your system administrator.\n"
-#| "%1"
+#, kde-format
 msgid ""
 "An %1 host key for this server was not found, but another type of key "
 "exists.\n"
@@ -153,28 +143,21 @@ msgid ""
 "Please contact your system administrator.\n"
 "%2"
 msgstr ""
-"Ključ domaćina za ovaj server nije nađen, ali postoji drugi tip ključa.\n"
+"Ključ domaćina tipa %1 za ovaj server nije nađen, ali postoji drugi tip "
+"ključa.\n"
 "Napadač bi mogao da promijeni podrazumijevani ključ servera tako da vaš "
 "klijent pomisli da ključ ne postoji.\n"
 "Obratite se sistem-administratoru.\n"
-"%1"
+"%2"
 
 #: kio_sftp.cpp:867
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Identity Change"
-msgstr ""
+msgstr "Promjena identiteta domaćina"
 
 #: kio_sftp.cpp:869
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The host key for the server %1 has changed.\n"
-#| "This could either mean that DNS SPOOFING is happening or the IP address "
-#| "for the host and its host key have changed at the same time.\n"
-#| "The fingerprint for the key sent by the remote host is:\n"
-#| " %2\n"
-#| "Please contact your system administrator.\n"
-#| "%3"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The host key for the server <emphasis>%1</emphasis> has changed.</"
@@ -183,41 +166,35 @@ msgid ""
 "para><para>The %2 key fingerprint sent by the remote host is:<bcode>%3</"
 "bcode>Are you sure you want to continue connecting?</para>"
 msgstr ""
-"Ključ domaćina za server %1 izmijenjen je.\n"
-"Ovo znači da je ili došlo do DNS varke, ili su i IP adresa i ključ domaćina "
-"istovremeno promijenjeni.\n"
-"Udaljeni domaćin šalje ključ sa otiskom:\n"
-"%2\n"
-"Obratite se sistem-administratoru.\n"
-"%3"
+"<para>Ključ domaćina za server <emphasis>%1</emphasis> izmijenjen je.</"
+"para><para>Ovo znači da je ili došlo do DNS varke, ili su i IP adresa i "
+"ključ domaćina istovremeno promijenjeni.</para><para>Udaljeni domaćin šalje "
+"ključ tipa %2 sa otiskom:<bcode>%3</bcode>Želite li zaista da nastavite s "
+"povezivanjem?</para>"
 
 #: kio_sftp.cpp:879
 #, kde-format
 msgctxt "@title:window"
 msgid "Host Verification Failure"
-msgstr ""
+msgstr "Neuspjela provjera domaćina"
 
 #: kio_sftp.cpp:881
-#, fuzzy, kde-kuit-format
-#| msgid ""
-#| "The authenticity of host %1 cannot be established.\n"
-#| "The key fingerprint is: %2\n"
-#| "Are you sure you want to continue connecting?"
+#, kde-kuit-format
 msgctxt "@info"
 msgid ""
 "<para>The authenticity of host <emphasis>%1</emphasis> cannot be established."
 "</para><para>The %2 key fingerprint is:<bcode>%3</bcode>Are you sure you "
 "want to continue connecting?</para>"
 msgstr ""
-"Autentičnost domaćina %1 ne može da se uspostavi.\n"
-"Otisak ključa je: %2\n"
-"Želite li zaista da nastavite s povezivanjem?"
+"<para>Autentičnost domaćina <emphasis>%1</emphasis> ne može da se uspostavi."
+"</para><para>Otisak ključa tipa %2 je:<bcode>%3</bcode>Želite li zaista da "
+"nastavite s povezivanjem?</para>"
 
 #: kio_sftp.cpp:890
 #, kde-format
 msgctxt "@action:button"
 msgid "Connect Anyway"
-msgstr ""
+msgstr "Ipak se poveži"
 
 #: kio_sftp.cpp:913 kio_sftp.cpp:932 kio_sftp.cpp:953 kio_sftp.cpp:971
 #: kio_sftp.cpp:1023 kio_sftp.cpp:1033
@@ -265,7 +242,7 @@ msgstr "Uspješno uspostavljena veza sa %1"
 #: kio_sftp.cpp:1106
 #, kde-format
 msgid "Invalid sftp context"
-msgstr ""
+msgstr "Loš SFTP kontekst"
 
 #: kio_sftp.cpp:1655
 #, kde-format
@@ -275,55 +252,3 @@ msgid ""
 msgstr ""
 "Ne mogu da promijenim dozvole za\n"
 "%1"
-
-#, fuzzy
-#~| msgid ""
-#~| "The host key for the server %1 has changed.\n"
-#~| "This could either mean that DNS SPOOFING is happening or the IP address "
-#~| "for the host and its host key have changed at the same time.\n"
-#~| "The fingerprint for the key sent by the remote host is:\n"
-#~| " %2\n"
-#~| "Please contact your system administrator.\n"
-#~| "%3"
-#~ msgid ""
-#~ "The host key for the server %1 has changed.\n"
-#~ "This could either mean that DNS SPOOFING is happening or the IP address "
-#~ "for the host and its host key have changed at the same time.\n"
-#~ "The fingerprint for the %2 key sent by the remote host is:\n"
-#~ "  SHA256:%3\n"
-#~ "Please contact your system administrator.\n"
-#~ "%4"
-#~ msgstr ""
-#~ "Ključ domaćina za server %1 izmijenjen je.\n"
-#~ "Ovo znači da je ili došlo do DNS varke, ili su i IP adresa i ključ "
-#~ "domaćina istovremeno promijenjeni.\n"
-#~ "Udaljeni domaćin šalje ključ sa otiskom:\n"
-#~ "%2\n"
-#~ "Obratite se sistem-administratoru.\n"
-#~ "%3"
-
-#~ msgid "Warning: Cannot verify host's identity."
-#~ msgstr "Upozorenje: Ne mogu da provjerim indentitet domaćina."
-
-#~ msgid ""
-#~ "The host key for this server was not found, but another type of key "
-#~ "exists.\n"
-#~ "An attacker might change the default server key to confuse your client "
-#~ "into thinking the key does not exist.\n"
-#~ "Please contact your system administrator.\n"
-#~ "%1"
-#~ msgstr ""
-#~ "Ključ domaćina za ovaj server nije nađen, ali postoji drugi tip ključa.\n"
-#~ "Napadač bi mogao da promijeni podrazumijevani ključ servera tako da vaš "
-#~ "klijent pomisli da ključ ne postoji.\n"
-#~ "Obratite se sistem-administratoru.\n"
-#~ "%1"
-
-#~ msgid ""
-#~ "The authenticity of host %1 cannot be established.\n"
-#~ "The key fingerprint is: %2\n"
-#~ "Are you sure you want to continue connecting?"
-#~ msgstr ""
-#~ "Autentičnost domaćina %1 ne može da se uspostavi.\n"
-#~ "Otisak ključa je: %2\n"
-#~ "Želite li zaista da nastavite s povezivanjem?"

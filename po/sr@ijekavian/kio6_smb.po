@@ -3,13 +3,14 @@
 # Marko Rosic <roske@kde.org.yu>, 2003.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2005, 2007, 2010, 2017.
 # Dalibor Djuric <dalibor.djuric@mozilla-srbija.org>, 2009, 2010.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio5_smb\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-21 09:40+0000\n"
-"PO-Revision-Date: 2017-07-24 00:24+0200\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-11-16 12:41+0100\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavian\n"
 "MIME-Version: 1.0\n"
@@ -36,6 +37,17 @@ msgid ""
 "attempted using empty username and password. Depending on server "
 "configuration non-empty usernames may be required</para>"
 msgstr ""
+"<para>Постоји више начина аутентификације на СМБ дијељењима.</"
+"para><para><placeholder>корисничко_име</placeholder>: при аутентификацији "
+"унутар кућне мреже довољно је корисничко име на серверу</"
+"para><para><placeholder>корисничко_име@домен.com</placeholder>: савремена "
+"пословна имена за пријаву имају облик адресе е‑поште</"
+"para><para><placeholder>ДОМЕН\\корисничко_име</placeholder>: за веома старе "
+"пословне мреже или радне групе можда ћете морати да испред додате име "
+"нетБИОС домена (прије Виндоуза 2000)</para><para><placeholder>анонимно</"
+"placeholder>: анонимна пријава може се покушати са празним корисничким "
+"именом и лозинком. Зависно од поставе сервера, можда ће бити потребно "
+"непразно корисничко име</para>"
 
 #: kio_smb_auth.cpp:51
 #, kde-format
@@ -57,7 +69,7 @@ msgstr ""
 #, kde-format
 msgctxt "@item the top of the shares that can be browsed"
 msgid "Shared Folders (SMB)"
-msgstr ""
+msgstr "дијељене фасцикле (СМБ)"
 
 #: kio_smb_browse.cpp:76
 #, kde-format
@@ -119,7 +131,7 @@ msgctxt ""
 "@info:status smb failed to reach the server (e.g. server offline or network "
 "failure). %1 is an ip address or hostname"
 msgid "%1: Host unreachable"
-msgstr ""
+msgstr "%1: домаћин недоступан"
 
 #: kio_smb_browse.cpp:350
 #, kde-format
@@ -140,11 +152,10 @@ msgstr ""
 "да изнесете, попис можете послати приватно програмерима ако га затраже)."
 
 #: kio_smb_browse.cpp:362
-#, fuzzy, kde-format
-#| msgid "Unknown error condition in stat: %1"
+#, kde-format
 msgctxt "%1 is an error number, %2 either a pretty string or the number"
 msgid "Unknown error condition: [%1] %2"
-msgstr "Непознато стање грешке у испиту: %1"
+msgstr "Непознато стање грешке: [%1] %2"
 
 #: kio_smb_browse.cpp:379
 #, kde-kuit-format
@@ -189,7 +200,4 @@ msgstr ""
 msgctxt ""
 "host entry when no pretty name is available. %1 likely is an IP address"
 msgid "Unknown Device @ <resource>%1</resource>"
-msgstr ""
-
-#~ msgid "libsmbclient failed to initialize context"
-#~ msgstr "Библиотека СМБ клијента није успјела да припреми контекст"
+msgstr "Непознат уређај @ <resource>%1</resource>"

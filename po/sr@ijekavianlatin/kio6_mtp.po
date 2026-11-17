@@ -1,12 +1,13 @@
 # Translation of kio_mtp.po into Serbian.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2014, 2016.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_mtp\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-30 00:44+0000\n"
-"PO-Revision-Date: 2016-11-28 01:33+0100\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-11-16 12:41+0100\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
 "MIME-Version: 1.0\n"
@@ -19,10 +20,7 @@ msgstr ""
 "X-Environment: kde\n"
 
 #: kio_mtp.cpp:240
-#, fuzzy, kde-format
-#| msgid ""
-#| "No Storages found. Make sure your device is unlocked and has MTP enabled "
-#| "in its USB connection settings."
+#, kde-format
 msgctxt ""
 "Message shown when attempting to access an MTP device that is not fully "
 "accessible yet"
@@ -31,10 +29,11 @@ msgid ""
 "popup on its screen. If that does not work, make sure MTP is enabled in its "
 "USB connection settings."
 msgstr ""
-"Nije nađeno nijedno skladište. Proverite da li je uređaj otključan i da li "
-"je aktiviran MTP u njegovim postavkama USB povezivanja."
+"Ne mogu da pristupim uređaju. Provjerite da li je otključan i dodirnite "
+"„Dozvoli“ u iskačućem prozoru na njegovom ekranu. Ako to ne pomogne, "
+"provjerite da li je MTP uključen u njegovim postavkama USB povezivanja."
 
 #: kio_mtp.cpp:544
 #, kde-format
 msgid "Cannot copy/move files on the device itself"
-msgstr "Fajlovi ne mogu da se kopiraju/premeštaju na samom uređaju"
+msgstr "Fajlovi ne mogu da se kopiraju/premiještaju na samom uređaju"

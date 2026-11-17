@@ -1,13 +1,14 @@
 # Translation of kio_nfs.po into Serbian.
 # Toplica Tanaskovic <toptan@kde.org.yu>, 2003, 2004.
 # Chusslove Illich <caslav.ilic@gmx.net>, 2007, 2014.
+# Nemanja Hiršl <nemhirsl@gmail.com>, 2026.
 msgid ""
 msgstr ""
 "Project-Id-Version: kio_nfs\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-07-30 00:44+0000\n"
-"PO-Revision-Date: 2014-10-18 19:34+0200\n"
-"Last-Translator: Chusslove Illich <caslav.ilic@gmx.net>\n"
+"PO-Revision-Date: 2026-11-16 12:41+0100\n"
+"Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
 "Language: sr@ijekavianlatin\n"
 "MIME-Version: 1.0\n"
@@ -22,23 +23,22 @@ msgstr ""
 #: kio_nfs.cpp:152
 #, kde-format
 msgid "Cannot find an NFS version that host '%1' supports"
-msgstr ""
+msgstr "Ne mogu da nađem NFS verziju koju podržava domaćin „%1“"
 
 #: kio_nfs.cpp:345
 #, kde-format
 msgid "The NFS protocol requires a server host name."
-msgstr ""
+msgstr "Protokol NFS zahtijeva ime domaćina servera."
 
 #: kio_nfs.cpp:648
 #, kde-format
 msgid "Empty destination"
-msgstr ""
+msgstr "Prazno odredište"
 
 #: kio_nfs.cpp:740
-#, fuzzy, kde-format
-#| msgid "RPC error %1"
+#, kde-format
 msgid "RPC error %1, %2"
-msgstr "RPC greška %1"
+msgstr "RPC greška %1, %2"
 
 #: kio_nfs.cpp:776
 #, kde-format
@@ -51,24 +51,11 @@ msgid "Disk quota exceeded"
 msgstr "Prekoračena kvota diska"
 
 #: kio_nfs.cpp:785
-#, fuzzy, kde-format
-#| msgid "NFS error %1 - %2"
+#, kde-format
 msgid "NFS error %1, %2"
-msgstr "NFS greška %1 — %2"
+msgstr "NFS greška %1, %2"
 
 #: nfsv3.cpp:436 nfsv3.cpp:587
 #, kde-format
 msgid "Unknown target"
 msgstr "Nepoznat cilj"
-
-#~ msgid "%1: Unsupported NFS version"
-#~ msgstr "%1: nepodržana verzija NFS‑a"
-
-#~ msgid "No space left on device"
-#~ msgstr "Nema prostora na uređaju"
-
-#~ msgid "Read only file system"
-#~ msgstr "Fajl sistem samo‑za‑čitanje"
-
-#~ msgid "Failed to mount %1"
-#~ msgstr "Ne mogu da montiram %1"
