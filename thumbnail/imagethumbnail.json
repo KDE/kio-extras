@@ -27,7 +27,7 @@
             "image/x-rgb",
             "image/vnd.adobe.photoshop",
             "image/qoi",
-            "image/x-dds",
+            "image/vnd.ms-dds",
             "image/tiff"
         ],
         "Name": "Images (GIF, PNG, BMP, ...)",
