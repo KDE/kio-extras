@@ -3,7 +3,7 @@ msgid ""
 msgstr ""
 "Project-Id-Version: kio-extras\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
-"POT-Creation-Date: 2026-10-22 00:50+0000\n"
+"POT-Creation-Date: 2026-11-18 10:06+0000\n"
 "PO-Revision-Date: 2026-11-16 12:41+0100\n"
 "Last-Translator: Nemanja Hiršl <nemhirsl@gmail.com>\n"
 "Language-Team: Serbian <kde-i18n-sr@kde.org>\n"
@@ -47,17 +47,17 @@ msgstr ""
 "Uklanja izabrane fajlove ili lokacije sa spiska nedavno korišćenih u "
 "Dolphinu i u menijima Plasme. Ovo ne uklanja niti premešta same resurse."
 
-#: recentlyused.cpp:338
+#: recentlyused.cpp:342
 #, kde-format
 msgid "Recent Documents"
 msgstr "Nedavni dokumenti"
 
-#: recentlyused.cpp:346
+#: recentlyused.cpp:350
 #, kde-format
 msgid "Recent Files"
 msgstr "Nedavni fajlovi"
 
-#: recentlyused.cpp:349
+#: recentlyused.cpp:353
 #, kde-format
 msgid "Recent Locations"
 msgstr "Nedavne lokacije"
