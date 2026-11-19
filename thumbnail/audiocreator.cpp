@@ -80,18 +80,21 @@ static KIO::ThumbnailResult parseID3v2Tag(T &file)
     return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
 }
 
-template<class T>
-static KIO::ThumbnailResult parseFlacTag(T &file)
+// Prefer the front cover, but use any other picture rather than none:
+// many taggers store the cover with the type "Other".
+static KIO::ThumbnailResult parseFlacPictures(const TagLib::List<TagLib::FLAC::Picture *> &pictureList)
 {
-    const auto pictureList = file.pictureList();
-    for (const auto &picture : pictureList) {
-        if (picture->type() != TagLib::FLAC::Picture::FrontCover) {
-            continue;
+    for (const bool frontCover : {true, false}) {
+        for (const auto *picture : pictureList) {
+            if ((picture->type() == TagLib::FLAC::Picture::FrontCover) != frontCover) {
+                continue;
+            }
+            const auto coverData = picture->data();
+            QImage img;
+            if (img.loadFromData(reinterpret_cast<const uchar *>(coverData.data()), coverData.size())) {
+                return KIO::ThumbnailResult::pass(img);
+            }
         }
-        const auto coverData = picture->data();
-        QImage img;
-        bool okay = img.loadFromData((uchar *)coverData.data(), coverData.size());
-        return okay ? KIO::ThumbnailResult::pass(img) : KIO::ThumbnailResult::fail();
     }
     return KIO::ThumbnailResult::fail();
 }
@@ -167,8 +170,14 @@ KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
     if (type.inherits("audio/x-flac") || type.inherits("audio/flac")) {
         TagLib::FLAC::File file(fileName);
 
-        if (auto result = parseFlacTag(file); result.isValid()) {
+        if (auto result = parseFlacPictures(file.pictureList()); result.isValid()) {
             return result;
+        }
+        // Some taggers write the picture into the Vorbis comment as METADATA_BLOCK_PICTURE
+        if (file.hasXiphComment()) {
+            if (auto result = parseFlacPictures(file.xiphComment()->pictureList()); result.isValid()) {
+                return result;
+            }
         }
 
         return parseID3v2Tag(file);
@@ -198,7 +207,7 @@ KIO::ThumbnailResult AudioCreator::create(const KIO::ThumbnailRequest &request)
         if (!xiphComment || xiphComment->isEmpty()) {
             return KIO::ThumbnailResult::fail();
         }
-        return parseFlacTag(*xiphComment);
+        return parseFlacPictures(xiphComment->pictureList());
     }
     if (type.inherits("audio/x-aiff") || type.inherits("audio/x-aifc")) {
         TagLib::RIFF::AIFF::FileExt file(fileName);
