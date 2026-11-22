@@ -10,7 +10,7 @@ msgstr ""
 "Project-Id-Version: kio_man\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-10-06 00:46+0000\n"
-"PO-Revision-Date: 2026-05-25 21:15+0200\n"
+"PO-Revision-Date: 2026-11-22 00:16+0100\n"
 "Last-Translator: Shinjo Park <kde@peremen.name>\n"
 "Language-Team: Korean <kde-kr@kde.org>\n"
 "Language: ko\n"
@@ -106,11 +106,10 @@ msgstr ""
 "거나 대소문자를 구분하지 않는 일치를 찾았습니다."
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "매뉴얼 페이지 색인"
+msgstr "매뉴얼 페이지"
 
 #: kio_man.cpp:842
 #, kde-format
