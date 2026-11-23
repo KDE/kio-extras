@@ -20,6 +20,7 @@
         "Description[sr]": "Ажурира приказе недавно коришћених фајлова и фасцикли када се они користе",
         "Description[tr]": "Son kullanılan dosyaların ve klasörlerin görünümlerini günceller",
         "Description[uk]": "Оновлює панелі перегляду нещодавно використаних файлів і тек, коли їх використовують",
+        "Description[zh_CN]": "当最近使用的文件与文件夹被使用时更新其视图",
         "Description[zh_TW]": "使用檔案或資料夾時更新最近使用檔案與資料夾的檢視",
         "Icon": "document-open-recent",
         "Name": "Recently Used Updater",
@@ -42,6 +43,7 @@
         "Name[sr]": "Освеживач недавно коришћених",
         "Name[tr]": "Son Kullanılan Güncelleyici",
         "Name[uk]": "Засіб оновлення нещодавно використаного",
+        "Name[zh_CN]": "最近使用项目更新程序",
         "Name[zh_TW]": "最近使用資料更新器"
     },
     "X-KDE-Kded-autoload": false,
