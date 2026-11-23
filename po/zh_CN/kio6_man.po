@@ -101,11 +101,10 @@ msgstr ""
 "的匹配项。"
 
 #: kio_man.cpp:788 kio_man.cpp:1382
-#, fuzzy, kde-format
-#| msgid "Manual Page Index"
+#, kde-format
 msgctxt "@item the folder that holds every manual page"
 msgid "Manual Pages"
-msgstr "Man 页面索引"
+msgstr "使用手册页面"
 
 #: kio_man.cpp:842
 #, kde-format
