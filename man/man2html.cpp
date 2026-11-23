@@ -4429,6 +4429,10 @@ static char *scan_request(char *c)
                     out_html(" type=\"text/css\">\n");
                     out_html("<link rel=\"stylesheet\" href=\"help:/kdoctools6-common/kde-localised.css\"");
                     out_html(" type=\"text/css\">\n");
+                    out_html("<style type=\"text/css\">\n");
+                    out_html(".book > h2 { margin-block-end: 0; }\n");
+                    out_html(".book pre { margin-block: 0; }\n");
+                    out_html("</style>\n");
                     out_html("<meta name=\"ROFF_Type\" content=\"");
                     if (mandoc_command)
                         out_html("mdoc");
