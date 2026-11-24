@@ -48,7 +48,7 @@
 >SSH</acronym
 > — Güvenli Kabuk) protokolü ile erişmenizi sağlar. Uzak bilgisayar <acronym
 >SSH</acronym
-> ardalan sürecini çalıştırmalıdır; ancak protokolün geri kalan kısmı aşağıda anlatılan standart komut satırı araçlarını kullanır.</para>
+> art alan sürecini çalıştırmalıdır; ancak protokolün geri kalan kısmı aşağıda anlatılan standart komut satırı araçlarını kullanır.</para>
 
 <para
 >fish KIO işçisini şöyle kullanabilirsiniz: <userinput
@@ -87,7 +87,7 @@
 <para
 ><acronym
 >SSH</acronym
-> ardalan sürecini standart olmayan bir kapıda çalıştırıyorsanız bu kapıyı normal &URL; sözdizimiyle aşağıda gösterildiği gibi belirtebilirsiniz: <userinput
+> art alan sürecini standart olmayan bir kapıda çalıştırıyorsanız bu kapıyı normal &URL; sözdizimiyle aşağıda gösterildiği gibi belirtebilirsiniz: <userinput
 >fish://<replaceable
 >makineadı</replaceable
 >:<replaceable

@@ -54,12 +54,12 @@
 ><guimenu
 >Görünüm</guimenu
 > <guisubmenu
->Önizleme</guisubmenu
+>Ön İzleme</guisubmenu
 ></menuchoice
 > alt menüsünden etkinleştirebilirsiniz.</para>
 
 <para
->KIO küçük görsel işçisi, bir kullanıcı için doğrudan yararlı değildir; ancak bir geliştiriciyseniz dosya önizlemeleri oluşturmak için kendi uygulamalarınızda kullanabilirsiniz.</para>
+>KIO küçük görsel işçisi, bir kullanıcı için doğrudan yararlı değildir; ancak bir geliştiriciyseniz dosya ön izlemeleri oluşturmak için kendi uygulamalarınızda kullanabilirsiniz.</para>
 
 <para
 >Daha fazla bilgi için kaynaklardaki belgelere bakın. Bunları <ulink url="https://commits.kde.org/kio-extras?path=thumbnail"

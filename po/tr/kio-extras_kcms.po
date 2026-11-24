@@ -20,7 +20,7 @@ msgstr ""
 "Project-Id-Version: kio4\n"
 "Report-Msgid-Bugs-To: https://bugs.kde.org\n"
 "POT-Creation-Date: 2026-08-28 00:45+0000\n"
-"PO-Revision-Date: 2026-08-27 20:08+0300\n"
+"PO-Revision-Date: 2026-11-23 18:14+0300\n"
 "Last-Translator: Emir SARI <emir_sari@icloud.com>\n"
 "Language-Team: Turkish <kde-l10n-tr@kde.org>\n"
 "Language: tr\n"
@@ -28,7 +28,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n > 1);\n"
-"X-Generator: Lokalize 26.08.0\n"
+"X-Generator: Lokalize 26.08.2\n"
 
 #. i18n: ectx: label, entry (MarkPartial), group (&lt;default&gt;)
 #: proxy/kioslave.kcfg:12
@@ -535,7 +535,7 @@ msgstr "Si&l"
 #: webshortcuts/ikwsopts_ui.ui:161
 #, kde-format
 msgid "Default Web &search keyword:"
-msgstr "Öntanımlı Web’de arama anahtar &sözcüğü:"
+msgstr "Varsayılan Web’de arama anahtar &sözcüğü:"
 
 #. i18n: ectx: property (toolTip), widget (QComboBox, cmbDefaultEngine)
 #: webshortcuts/ikwsopts_ui.ui:186
@@ -546,7 +546,7 @@ msgid ""
 "example in Konqueror's address bar.  This keyword will be used for the "
 "search. To disable this feature select <tt>(None)</tt> from the list.</p>"
 msgstr ""
-"<p>Öntanımlı bir web arama anahtar sözcüğü seçin.</p><p>Bu, örneğin "
+"<p>Varsayılan bir web arama anahtar sözcüğü seçin.</p><p>Bu, örneğin "
 "Konqueror’un adres çubuğunda olduğu gibi, giriş tanınamadığında "
 "kendiliğinden arama yapan uygulamalar tarafından kullanılabilir. Bu anahtar "
 "sözcük, arama için kullanılacaktır. Bu özelliği devre dışı bırakmak için "
@@ -586,7 +586,7 @@ msgstr "Boşluk"
 #, kde-format
 msgctxt "@item:inlistbox The default character set"
 msgid "Default"
-msgstr "Öntanımlı"
+msgstr "Varsayılan"
 
 #: webshortcuts/searchproviderdlg.cpp:51
 #, kde-format
@@ -683,7 +683,7 @@ msgstr ""
 "name2,…,\"karakter dizisi\"}) yapılabilir.<br/>İlk eşleşen değer (soldan) "
 "sonuç URI’de yerine konulacak değer olarak kullanılacaktır.<br/>Eğer kaynak "
 "listesinin solundaki hiçbir şey eşleşmezse tırnak içine alınmış karakter "
-"dizisi öntanımlı değer olarak kullanılabilir.\n"
+"dizisi varsayılan değer olarak kullanılabilir.\n"
 "</qt>"
 
 #. i18n: ectx: property (text), widget (QLabel, lbQuery)

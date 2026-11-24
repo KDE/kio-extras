@@ -110,9 +110,9 @@
 ><guimenuitem
 > Windows Paylaşımları</guimenuitem
 ></menuchoice
-> bölümünde öntanımlı kullanıcı adı ve parolanızı ayarlayabilirsiniz. Bu özellikle bir &Windows; <acronym
+> bölümünde varsayılan kullanıcı adı ve parolanızı ayarlayabilirsiniz. Bu özellikle bir &Windows; <acronym
 >NT</acronym
-> alan adının üyesiyseniz yararlıdır. Buradan ayrıca çalışma grubu adınızı ayarlayabilirsiniz; ancak çoğu durumda bu gerekli değildir. İşçi, bir öntanımlı kullanıcı adı ve parola ayarlanmamışsa size soracaktır. </para>
+> alan adının üyesiyseniz yararlıdır. Buradan ayrıca çalışma grubu adınızı ayarlayabilirsiniz; ancak çoğu durumda bu gerekli değildir. İşçi, bir varsayılan kullanıcı adı ve parola ayarlanmamışsa size soracaktır. </para>
 
 </article>
 
