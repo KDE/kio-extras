@@ -8,6 +8,7 @@
 #include <QImage>
 #include <QMimeDatabase>
 #include <QMimeType>
+#include <QScopeGuard>
 #include <QStandardPaths>
 #include <QTest>
 
@@ -384,6 +385,27 @@ private Q_SLOTS:
         auto job = KIO::mimetype(this->url(path), KIO::HideProgressInfo);
         QVERIFY2(job->exec(), qUtf8Printable(job->errorString()));
         QCOMPARE(job->mimetype(), u"image/png"_s);
+    }
+
+    void testUnsupportedConfigToken()
+    {
+        QFile sshConfig(qEnvironmentVariable("KIO_SFTP_TEST_HOME") + u"/.ssh/config"_s);
+        QVERIFY(sshConfig.open(QIODevice::ReadWrite | QIODevice::Text));
+        const QByteArray original = sshConfig.readAll();
+        sshConfig.write("    IdentityFile ~/.ssh/id_%i\n");
+        sshConfig.close();
+        const auto restoreConfig = qScopeGuard([&sshConfig, original] {
+            QVERIFY(sshConfig.open(QIODevice::WriteOnly | QIODevice::Truncate | QIODevice::Text));
+            sshConfig.write(original);
+        });
+
+        // localhost, not 127.0.0.1, so that no worker has a connection to reuse
+        QUrl url = this->url(u"/"_s);
+        url.setHost(u"localhost"_s);
+        auto job = KIO::stat(url, KIO::StatJob::SourceSide, KIO::StatBasic, KIO::HideProgressInfo);
+        QVERIFY(!job->exec());
+        QCOMPARE(job->error(), KIO::ERR_WORKER_DEFINED);
+        QVERIFY2(job->errorText().contains(u"%i"_s), qUtf8Printable(job->errorText()));
     }
 };
 

@@ -732,7 +732,14 @@ Result SFTPWorker::sftpOpenConnection(const AuthInfo &info)
     /* try to connect */
     rc = ssh_connect(mSession);
     if (rc < 0) {
-        const QString errorString = QString::fromUtf8(ssh_get_error(mSession));
+        QString errorString = QString::fromUtf8(ssh_get_error(mSession));
+        // Released libssh versions report a token they cannot expand in the ssh configuration with this generic error
+        if (errorString == QLatin1String("Couldn't apply options")) {
+            errorString = i18nc("@info",
+                                "Could not apply the SSH configuration.\n"
+                                "Check ~/.ssh/config for a token that libssh does not support, such as %i, %L, %k, %T or %n "
+                                "in IdentityFile, CertificateFile, UserKnownHostsFile or ProxyCommand.");
+        }
         closeConnection();
         return Result::fail(KIO::ERR_WORKER_DEFINED, errorString);
     }
